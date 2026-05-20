@@ -3,16 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pato Apps</title>
-
-<script>
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", async () => {
-        const registrations = await navigator.serviceWorker.getRegistrations();
-        registrations.forEach((registration) => registration.unregister());
-    });
-}
-</script>
+    <title>Pato Apps</title>
+    <link rel="apple-touch-icon" href="accueil.png">
 <style>
 :root {
     --pato-blue: #3454C3;
