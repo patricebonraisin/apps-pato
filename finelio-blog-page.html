@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finelio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f4f5f2;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1f2a28;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 36px 20px 80px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #2c3a35 0%, #18211f 100%);
+      color: white;
+      border-radius: 28px;
+      padding: 42px 28px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.10);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(38px, 6vw, 54px);
+      line-height: 1.15;
+      font-family: Georgia, serif;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .hero p {
+      margin: 0 0 24px;
+      max-width: 760px;
+      font-size: 19px;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .tag {
+      padding: 10px 14px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.10);
+      font-size: 15px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 26px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .card {
+      background: #fbfbf8;
+      border-radius: 22px;
+      padding: 22px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      font-family: Georgia, serif;
+      color: #1f2a28;
+    }
+
+    .card p {
+      margin: 0;
+      color: #5b6763;
+    }
+
+    .section {
+      margin-top: 28px;
+      background: #f7f8f5;
+      border-radius: 24px;
+      padding: 28px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+    }
+
+    .section h2 {
+      margin: 0 0 14px;
+      font-size: 30px;
+      font-family: Georgia, serif;
+      color: #1f2a28;
+    }
+
+    .list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .list-item {
+      background: white;
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      color: #33413d;
+    }
+
+    .highlight {
+      margin-top: 28px;
+      background: linear-gradient(135deg, #eef2ea 0%, #f7f5ec 100%);
+      border-radius: 24px;
+      padding: 28px;
+      border: 1px solid rgba(42, 90, 75, 0.10);
+    }
+
+    .highlight h2 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      font-family: Georgia, serif;
+      color: #1f2a28;
+    }
+
+    .highlight p {
+      margin: 0;
+      color: #5b6763;
+    }
+
+    .download {
+      margin-top: 36px;
+      text-align: center;
+    }
+
+    .download h2 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      font-family: Georgia, serif;
+      color: #1f2a28;
+    }
+
+    .download p {
+      margin: 0 0 20px;
+      color: #5b6763;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 999px;
+      background: #2a5a4b;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .button:hover {
+      opacity: 0.92;
+      transform: scale(1.03);
+    }
+
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      color: #8a918d;
+      font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        padding: 34px 22px;
+      }
+
+      .section,
+      .highlight {
+        padding: 22px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="hero">
+      <div class="badge">Finelio</div>
+
+      <h1>
+        Comprenez enfin le rendement réel de vos placements
+      </h1>
+
+      <p>
+        Finelio vous aide à voir plus clair dans votre épargne en tenant compte des frais,
+        du rendement net, de la fiscalité et du résultat final dans le temps.
+      </p>
+
+      <div class="tags">
+        <div class="tag">Rendement brut et net</div>
+        <div class="tag">Impact des frais</div>
+        <div class="tag">Scénarios comparés</div>
+        <div class="tag">PDF prêts à partager</div>
+      </div>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <h2>Une lecture claire</h2>
+        <p>
+          Visualisez simplement ce que devient un placement dans le temps,
+          au-delà du taux affiché.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Des comparaisons utiles</h2>
+        <p>
+          Comparez plusieurs scénarios sauvegardés pour mieux arbitrer entre frais,
+          rendement et fiscalité.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Un support prêt à partager</h2>
+        <p>
+          Générez des PDF clairs et élégants pour conserver ou présenter vos simulations.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="section">
+
+      <h2>Ce que vous pouvez faire avec Finelio</h2>
+
+      <div class="list">
+
+        <div class="list-item">
+          Simuler une assurance vie en euros, une assurance vie multisupport,
+          un PER ou un compte-titres.
+        </div>
+
+        <div class="list-item">
+          Mesurer l’impact réel des frais de versement,
+          des frais annuels de gestion, des frais de garde et de la fiscalité.
+        </div>
+
+        <div class="list-item">
+          Utiliser des profils d’exemple pour démarrer rapidement avec un cas concret.
+        </div>
+
+        <div class="list-item">
+          Sauvegarder vos scénarios, les comparer et les restaurer simplement via un export JSON.
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="highlight">
+
+      <h2>Une application pensée pour le grand public</h2>
+
+      <p>
+        Finelio a été conçue pour rendre les placements plus lisibles,
+        plus concrets et plus compréhensibles.
+        L’objectif n’est pas d’ajouter de la complexité,
+        mais d’aider chacun à mieux visualiser l’effet réel du temps,
+        des frais et du rendement sur son capital.
+      </p>
+
+    </div>
+
+    <div class="download">
+
+      <h2>Téléchargez Finelio</h2>
+
+      <p>
+        Une lecture claire, pédagogique et visuelle de vos placements,
+        directement sur iPhone.
+      </p>
+
+      <a href="#" class="button">
+        Télécharger sur l’App Store
+      </a>
+
+    </div>
+
+    <footer>
+      © 2026 Finelio · Pensé avec clarté, pédagogie et quelques calculs tard le soir.
+    </footer>
+
+  </div>
+
+</body>
+</html>
