@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Loopa Move - Générateur de boucles sportives</title>
-  <meta name="description" content="Présentation premium de Loopa Move, l'application qui génère des boucles personnalisées pour marcher, courir, randonner et rouler à vélo.">
+  <meta name="description" content="Présentation de Loopa Move, l'application qui génère des boucles personnalisées pour marcher, courir, randonner et rouler à vélo.">
+
   <style>
     :root {
       --loopa-ink: #07111d;
@@ -14,27 +15,49 @@
       --loopa-blue: #0b7cff;
       --loopa-green: #29a862;
       --loopa-orange: #f59a23;
-      --loopa-cream: #f7f3ea;
-      --loopa-sky: #e8f4ff;
-      --loopa-mint: #eaf8ef;
       --loopa-white: #ffffff;
       --loopa-shadow: 0 24px 70px rgba(7, 17, 29, 0.14);
       --loopa-radius: 28px;
       color-scheme: light;
     }
 
-    .loopa-page,
-    .loopa-page * {
+    * {
       box-sizing: border-box;
     }
 
-    .loopa-page {
+    body {
       margin: 0;
       color: var(--loopa-ink);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
         radial-gradient(circle at 20% 6%, rgba(11, 124, 255, 0.14), transparent 32rem),
         linear-gradient(180deg, #fbfdff 0%, #f4f7f3 48%, #ffffff 100%);
+    }
+
+    .back-button {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      z-index: 50;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.88);
+      color: #3454C3;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 12px 32px rgba(7, 17, 29, 0.12);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+    }
+
+    .back-button:hover {
+      opacity: 0.88;
+    }
+
+    .loopa-page {
       overflow: hidden;
     }
 
@@ -46,14 +69,14 @@
     .loopa-hero {
       position: relative;
       min-height: 92svh;
-      padding: 34px 0 56px;
+      padding: 96px 0 56px;
       display: grid;
       align-items: center;
     }
 
     .loopa-nav {
       position: absolute;
-      top: 22px;
+      top: 58px;
       left: 0;
       right: 0;
       display: flex;
@@ -115,7 +138,6 @@
       max-width: 780px;
       font-size: clamp(3.3rem, 8vw, 7.8rem);
       line-height: 0.88;
-      letter-spacing: 0;
       font-weight: 900;
     }
 
@@ -184,7 +206,6 @@
     .loopa-proof-item strong {
       display: block;
       font-size: 1.32rem;
-      line-height: 1;
       margin-bottom: 8px;
     }
 
@@ -228,7 +249,6 @@
       overflow: hidden;
       border-radius: 34px;
       background: #dfeee8;
-      isolation: isolate;
     }
 
     .loopa-map {
@@ -346,7 +366,6 @@
       margin: 0;
       font-size: clamp(2rem, 4.8vw, 4.6rem);
       line-height: 0.98;
-      letter-spacing: 0;
       font-weight: 900;
     }
 
@@ -382,14 +401,6 @@
       color: white;
       background: var(--loopa-blue);
       font-weight: 900;
-    }
-
-    .loopa-feature:nth-child(2n) .loopa-icon {
-      background: var(--loopa-green);
-    }
-
-    .loopa-feature:nth-child(3n) .loopa-icon {
-      background: var(--loopa-orange);
     }
 
     .loopa-feature h3 {
@@ -570,7 +581,6 @@
       margin: 0;
       font-size: clamp(2rem, 4.4vw, 4rem);
       line-height: 1;
-      letter-spacing: 0;
     }
 
     .loopa-cta p {
@@ -601,19 +611,22 @@
       .loopa-feature-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-
-      .loopa-cta-box {
-        align-items: start;
-      }
     }
 
     @media (max-width: 680px) {
+      .back-button {
+        top: 12px;
+        left: 12px;
+        padding: 10px 14px;
+        font-size: 0.92rem;
+      }
+
       .loopa-wrap {
         width: min(100% - 24px, 1180px);
       }
 
       .loopa-nav {
-        top: 14px;
+        top: 58px;
       }
 
       .loopa-nav .loopa-pill {
@@ -621,7 +634,7 @@
       }
 
       .loopa-hero {
-        padding-bottom: 36px;
+        padding-top: 110px;
       }
 
       .loopa-title {
@@ -656,9 +669,15 @@
     }
   </style>
 </head>
+
 <body>
+
+  <a href="index.html" class="back-button">← Retour aux apps</a>
+
   <main class="loopa-page">
+
     <section class="loopa-hero">
+
       <div class="loopa-wrap loopa-nav" aria-label="Navigation de présentation">
         <a class="loopa-brand" href="#top" aria-label="Loopa Move">
           <span class="loopa-mark">L</span>
@@ -668,16 +687,19 @@
       </div>
 
       <div class="loopa-wrap loopa-hero-grid" id="top">
+
         <div>
           <p class="loopa-pill loopa-kicker">Boucles personnalisées pour sortir sans réfléchir au trajet</p>
           <h1 class="loopa-title">Loopa Move <span>trace la boucle.</span></h1>
           <p class="loopa-lead">
             Choisissez votre activité, votre distance et l’ambiance de la sortie. Loopa Move génère plusieurs parcours autour de votre position, vous aide à les ajuster, puis vous accompagne sur iPhone, Apple Watch et Live Activity.
           </p>
+
           <div class="loopa-hero-actions">
             <a class="loopa-button primary" href="#possibilites">Voir les possibilités</a>
             <a class="loopa-button secondary" href="#watch">Découvrir le guidage</a>
           </div>
+
           <div class="loopa-proof" aria-label="Points forts">
             <div class="loopa-proof-item"><strong>4</strong><span>activités : marche, course, randonnée, vélo</span></div>
             <div class="loopa-proof-item"><strong>3</strong><span>variantes proposées pour comparer</span></div>
@@ -697,6 +719,7 @@
                 <circle cx="148" cy="376" r="15" fill="#29a862" stroke="#fff" stroke-width="6"/>
                 <circle cx="190" cy="112" r="10" fill="#f59a23" stroke="#fff" stroke-width="5"/>
               </svg>
+
               <div class="loopa-top-card">
                 <div>
                   <div class="loopa-app-title">Loopa Move</div>
@@ -704,6 +727,7 @@
                 </div>
                 <div class="loopa-status">Prêt</div>
               </div>
+
               <div class="loopa-bottom-card">
                 <div class="loopa-card-label">Parcours sélectionné</div>
                 <div class="loopa-card-title">Boucle nature de 8,2 km</div>
@@ -713,168 +737,15 @@
                   <div class="loopa-metric">Nature</div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="loopa-section" id="possibilites">
-      <div class="loopa-wrap">
-        <div class="loopa-section-head">
-          <span class="loopa-eyebrow">Tout ce que l’app permet</span>
-          <h2 class="loopa-heading">Une sortie complète, de l’idée au partage.</h2>
-          <p class="loopa-copy">
-            Loopa Move ne se contente pas de dessiner un trait sur une carte. L’app prépare des boucles cohérentes, les qualifie, les sauvegarde, les exporte et les transfère vers l’Apple Watch.
-          </p>
-        </div>
-
-        <div class="loopa-feature-grid">
-          <article class="loopa-feature">
-            <div class="loopa-icon">01</div>
-            <h3>Activité et distance sur mesure</h3>
-            <p>Marche, course, randonnée ou vélo : chaque profil dispose d’une distance par défaut et d’une limite adaptée, jusqu’à 30 km à pied et 50 km à vélo.</p>
-          </article>
-          <article class="loopa-feature">
-            <div class="loopa-icon">02</div>
-            <h3>Ambiance de parcours</h3>
-            <p>Équilibrée, nature, chemins calmes, route ou pistes cyclables selon l’activité choisie. Le tracé s’adapte à l’intention de la sortie.</p>
-          </article>
-          <article class="loopa-feature">
-            <div class="loopa-icon">03</div>
-            <h3>Variantes comparables</h3>
-            <p>L’app génère plusieurs propositions et met en avant des badges utiles : distance proche, peu d’allers-retours, tracé plus direct ou ambiance nature.</p>
-          </article>
-          <article class="loopa-feature">
-            <div class="loopa-icon">04</div>
-            <h3>Ajustements sur la carte</h3>
-            <p>Ajoutez des passages obligatoires ou des zones à éviter avant de créer le parcours, pour guider la boucle selon vos envies du jour.</p>
-          </article>
-          <article class="loopa-feature">
-            <div class="loopa-icon">05</div>
-            <h3>Résumé intelligent</h3>
-            <p>Chaque parcours reçoit un nom suggéré, un niveau d’effort, des points forts et un conseil d’usage pour décider rapidement si la sortie vous convient.</p>
-          </article>
-          <article class="loopa-feature">
-            <div class="loopa-icon">06</div>
-            <h3>Exports prêts à l’emploi</h3>
-            <p>Partagez une image premium du parcours ou exportez un fichier GPX 1.1 avec distance, durée estimée et points de trace.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="loopa-section loopa-band">
-      <div class="loopa-wrap loopa-flow">
-        <div>
-          <span class="loopa-eyebrow">Workflow</span>
-          <h2 class="loopa-heading">Créer une boucle prend quelques gestes.</h2>
-          <p class="loopa-copy">
-            Le flux est pensé pour rester simple : on part de la position actuelle, on choisit le type de sortie, on affine le tracé si besoin, puis on démarre.
-          </p>
-          <div class="loopa-detail-grid">
-            <div class="loopa-detail">
-              <strong>Sauvegarde locale et iCloud</strong>
-              <span>Conservez jusqu’à trois parcours récents, avec restauration depuis iCloud lorsque c’est disponible.</span>
-            </div>
-            <div class="loopa-detail">
-              <strong>Reprise rapide</strong>
-              <span>Rétablissez l’itinéraire précédent ou ouvrez un parcours enregistré sans repartir de zéro.</span>
             </div>
           </div>
         </div>
 
-        <div class="loopa-steps">
-          <article class="loopa-step">
-            <div class="loopa-step-number">1</div>
-            <div>
-              <h3>Choisir l’activité</h3>
-              <p>Marche ou course pour les sorties à pied, randonnée pour les boucles plus longues, vélo pour les itinéraires roulants.</p>
-            </div>
-          </article>
-          <article class="loopa-step">
-            <div class="loopa-step-number">2</div>
-            <div>
-              <h3>Régler distance et ambiance</h3>
-              <p>Définissez la longueur souhaitée, puis orientez l’algorithme vers une boucle équilibrée, plus verte, plus calme ou plus cyclable.</p>
-            </div>
-          </article>
-          <article class="loopa-step">
-            <div class="loopa-step-number">3</div>
-            <div>
-              <h3>Comparer les variantes</h3>
-              <p>Consultez les distances, durées estimées, badges de qualité et détails avant de choisir le tracé le plus adapté.</p>
-            </div>
-          </article>
-          <article class="loopa-step">
-            <div class="loopa-step-number">4</div>
-            <div>
-              <h3>Démarrer, suivre, partager</h3>
-              <p>Lancez la navigation, suivez l’avancement, envoyez le parcours vers l’Apple Watch et exportez le résultat en image ou en GPX.</p>
-            </div>
-          </article>
-        </div>
       </div>
     </section>
 
-    <section class="loopa-section" id="watch">
-      <div class="loopa-wrap loopa-watch">
-        <div class="loopa-watch-visual" aria-hidden="true">
-          <div class="loopa-watch-screen">
-            <div class="loopa-watch-title">Loopa Move</div>
-            <div class="loopa-watch-map">
-              <svg viewBox="0 0 220 120">
-                <path d="M30 96 C48 45 92 92 115 42 C135 2 190 18 184 72 C179 114 108 104 84 82 C62 63 47 98 30 96Z" fill="none" stroke="rgba(255,255,255,.9)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M30 96 C48 45 92 92 115 42 C135 2 190 18 184 72 C179 114 108 104 84 82 C62 63 47 98 30 96Z" fill="none" stroke="#0b7cff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="30" cy="96" r="8" fill="#29a862"/>
-              </svg>
-            </div>
-            <div class="loopa-watch-card">
-              <strong>Sur le parcours</strong>
-              <span>Restant 5,8 km · Écart 12 m</span>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <span class="loopa-eyebrow">Guidage connecté</span>
-          <h2 class="loopa-heading">L’iPhone prépare, la Watch accompagne.</h2>
-          <p class="loopa-copy">
-            Le parcours peut être envoyé vers l’app Apple Watch compagnon. Sur la montre, la carte affiche la progression, le reste du tracé, la direction, l’écart au parcours et les prochaines actions visuelles.
-          </p>
-          <div class="loopa-detail-grid">
-            <div class="loopa-detail">
-              <strong>Navigation active</strong>
-              <span>Temps, distance parcourue, distance restante, écart au tracé et consignes sont mis à jour pendant la sortie.</span>
-            </div>
-            <div class="loopa-detail">
-              <strong>Live Activities</strong>
-              <span>Suivez les informations clés depuis l’écran verrouillé et la Dynamic Island : temps, distance, prévu et instruction à venir.</span>
-            </div>
-            <div class="loopa-detail">
-              <strong>Séance Apple Watch</strong>
-              <span>La montre peut démarrer une séance outdoor via Santé lorsque l’autorisation est accordée.</span>
-            </div>
-            <div class="loopa-detail">
-              <strong>Alerte hors parcours</strong>
-              <span>L’app signale l’éloignement du tracé et propose de recentrer la carte pour retrouver rapidement la route.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="loopa-cta">
-      <div class="loopa-wrap loopa-cta-box">
-        <div>
-          <h2>Une app faite pour transformer une envie de bouger en parcours prêt à suivre.</h2>
-          <p>
-            Loopa Move privilégie une expérience fluide, utile et lisible : pas de complexité inutile, juste les bons réglages pour générer une boucle, partir, suivre son effort et garder une trace de la sortie.
-          </p>
-        </div>
-        <a class="loopa-button" href="#top">Remonter</a>
-      </div>
-    </section>
   </main>
+
 </body>
 </html>
