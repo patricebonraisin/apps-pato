@@ -1,632 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
 <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Découvrez Pato Life, le blog, l'application iPhone pour lire les articles du blog dans une expérience plus fluide, plus élégante et plus personnelle.">
-    <title>Pato Life, le blog - Application iPhone</title>
-    <style>
-        :root {
-            --primary: #143d8c;
-            --secondary: #cf5987;
-            --primary-soft: rgba(20, 61, 140, 0.12);
-            --secondary-soft: rgba(207, 89, 135, 0.14);
-            --background: #f2f2f7;
-            --surface: rgba(255, 255, 255, 0.9);
-            --surface-solid: #ffffff;
-            --text: #16181d;
-            --text-muted: #5f6675;
-            --border: rgba(20, 61, 140, 0.12);
-            --shadow: 0 24px 60px rgba(20, 61, 140, 0.14);
-            --hero-shadow: 0 30px 80px rgba(20, 61, 140, 0.22);
-            --max-width: 1120px;
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Découvrez Pato Life, le blog, l'application iPhone pour lire les articles du blog dans une expérience plus fluide, plus élégante et plus personnelle.">
+<title>Pato Life, le blog - Application iPhone</title>
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --background: #191b21;
-                --surface: rgba(28, 28, 30, 0.88);
-                --surface-solid: #1c1c1e;
-                --text: #f6f7fb;
-                --text-muted: #b3b8c3;
-                --border: rgba(255, 255, 255, 0.08);
-                --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
-                --hero-shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
-            }
-        }
+<style>
+.back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.85);
+    color: #3454C3;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+.back-button:hover {
+    opacity: 0.85;
+}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
-            background:
-                radial-gradient(circle at top left, rgba(207, 89, 135, 0.18), transparent 28%),
-                radial-gradient(circle at top right, rgba(20, 61, 140, 0.18), transparent 32%),
-                linear-gradient(180deg, rgba(255, 255, 255, 0.72), transparent 22%),
-                var(--background);
-            color: var(--text);
-            line-height: 1.65;
-            padding: 28px 20px 56px;
-        }
+:root {
+    --primary: #143d8c;
+    --secondary: #cf5987;
+    --primary-soft: rgba(20, 61, 140, 0.12);
+    --secondary-soft: rgba(207, 89, 135, 0.14);
+    --background: #f2f2f7;
+    --surface: rgba(255, 255, 255, 0.9);
+    --surface-solid: #ffffff;
+    --text: #16181d;
+    --text-muted: #5f6675;
+    --border: rgba(20, 61, 140, 0.12);
+    --shadow: 0 24px 60px rgba(20, 61, 140, 0.14);
+    --hero-shadow: 0 30px 80px rgba(20, 61, 140, 0.22);
+    --max-width: 1120px;
+}
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        .page {
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(207, 89, 135, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(20, 61, 140, 0.18), transparent 32%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.72), transparent 22%),
+        var(--background);
+    color: var(--text);
+    line-height: 1.65;
+    padding: 28px 20px 56px;
+}
 
-        .hero {
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, var(--primary) 0%, #234fa9 42%, var(--secondary) 100%);
-            color: #ffffff;
-            border-radius: 36px;
-            padding: 40px;
-            box-shadow: var(--hero-shadow);
-            margin-bottom: 28px;
-        }
+a {
+    color: inherit;
+    text-decoration: none;
+}
 
-        .hero::before,
-        .hero::after {
-            content: "";
-            position: absolute;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.1);
-            filter: blur(4px);
-        }
+.page {
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
 
-        .hero::before {
-            width: 250px;
-            height: 250px;
-            top: -110px;
-            right: -50px;
-        }
+.hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--primary) 0%, #234fa9 42%, var(--secondary) 100%);
+    color: #ffffff;
+    border-radius: 36px;
+    padding: 40px;
+    box-shadow: var(--hero-shadow);
+    margin-bottom: 28px;
+}
 
-        .hero::after {
-            width: 190px;
-            height: 190px;
-            bottom: -70px;
-            left: 30px;
-        }
+.hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+    gap: 24px;
+}
 
-        .hero-inner {
-            position: relative;
-            z-index: 1;
-            display: grid;
-            grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
-            gap: 24px;
-            align-items: stretch;
-        }
+.eyebrow {
+    display: inline-flex;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.16);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
 
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 16px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.16);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            margin-bottom: 18px;
-        }
+h1 {
+    font-size: clamp(2.6rem, 5vw, 4.8rem);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    margin-bottom: 18px;
+    color: #ffffff;
+    max-width: 10ch;
+}
 
-        h1 {
-            font-size: clamp(2.6rem, 5vw, 4.8rem);
-            line-height: 0.95;
-            letter-spacing: -0.05em;
-            margin-bottom: 18px;
-            color: #ffffff;
-            max-width: 10ch;
-        }
+.hero-copy {
+    max-width: 44rem;
+    font-size: 19px;
+    color: rgba(255,255,255,0.92);
+}
 
-        .hero-copy {
-            max-width: 44rem;
-            font-size: 19px;
-            color: rgba(255, 255, 255, 0.92);
-        }
+.cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 26px;
+}
 
-        .cta-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-            margin-top: 26px;
-        }
+.cta-primary,
+.cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 22px;
+    border-radius: 999px;
+    font-weight: 800;
+}
 
-        .cta-primary,
-        .cta-secondary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 15px 22px;
-            border-radius: 999px;
-            font-weight: 800;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
+.cta-primary {
+    background: #ffffff;
+    color: var(--primary);
+}
 
-        .cta-primary {
-            background: #ffffff;
-            color: var(--primary);
-            box-shadow: 0 18px 36px rgba(7, 15, 35, 0.2);
-        }
+.cta-secondary {
+    background: rgba(255,255,255,0.12);
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.18);
+}
 
-        .cta-secondary {
-            background: rgba(255, 255, 255, 0.12);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
+.hero-panel {
+    background: rgba(7,15,35,0.2);
+    border-radius: 28px;
+    padding: 24px;
+    display: grid;
+    gap: 14px;
+}
 
-        .cta-primary:hover,
-        .cta-secondary:hover {
-            transform: translateY(-1px);
-        }
+.hero-panel-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.74);
+}
 
-        .hero-panel {
-            background: rgba(7, 15, 35, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            border-radius: 28px;
-            backdrop-filter: blur(14px);
-            padding: 24px;
-            display: grid;
-            gap: 14px;
-            align-content: start;
-        }
+.hero-point {
+    display: flex;
+    gap: 12px;
+}
 
-        .hero-panel-title {
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.74);
-        }
+.hero-marker {
+    flex: 0 0 34px;
+    height: 34px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.16);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .hero-point {
-            display: flex;
-            gap: 12px;
-            align-items: flex-start;
-        }
+.hero-point span {
+    color: rgba(255,255,255,0.76);
+    font-size: 14px;
+}
 
-        .hero-marker {
-            flex: 0 0 34px;
-            height: 34px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.16);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 15px;
-        }
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 22px;
+}
 
-        .hero-point strong {
-            display: block;
-            font-size: 15px;
-        }
+.stat,
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+}
 
-        .hero-point span {
-            color: rgba(255, 255, 255, 0.76);
-            display: block;
-            font-size: 14px;
-        }
+.stat-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--primary);
+}
 
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 16px;
-            margin-bottom: 22px;
-        }
+.stat-label,
+.intro,
+.feature p,
+.story-item p,
+.note {
+    color: var(--text-muted);
+}
 
-        .stat {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 22px;
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(12px);
-        }
+.stack {
+    display: grid;
+    gap: 20px;
+}
 
-        .stat-value {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: -0.03em;
-            margin-bottom: 4px;
-        }
+.card h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: var(--primary);
+}
 
-        .stat-label {
-            color: var(--text-muted);
-            font-size: 14px;
-        }
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
 
-        .stack {
-            display: grid;
-            gap: 20px;
-        }
+.feature,
+.story-item {
+    background: linear-gradient(145deg, rgba(20,61,140,0.07), rgba(207,89,135,0.10));
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 22px;
+}
 
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 28px;
-            padding: 28px;
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(12px);
-        }
+.feature-badge {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-soft), var(--secondary-soft));
+    color: var(--primary);
+    font-weight: 800;
+    margin-bottom: 14px;
+}
 
-        .card h2 {
-            font-size: 30px;
-            line-height: 1.04;
-            letter-spacing: -0.03em;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
+.story {
+    display: grid;
+    gap: 16px;
+}
 
-        .intro {
-            color: var(--text-muted);
-            margin-bottom: 22px;
-        }
+.final-cta {
+    text-align: center;
+}
 
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 16px;
-        }
+.final-cta .card {
+    background: linear-gradient(135deg, var(--primary) 0%, #234fa9 42%, var(--secondary) 100%);
+    color: #ffffff;
+}
 
-        .feature {
-            background: linear-gradient(145deg, rgba(20, 61, 140, 0.07), rgba(207, 89, 135, 0.10));
-            border: 1px solid var(--border);
-            border-radius: 22px;
-            padding: 22px;
-        }
+.final-cta h2,
+.final-cta .intro {
+    color: #ffffff;
+}
 
-        .feature-badge {
-            width: 42px;
-            height: 42px;
-            border-radius: 14px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--primary-soft), var(--secondary-soft));
-            color: var(--primary);
-            font-size: 18px;
-            font-weight: 800;
-            margin-bottom: 14px;
-        }
+footer {
+    margin-top: 24px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 14px;
+}
 
-        .feature h3 {
-            font-size: 19px;
-            margin-bottom: 8px;
-            color: var(--text);
-        }
+@media (max-width: 980px) {
+    .hero-inner,
+    .stats,
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
-        .feature p {
-            color: var(--text-muted);
-            font-size: 15px;
-        }
+@media (max-width: 640px) {
+    body {
+        padding: 14px 14px 42px;
+    }
 
-        .story {
-            display: grid;
-            gap: 16px;
-        }
+    .hero,
+    .card,
+    .stat {
+        border-radius: 24px;
+        padding: 22px;
+    }
 
-        .story-item {
-            background: rgba(255, 255, 255, 0.42);
-            border: 1px solid var(--border);
-            border-radius: 22px;
-            padding: 20px;
-        }
+    .cta-row {
+        flex-direction: column;
+    }
 
-        .story-item strong {
-            display: block;
-            font-size: 17px;
-            margin-bottom: 6px;
-            color: var(--primary);
-        }
+    .cta-primary,
+    .cta-secondary {
+        width: 100%;
+    }
+}
+</style>
+</head>
 
-        .story-item p {
-            color: var(--text-muted);
-            font-size: 15px;
-        }
+<body>
 
-        .highlight {
-            position: relative;
-            overflow: hidden;
-            background:
-                radial-gradient(circle at top right, rgba(207, 89, 135, 0.18), transparent 38%),
-                linear-gradient(145deg, rgba(20, 61, 140, 0.08), rgba(207, 89, 135, 0.12)),
-                var(--surface-solid);
-        }
+<div class="page">
 
-        .highlight::after {
-            content: "";
-            position: absolute;
-            inset: auto -70px -90px auto;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(20, 61, 140, 0.16), transparent 70%);
-            pointer-events: none;
-        }
+    <a href="index.html" class="back-button">← Retour aux apps</a>
 
-        .quote {
-            font-size: 18px;
-            line-height: 1.7;
-            color: var(--text);
-            max-width: 44rem;
-        }
+    <header class="hero">
+        <div class="hero-inner">
+            <div>
+                <div class="eyebrow">Application iPhone • Pato Life, le blog</div>
+                <h1>Le blog prend vie sur iPhone</h1>
+                <p class="hero-copy">
+                    Retrouvez vos articles dans une application plus fluide, plus personnelle et pensée
+                    pour une lecture élégante au quotidien.
+                </p>
 
-        .quote strong {
-            color: var(--primary);
-        }
+                <div class="cta-row">
+                    <a class="cta-primary" href="https://apps.apple.com/us/app/pato-life/id6760929480" target="_blank" rel="noopener noreferrer">Télécharger sur l'App Store</a>
+                    <a class="cta-secondary" href="https://patoleblog.fr" target="_blank" rel="noopener noreferrer">Voir le blog WordPress</a>
+                </div>
+            </div>
 
-        .note {
-            margin-top: 18px;
-            color: var(--text-muted);
-            font-size: 14px;
-        }
+            <aside class="hero-panel">
+                <div class="hero-panel-title">Pourquoi l'application</div>
 
-        .final-cta {
-            text-align: center;
-        }
-
-        .final-cta h2 {
-            color: #ffffff;
-        }
-
-        .final-cta .card {
-            background: linear-gradient(135deg, var(--primary) 0%, #234fa9 42%, var(--secondary) 100%);
-            color: #ffffff;
-        }
-
-        .final-cta .intro,
-        .final-cta .note {
-            color: rgba(255, 255, 255, 0.82);
-        }
-
-        footer {
-            margin-top: 24px;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        footer strong {
-            color: var(--text);
-        }
-
-        @media (max-width: 980px) {
-            .hero-inner,
-            .stats,
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 640px) {
-            body {
-                padding: 14px 14px 42px;
-            }
-
-            .hero,
-            .card,
-            .stat {
-                border-radius: 24px;
-            }
-
-            .hero,
-            .card {
-                padding: 22px;
-            }
-
-            .cta-row {
-                flex-direction: column;
-            }
-
-            .cta-primary,
-            .cta-secondary {
-                width: 100%;
-            }
-        }
-    </style>
-
-
-    <div class="page">
-        <header class="hero">
-            <div class="hero-inner">
-                <div>
-                    <div class="eyebrow">Application iPhone • Pato Life, le blog</div>
-                    <h1>Le blog prend vie sur iPhone</h1>
-                    <p class="hero-copy">
-                        Retrouvez vos articles dans une application plus fluide, plus personnelle et pensée
-                        pour une lecture élégante au quotidien : résumé express, commentaires, favoris, notifications
-                        et confort de lecture réunis dans une seule expérience.
-                    </p>
-
-                    <div class="cta-row">
-                        <a class="cta-primary" href="https://apps.apple.com/us/app/pato-life/id6760929480" target="_blank" rel="noopener noreferrer">Télécharger sur l'App Store</a>
-                        <a class="cta-secondary" href="https://patoleblog.fr" target="_blank" rel="noopener noreferrer">Voir le blog WordPress</a>
+                <div class="hero-point">
+                    <div class="hero-marker">1</div>
+                    <div>
+                        <strong>Lecture plus confortable</strong>
+                        <span>Une interface plus nette que le web mobile.</span>
                     </div>
-
-                    <p class="note"></p>
                 </div>
 
-                <aside class="hero-panel">
-                    <div class="hero-panel-title">Pourquoi l'application</div>
-
-                    <div class="hero-point">
-                        <div class="hero-marker">1</div>
-                        <div>
-                            <strong>Lecture plus confortable</strong>
-                            <span>Une interface plus nette que le web mobile pour lire longtemps avec plaisir.</span>
-                        </div>
+                <div class="hero-point">
+                    <div class="hero-marker">2</div>
+                    <div>
+                        <strong>Expérience plus personnelle</strong>
+                        <span>Accueil personnalisé et interface adaptée.</span>
                     </div>
+                </div>
 
-                    <div class="hero-point">
-                        <div class="hero-marker">2</div>
-                        <div>
-                            <strong>Expérience plus personnelle</strong>
-                            <span>Accueil personnalisé, reprise de lecture et interface adaptée à votre rythme.</span>
-                        </div>
+                <div class="hero-point">
+                    <div class="hero-marker">3</div>
+                    <div>
+                        <strong>Fonctions exclusives</strong>
+                        <span>Résumé express, audio, favoris et notifications.</span>
                     </div>
+                </div>
+            </aside>
+        </div>
+    </header>
 
-                    <div class="hero-point">
-                        <div class="hero-marker">3</div>
-                        <div>
-                            <strong>Fonctions exclusives</strong>
-                            <span>Résumé express, audio, commentaires suivis et notifications de nouveaux articles.</span>
-                        </div>
-                    </div>
-                </aside>
-            </div>
-        </header>
+    <section class="stats">
+        <div class="stat">
+            <div class="stat-value">iPhone</div>
+            <div class="stat-label">Une interface mobile conçue pour la lecture.</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">Express</div>
+            <div class="stat-label">Un résumé rapide pour saisir l'essentiel.</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">Pato</div>
+            <div class="stat-label">Une expérience éditoriale chaleureuse.</div>
+        </div>
+    </section>
 
-        <section class="stats">
-            <div class="stat">
-                <div class="stat-value">iPhone</div>
-                <div class="stat-label">Une interface mobile conçue pour la lecture, pas une simple adaptation du site.</div>
-            </div>
-            <div class="stat">
-                <div class="stat-value">Express</div>
-                <div class="stat-label">Un résumé rapide aide à saisir l'essentiel avant de plonger dans l'article complet.</div>
-            </div>
-            <div class="stat">
-                <div class="stat-value">Pato</div>
-                <div class="stat-label">Une expérience éditoriale plus chaleureuse avec une identité visuelle propre.</div>
+    <main class="stack">
+
+        <section class="card">
+            <h2>Une lecture plus belle, plus claire, plus calme</h2>
+            <p class="intro">
+                Pato Life, le blog prolonge naturellement le blog WordPress dans une interface iPhone plus soignée.
+            </p>
+
+            <div class="feature-grid">
+                <article class="feature">
+                    <div class="feature-badge">Aa</div>
+                    <h3>Confort visuel</h3>
+                    <p>Une mise en page plus aérée et agréable.</p>
+                </article>
+
+                <article class="feature">
+                    <div class="feature-badge">IA</div>
+                    <h3>Lecture express</h3>
+                    <p>Un résumé rapide avant de lire l'article complet.</p>
+                </article>
+
+                <article class="feature">
+                    <div class="feature-badge">♪</div>
+                    <h3>Lecture audio</h3>
+                    <p>Écoutez les articles quand vous préférez une lecture vocale.</p>
+                </article>
+
+                <article class="feature">
+                    <div class="feature-badge">★</div>
+                    <h3>Accueil personnalisé</h3>
+                    <p>Retrouvez vos favoris et les derniers articles.</p>
+                </article>
             </div>
         </section>
 
-        <main class="stack">
-            <section class="card">
-                <h2>Une lecture plus belle, plus claire, plus calme</h2>
+        <section class="card">
+            <h2>Ce que l'application change vraiment</h2>
+            <p class="intro">
+                Sur le site, vous lisez un article. Dans l'application, vous retrouvez un vrai espace de lecture,
+                plus immersif, plus confortable et mieux adapté à l'iPhone.
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>Des fonctions utiles au quotidien</h2>
+
+            <div class="story">
+                <div class="story-item">
+                    <strong>Nouveaux articles mieux signalés</strong>
+                    <p>Les derniers contenus se repèrent facilement.</p>
+                </div>
+
+                <div class="story-item">
+                    <strong>Commentaires et réponses suivies</strong>
+                    <p>L'application aide à ne rien manquer.</p>
+                </div>
+
+                <div class="story-item">
+                    <strong>Filtres et organisation du contenu</strong>
+                    <p>Rubriques, périodes et recherche facilitent la navigation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="final-cta">
+            <div class="card">
+                <h2>Essayez Pato Life, le blog sur iPhone</h2>
                 <p class="intro">
-                    Pato Life, le blog a été pensée comme un prolongement naturel du blog WordPress, mais dans une interface
-                    iPhone plus soignée, plus stable et plus agréable à utiliser tous les jours.
+                    Une expérience plus fluide, plus intime et plus élégante.
                 </p>
 
-                <div class="feature-grid">
-                    <article class="feature">
-                        <div class="feature-badge">Aa</div>
-                        <h3>Confort visuel</h3>
-                        <p>Une mise en page plus aérée, une taille de texte ajustable et des thèmes adaptés à votre ambiance de lecture.</p>
-                    </article>
-
-                    <article class="feature">
-                        <div class="feature-badge">IA</div>
-                        <h3>Lecture express</h3>
-                        <p>Un résumé rapide des points essentiels pour comprendre l'article en quelques secondes avant de lire plus en détail.</p>
-                    </article>
-
-                    <article class="feature">
-                        <div class="feature-badge">♪</div>
-                        <h3>Lecture audio</h3>
-                        <p>Écoutez les articles quand vous préférez une lecture vocale, dans les transports ou pendant une pause.</p>
-                    </article>
-
-                    <article class="feature">
-                        <div class="feature-badge">★</div>
-                        <h3>Accueil personnalisé</h3>
-                        <p>Retrouvez rapidement vos contenus favoris, les derniers articles et les modules que vous aimez afficher.</p>
-                    </article>
+                <div class="cta-row" style="justify-content:center;">
+                    <a class="cta-primary" href="https://apps.apple.com/us/app/pato-life/id6760929480" target="_blank" rel="noopener noreferrer">Ouvrir la page App Store</a>
+                    <a class="cta-secondary" href="https://patoleblog.fr/assistance/" target="_blank" rel="noopener noreferrer">Besoin d'aide ?</a>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section class="card highlight">
-                <h2>Ce que l'application change vraiment</h2>
-                <p class="quote">
-                    Sur le site, vous lisez un article.
-                    <strong>Dans l'application, vous retrouvez un espace de lecture complet</strong> :
-                    plus immersif, plus confortable et mieux adapté à une consultation quotidienne sur iPhone.
-                </p>
-            </section>
+    </main>
 
-            <section class="card">
-                <h2>Des fonctions utiles au quotidien</h2>
-                <p class="intro">
-                    L'application ne se contente pas d'afficher le blog. Elle ajoute des outils qui rendent la lecture
-                    plus naturelle et plus pratique pour les lecteurs fidèles.
-                </p>
+    <footer>
+        <p><strong>© 2026 Pato Switch</strong></p>
+        <p>Pato Life, le blog • Page de présentation de l'application iPhone</p>
+    </footer>
 
-                <div class="story">
-                    <div class="story-item">
-                        <strong>Nouveaux articles mieux signalés</strong>
-                        <p>Les derniers contenus se repèrent facilement, avec un affichage clair des articles non lus et nouvellement publiés.</p>
-                    </div>
+</div>
 
-                    <div class="story-item">
-                        <strong>Commentaires et réponses suivies</strong>
-                        <p>Quand une réponse arrive sur vos propres commentaires, l'application la met davantage en avant pour ne rien manquer.</p>
-                    </div>
-
-                    <div class="story-item">
-                        <strong>Filtres et organisation du contenu</strong>
-                        <p>Rubriques, périodes, recherche et navigation visuelle rendent le blog plus facile à parcourir depuis le mobile.</p>
-                    </div>
-
-                    <div class="story-item">
-                        <strong>Interface plus vivante</strong>
-                        <p>Badge de salutation, carte hero, modules d'accueil et lecture express donnent une identité plus forte à l'expérience.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="card">
-                <h2>Une application respectueuse de votre rythme</h2>
-                <p class="intro">
-                    Pato Life, le blog laisse le lecteur maîtriser son expérience. Certains blocs sont visibles dès la première installation,
-                    d'autres peuvent être affichés ou masqués dans les réglages selon les préférences.
-                </p>
-
-                <div class="feature-grid">
-                    <article class="feature">
-                        <div class="feature-badge">☺</div>
-                        <h3>Accueil chaleureux</h3>
-                        <p>Le badge de salutation et la présentation éditoriale donnent un ton plus humain à l'ouverture de l'application.</p>
-                    </article>
-
-                    <article class="feature">
-                        <div class="feature-badge">⚙</div>
-                        <h3>Réglages lisibles</h3>
-                        <p>Les options sont présentées de façon claire pour permettre à chacun d'adapter l'application à ses usages.</p>
-                    </article>
-
-                    <article class="feature">
-                        <div class="feature-badge">☁</div>
-                        <h3>Données limitées</h3>
-                        <p>La lecture reste majoritairement locale, avec une politique de confidentialité claire et sans tracking publicitaire tiers.</p>
-                    </article>
-
-                    <article class="feature">
-                        <div class="feature-badge">♥</div>
-                        <h3>Esprit blog conservé</h3>
-                        <p>Le coeur éditorial reste le même : une lecture simple, personnelle et fidèle à l'univers Pato Life.</p>
-                    </article>
-                </div>
-            </section>
-
-            <section class="final-cta">
-                <div class="card">
-                    <h2>Essayez Pato Life, le blog sur iPhone</h2>
-                    <p class="intro">
-                        Si vous aimez déjà lire le blog, l'application vous offrira une expérience plus fluide, plus intime et plus élégante.
-                    </p>
-
-                    <div class="cta-row" style="justify-content:center;">
-                        <a class="cta-primary" href="https://apps.apple.com/us/app/pato-life/id6760929480" target="_blank" rel="noopener noreferrer">Ouvrir la page App Store</a>
-                        <a class="cta-secondary" href="https://patoleblog.fr/assistance/" target="_blank" rel="noopener noreferrer">Besoin d'aide ?</a>
-                    </div>
-
-                    <p class="note"></p>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <p><strong>© 2026 Pato Switch</strong></p>
-            <p>Pato Life, le blog • Page de présentation de l'application iPhone</p>
-        </footer>
-    </div>
+</body>
+</html>
