@@ -4,17 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pato Apps</title>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#3454C3">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Pato Apps">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="apple-touch-icon" href="accueil.png">
 
 <script>
 if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-        navigator.serviceWorker.register("service-worker.js");
+    window.addEventListener("load", async () => {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        registrations.forEach((registration) => registration.unregister());
     });
 }
 </script>
@@ -69,70 +64,10 @@ body::before {
     margin: 0 auto;
 }
 
-.topbar {
-    position: sticky;
-    top: 14px;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-    margin-top: 14px;
-    padding: 12px 14px 12px 18px;
-    border: 1px solid rgba(255,255,255,0.74);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.62);
-    backdrop-filter: blur(24px) saturate(1.2);
-    -webkit-backdrop-filter: blur(24px) saturate(1.2);
-    box-shadow: 0 12px 35px rgba(22, 28, 45, 0.08);
-}
-
-.brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--ink);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-}
-
-.brand-mark {
-    width: 34px;
-    height: 34px;
-    display: grid;
-    place-items: center;
-    border-radius: 11px;
-    background: linear-gradient(135deg, var(--pato-blue), var(--pato-orange));
-    color: white;
-    box-shadow: 0 10px 24px rgba(52, 84, 195, 0.25);
-}
-
-.nav-pills {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-}
-
-.nav-pills a {
-    color: var(--ink-soft);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 700;
-    padding: 9px 12px;
-    border-radius: 999px;
-    transition: color 0.2s ease, background 0.2s ease;
-}
-
-.nav-pills a:hover {
-    color: var(--pato-blue);
-    background: rgba(52, 84, 195, 0.08);
-}
-
 header {
     position: relative;
     text-align: center;
-    padding: 92px 0 54px;
+    padding: 34px 0 54px;
 }
 
 .badge {
@@ -161,11 +96,15 @@ header {
 }
 
 header h1 {
-    max-width: 980px;
+    max-width: 1040px;
     margin: 0 auto 22px;
-    font-size: clamp(48px, 8.2vw, 88px);
-    line-height: 0.94;
-    letter-spacing: -0.075em;
+    font-size: clamp(38px, 5.8vw, 66px);
+    line-height: 1.12;
+    letter-spacing: -0.04em;
+}
+
+.mobile-title-break {
+    display: none;
 }
 
 .gradient-text {
@@ -423,24 +362,20 @@ footer {
         width: min(100% - 24px, 1180px);
     }
 
-    .topbar {
-        position: static;
-        align-items: flex-start;
-        flex-direction: column;
-        border-radius: 28px;
-    }
-
-    .nav-pills {
-        justify-content: flex-start;
-    }
-
     header {
-        padding: 64px 0 36px;
+        padding: 28px 0 36px;
         text-align: left;
     }
 
     header h1 {
-        font-size: clamp(43px, 14vw, 64px);
+        font-size: clamp(32px, 9.4vw, 42px);
+        line-height: 1.14;
+        letter-spacing: -0.025em;
+        max-width: 100%;
+    }
+
+    .mobile-title-break {
+        display: block;
     }
 
     .hero-actions {
@@ -469,22 +404,9 @@ footer {
 <body>
 <div class="page-shell">
 
-    <nav class="topbar" aria-label="Navigation principale">
-        <div class="brand">
-            <span class="brand-mark">P</span>
-            <span>Pato Apps</span>
-        </div>
-        <div class="nav-pills">
-            <a href="pato-life-blog-page.html">Pato Life</a>
-            <a href="melovia-blog-page.html">Melovia</a>
-            <a href="finelio-blog-page.html">Finelio</a>
-            <a href="loopa-move-blog-page.html">Loopa Move</a>
-        </div>
-    </nav>
-
     <header>
         <div class="badge">Collection maison</div>
-        <h1>Des apps utiles,<br><span class="gradient-text">avec une touche Pato.</span></h1>
+        <h1>Des apps<span class="mobile-title-break"></span>utiles,<br><span class="gradient-text">avec une touche <span class="mobile-title-break"></span>Pato.</span></h1>
         <p>
             Un petit univers d’applications iOS imaginées entre créativité,
             simplicité, technologie et quelques promenades bien inspirées autour de Vertou.
