@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pato Apps</title>
-    <link rel="manifest" href="manifest.json">
+<link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#3454C3">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Pato Apps">
@@ -19,178 +19,549 @@ if ("serviceWorker" in navigator) {
 }
 </script>
 <style>
+:root {
+    --pato-blue: #3454C3;
+    --pato-blue-deep: #172B8C;
+    --pato-orange: #FA9748;
+    --ink: #11131A;
+    --ink-soft: #5C6170;
+    --muted: #858A97;
+    --surface: rgba(255, 255, 255, 0.74);
+    --surface-strong: rgba(255, 255, 255, 0.92);
+    --line: rgba(17, 19, 26, 0.08);
+    --shadow: 0 28px 80px rgba(22, 28, 45, 0.14);
+    --shadow-soft: 0 18px 45px rgba(22, 28, 45, 0.09);
+}
+
 * { box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
     background:
-        radial-gradient(circle at top left, rgba(52,84,195,0.18), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(250,151,72,0.16), transparent 35%),
-        #f5f5f7;
-    color: #1d1d1f;
+        radial-gradient(circle at 8% 8%, rgba(52, 84, 195, 0.30), transparent 30%),
+        radial-gradient(circle at 92% 12%, rgba(250, 151, 72, 0.20), transparent 28%),
+        radial-gradient(circle at 50% 92%, rgba(52, 84, 195, 0.16), transparent 34%),
+        linear-gradient(180deg, #fbfbfd 0%, #f2f4fb 44%, #eef1f8 100%);
+    color: var(--ink);
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.28) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.24) 1px, transparent 1px);
+    background-size: 52px 52px;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.55), transparent 72%);
+}
+
+.page-shell {
+    width: min(1180px, calc(100% - 36px));
+    margin: 0 auto;
+}
+
+.topbar {
+    position: sticky;
+    top: 14px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-top: 14px;
+    padding: 12px 14px 12px 18px;
+    border: 1px solid rgba(255,255,255,0.74);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.62);
+    backdrop-filter: blur(24px) saturate(1.2);
+    -webkit-backdrop-filter: blur(24px) saturate(1.2);
+    box-shadow: 0 12px 35px rgba(22, 28, 45, 0.08);
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--ink);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.brand-mark {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 11px;
+    background: linear-gradient(135deg, var(--pato-blue), var(--pato-orange));
+    color: white;
+    box-shadow: 0 10px 24px rgba(52, 84, 195, 0.25);
+}
+
+.nav-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.nav-pills a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 9px 12px;
+    border-radius: 999px;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.nav-pills a:hover {
+    color: var(--pato-blue);
+    background: rgba(52, 84, 195, 0.08);
 }
 
 header {
+    position: relative;
     text-align: center;
-    padding: 90px 20px 55px;
+    padding: 92px 0 54px;
 }
 
 .badge {
-    display: inline-block;
-    padding: 8px 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
     border-radius: 999px;
-    background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(20px);
-    color: #3454C3;
-    font-weight: 700;
-    margin-bottom: 22px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    background: rgba(255,255,255,0.76);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    color: var(--pato-blue);
+    font-weight: 800;
+    margin-bottom: 24px;
+    border: 1px solid rgba(52, 84, 195, 0.12);
+    box-shadow: var(--shadow-soft);
+}
+
+.badge::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--pato-orange);
+    box-shadow: 0 0 0 6px rgba(250,151,72,0.15);
 }
 
 header h1 {
-    font-size: clamp(46px, 8vw, 76px);
-    margin: 0 0 18px;
-    letter-spacing: -0.05em;
+    max-width: 980px;
+    margin: 0 auto 22px;
+    font-size: clamp(48px, 8.2vw, 88px);
+    line-height: 0.94;
+    letter-spacing: -0.075em;
+}
+
+.gradient-text {
+    background: linear-gradient(115deg, var(--ink) 0%, var(--pato-blue) 48%, var(--pato-orange) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 header p {
-    font-size: 21px;
-    color: #6e6e73;
-    max-width: 760px;
+    font-size: clamp(18px, 2.1vw, 23px);
+    color: var(--ink-soft);
+    max-width: 780px;
     margin: auto;
-    line-height: 1.55;
+    line-height: 1.58;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.hero-actions a,
+.card a {
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.primary-action,
+.secondary-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 18px;
+    border-radius: 999px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.primary-action {
+    background: var(--pato-blue);
+    color: white;
+    box-shadow: 0 18px 38px rgba(52, 84, 195, 0.22);
+}
+
+.secondary-action {
+    background: rgba(255,255,255,0.72);
+    color: var(--ink);
+    border: 1px solid rgba(17, 19, 26, 0.08);
+}
+
+.primary-action:hover,
+.secondary-action:hover {
+    transform: translateY(-2px);
+}
+
+.intro-panel {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 18px;
+    align-items: stretch;
+    margin: 12px auto 24px;
+}
+
+.panel-card {
+    border: 1px solid rgba(255,255,255,0.76);
+    border-radius: 32px;
+    padding: 26px;
+    background: rgba(255,255,255,0.68);
+    backdrop-filter: blur(26px) saturate(1.15);
+    -webkit-backdrop-filter: blur(26px) saturate(1.15);
+    box-shadow: var(--shadow-soft);
+}
+
+.panel-card strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: var(--pato-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+}
+
+.panel-card p {
+    margin: 0;
+    color: var(--ink-soft);
+    line-height: 1.6;
+}
+
+.stat-card {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    background:
+        linear-gradient(145deg, rgba(52,84,195,0.95), rgba(23,43,140,0.94)),
+        var(--pato-blue);
+    color: white;
+    border: 0;
+}
+
+.stat-card span {
+    display: block;
+    font-size: clamp(42px, 5vw, 62px);
+    font-weight: 900;
+    letter-spacing: -0.07em;
+    line-height: 1;
+}
+
+.stat-card small {
+    color: rgba(255,255,255,0.76);
+    font-weight: 700;
 }
 
 .apps {
-    max-width: 1220px;
-    margin: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 28px;
-    padding: 35px 22px 90px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+    padding: 26px 0 86px;
 }
 
 .card {
     position: relative;
     overflow: hidden;
-    background: rgba(255,255,255,0.78);
-    backdrop-filter: blur(24px);
-    border: 1px solid rgba(255,255,255,0.7);
-    border-radius: 34px;
-    padding: 30px;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 390px;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    backdrop-filter: blur(28px) saturate(1.2);
+    -webkit-backdrop-filter: blur(28px) saturate(1.2);
+    border: 1px solid rgba(255,255,255,0.78);
+    border-radius: 36px;
+    padding: 28px;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.34s ease, box-shadow 0.34s ease, border-color 0.34s ease;
+    isolation: isolate;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+        radial-gradient(circle at 24% 0%, rgba(52,84,195,0.16), transparent 34%),
+        radial-gradient(circle at 88% 18%, rgba(250,151,72,0.13), transparent 30%);
+    opacity: 0;
+    transition: opacity 0.34s ease;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: -1;
+    border-radius: 35px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.74), rgba(255,255,255,0.45));
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 32px 80px rgba(0,0,0,0.12);
+    transform: translateY(-10px) scale(1.01);
+    box-shadow: var(--shadow);
+    border-color: rgba(255,255,255,0.95);
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.icon-wrap {
+    width: 98px;
+    height: 98px;
+    display: grid;
+    place-items: center;
+    border-radius: 30px;
+    margin-bottom: 24px;
+    background: rgba(255,255,255,0.72);
+    border: 1px solid rgba(255,255,255,0.82);
+    box-shadow: 0 20px 42px rgba(22, 28, 45, 0.12);
 }
 
 .icon {
-    width: 82px;
-    height: 82px;
+    width: 76px;
+    height: 76px;
     border-radius: 22px;
-    margin-bottom: 24px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.14);
+    box-shadow: 0 16px 32px rgba(22, 28, 45, 0.18);
 }
 
 .card h2 {
     margin: 0 0 12px;
-    font-size: 30px;
-    letter-spacing: -0.03em;
+    font-size: 31px;
+    letter-spacing: -0.045em;
 }
 
 .card p {
-    color: #6e6e73;
-    line-height: 1.6;
-    min-height: 125px;
+    color: var(--ink-soft);
+    line-height: 1.62;
     font-size: 16px;
+    margin: 0 0 22px;
 }
 
 .card a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-top: 12px;
-    text-decoration: none;
-    background: #3454C3;
-    color: white;
-    padding: 13px 20px;
-    border-radius: 16px;
-    font-weight: 700;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    gap: 9px;
+    margin-top: auto;
+    width: fit-content;
+    background: #fff;
+    color: var(--pato-blue);
+    padding: 13px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(52,84,195,0.12);
+    box-shadow: 0 12px 28px rgba(22, 28, 45, 0.08);
+    transition: transform 0.2s ease, color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card a::after {
+    content: "→";
+    transition: transform 0.2s ease;
 }
 
 .card a:hover {
-    opacity: 0.9;
-    transform: scale(1.03);
+    color: white;
+    background: var(--pato-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 18px 34px rgba(52, 84, 195, 0.23);
+}
+
+.card a:hover::after {
+    transform: translateX(3px);
 }
 
 footer {
     text-align: center;
-    padding: 34px;
-    color: #86868b;
+    padding: 34px 20px 46px;
+    color: var(--muted);
     font-size: 14px;
+}
+
+@media (max-width: 980px) {
+    .apps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .intro-panel {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 680px) {
+    .page-shell {
+        width: min(100% - 24px, 1180px);
+    }
+
+    .topbar {
+        position: static;
+        align-items: flex-start;
+        flex-direction: column;
+        border-radius: 28px;
+    }
+
+    .nav-pills {
+        justify-content: flex-start;
+    }
+
+    header {
+        padding: 64px 0 36px;
+        text-align: left;
+    }
+
+    header h1 {
+        font-size: clamp(43px, 14vw, 64px);
+    }
+
+    .hero-actions {
+        justify-content: flex-start;
+    }
+
+    .apps {
+        grid-template-columns: 1fr;
+        padding-bottom: 58px;
+    }
+
+    .card {
+        min-height: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
 }
 </style>
 </head>
 
 <body>
+<div class="page-shell">
 
-<header>
-    <div class="badge">Pato Apps</div>
-    <h1>Des apps utiles,<br>avec une touche "Pato".</h1>
-    <p>
-        Un petit univers d’applications iOS imaginées entre créativité,
-        simplicité, technologie et quelques promenades bien inspirées autour de Vertou.
-    </p>
-</header>
+    <nav class="topbar" aria-label="Navigation principale">
+        <div class="brand">
+            <span class="brand-mark">P</span>
+            <span>Pato Apps</span>
+        </div>
+        <div class="nav-pills">
+            <a href="pato-life-blog-page.html">Pato Life</a>
+            <a href="melovia-blog-page.html">Melovia</a>
+            <a href="finelio-blog-page.html">Finelio</a>
+            <a href="loopa-move-blog-page.html">Loopa Move</a>
+        </div>
+    </nav>
 
-<section class="apps">
-
-    <div class="card">
-        <img class="icon" src="patolife.png" alt="Icône Pato Life">
-        <h2>Pato Life</h2>
+    <header>
+        <div class="badge">Collection maison</div>
+        <h1>Des apps utiles,<br><span class="gradient-text">avec une touche Pato.</span></h1>
         <p>
-            Une nouvelle façon de lire et vivre l’univers du blog Pato,
-            avec une expérience plus fluide, plus personnelle et plus moderne.
+            Un petit univers d’applications iOS imaginées entre créativité,
+            simplicité, technologie et quelques promenades bien inspirées autour de Vertou.
         </p>
-        <a href="pato-life-blog-page.html">Découvrir</a>
-    </div>
+        <div class="hero-actions">
+            <a class="primary-action" href="#apps">Explorer les apps</a>
+        </div>
+    </header>
 
-    <div class="card">
-        <img class="icon" src="melovia.png" alt="Icône Melovia">
-        <h2>Melovia</h2>
-        <p>
-            Une application pensée pour accompagner la vie de vos animaux :
-            santé, souvenirs, documents et moments précieux.
-        </p>
-        <a href="melovia-blog-page.html">Découvrir</a>
-    </div>
+    <section class="intro-panel" aria-label="Présentation de Pato Apps">
+        <div class="panel-card">
+            <strong>Une même idée</strong>
+            <p>
+                Des applications simples, élégantes et pensées pour rendre service sans transformer l’iPhone en tableau de bord d’Airbus. Ici, le premium reste lisible, humain et légèrement espiègle.
+            </p>
+        </div>
+        <div class="panel-card stat-card">
+            <div>
+                <span>4</span>
+                <small>apps en collection</small>
+            </div>
+        </div>
+    </section>
 
-    <div class="card">
-        <img class="icon" src="finelio.png" alt="Icône Finelio">
-        <h2>Finelio</h2>
-        <p>
-            Comprendre plus simplement son épargne, ses rendements
-            et les frais qui grignotent parfois les performances.
-        </p>
-        <a href="finelio-blog-page.html">Découvrir</a>
-    </div>
+    <section class="apps" id="apps">
 
-    <div class="card">
-        <img class="icon" src="loopamove.png" alt="Icône Loopa Move">
-        <h2>Loopa Move</h2>
-        <p>
-            Générer des boucles de marche, course ou vélo autour de soi,
-            pour redécouvrir son environnement autrement.
-        </p>
-        <a href="loopa-move-blog-page.html">Découvrir</a>
-    </div>
+        <div class="card">
+            <div class="icon-wrap">
+                <img class="icon" src="patolife.png" alt="Icône Pato Life">
+            </div>
+            <h2>Pato Life</h2>
+            <p>
+                Une nouvelle façon de lire et vivre l’univers du blog Pato,
+                avec une expérience plus fluide, plus personnelle et plus moderne.
+            </p>
+            <a href="pato-life-blog-page.html">Découvrir</a>
+        </div>
 
-</section>
+        <div class="card">
+            <div class="icon-wrap">
+                <img class="icon" src="melovia.png" alt="Icône Melovia">
+            </div>
+            <h2>Melovia</h2>
+            <p>
+                Une application pensée pour accompagner la vie de vos animaux :
+                santé, souvenirs, documents et moments précieux.
+            </p>
+            <a href="melovia-blog-page.html">Découvrir</a>
+        </div>
+
+        <div class="card">
+            <div class="icon-wrap">
+                <img class="icon" src="finelio.png" alt="Icône Finelio">
+            </div>
+            <h2>Finelio</h2>
+            <p>
+                Comprendre plus simplement son épargne, ses rendements
+                et les frais qui grignotent parfois les performances.
+            </p>
+            <a href="finelio-blog-page.html">Découvrir</a>
+        </div>
+
+        <div class="card">
+            <div class="icon-wrap">
+                <img class="icon" src="loopamove.png" alt="Icône Loopa Move">
+            </div>
+            <h2>Loopa Move</h2>
+            <p>
+                Générer des boucles de marche, course ou vélo autour de soi,
+                pour redécouvrir son environnement autrement.
+            </p>
+            <a href="loopa-move-blog-page.html">Découvrir</a>
+        </div>
+
+    </section>
+
+</div>
 
 <footer>
     © 2026 Pato Apps · Créé avec soin, curiosité et quelques pixels bien rangés.
