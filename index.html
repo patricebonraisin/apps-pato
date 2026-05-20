@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pato Apps</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+}
+
+header {
+    text-align: center;
+    padding: 80px 20px 50px;
+}
+
+header h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 20px;
+    color: #6e6e73;
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.5;
+}
+
+.apps {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    padding: 40px 20px 80px;
+}
+
+.card {
+    background: white;
+    border-radius: 28px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    transition: transform 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h2 {
+    margin-top: 0;
+    font-size: 28px;
+}
+
+.card p {
+    color: #6e6e73;
+    line-height: 1.6;
+    min-height: 120px;
+}
+
+.card a {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    background: #3454C3;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 14px;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+}
+
+.card a:hover {
+    opacity: 0.85;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #86868b;
+    font-size: 14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Pato Apps</h1>
+    <p>
+        Quelques applications imaginées entre technologie, créativité,
+        bien-être et promenades autour de Vertou.
+    </p>
+</header>
+
+<section class="apps">
+
+    <div class="card">
+        <h2>Pato Life</h2>
+        <p>
+            Une nouvelle façon de lire et vivre l’univers du blog Pato,
+            avec une expérience plus fluide, plus personnelle et plus moderne.
+        </p>
+        <a href="pato-life.html">Découvrir</a>
+    </div>
+
+    <div class="card">
+        <h2>Melovia</h2>
+        <p>
+            Une application pensée pour accompagner la vie de vos animaux :
+            santé, souvenirs, documents et moments précieux.
+        </p>
+        <a href="melovia.html">Découvrir</a>
+    </div>
+
+    <div class="card">
+        <h2>Finelio</h2>
+        <p>
+            Comprendre plus simplement son épargne, ses rendements
+            et les frais qui grignotent parfois les performances.
+        </p>
+        <a href="finelio.html">Découvrir</a>
+    </div>
+
+    <div class="card">
+        <h2>Loopa Move</h2>
+        <p>
+            Générer des boucles de marche, course ou vélo autour de soi,
+            pour redécouvrir son environnement autrement.
+        </p>
+        <a href="loopa-move.html">Découvrir</a>
+    </div>
+
+</section>
+
+<footer>
+    © 2026 Pato Apps
+</footer>
+
+</body>
+</html>
