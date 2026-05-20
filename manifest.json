@@ -1,0 +1,16 @@
+{
+  "name": "Pato Apps",
+  "short_name": "Pato Apps",
+  "description": "Le portail des applications iOS de Pato.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f5f7",
+  "theme_color": "#3454C3",
+  "icons": [
+    {
+      "src": "patolife.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
