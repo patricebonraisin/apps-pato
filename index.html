@@ -5,6 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pato Apps</title>
     <link rel="apple-touch-icon" href="accueil.png">
+<script>
+if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+}
+
+if (window.location.hash === "#apps") {
+    history.replaceState(null, "", window.location.pathname + window.location.search);
+}
+
+window.addEventListener("pageshow", () => {
+    window.scrollTo(0, 0);
+});
+</script>
 <style>
 :root {
     --pato-blue: #3454C3;
