@@ -1,0 +1,700 @@
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melovia | Le carnet de vie élégant pour votre compagnon</title>
+    <style>
+        :root {
+            --accent: #d66147;
+            --accent-strong: #b04536;
+            --warm-ink: #472e24;
+            --warm-ink-soft: #66473a;
+            --accent-soft: #fde6d8;
+            --accent-muted: #f5c7b3;
+            --sage: #7fa195;
+            --sky: #75a6d1;
+            --plum: #735c94;
+            --success: #479e6d;
+            --danger: #c54844;
+            --surface: rgba(255, 255, 255, 0.86);
+            --surface-strong: rgba(255, 255, 255, 0.95);
+            --border: rgba(71, 46, 36, 0.09);
+            --shadow: 0 24px 60px rgba(98, 53, 37, 0.14);
+            --radius-xl: 34px;
+            --radius-lg: 28px;
+            --radius-md: 22px;
+            --radius-sm: 16px;
+            --max-width: 980px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Avenir Next", "Nunito", "Segoe UI", sans-serif;
+            color: var(--warm-ink);
+            background:
+                radial-gradient(circle at top left, rgba(255, 255, 255, 0.94), transparent 28%),
+                radial-gradient(circle at top right, rgba(214, 97, 71, 0.10), transparent 24%),
+                radial-gradient(circle at bottom left, rgba(117, 166, 209, 0.10), transparent 22%),
+                linear-gradient(135deg, #fdf7f2 0%, #f8efea 42%, #f2f1f6 100%);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page-shell {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 999px;
+            filter: blur(18px);
+            opacity: 0.72;
+            pointer-events: none;
+        }
+
+        .orb.one {
+            width: 320px;
+            height: 320px;
+            top: -80px;
+            left: -110px;
+            background: rgba(214, 97, 71, 0.15);
+        }
+
+        .orb.two {
+            width: 250px;
+            height: 250px;
+            top: 540px;
+            right: -80px;
+            background: rgba(117, 166, 209, 0.12);
+        }
+
+        .orb.three {
+            width: 240px;
+            height: 240px;
+            bottom: 100px;
+            left: 12%;
+            background: rgba(127, 161, 149, 0.11);
+        }
+
+        .container {
+            width: min(var(--max-width), calc(100% - 28px));
+            margin: 0 auto;
+        }
+
+        .topbar {
+            padding: 22px 0 10px;
+        }
+
+        .topbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 12px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.56);
+            background: rgba(255, 255, 255, 0.46);
+            backdrop-filter: blur(18px);
+            border-radius: 999px;
+            box-shadow: 0 10px 30px rgba(98, 53, 37, 0.06);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+        }
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #ffd5bf 0%, #e27b5f 55%, #a74335 100%);
+            color: #fff;
+            box-shadow: 0 14px 26px rgba(176, 69, 54, 0.22);
+            font-size: 18px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            color: var(--warm-ink-soft);
+            font-size: 0.95rem;
+        }
+
+        .hero {
+            padding: 28px 0 52px;
+        }
+
+        .hero-card {
+            padding: 34px;
+            border-radius: 38px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.66));
+            border: 1px solid rgba(255, 255, 255, 0.72);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(20px);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-strong);
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(214, 97, 71, 0.14);
+        }
+
+        .hero h1 {
+            margin: 22px 0 16px;
+            font-size: clamp(2.6rem, 5vw, 4.8rem);
+            line-height: 0.96;
+            letter-spacing: -0.045em;
+            max-width: 11ch;
+        }
+
+        .hero p {
+            margin: 0;
+            max-width: 60ch;
+            font-size: 1.08rem;
+            line-height: 1.76;
+            color: var(--warm-ink-soft);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 54px;
+            padding: 0 22px;
+            border-radius: 999px;
+            font-weight: 700;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            color: #fff;
+            background: linear-gradient(135deg, #eb8a69 0%, #cb5a43 48%, #a73f31 100%);
+            box-shadow: 0 18px 36px rgba(176, 69, 54, 0.24);
+        }
+
+        .hero-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 26px;
+        }
+
+        .pill {
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.68);
+            border: 1px solid rgba(71, 46, 36, 0.07);
+            color: var(--warm-ink-soft);
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .visual-stack {
+            display: grid;
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .screen-card {
+            padding: 22px;
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.92), rgba(250,243,239,0.88));
+            border: 1px solid rgba(71, 46, 36, 0.07);
+            box-shadow: 0 18px 36px rgba(98, 53, 37, 0.08);
+        }
+
+        .screen-card.emergency {
+            background: linear-gradient(145deg, rgba(255, 236, 235, 0.96), rgba(232, 116, 110, 0.92));
+            border-color: rgba(255, 255, 255, 0.18);
+            color: #fff;
+        }
+
+        .screen-kicker {
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent-strong);
+        }
+
+        .screen-card.emergency .screen-kicker,
+        .screen-card.emergency .screen-copy,
+        .screen-card.emergency .bullet-list li {
+            color: rgba(255, 255, 255, 0.94);
+        }
+
+        .screen-title {
+            margin: 10px 0 8px;
+            font-size: 1.52rem;
+            line-height: 1.08;
+            font-weight: 800;
+        }
+
+        .screen-copy {
+            margin: 0;
+            color: var(--warm-ink-soft);
+            line-height: 1.68;
+        }
+
+        .bullet-list {
+            margin: 16px 0 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .bullet-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--warm-ink-soft);
+            font-size: 0.96rem;
+            font-weight: 700;
+        }
+
+        .bullet-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: var(--accent);
+            flex: 0 0 auto;
+        }
+
+        .bullet-dot.sage { background: var(--sage); }
+        .bullet-dot.sky { background: var(--sky); }
+        .bullet-dot.plum { background: var(--plum); }
+        .bullet-dot.success { background: var(--success); }
+        .bullet-dot.danger { background: #fff; }
+
+        .section {
+            padding: 0 0 64px;
+        }
+
+        .section-header {
+            margin-bottom: 24px;
+            max-width: 58ch;
+        }
+
+        .section-header span {
+            display: inline-block;
+            margin-bottom: 10px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent-strong);
+        }
+
+        .section-header h2 {
+            margin: 0 0 12px;
+            font-size: clamp(2rem, 4vw, 3.3rem);
+            letter-spacing: -0.04em;
+            line-height: 1.02;
+        }
+
+        .section-header p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.75;
+            color: var(--warm-ink-soft);
+        }
+
+        .stack-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+        .feature-card,
+        .timeline-card,
+        .support-card,
+        .cta-band {
+            padding: 26px;
+            border-radius: var(--radius-lg);
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.64);
+            backdrop-filter: blur(18px);
+            box-shadow: 0 18px 40px rgba(98, 53, 37, 0.08);
+        }
+
+        .feature-icon {
+            width: 54px;
+            height: 54px;
+            display: grid;
+            place-items: center;
+            border-radius: 16px;
+            color: #fff;
+            font-size: 1.25rem;
+            margin-bottom: 18px;
+        }
+
+        .accent { background: linear-gradient(135deg, #ec9472, #c44e3b); }
+        .sage { background: linear-gradient(135deg, #95bcaf, #5b8073); }
+        .sky { background: linear-gradient(135deg, #8ab8e0, #5d8db8); }
+        .plum { background: linear-gradient(135deg, #8c75ac, #5f4a82); }
+        .success { background: linear-gradient(135deg, #6db78a, #34895b); }
+        .danger { background: linear-gradient(135deg, #ee817b, #b63836); }
+
+        .feature-card h3,
+        .timeline-card h3,
+        .support-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.3rem;
+            line-height: 1.14;
+        }
+
+        .feature-card p,
+        .timeline-card p,
+        .support-card p,
+        .cta-band p {
+            margin: 0;
+            color: var(--warm-ink-soft);
+            line-height: 1.72;
+        }
+
+        .feature-card ul,
+        .support-card ul {
+            margin: 18px 0 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .feature-card li,
+        .support-card li {
+            display: flex;
+            gap: 10px;
+            color: var(--warm-ink-soft);
+            line-height: 1.55;
+        }
+
+        .check {
+            color: var(--accent-strong);
+            font-weight: 900;
+        }
+
+        .timeline-step {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent-strong);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .cta-band h2 {
+            margin: 0 0 12px;
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.04;
+            letter-spacing: -0.04em;
+        }
+
+        .cta-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 22px;
+        }
+
+        .footer {
+            padding: 24px 0 40px;
+            color: var(--warm-ink-soft);
+            font-size: 0.94rem;
+        }
+
+        .footer-inner {
+            border-top: 1px solid rgba(71, 46, 36, 0.08);
+            padding-top: 24px;
+            display: grid;
+            gap: 8px;
+        }
+
+        @media (max-width: 760px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-card,
+            .feature-card,
+            .timeline-card,
+            .support-card,
+            .cta-band {
+                padding: 22px;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+    </style>
+
+
+    <div class="page-shell">
+        <div class="orb one"></div>
+        <div class="orb two"></div>
+        <div class="orb three"></div>
+
+        <header class="topbar">
+            <div class="container">
+                <div class="topbar-inner">
+                    <div class="brand">
+                        <div class="brand-mark">🐾</div>
+                        <span>Melovia</span>
+                    </div>
+                    <nav class="nav-links">
+                        <a href="#fonctionnalites">Fonctionnalités</a>
+                        <a href="#pourquoi">Pourquoi</a>
+                        <a href="#quotidien">Quotidien</a>
+                        <a href="#contact">Contact</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-card">
+                        <div class="eyebrow">Santé • Souvenirs • Services</div>
+                        <h1>Melovia, le carnet de vie élégant pour votre compagnon.</h1>
+                        <p>Melovia réunit dans une seule application la santé, les souvenirs, les documents, les dépenses et les services utiles autour de vous. Une interface chaleureuse, pensée pour suivre votre animal avec clarté, douceur et réactivité quand il le faut.</p>
+
+                        <div class="hero-actions">
+                            <a class="button button-primary" href="mailto:info@patoswitch.fr">Contacter Melovia</a>
+                        </div>
+
+                        <div class="hero-pills">
+                            <div class="pill">Suivi santé complet</div>
+                            <div class="pill">Export PDF premium</div>
+                            <div class="pill">Vétérinaires proches</div>
+                            <div class="pill">Garde d'animaux à proximité</div>
+                        </div>
+
+                        <div class="visual-stack">
+                            <article class="screen-card">
+                                <div class="screen-kicker">Profil</div>
+                                <div class="screen-title">Toute la vie de votre compagnon au même endroit</div>
+                                <p class="screen-copy">Identité, carnet de dépenses, galerie, repères et services à proximité restent regroupés dans une seule fiche claire et agréable à relire.</p>
+                                <ul class="bullet-list">
+                                    <li><span class="bullet-dot"></span>Repères santé et budget</li>
+                                    <li><span class="bullet-dot sky"></span>Recherche de garde d'animaux</li>
+                                    <li><span class="bullet-dot sage"></span>Accès aux vétérinaires proches</li>
+                                </ul>
+                            </article>
+
+                            <article class="screen-card emergency">
+                                <div class="screen-kicker">Urgence</div>
+                                <div class="screen-title">Réagir vite quand la situation l'exige</div>
+                                <p class="screen-copy">Coordonnées du vétérinaire, informations critiques et recherche autour de vous restent visibles immédiatement en cas de besoin.</p>
+                                <ul class="bullet-list">
+                                    <li><span class="bullet-dot danger"></span>Recherche géolocalisée</li>
+                                    <li><span class="bullet-dot danger"></span>Itinéraire et appel rapide</li>
+                                </ul>
+                            </article>
+
+                            <article class="screen-card">
+                                <div class="screen-kicker">Partage</div>
+                                <div class="screen-title">Des documents prêts à transmettre</div>
+                                <p class="screen-copy">Melovia permet aussi de générer des PDF vétérinaires plus premium, avec prévisualisation avant partage.</p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="fonctionnalites">
+                <div class="container">
+                    <div class="section-header">
+                        <span>Fonctionnalités</span>
+                        <h2>Un seul espace pour suivre, soigner et organiser la vie avec votre animal.</h2>
+                        <p>Melovia dépasse le simple carnet de notes. L'application relie les moments de vie, la santé, les dépenses, les urgences et les services proches dans une expérience cohérente et rassurante.</p>
+                    </div>
+
+                    <div class="stack-grid">
+                        <article class="feature-card">
+                            <div class="feature-icon accent">✦</div>
+                            <h3>Accueil clair et rassurant</h3>
+                            <p>Checklist du jour, focus utile, résumé et rappels apparaissent dès l'ouverture pour garder une vue simple du quotidien.</p>
+                            <ul>
+                                <li><span class="check">•</span>Lecture rapide dès l'ouverture</li>
+                                <li><span class="check">•</span>Écrans personnalisables selon l'usage</li>
+                            </ul>
+                        </article>
+
+                        <article class="feature-card">
+                            <div class="feature-icon sage">✚</div>
+                            <h3>Suivi santé structuré</h3>
+                            <p>Traitements, pesées, documents, notes cliniques et préparation de visite restent regroupés dans un vrai carnet de suivi.</p>
+                            <ul>
+                                <li><span class="check">•</span>Rappels santé et historique lisible</li>
+                                <li><span class="check">•</span>Mode urgence dédié</li>
+                            </ul>
+                        </article>
+
+                        <article class="feature-card">
+                            <div class="feature-icon sky">⌂</div>
+                            <h3>Services autour de vous</h3>
+                            <p>Recherche de vétérinaires proches en cas d'urgence, mais aussi de garde d'animaux, pet sitters ou pensions à proximité.</p>
+                            <ul>
+                                <li><span class="check">•</span>Recherche autour de moi ou par ville</li>
+                                <li><span class="check">•</span>Itinéraire et appel rapide depuis l'iPhone</li>
+                            </ul>
+                        </article>
+
+                        <article class="feature-card">
+                            <div class="feature-icon plum">☽</div>
+                            <h3>Journal de vie et souvenirs</h3>
+                            <p>Photos, activités et moments marquants s'organisent dans une chronologie douce, pensée pour conserver les souvenirs sans surcharge.</p>
+                            <ul>
+                                <li><span class="check">•</span>Timeline lisible et agréable</li>
+                                <li><span class="check">•</span>Galerie dédiée au compagnon</li>
+                            </ul>
+                        </article>
+
+                        <article class="feature-card">
+                            <div class="feature-icon success">€</div>
+                            <h3>Budget et dépenses maîtrisés</h3>
+                            <p>Mutuelle, frais ponctuels et dépenses récurrentes restent visibles dans une fiche simple à relire au fil du temps.</p>
+                            <ul>
+                                <li><span class="check">•</span>Vision mensuelle et cumulée</li>
+                                <li><span class="check">•</span>Présentation plus humaine qu'un tableau brut</li>
+                            </ul>
+                        </article>
+
+                        <article class="feature-card">
+                            <div class="feature-icon danger">PDF</div>
+                            <h3>Partage vétérinaire premium</h3>
+                            <p>Melovia produit des PDF plus propres et plus lisibles pour transmettre rapidement les bonnes informations au bon moment.</p>
+                            <ul>
+                                <li><span class="check">•</span>Prévisualisation avant envoi</li>
+                                <li><span class="check">•</span>Présentation orientée consultation</li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="pourquoi">
+                <div class="container">
+                    <div class="section-header">
+                        <span>Pourquoi Melovia</span>
+                        <h2>Une application pensée comme un vrai carnet de vie, pas comme un simple formulaire.</h2>
+                        <p>Melovia cherche un équilibre rare : assez sérieuse pour la santé et les urgences, assez douce pour les souvenirs, et assez pratique pour les besoins très concrets du quotidien.</p>
+                    </div>
+
+                    <div class="stack-grid">
+                        <article class="support-card">
+                            <h3>Plus rassurante qu'une app utilitaire classique</h3>
+                            <p>Les informations importantes restent accessibles sans froideur. La présentation privilégie la clarté, l'affection et la lisibilité au quotidien.</p>
+                            <ul>
+                                <li><span class="check">•</span>Interface chaleureuse et structurée</li>
+                                <li><span class="check">•</span>Accès rapide aux zones essentielles</li>
+                                <li><span class="check">•</span>Mode urgence visuellement distinct</li>
+                            </ul>
+                        </article>
+
+                        <article class="support-card">
+                            <h3>Plus complète qu'un carnet de notes dispersé</h3>
+                            <p>Documents, santé, journal, budget, PDF et services proches se retrouvent dans un seul espace cohérent, sans multiplier les applications ni les papiers.</p>
+                            <ul>
+                                <li><span class="check">•</span>Moins de friction dans le suivi</li>
+                                <li><span class="check">•</span>Moins d'oublis dans les moments importants</li>
+                                <li><span class="check">•</span>Plus de sérénité pour le propriétaire</li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="quotidien">
+                <div class="container">
+                    <div class="section-header">
+                        <span>Au quotidien</span>
+                        <h2>Comment Melovia accompagne une vraie vie avec un compagnon.</h2>
+                        <p>L'application a été pensée pour les cas concrets : préparation d'une consultation, recherche urgente, suivi des traitements, souvenirs, absences ponctuelles ou besoin de garde.</p>
+                    </div>
+
+                    <div class="stack-grid">
+                        <article class="timeline-card">
+                            <div class="timeline-step">1</div>
+                            <h3>Tout centraliser</h3>
+                            <p>Créer la fiche du compagnon, conserver les repères essentiels, retrouver les photos, les documents et les informations clés dans un seul carnet.</p>
+                        </article>
+
+                        <article class="timeline-card">
+                            <div class="timeline-step">2</div>
+                            <h3>Réagir vite si nécessaire</h3>
+                            <p>En cas d'urgence ou de déplacement, ouvrir immédiatement la recherche de vétérinaires proches et accéder aux informations de santé utiles.</p>
+                        </article>
+
+                        <article class="timeline-card">
+                            <div class="timeline-step">3</div>
+                            <h3>Gérer aussi les absences</h3>
+                            <p>Quand il faut s'organiser, Melovia aide aussi à rechercher une garde d'animaux, un pet sitter ou une pension proche de vous.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="contact">
+                <div class="container">
+                    <div class="cta-band">
+                        <h2>Une application pensée pour la vraie vie avec un animal.</h2>
+                        <p>Melovia aide à garder sous la main les souvenirs, les informations, les urgences et les services utiles autour de votre compagnon. Cette page peut servir de base prête à publier sur WordPress pour présenter l'application commercialement.</p>
+                        <div class="cta-actions">
+                            <a class="button button-primary" href="mailto:info@patoswitch.fr">Contacter Melovia</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="container footer-inner">
+                <div>Melovia, le carnet de vie élégant pour votre compagnon.</div>
+                <div>(Développé avec passion par Pato Switch)</div>
+            </div>
+        </footer>
+    </div>
