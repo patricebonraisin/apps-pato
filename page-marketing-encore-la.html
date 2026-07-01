@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Encore Là - Présence rassurante</title>
+    <style>
+        :root {
+            --ink: #24302f;
+            --muted: #65726f;
+            --line: #dce4e1;
+            --soft: #eef5f2;
+            --paper: #fbfcfb;
+            --accent: #2f8f68;
+            --blue: #3f73b5;
+            --blue-soft: #e8f0fa;
+            --green-soft: #dcefe6;
+            --shadow: 0 22px 60px rgba(36, 48, 47, 0.16);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .page {
+            overflow: hidden;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 22px 0;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--ink);
+            font-size: 20px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 36px;
+            height: 36px;
+            place-items: center;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--blue), var(--accent));
+            color: #ffffff;
+            font-size: 21px;
+            font-weight: 900;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 650;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 420px;
+            gap: 52px;
+            align-items: center;
+            width: min(1120px, calc(100% - 40px));
+            min-height: calc(100vh - 82px);
+            margin: 0 auto;
+            padding: 28px 0 70px;
+        }
+
+        .eyebrow {
+            margin: 0 0 16px;
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            max-width: 720px;
+            margin: 0;
+            font-size: clamp(44px, 6vw, 76px);
+            line-height: 0.98;
+            letter-spacing: 0;
+        }
+
+        .hero-copy {
+            max-width: 650px;
+            margin: 24px 0 0;
+            color: var(--muted);
+            font-size: 21px;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 0 20px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .button.primary {
+            background: var(--ink);
+            color: #ffffff;
+        }
+
+        .button.secondary {
+            border: 1px solid var(--line);
+            background: #ffffff;
+            color: var(--ink);
+        }
+
+        .trust-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            max-width: 680px;
+            margin-top: 40px;
+        }
+
+        .trust-item {
+            min-height: 112px;
+            padding: 16px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #ffffff;
+        }
+
+        .trust-item strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 16px;
+        }
+
+        .trust-item span {
+            display: block;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .phone-wrap {
+            justify-self: center;
+            position: relative;
+            width: min(100%, 390px);
+        }
+
+        .phone {
+            position: relative;
+            aspect-ratio: 0.51;
+            padding: 18px;
+            border: 8px solid #151a20;
+            border-radius: 48px;
+            background: #f8fbf9;
+            box-shadow: var(--shadow);
+        }
+
+        .phone::before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            width: 118px;
+            height: 34px;
+            border-radius: 999px;
+            background: #050607;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .screen {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 58px 20px 20px;
+            border-radius: 36px;
+            background: linear-gradient(180deg, #fbfdfc 0%, #f1f7f3 100%);
+            overflow: hidden;
+        }
+
+        .app-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .app-title {
+            margin: 0;
+            color: var(--blue);
+            font-size: 36px;
+            line-height: 1;
+            font-weight: 900;
+        }
+
+        .app-title span {
+            color: var(--accent);
+        }
+
+        .app-subtitle {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .heart {
+            display: grid;
+            width: 44px;
+            height: 44px;
+            place-items: center;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--blue), var(--accent));
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 900;
+            transform: rotate(-45deg);
+        }
+
+        .heart span {
+            transform: rotate(45deg);
+        }
+
+        .status-card {
+            padding: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 18px;
+            background: linear-gradient(135deg, #ffffff, #e8f0f7);
+            box-shadow: 0 10px 26px rgba(63, 115, 181, 0.13);
+        }
+
+        .status-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .status-label {
+            margin: 0;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 850;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .ok-pill {
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: var(--green-soft);
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 850;
+        }
+
+        .confirmed {
+            margin: 2px 0 16px;
+            color: var(--accent);
+            font-size: 21px;
+            font-weight: 850;
+        }
+
+        .status-main {
+            display: grid;
+            grid-template-columns: 95px 1fr;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .check-ring {
+            display: grid;
+            width: 95px;
+            height: 95px;
+            place-items: center;
+            border: 10px solid rgba(47, 143, 104, 0.15);
+            border-radius: 999px;
+            color: var(--accent);
+            font-size: 54px;
+            font-weight: 900;
+            box-shadow: inset 0 0 0 5px #ffffff;
+        }
+
+        .thanks {
+            margin: 0 0 5px;
+            color: #202b32;
+            font-size: 23px;
+            line-height: 1.1;
+            font-weight: 850;
+        }
+
+        .reassured {
+            margin: 0;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.35;
+        }
+
+        .sms {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            margin-top: 18px;
+            border-radius: 11px;
+            background: var(--blue-soft);
+            color: var(--blue);
+            font-size: 17px;
+            font-weight: 850;
+        }
+
+        .mini-card {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 12px;
+            align-items: center;
+            margin-top: 14px;
+            padding: 14px;
+            border-radius: 15px;
+            background: #ffffff;
+            box-shadow: 0 10px 24px rgba(36, 48, 47, 0.07);
+        }
+
+        .icon-tile {
+            display: grid;
+            width: 36px;
+            height: 36px;
+            place-items: center;
+            border-radius: 11px;
+            background: #eef4fb;
+            color: var(--blue);
+            font-weight: 900;
+        }
+
+        .mini-card strong {
+            display: block;
+            font-size: 18px;
+            line-height: 1.15;
+        }
+
+        .mini-card span {
+            display: block;
+            color: var(--muted);
+            font-size: 13.5px;
+        }
+
+        .chevron {
+            color: #bac4c0;
+            font-size: 31px;
+        }
+
+        .today {
+            margin-top: 14px;
+            padding: 16px;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 10px 24px rgba(36, 48, 47, 0.07);
+        }
+
+        .today h3 {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0 0 12px;
+            font-size: 20px;
+        }
+
+        .small-pill {
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: var(--green-soft);
+            color: var(--accent);
+            font-size: 12px;
+        }
+
+        .meta {
+            display: grid;
+            gap: 9px;
+        }
+
+        .meta-row {
+            display: grid;
+            grid-template-columns: 32px 1fr;
+            gap: 10px;
+            align-items: center;
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .meta-row span:last-child {
+            color: var(--ink);
+            font-size: 16px;
+            font-weight: 750;
+            text-transform: none;
+        }
+
+        .section {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 72px 0;
+        }
+
+        .section-title {
+            max-width: 760px;
+            margin: 0;
+            font-size: clamp(32px, 4vw, 48px);
+            line-height: 1.08;
+            letter-spacing: 0;
+        }
+
+        .section-copy {
+            max-width: 720px;
+            margin: 16px 0 0;
+            color: var(--muted);
+            font-size: 19px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 32px;
+        }
+
+        .feature {
+            min-height: 210px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #ffffff;
+        }
+
+        .feature-icon {
+            display: grid;
+            width: 44px;
+            height: 44px;
+            margin-bottom: 18px;
+            place-items: center;
+            border-radius: 12px;
+            background: var(--soft);
+            color: var(--accent);
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .feature h3 {
+            margin: 0 0 8px;
+            font-size: 21px;
+            line-height: 1.2;
+        }
+
+        .feature p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .roles-section {
+            background: var(--soft);
+        }
+
+        .roles-inner {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 34px;
+            align-items: start;
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 72px 0;
+        }
+
+        .role-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .role-card {
+            padding: 20px;
+            border: 1px solid rgba(47, 143, 104, 0.18);
+            border-radius: 8px;
+            background: #ffffff;
+        }
+
+        .role-card h3 {
+            margin: 0 0 6px;
+            font-size: 20px;
+        }
+
+        .role-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .cta {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 72px 0 88px;
+        }
+
+        .cta-box {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 22px;
+            align-items: center;
+            padding: 34px;
+            border-radius: 12px;
+            background: var(--ink);
+            color: #ffffff;
+        }
+
+        .cta-box h2 {
+            margin: 0;
+            font-size: clamp(28px, 4vw, 44px);
+            line-height: 1.08;
+        }
+
+        .cta-box p {
+            max-width: 660px;
+            margin: 12px 0 0;
+            color: rgba(255, 255, 255, 0.76);
+            font-size: 18px;
+        }
+
+        .cta-box .button {
+            background: #ffffff;
+            color: var(--ink);
+        }
+
+        footer {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 24px 0 36px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        @media (max-width: 920px) {
+            .hero,
+            .roles-inner,
+            .cta-box {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: auto;
+                padding-top: 20px;
+            }
+
+            .phone-wrap {
+                width: min(100%, 360px);
+            }
+
+            .feature-grid,
+            .trust-row {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .nav,
+            .hero,
+            .section,
+            .roles-inner,
+            .cta,
+            footer {
+                width: min(100% - 28px, 1120px);
+            }
+
+            h1 {
+                font-size: 42px;
+            }
+
+            .hero-copy {
+                font-size: 18px;
+            }
+
+            .phone {
+                border-radius: 38px;
+                padding: 12px;
+            }
+
+            .screen {
+                padding: 54px 14px 16px;
+                border-radius: 28px;
+            }
+
+            .app-title {
+                font-size: 30px;
+            }
+
+            .status-main {
+                grid-template-columns: 1fr;
+            }
+
+            .check-ring {
+                width: 86px;
+                height: 86px;
+            }
+
+            .cta-box {
+                padding: 24px;
+            }
+        }
+
+        @media print {
+            .nav,
+            .actions,
+            .cta,
+            footer {
+                display: none;
+            }
+
+            body {
+                background: #ffffff;
+            }
+
+            .hero,
+            .section,
+            .roles-inner {
+                width: auto;
+                min-height: auto;
+                padding: 18mm;
+            }
+
+            .hero {
+                grid-template-columns: 1fr 82mm;
+                gap: 12mm;
+            }
+
+            .phone {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <nav class="nav" aria-label="Navigation principale">
+            <a class="brand" href="#">
+                <span class="brand-mark">✓</span>
+                <span>Encore Là</span>
+            </a>
+            <div class="nav-links">
+                <a href="#fonctionnement">Fonctionnement</a>
+                <a href="#roles">Rôles</a>
+                <a href="#confiance">Confiance</a>
+            </div>
+        </nav>
+
+        <header class="hero">
+            <div>
+                <p class="eyebrow">Présence rassurante</p>
+                <h1>Un petit geste quotidien pour rassurer ses proches.</h1>
+                <p class="hero-copy">
+                    Encore Là aide une personne à confirmer que tout va bien. Si elle manque son rendez-vous de sécurité,
+                    ses contacts de confiance disposent d'un signal clair pour prendre des nouvelles.
+                </p>
+                <div class="actions">
+                    <a class="button primary" href="#fonctionnement">Découvrir l'application</a>
+                    <a class="button secondary" href="#roles">Voir les rôles</a>
+                </div>
+                <div class="trust-row" id="confiance">
+                    <div class="trust-item">
+                        <strong>Simple</strong>
+                        <span>Une confirmation quotidienne, sans réglages compliqués.</span>
+                    </div>
+                    <div class="trust-item">
+                        <strong>Discret</strong>
+                        <span>Un repère de présence, pas une surveillance permanente.</span>
+                    </div>
+                    <div class="trust-item">
+                        <strong>Humain</strong>
+                        <span>Les proches gardent un plan d'action clair si une alerte arrive.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phone-wrap" aria-label="Aperçu de l'application Encore Là">
+                <div class="phone">
+                    <div class="screen">
+                        <div class="app-top">
+                            <div>
+                                <p class="app-title">Encore <span>Là</span></p>
+                                <p class="app-subtitle">Point du jour enregistré</p>
+                            </div>
+                            <div class="heart"><span>✓</span></div>
+                        </div>
+
+                        <div class="status-card">
+                            <div class="status-row">
+                                <p class="status-label">Point quotidien</p>
+                                <span class="ok-pill">✓ OK</span>
+                            </div>
+                            <p class="confirmed">Confirmé aujourd'hui</p>
+                            <div class="status-main">
+                                <div class="check-ring">✓</div>
+                                <div>
+                                    <p class="thanks">Merci, Nicole</p>
+                                    <p class="reassured">Vos proches peuvent être rassurés pour aujourd'hui.</p>
+                                </div>
+                            </div>
+                            <div class="sms">Préparer un SMS</div>
+                        </div>
+
+                        <div class="mini-card">
+                            <span class="icon-tile">▣</span>
+                            <div>
+                                <strong>Je veille sur...</strong>
+                                <span>1 proche ajouté · messages reçus</span>
+                            </div>
+                            <span class="chevron">›</span>
+                        </div>
+
+                        <div class="today">
+                            <h3>Aujourd'hui <span class="small-pill">À jour</span></h3>
+                            <div class="meta">
+                                <div class="meta-row">
+                                    <span class="icon-tile">✓</span>
+                                    <span>1 juillet 2026 à 11:07</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="icon-tile">◷</span>
+                                    <span>2 juillet 2026 à 09:00</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="icon-tile">♡</span>
+                                    <span>1 proche ajouté</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="section" id="fonctionnement">
+                <p class="eyebrow">Fonctionnement</p>
+                <h2 class="section-title">Encore Là crée un rendez-vous de sécurité simple à comprendre.</h2>
+                <p class="section-copy">
+                    Chaque jour, la personne confirme sa présence. Si ce point n'est pas fait à temps,
+                    l'application aide à prévenir les bonnes personnes, avec un message préparé à l'avance.
+                </p>
+                <div class="feature-grid">
+                    <article class="feature">
+                        <span class="feature-icon">1</span>
+                        <h3>Je confirme</h3>
+                        <p>Un bouton suffit pour dire que tout va bien et rassurer les proches pour la journée.</p>
+                    </article>
+                    <article class="feature">
+                        <span class="feature-icon">2</span>
+                        <h3>Mes proches savent</h3>
+                        <p>Les contacts de confiance savent quand une confirmation est attendue et quoi faire en cas d'alerte.</p>
+                    </article>
+                    <article class="feature">
+                        <span class="feature-icon">3</span>
+                        <h3>Je garde le contrôle</h3>
+                        <p>La personne choisit ses contacts, son horaire, son message et peut mettre l'application en pause.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="roles-section" id="roles">
+                <div class="roles-inner">
+                    <div>
+                        <p class="eyebrow">Trois usages</p>
+                        <h2 class="section-title">L'application s'adapte au rôle de chacun.</h2>
+                        <p class="section-copy">
+                            Au démarrage, Encore Là propose d'être la personne accompagnée, le proche qui veille,
+                            ou les deux à la fois.
+                        </p>
+                    </div>
+                    <div class="role-list">
+                        <article class="role-card">
+                            <h3>Je suis accompagné</h3>
+                            <p>Je fais mon point quotidien et je choisis les personnes à prévenir si je ne réponds pas.</p>
+                        </article>
+                        <article class="role-card">
+                            <h3>Je suis proche aidant</h3>
+                            <p>Je peux être informé si une personne de confiance manque une confirmation importante.</p>
+                        </article>
+                        <article class="role-card">
+                            <h3>Je suis les deux</h3>
+                            <p>Je peux rassurer mes proches tout en veillant sur quelqu'un d'autre.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <p class="eyebrow">Cadre clair</p>
+                <h2 class="section-title">Rassurer sans transformer le quotidien en surveillance.</h2>
+                <p class="section-copy">
+                    Encore Là n'est pas un dispositif médical ou un service d'urgence. C'est un outil de lien :
+                    il aide à repérer un silence inhabituel et à donner aux proches une marche à suivre plus claire.
+                </p>
+            </section>
+        </main>
+
+        <section class="cta">
+            <div class="cta-box">
+                <div>
+                    <h2>Un repère quotidien, pour soi et pour ceux qui comptent.</h2>
+                    <p>Encore Là accompagne les personnes seules, les proches aidants et les familles qui veulent garder un lien rassurant.</p>
+                </div>
+                <a class="button" href="#">Bientôt sur l'App Store</a>
+            </div>
+        </section>
+
+        <footer>
+            © 2026 Pato Switch · Encore Là · Présence rassurante. En cas de danger immédiat, contactez les services d'urgence habituels.
+        </footer>
+    </div>
+</body>
+</html>
