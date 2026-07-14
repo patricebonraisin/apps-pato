@@ -349,6 +349,19 @@
             font-weight: 850;
         }
 
+        .help-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            margin-top: 10px;
+            border-radius: 11px;
+            background: rgba(158, 59, 46, 0.1);
+            color: #9e3b2e;
+            font-size: 15px;
+            font-weight: 850;
+        }
+
         .mini-card {
             display: grid;
             grid-template-columns: auto 1fr auto;
@@ -692,6 +705,7 @@
                 <a href="#fonctionnement">Fonctionnement</a>
                 <a href="#roles">Rôles</a>
                 <a href="#confiance">Confiance</a>
+                <a href="#confidentialite">Confidentialité</a>
             </div>
         </nav>
 
@@ -700,8 +714,9 @@
                 <p class="eyebrow">Présence rassurante</p>
                 <h1>Un petit geste quotidien pour rassurer ses proches.</h1>
                 <p class="hero-copy">
-                    Encore Là aide une personne à confirmer que tout va bien. Si elle manque son rendez-vous de sécurité,
-                    ses contacts de confiance disposent d'un signal clair pour prendre des nouvelles.
+                    Encore Là aide une personne à faire son point quotidien. Si elle manque son rendez-vous,
+                    ses proches connectés via iCloud disposent d'un signal clair pour prendre des nouvelles.
+                    Si elle a besoin d'aide, un bouton dédié l'aide à contacter rapidement un proche.
                 </p>
                 <div class="actions">
                     <a class="button primary" href="#fonctionnement">Découvrir l'application</a>
@@ -710,15 +725,15 @@
                 <div class="trust-row" id="confiance">
                     <div class="trust-item">
                         <strong>Simple</strong>
-                        <span>Une confirmation quotidienne, sans réglages compliqués.</span>
+                        <span>Un point quotidien depuis l'iPhone, le widget ou l'Apple Watch.</span>
                     </div>
                     <div class="trust-item">
                         <strong>Discret</strong>
-                        <span>Un repère de présence, pas une surveillance permanente.</span>
+                        <span>Un repère de présence, pas une géolocalisation permanente.</span>
                     </div>
                     <div class="trust-item">
                         <strong>Humain</strong>
-                        <span>Les proches gardent un plan d'action clair si une alerte arrive.</span>
+                        <span>Les proches gardent la main : appels et messages restent validés humainement.</span>
                     </div>
                 </div>
             </div>
@@ -747,14 +762,15 @@
                                     <p class="reassured">Vos proches peuvent être rassurés pour aujourd'hui.</p>
                                 </div>
                             </div>
-                            <div class="sms">Préparer un SMS</div>
+                            <div class="sms">Rassurer par SMS</div>
+                            <div class="help-action">Besoin d'aide</div>
                         </div>
 
                         <div class="mini-card">
                             <span class="icon-tile">▣</span>
                             <div>
                                 <strong>Je veille sur...</strong>
-                                <span>1 proche ajouté · messages reçus</span>
+                                <span>Aucune alerte · proche connecté</span>
                             </div>
                             <span class="chevron">›</span>
                         </div>
@@ -764,15 +780,15 @@
                             <div class="meta">
                                 <div class="meta-row">
                                     <span class="icon-tile">✓</span>
-                                    <span>1 juillet 2026 à 11:07</span>
+                                    <span>Aujourd'hui à 11:07</span>
                                 </div>
                                 <div class="meta-row">
                                     <span class="icon-tile">◷</span>
-                                    <span>2 juillet 2026 à 09:00</span>
+                                    <span>Demain à 09:00</span>
                                 </div>
                                 <div class="meta-row">
                                     <span class="icon-tile">♡</span>
-                                    <span>1 proche ajouté</span>
+                                    <span>1 proche connecté</span>
                                 </div>
                             </div>
                         </div>
@@ -787,23 +803,24 @@
                 <h2 class="section-title">Encore Là crée un rendez-vous de sécurité simple à comprendre.</h2>
                 <p class="section-copy">
                     Chaque jour, la personne confirme sa présence. Si ce point n'est pas fait à temps,
-                    l'application aide à prévenir les bonnes personnes, avec un message préparé à l'avance.
+                    l'application alerte les proches connectés. Après un point confirmé, un SMS de réassurance peut être préparé
+                    seulement si la personne le souhaite. En cas de difficulté, « Besoin d'aide » prépare un appel ou un SMS vers un proche.
                 </p>
                 <div class="feature-grid">
                     <article class="feature">
                         <span class="feature-icon">1</span>
                         <h3>Je confirme</h3>
-                        <p>Un bouton suffit pour dire que tout va bien et rassurer les proches pour la journée.</p>
+                        <p>Un bouton suffit pour dire que tout va bien, depuis l'app, le widget, une notification ou l'Apple Watch.</p>
                     </article>
                     <article class="feature">
                         <span class="feature-icon">2</span>
-                        <h3>Mes proches savent</h3>
-                        <p>Les contacts de confiance savent quand une confirmation est attendue et quoi faire en cas d'alerte.</p>
+                        <h3>Mes proches veillent</h3>
+                        <p>Après invitation iCloud, les proches voient les alertes importantes dans « Je veille sur… ».</p>
                     </article>
                     <article class="feature">
                         <span class="feature-icon">3</span>
                         <h3>Je garde le contrôle</h3>
-                        <p>La personne choisit ses contacts, son horaire, son message et peut mettre l'application en pause.</p>
+                        <p>La personne choisit ses proches, son horaire, ses rappels, ses pauses et les messages qu'elle décide d'envoyer.</p>
                     </article>
                 </div>
             </section>
@@ -825,7 +842,7 @@
                         </article>
                         <article class="role-card">
                             <h3>Je suis proche aidant</h3>
-                            <p>Je peux être informé si une personne de confiance manque une confirmation importante.</p>
+                            <p>J'accepte une invitation iCloud et je peux appeler ou préparer un message si son point reste sans réponse.</p>
                         </article>
                         <article class="role-card">
                             <h3>Je suis les deux</h3>
@@ -836,11 +853,13 @@
             </section>
 
             <section class="section">
-                <p class="eyebrow">Cadre clair</p>
+                <p class="eyebrow" id="confidentialite">Cadre clair</p>
                 <h2 class="section-title">Rassurer sans transformer le quotidien en surveillance.</h2>
                 <p class="section-copy">
                     Encore Là n'est pas un dispositif médical ou un service d'urgence. C'est un outil de lien :
                     il aide à repérer un silence inhabituel et à donner aux proches une marche à suivre plus claire.
+                    Les partages passent par l'espace iCloud privé des personnes concernées, sans serveur Encore Là,
+                    sans publicité et sans tracking.
                 </p>
             </section>
         </main>
@@ -851,7 +870,7 @@
                     <h2>Un repère quotidien, pour soi et pour ceux qui comptent.</h2>
                     <p>Encore Là accompagne les personnes seules, les proches aidants et les familles qui veulent garder un lien rassurant.</p>
                 </div>
-                <a class="button" href="#">Bientôt sur l'App Store</a>
+                <a class="button" href="https://apps.apple.com/app/toujours-l%C3%A0-pour-vos-proches/id6786242885">Télécharger sur l'App Store</a>
             </div>
         </section>
 
