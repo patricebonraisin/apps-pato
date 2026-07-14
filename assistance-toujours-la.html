@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Toujours Là - Assistance</title>
+    <style>
+        :root {
+            --ink: #1f2930;
+            --muted: #53605e;
+            --line: #d8e0dc;
+            --paper: #f6f8f7;
+            --surface: #ffffff;
+            --soft: #eef5f2;
+            --blue: #3d6ead;
+            --blue-soft: #e8f0fa;
+            --green: #388c61;
+            --green-soft: #dcefe6;
+            --warning: #7a4f18;
+            --warning-soft: #fff3dd;
+            --danger: #9e3b2e;
+            --danger-soft: #fdecea;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, rgba(61, 110, 173, 0.10), var(--paper) 260px);
+            color: var(--ink);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.55;
+        }
+
+        .page {
+            width: min(980px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 28px 0 56px;
+        }
+
+        header {
+            padding: 34px 0 24px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 28px;
+            color: var(--ink);
+            font-size: 20px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 38px;
+            height: 38px;
+            place-items: center;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--blue), var(--green));
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--green);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            max-width: 760px;
+            margin: 0;
+            font-size: clamp(38px, 7vw, 68px);
+            line-height: 1;
+            letter-spacing: 0;
+        }
+
+        .intro {
+            max-width: 720px;
+            margin: 20px 0 0;
+            color: var(--muted);
+            font-size: 20px;
+        }
+
+        .notice {
+            margin-top: 24px;
+            padding: 16px 18px;
+            border: 1px solid #efc7c0;
+            border-radius: 8px;
+            background: var(--danger-soft);
+            color: var(--danger);
+            font-weight: 700;
+        }
+
+        main {
+            display: grid;
+            gap: 16px;
+        }
+
+        section {
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--surface);
+        }
+
+        section.soft {
+            background: var(--soft);
+            border-color: transparent;
+        }
+
+        section.warning {
+            background: var(--warning-soft);
+            border-color: #f0d5a6;
+        }
+
+        h2 {
+            margin: 0 0 12px;
+            font-size: 24px;
+            line-height: 1.15;
+        }
+
+        h3 {
+            margin: 0 0 6px;
+            font-size: 17px;
+        }
+
+        p {
+            margin: 0 0 12px;
+            color: var(--muted);
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        a {
+            color: var(--blue);
+            font-weight: 750;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .card {
+            padding: 16px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #ffffff;
+        }
+
+        .card-icon {
+            display: grid;
+            width: 38px;
+            height: 38px;
+            margin-bottom: 12px;
+            place-items: center;
+            border-radius: 10px;
+            background: var(--blue-soft);
+            color: var(--blue);
+            font-weight: 900;
+        }
+
+        .steps {
+            display: grid;
+            gap: 10px;
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 12px;
+            align-items: start;
+            padding: 14px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #ffffff;
+        }
+
+        .number {
+            display: grid;
+            width: 28px;
+            height: 28px;
+            place-items: center;
+            border-radius: 999px;
+            background: var(--green);
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .contact-box {
+            display: grid;
+            gap: 8px;
+            padding: 18px;
+            border-radius: 8px;
+            background: var(--green-soft);
+            color: var(--ink);
+        }
+
+        .contact-box strong {
+            color: var(--green);
+        }
+
+        footer {
+            margin-top: 26px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        @media (max-width: 720px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <a class="brand" href="#top" aria-label="Toujours Là">
+                <span class="brand-mark">✓</span>
+                <span>Toujours Là</span>
+            </a>
+            <p class="eyebrow">Assistance</p>
+            <h1>Aide et contact</h1>
+            <p class="intro">
+                Cette page rassemble les réponses utiles pour configurer Toujours Là, comprendre les rappels, connecter un proche et résoudre les problèmes fréquents.
+            </p>
+            <p class="notice">
+                Toujours Là n’est pas un service d’urgence. En cas de danger immédiat, contactez les services d’urgence de votre pays.
+            </p>
+        </header>
+
+        <main>
+            <section class="soft">
+                <h2>Bien démarrer</h2>
+                <div class="grid">
+                    <div class="card">
+                        <span class="card-icon">1</span>
+                        <h3>Choisir le bon rôle</h3>
+                        <p>“Je suis accompagné” sert à faire son point quotidien. “Je suis proche aidant” sert à recevoir les alertes d’une personne qui vous a invité.</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-icon">2</span>
+                        <h3>Configurer la routine</h3>
+                        <p>Choisissez une heure réaliste, les jours actifs et les rappels. Les rappels restent locaux à l’iPhone et peuvent être modifiés ensuite.</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-icon">3</span>
+                        <h3>Ajouter les proches</h3>
+                        <p>Ajoutez au moins un proche prioritaire avec un numéro mobile. Pour recevoir les alertes dans l’app, le proche doit accepter l’invitation iCloud.</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-icon">4</span>
+                        <h3>Faire le point du jour</h3>
+                        <p>Le bouton “Je vais bien” enregistre la confirmation du jour. Les SMS de réassurance restent optionnels et doivent être validés dans Messages.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Problèmes fréquents</h2>
+                <div class="steps">
+                    <div class="step">
+                        <span class="number">1</span>
+                        <div>
+                            <h3>Je ne reçois pas les rappels</h3>
+                            <p>Vérifiez que les notifications sont autorisées pour Toujours Là dans Réglages iOS. Vérifiez aussi que le jour actuel est actif dans la routine et que la pause n’est pas activée.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="number">2</span>
+                        <div>
+                            <h3>Mon proche ne reçoit pas les alertes</h3>
+                            <p>Vérifiez que l’invitation iCloud a été acceptée, que le proche apparaît comme connecté et que les notifications sont autorisées sur son iPhone.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="number">3</span>
+                        <div>
+                            <h3>Le SMS ne part pas automatiquement</h3>
+                            <p>C’est volontaire. Toujours Là prépare le texte et le destinataire, puis l’utilisateur confirme lui-même l’envoi dans Messages.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="number">4</span>
+                        <div>
+                            <h3>iCloud ne semble pas synchroniser</h3>
+                            <p>Vérifiez que chaque iPhone est connecté à iCloud, que iCloud Drive est disponible et que la connexion réseau fonctionne. Fermer puis rouvrir l’app peut aider après une première invitation.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="warning">
+                <h2>Avant de contacter l’assistance</h2>
+                <p>Indiquez le modèle d’iPhone, la version iOS, le rôle choisi dans l’app, le moment où le problème apparaît et, si possible, une capture d’écran.</p>
+                <p>Ne transmettez pas de données médicales ni d’informations sensibles qui ne sont pas nécessaires à la résolution du problème.</p>
+            </section>
+
+            <section>
+                <h2>Contact</h2>
+                <div class="contact-box">
+                    <strong>Assistance Toujours Là</strong>
+                    <span>E-mail : info@patoswitch.fr</span>
+                    <span>Réponse selon disponibilité. Aucun diagnostic médical ou service d’urgence n’est fourni par ce canal.</span>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            Dernière mise à jour : 14 juillet 2026. Toujours Là utilise iCloud pour relier les proches, sans serveur Toujours Là, sans publicité et sans tracking.
+        </footer>
+    </div>
+</body>
+</html>
