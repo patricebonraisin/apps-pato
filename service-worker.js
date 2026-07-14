@@ -7,10 +7,12 @@ const FILES_TO_CACHE = [
   "melovia.png",
   "finelio.png",
   "loopamove.png",
+  "encore_la.png",
   "pato-life-blog-page.html",
   "melovia-blog-page.html",
   "finelio-blog-page.html",
-  "loopa-move-blog-page.html"
+  "loopa-move-blog-page.html",
+  "page-marketing-encore-la.html"
 ];
 
 self.addEventListener("install", event => {
