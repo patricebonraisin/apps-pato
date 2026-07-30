@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Assistance - Pato Météo</title>
+    <meta name="description" content="Page d'assistance de l'application Pato Météo pour iPhone, Apple Watch et widgets.">
+    <style>
+        :root {
+            color-scheme: light;
+            --ink: #14213d;
+            --muted: #516173;
+            --line: #d8e2ec;
+            --surface: #ffffff;
+            --background: #f5f8fb;
+            --accent: #0877c9;
+            --accent-soft: #e3f2fd;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.6;
+            color: var(--ink);
+            background: var(--background);
+        }
+
+        main {
+            width: min(920px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 48px 0 64px;
+        }
+
+        header {
+            padding: 40px;
+            color: #ffffff;
+            background: linear-gradient(135deg, #0758b8, #0b92c8 55%, #29b59b);
+            border-radius: 8px;
+        }
+
+        h1,
+        h2 {
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+        }
+
+        h2 {
+            margin-top: 36px;
+            font-size: 1.35rem;
+        }
+
+        p,
+        ul {
+            font-size: 1rem;
+        }
+
+        p {
+            margin: 14px 0 0;
+        }
+
+        ul {
+            margin: 12px 0 0;
+            padding-left: 1.35rem;
+        }
+
+        li + li {
+            margin-top: 8px;
+        }
+
+        section {
+            padding: 0 40px;
+        }
+
+        .updated {
+            margin-top: 16px;
+            color: rgba(255, 255, 255, 0.86);
+            font-weight: 600;
+        }
+
+        .panel {
+            margin-top: 24px;
+            padding: 22px 24px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+        }
+
+        .notice {
+            margin-top: 24px;
+            padding: 18px 20px;
+            background: var(--accent-soft);
+            border-left: 4px solid var(--accent);
+            border-radius: 6px;
+        }
+
+        a {
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 32px 40px 0;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 640px) {
+            main {
+                width: min(100% - 20px, 920px);
+                padding: 24px 0 40px;
+            }
+
+            header,
+            section,
+            footer {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            header {
+                padding-top: 32px;
+                padding-bottom: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Assistance</h1>
+            <p class="updated">Pato Météo - Dernière mise à jour : 30 juillet 2026</p>
+        </header>
+
+        <section>
+            <div class="notice">
+                <strong>Besoin d'aide ?</strong> Pour toute question concernant Pato Météo, contactez l'équipe Pato Switch à l'adresse <a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a>.
+            </div>
+
+            <h2>1. Contacter l'assistance</h2>
+            <p>Pour faciliter le traitement de votre demande, merci d'indiquer le modèle de votre appareil, la version d'iOS ou de watchOS utilisée, ainsi qu'une description précise du problème rencontré.</p>
+            <p>Si votre demande concerne un widget ou l'application Apple Watch, précisez également si le problème apparaît sur l'iPhone, l'Apple Watch, l'écran d'accueil ou l'écran verrouillé.</p>
+
+            <h2>2. Problèmes météo ou localisation</h2>
+            <p>Si les données météo ne s'affichent pas correctement, vous pouvez vérifier les points suivants :</p>
+            <ul>
+                <li>l'application Pato Météo est à jour ;</li>
+                <li>l'accès à la localisation est autorisé dans les réglages iOS ;</li>
+                <li>la connexion Internet est active ;</li>
+                <li>une ville peut être recherchée ou sélectionnée manuellement si vous ne souhaitez pas utiliser votre position actuelle.</li>
+            </ul>
+
+            <h2>3. Widgets et Apple Watch</h2>
+            <p>Après une modification de ville, de profil ou de préférence, les widgets et l'Apple Watch peuvent nécessiter quelques minutes avant d'afficher les informations mises à jour.</p>
+            <p>Si le problème persiste, ouvrez Pato Météo sur l'iPhone afin de relancer la synchronisation, puis vérifiez que l'Apple Watch est bien associée et connectée.</p>
+
+            <h2>4. Notifications</h2>
+            <p>Les notifications de Pato Météo dépendent des autorisations accordées dans les réglages iOS. Vous pouvez les activer, les désactiver ou les modifier à tout moment depuis les réglages de votre appareil.</p>
+
+            <h2>5. Confidentialité</h2>
+            <p>Les demandes envoyées à l'assistance sont utilisées uniquement pour répondre à votre message. Pato Météo est éditée par Pato Switch et ne vend pas vos données personnelles.</p>
+
+            <div class="panel">
+                <strong>Adresse d'assistance :</strong>
+                <p><a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a></p>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Pato Switch. Tous droits réservés.</p>
+        </footer>
+    </main>
+</body>
+</html>
