@@ -1,4 +1,4 @@
-const CACHE_NAME = "pato-apps-v2";
+const CACHE_NAME = "pato-apps-v3";
 
 const FILES_TO_CACHE = [
   "./",
@@ -8,11 +8,13 @@ const FILES_TO_CACHE = [
   "finelio.png",
   "loopamove.png",
   "encore_la.png",
+  "pato-meteo.png",
   "pato-life-blog-page.html",
   "melovia-blog-page.html",
   "finelio-blog-page.html",
   "loopa-move-blog-page.html",
-  "page-marketing-encore-la.html"
+  "page-marketing-encore-la.html",
+  "Pato_meteo_MarketingPage.html"
 ];
 
 self.addEventListener("install", event => {
