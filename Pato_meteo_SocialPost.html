@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pato Météo - Visuel social</title>
+    <style>
+        :root {
+            --gold: #fbc76b;
+            --ink: #082957;
+            --deep: #061a36;
+            --blue: #197af0;
+            --cyan: #56c7b8;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: grid;
+            place-items: center;
+            background: #d7e9ff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        .post {
+            position: relative;
+            width: min(1080px, 100vw);
+            aspect-ratio: 1;
+            overflow: hidden;
+            color: var(--white);
+            background:
+                radial-gradient(circle at 18% 13%, rgba(255, 255, 255, 0.34), transparent 20%),
+                linear-gradient(150deg, #0f52dc 0%, var(--blue) 38%, #239edb 65%, var(--cyan) 100%);
+        }
+
+        .sun {
+            position: absolute;
+            top: 74px;
+            right: 86px;
+            width: 154px;
+            height: 154px;
+            border-radius: 50%;
+            background: var(--gold);
+            box-shadow: 0 0 80px rgba(251, 199, 107, 0.62);
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 430px;
+            gap: 52px;
+            height: 100%;
+            padding: 74px;
+            align-items: center;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--gold);
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: var(--ink);
+            background: var(--gold);
+        }
+
+        h1 {
+            margin: 34px 0 18px;
+            max-width: 520px;
+            font-size: 76px;
+            line-height: 0.95;
+            letter-spacing: 0;
+        }
+
+        .lead {
+            max-width: 530px;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.86);
+            font-size: 25px;
+            line-height: 1.28;
+            font-weight: 650;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 34px;
+        }
+
+        .tag {
+            padding: 10px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            border-radius: 999px;
+            background: rgba(8, 41, 87, 0.22);
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .button {
+            display: inline-flex;
+            margin-top: 34px;
+            min-height: 58px;
+            align-items: center;
+            justify-content: center;
+            padding: 0 26px;
+            border-radius: 999px;
+            color: var(--ink);
+            background: var(--gold);
+            box-shadow: 0 18px 36px rgba(251, 199, 107, 0.28);
+            font-size: 20px;
+            font-weight: 900;
+            text-decoration: none;
+        }
+
+        .phone {
+            width: 398px;
+            margin-inline: auto;
+            padding: 14px;
+            border-radius: 54px;
+            background: #071c3c;
+            box-shadow: 0 34px 80px rgba(3, 22, 50, 0.42);
+            transform: rotate(2deg);
+        }
+
+        .screen {
+            min-height: 700px;
+            padding: 24px;
+            border-radius: 42px;
+            background: linear-gradient(160deg, #216bcc 0%, #197af0 46%, #56c7b8 100%);
+        }
+
+        .appbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pill,
+        .gear,
+        .card,
+        .metric {
+            border: 1px solid rgba(255, 255, 255, 0.20);
+            background: rgba(255, 255, 255, 0.13);
+            backdrop-filter: blur(14px);
+        }
+
+        .pill {
+            padding: 8px 13px;
+            border-radius: 999px;
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .gear {
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: var(--gold);
+            font-weight: 900;
+        }
+
+        .weather {
+            margin-top: 28px;
+        }
+
+        .city {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 14px;
+            font-weight: 750;
+        }
+
+        .temp {
+            display: flex;
+            align-items: flex-end;
+            gap: 14px;
+            margin-top: 8px;
+        }
+
+        .temp strong {
+            font-size: 82px;
+            line-height: 0.95;
+        }
+
+        .temp span {
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 17px;
+            font-weight: 750;
+        }
+
+        .card {
+            margin-top: 18px;
+            padding: 18px;
+            border-radius: 20px;
+        }
+
+        .label {
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .coach {
+            display: grid;
+            grid-template-columns: 52px 1fr 58px;
+            gap: 12px;
+            align-items: center;
+            margin-top: 13px;
+        }
+
+        .activity {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            border-radius: 16px;
+            color: var(--ink);
+            background: var(--gold);
+            font-size: 28px;
+        }
+
+        .coach h2,
+        .coach p,
+        .brief h2,
+        .brief p {
+            margin: 0;
+        }
+
+        .coach h2 {
+            font-size: 24px;
+            line-height: 1.1;
+        }
+
+        .coach p,
+        .brief p {
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 14px;
+            font-weight: 650;
+        }
+
+        .score {
+            color: var(--gold);
+            font-size: 23px;
+            font-weight: 950;
+            text-align: right;
+        }
+
+        .brief h2 {
+            margin-top: 10px;
+            font-size: 22px;
+            line-height: 1.15;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .metric {
+            padding: 13px;
+            border-radius: 16px;
+        }
+
+        .metric span {
+            display: block;
+            color: rgba(255, 255, 255, 0.70);
+            font-size: 12px;
+            font-weight: 750;
+        }
+
+        .metric strong {
+            display: block;
+            margin-top: 3px;
+            color: var(--gold);
+            font-size: 23px;
+            line-height: 1.05;
+        }
+    </style>
+</head>
+<body>
+    <main class="post" aria-label="Illustration promotionnelle Pato Météo">
+        <div class="sun" aria-hidden="true"></div>
+        <div class="content">
+            <section>
+                <div class="brand"><span class="brand-icon">☀</span> Pato Météo</div>
+                <h1>Le bon moment pour sortir.</h1>
+                <p class="lead">Prévisions, qualité de l’air et conditions ressenties deviennent des conseils simples pour marcher, courir, randonner ou faire du vélo.</p>
+                <div class="tags" aria-label="Points forts">
+                    <span class="tag">Météo</span>
+                    <span class="tag">Qualité de l’air</span>
+                    <span class="tag">Apple Watch</span>
+                    <span class="tag">0 pub</span>
+                </div>
+                <a class="button" href="https://apps.apple.com/fr/app/pato-m%C3%A9t%C3%A9o/id6795985697?uo=4">Télécharger sur l’App Store</a>
+            </section>
+
+            <section class="phone" aria-label="Aperçu de l'application">
+                <div class="screen">
+                    <div class="appbar">
+                        <div class="pill">Pato Météo</div>
+                        <div class="gear">⚙</div>
+                    </div>
+
+                    <div class="weather">
+                        <div class="city"><span>Vertou</span><span>Maxi 27° · Mini 18°</span></div>
+                        <div class="temp"><strong>24°</strong><span>Ciel clair<br>ressenti 25 °C</span></div>
+                    </div>
+
+                    <div class="card">
+                        <div class="label">Ton coach sorties</div>
+                        <div class="coach">
+                            <div class="activity">🚶</div>
+                            <div>
+                                <h2>Marche</h2>
+                                <p>Aujourd’hui · 14 h-16 h · 22 °C, sec</p>
+                            </div>
+                            <div class="score">9/10</div>
+                        </div>
+                    </div>
+
+                    <div class="card brief">
+                        <div class="label">Idée sortie</div>
+                        <h2>Conditions favorables</h2>
+                        <p>Vent faible, air bon et pluie absente : le créneau est idéal pour bouger.</p>
+                    </div>
+
+                    <div class="metrics">
+                        <div class="metric"><span>Ressenti</span><strong>25°</strong></div>
+                        <div class="metric"><span>Humidité</span><strong>52%</strong></div>
+                        <div class="metric"><span>Vent</span><strong>12 km/h</strong></div>
+                        <div class="metric"><span>Air</span><strong>Bon</strong></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
