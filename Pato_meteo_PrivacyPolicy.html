@@ -136,12 +136,12 @@
     <main>
         <header>
             <h1>Politique de confidentialité</h1>
-            <p class="updated">Pato Météo - Dernière mise à jour : 28 juillet 2026</p>
+            <p class="updated">Pato Météo - Dernière mise à jour : 5 août 2026</p>
         </header>
 
         <section>
             <div class="notice">
-                <strong>Résumé :</strong> Pato Météo utilise uniquement les informations nécessaires pour afficher la météo, personnaliser les recommandations de sortie, synchroniser l'expérience avec l'Apple Watch et gérer les notifications locales. L'application ne vend pas vos données et ne les utilise pas à des fins publicitaires.
+                <strong>Résumé :</strong> Pato Météo utilise uniquement les informations nécessaires pour afficher la météo, la qualité de l'air, personnaliser les recommandations de sortie, synchroniser l'expérience avec l'Apple Watch et gérer les notifications locales. L'application ne vend pas vos données et ne les utilise pas à des fins publicitaires.
             </div>
 
             <h2>1. Responsable du traitement</h2>
@@ -150,8 +150,9 @@
             <h2>2. Données utilisées par l'application</h2>
             <p>Selon les fonctionnalités que vous activez, Pato Météo peut utiliser les données suivantes :</p>
             <ul>
-                <li><strong>Localisation approximative ou précise</strong> : utilisée pour afficher la météo de votre position actuelle via les services météo d'Apple.</li>
+                <li><strong>Localisation approximative ou précise</strong> : utilisée pour afficher la météo de votre position actuelle via les services météo d'Apple et la qualité de l'air via Open-Meteo.</li>
                 <li><strong>Villes choisies manuellement</strong> : nom, latitude et longitude des villes sélectionnées, récentes ou favorites.</li>
+                <li><strong>Données de qualité de l'air</strong> : indice européen de qualité de l'air (AQI) et horaires associés, utilisés uniquement pour afficher la barre de qualité de l'air et adapter les recommandations de sortie.</li>
                 <li><strong>Préférences météo</strong> : unité de température, ville sélectionnée et état d'affichage de certains messages.</li>
                 <li><strong>Prénom facultatif</strong> : utilisé uniquement pour personnaliser certains textes dans l'application, les widgets et l'Apple Watch.</li>
                 <li><strong>Profil de recommandations de sortie</strong> : activités suivies, sensibilité thermique, jours et créneaux préférés afin de proposer de meilleurs moments pour marcher, courir, randonner ou faire du vélo.</li>
@@ -161,7 +162,7 @@
             <h2>3. Finalités</h2>
             <p>Ces données servent exclusivement à fournir les fonctionnalités de Pato Météo :</p>
             <ul>
-                <li>afficher les conditions météo actuelles et les prévisions ;</li>
+                <li>afficher les conditions météo actuelles, les prévisions et la qualité de l'air ;</li>
                 <li>rechercher ou mémoriser des villes ;</li>
                 <li>personnaliser l'interface et les recommandations ;</li>
                 <li>mettre à jour les widgets et complications Apple Watch ;</li>
@@ -173,11 +174,13 @@
             <p>Si iCloud est activé sur votre appareil, Pato Météo peut sauvegarder une copie légère de vos préférences dans iCloud Key-Value Store afin de les restaurer après une réinstallation. Cette sauvegarde concerne notamment l'unité de température, le prénom facultatif, les villes choisies et le profil de recommandations de sortie.</p>
             <p>Lorsque vous utilisez l'application Apple Watch, certaines préférences comme le prénom facultatif et le profil de sortie peuvent être transmises de l'iPhone vers la Watch via WatchConnectivity. Cette synchronisation sert uniquement à afficher une expérience cohérente sur vos appareils.</p>
 
-            <h2>5. Services Apple</h2>
+            <h2>5. Services Apple et Open-Meteo</h2>
             <p>Pato Météo s'appuie sur des frameworks Apple, notamment WeatherKit, Core Location, WidgetKit, UserNotifications et WatchConnectivity. Les données météo et de localisation traitées par ces services sont soumises aux règles et politiques d'Apple applicables à ces services.</p>
+            <p>Pour afficher la qualité de l'air, Pato Météo interroge également l'API Open-Meteo Air Quality. Cette requête transmet la latitude et la longitude de la position ou de la ville sélectionnée afin de récupérer l'indice AQI européen correspondant. Pato Météo n'ajoute pas d'identifiant publicitaire, de compte utilisateur ou de prénom à cette requête.</p>
 
             <h2>6. Partage avec des tiers</h2>
             <p>Pato Météo ne vend pas vos données personnelles, ne les loue pas et ne les partage pas avec des régies publicitaires. L'application ne contient pas de suivi publicitaire tiers.</p>
+            <p>Les coordonnées nécessaires à la qualité de l'air peuvent être transmises à Open-Meteo uniquement pour fournir cette fonctionnalité. Les autres préférences de l'application ne sont pas envoyées à Open-Meteo.</p>
 
             <h2>7. Conservation</h2>
             <p>Les préférences locales sont conservées tant que l'application reste installée ou jusqu'à ce que vous les modifiiez ou les supprimiez. La désinstallation de l'application supprime normalement les données locales associées à l'application sur l'appareil.</p>
