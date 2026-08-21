@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Politique de confidentialité de l'application Ascens.">
+    <title>Politique de confidentialité — Ascens</title>
+    <style>
+        :root {
+            --forest: #073e31;
+            --mint: #2ec9a7;
+            --mint-soft: #dff8ef;
+            --canvas: #fcfcf9;
+            --ink: #132d28;
+            --muted: #5d7069;
+            --line: #dce6e0;
+            --sand: #f5eedb;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--canvas);
+            font-family: ui-rounded, "Avenir Next", Avenir, system-ui, sans-serif;
+            line-height: 1.65;
+        }
+
+        a { color: #0c8069; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+        .container { width: min(980px, calc(100% - 40px)); margin: auto; }
+
+        header {
+            color: white;
+            background: linear-gradient(135deg, #073e31, #12634f);
+        }
+
+        .hero { padding: 78px 0 70px; }
+
+        .eyebrow {
+            margin: 0 0 .8rem;
+            color: #7ce0c9;
+            font-size: .75rem;
+            font-weight: 850;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            max-width: 720px;
+            margin: 0;
+            font-size: clamp(2.7rem, 6vw, 4.8rem);
+            line-height: 1;
+            letter-spacing: -.07em;
+        }
+
+        .hero p:last-child { max-width: 670px; margin: 1.35rem 0 0; color: #d5eee6; font-size: 1.1rem; }
+
+        main { padding: 66px 0 84px; }
+
+        .notice {
+            display: flex;
+            gap: .9rem;
+            margin-bottom: 52px;
+            padding: 1.15rem 1.25rem;
+            border: 1px solid #d8e9e2;
+            border-radius: 18px;
+            background: var(--mint-soft);
+            color: #184b3f;
+        }
+
+        .notice b { display: block; margin-bottom: .1rem; }
+        .notice span { font-size: 1.2rem; }
+
+        .layout { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 60px; }
+
+        .toc { position: sticky; top: 24px; align-self: start; }
+        .toc h2 { margin: 0 0 .75rem; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
+        .toc a { display: block; padding: .42rem 0; color: var(--muted); font-size: .9rem; text-decoration: none; }
+        .toc a:hover { color: var(--forest); font-weight: 800; }
+
+        article section { padding: 0 0 2.55rem; }
+        article h2 { margin: 0 0 .8rem; font-size: 1.55rem; line-height: 1.2; letter-spacing: -.035em; }
+        article p { margin: 0 0 1rem; color: #405650; }
+        article ul { margin: .8rem 0 1rem; padding-left: 1.2rem; color: #405650; }
+        article li { margin: .45rem 0; }
+
+        .data-card {
+            padding: 1.3rem;
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            background: white;
+        }
+
+        .data-card + .data-card { margin-top: .8rem; }
+        .data-card h3 { margin: 0 0 .35rem; font-size: 1.03rem; }
+        .data-card p { margin: 0; font-size: .94rem; }
+
+        .contact-card {
+            padding: 1.5rem;
+            border-radius: 23px;
+            background: var(--sand);
+        }
+
+        .contact-card h2 { margin-bottom: .45rem; }
+        .contact-card p { margin-bottom: .7rem; }
+
+        .meta { margin-top: 3rem; color: var(--muted); font-size: .88rem; }
+
+        @media (max-width: 720px) {
+            .container { width: min(100% - 32px, 600px); }
+            .hero { padding: 42px 0 48px; }
+            main { padding: 42px 0 58px; }
+            .layout { grid-template-columns: 1fr; gap: 32px; }
+            .toc { position: static; padding: 1rem; border-radius: 16px; background: #f2f7f2; }
+            .toc a { display: inline-block; margin-right: .8rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="hero">
+                <p class="eyebrow">Vos données, expliquées simplement</p>
+                <h1>Politique de confidentialité</h1>
+                <p>Cette page explique quelles données Ascens utilise, pourquoi, et les choix dont vous disposez.</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="notice" role="note">
+            <span aria-hidden="true">✓</span>
+            <div><b>En bref</b>Ascens ne demande aucun compte. Vos favoris sont synchronisés via iCloud pour vous suivre d’un appareil à l’autre ; vos compléments de fiches restent sur votre appareil. Votre position sert à afficher les lieux proches et n’est pas enregistrée par l’application.</div>
+        </div>
+
+        <div class="layout">
+            <nav class="toc" aria-label="Sommaire">
+                <h2>Sommaire</h2>
+                <a href="#responsable">Responsable</a>
+                <a href="#donnees">Données utilisées</a>
+                <a href="#localisation">Localisation</a>
+                <a href="#contributions">Contributions</a>
+                <a href="#stockage">Stockage</a>
+                <a href="#tiers">Services tiers</a>
+                <a href="#droits">Vos droits</a>
+                <a href="#contact">Nous contacter</a>
+            </nav>
+
+            <article>
+                <section id="responsable">
+                    <h2>1. Responsable de traitement</h2>
+                    <p>Ascens est une application de découverte de lieux d’escalade. Pour toute question relative à vos données personnelles ou à cette politique, vous pouvez nous contacter à <a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a>.</p>
+                </section>
+
+                <section id="donnees">
+                    <h2>2. Les données utilisées par Ascens</h2>
+                    <p>Ascens est conçue pour fonctionner sans création de compte. L’application ne vous demande ni nom, ni adresse e-mail, ni mot de passe pour consulter les lieux.</p>
+
+                    <div class="data-card">
+                        <h3>Position approximative ou précise</h3>
+                        <p>Uniquement si vous l’autorisez dans iOS, votre position permet de rechercher des lieux autour de vous, d’afficher leur distance et de les classer par proximité.</p>
+                    </div>
+
+                    <div class="data-card">
+                        <h3>Recherches de lieux</h3>
+                        <p>Lorsque vous recherchez une ville, une commune ou un lieu, le texte de votre recherche est utilisé pour afficher les résultats correspondants.</p>
+                    </div>
+
+                    <div class="data-card">
+                        <h3>Contenu de vos contributions</h3>
+                        <p>Si vous proposez un lieu ou complétez une fiche, les informations que vous saisissez — par exemple une description, un accès, des horaires, une cotation ou un contact professionnel — sont traitées pour examiner puis, le cas échéant, publier votre contribution.</p>
+                    </div>
+                </section>
+
+                <section id="localisation">
+                    <h2>3. Votre position</h2>
+                    <p>La géolocalisation est facultative. Vous pouvez utiliser Ascens sans l’autoriser, notamment en recherchant une ville ou une commune.</p>
+                    <p>Lorsque vous l’autorisez, Ascens utilise votre position pendant l’utilisation de l’application pour :</p>
+                    <ul>
+                        <li>chercher les lieux d’escalade à proximité ;</li>
+                        <li>calculer et afficher leur distance ;</li>
+                        <li>ordonner les résultats par proximité.</li>
+                    </ul>
+                    <p>Ascens n’enregistre pas votre historique de position et ne crée pas de profil de déplacements. Les demandes de lieux à proximité impliquent néanmoins la transmission de la zone recherchée aux services utilisés pour fournir les résultats et la cartographie.</p>
+                    <p>Vous pouvez modifier à tout moment cette autorisation dans <em>Réglages &gt; Confidentialité et sécurité &gt; Service de localisation</em> sur votre appareil.</p>
+                </section>
+
+                <section id="contributions">
+                    <h2>4. Contributions à la communauté</h2>
+                    <p>Ascens vous permet de proposer un lieu manquant ou de compléter une fiche existante. Une contribution est examinée avant sa publication afin de préserver la qualité des informations proposées à la communauté.</p>
+                    <p>Une fois publiée, une contribution peut être visible par l’ensemble des utilisateurs d’Ascens. Ne communiquez donc pas de donnée personnelle, de donnée sensible ou d’information que vous ne souhaitez pas voir rendue publique.</p>
+                    <p>Les contributions sont conservées le temps nécessaire à leur modération et, lorsqu’elles sont publiées, aussi longtemps qu’elles restent utiles à la fiche concernée. Vous pouvez demander leur correction ou leur suppression en écrivant à <a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a>.</p>
+                </section>
+
+                <section id="stockage">
+                    <h2>5. Données conservées sur votre appareil et via iCloud</h2>
+                    <p>Pour rendre l’application utile, y compris lorsque la connexion est limitée, Ascens peut conserver :</p>
+                    <ul>
+                        <li>des lieux précédemment consultés ou chargés, sur votre appareil ;</li>
+                        <li>vos favoris, synchronisés via le stockage clé-valeur iCloud associé à votre identifiant Apple, afin qu’ils vous suivent d’un appareil à l’autre et restent disponibles même après une réinstallation de l’application ;</li>
+                        <li>les compléments que vous avez enregistrés sur une fiche, sur votre appareil.</li>
+                    </ul>
+                    <p>Les éléments conservés uniquement sur votre appareil sont effacés avec l’application, sous réserve des mécanismes de sauvegarde éventuellement configurés sur votre appareil. Vos favoris, étant liés à votre identifiant Apple, restent accessibles si vous réinstallez Ascens en restant connecté au même compte iCloud ; vous pouvez les retirer un à un dans l’application ou désactiver la synchronisation d’Ascens dans <em>Réglages &gt; [votre nom] &gt; iCloud</em>.</p>
+                </section>
+
+                <section id="tiers">
+                    <h2>6. Services tiers et sources de données</h2>
+                    <p>Ascens s’appuie sur les services suivants pour fournir ses fonctionnalités :</p>
+                    <ul>
+                        <li><strong>Apple Plans / MapKit</strong>, pour la cartographie, la recherche de lieux et l’ouverture d’itinéraires ;</li>
+                        <li><strong>OpenStreetMap</strong>, pour des données de lieux d’escalade et leurs caractéristiques ;</li>
+                        <li><strong>Apple WeatherKit</strong>, pour la météo affichée sur les fiches de falaise, à partir des coordonnées du site — jamais de votre position ;</li>
+                        <li><strong>iCloud (CloudKit)</strong>, pour recevoir et administrer les contributions envoyées par la communauté ;</li>
+                        <li><strong>iCloud (stockage clé-valeur)</strong>, pour synchroniser vos favoris entre les appareils connectés à votre compte iCloud.</li>
+                    </ul>
+                    <p>Ces services peuvent traiter les requêtes nécessaires à leur fonctionnement selon leurs propres conditions et politiques de confidentialité. Lorsque vous envoyez une contribution, celle-ci est transmise au service CloudKit d’Apple utilisé par Ascens pour permettre son examen et sa publication. Vos favoris synchronisés via iCloud restent privés : contrairement aux contributions, ils ne sont ni publiés ni accessibles par Ascens ou par les autres utilisateurs.</p>
+                    <p>Nous n’utilisons pas de publicité ciblée, de traceur publicitaire ni d’outil d’analyse comportementale dans l’application.</p>
+                </section>
+
+                <section id="droits">
+                    <h2>7. Vos droits</h2>
+                    <p>Conformément à la réglementation applicable, vous pouvez demander l’accès, la rectification ou l’effacement des données personnelles vous concernant, ainsi que la limitation ou l’opposition à certains traitements lorsque ces droits sont applicables.</p>
+                    <p>Pour exercer vos droits ou poser une question, écrivez à <a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a>. Si vous estimez que vos droits ne sont pas respectés, vous pouvez également introduire une réclamation auprès de l’autorité de protection des données compétente, notamment la CNIL en France.</p>
+                </section>
+
+                <section id="contact" class="contact-card">
+                    <h2>Une question sur vos données ?</h2>
+                    <p>Nous répondrons à vos demandes concernant la confidentialité, vos contributions ou l’utilisation d’Ascens.</p>
+                    <a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a>
+                </section>
+
+                <p class="meta">Dernière mise à jour : <strong>20 août 2026</strong>. Cette politique pourra être mise à jour si les fonctionnalités d’Ascens ou les obligations applicables évoluent.</p>
+            </article>
+        </div>
+    </main>
+
+</body>
+</html>

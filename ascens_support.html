@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Assistance Ascens : aide à l'utilisation de l'application de découverte de lieux d'escalade.">
+    <title>Assistance — Ascens</title>
+    <style>
+        :root {
+            --forest: #073e31;
+            --mint: #2ec9a7;
+            --mint-soft: #dff8ef;
+            --canvas: #fcfcf9;
+            --ink: #132d28;
+            --muted: #5d7069;
+            --line: #dce6e0;
+            --sand: #f5eedb;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--canvas);
+            font-family: ui-rounded, "Avenir Next", Avenir, system-ui, sans-serif;
+            line-height: 1.6;
+        }
+
+        a { color: #0c8069; text-underline-offset: 3px; }
+        .container { width: min(1040px, calc(100% - 40px)); margin: auto; }
+
+        header {
+            position: relative;
+            overflow: hidden;
+            color: white;
+            background: linear-gradient(135deg, #073e31, #12634f);
+        }
+
+        header::after {
+            content: "?";
+            position: absolute;
+            right: 6%;
+            bottom: -55%;
+            color: rgba(255, 255, 255, .07);
+            font-family: Georgia, serif;
+            font-size: 34rem;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .hero { position: relative; z-index: 1; padding: 84px 0 78px; }
+
+        .eyebrow {
+            margin: 0 0 .85rem;
+            color: #7ce0c9;
+            font-size: .75rem;
+            font-weight: 850;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            max-width: 700px;
+            margin: 0;
+            font-size: clamp(2.8rem, 6vw, 4.9rem);
+            line-height: .98;
+            letter-spacing: -.07em;
+        }
+
+        .hero-text { max-width: 660px; margin: 1.35rem 0 0; color: #d5eee6; font-size: 1.1rem; }
+
+        .search {
+            display: flex;
+            align-items: center;
+            max-width: 680px;
+            margin-top: 2rem;
+            padding: .4rem .45rem .4rem 1.1rem;
+            border: 1px solid rgba(255,255,255,.45);
+            border-radius: 17px;
+            background: white;
+            box-shadow: 0 16px 35px rgba(0,0,0,.14);
+        }
+
+        .search span { color: var(--forest); font-size: 1.25rem; }
+        .search input { width: 100%; padding: .75rem; border: 0; outline: 0; color: var(--ink); font: inherit; }
+        .search input::placeholder { color: #789087; }
+        .search button { padding: .75rem 1rem; border: 0; border-radius: 12px; color: white; background: var(--forest); font: inherit; font-weight: 800; cursor: pointer; }
+
+        main { padding: 62px 0 86px; }
+        .intro { max-width: 680px; margin-bottom: 36px; }
+        .intro h2, .section-title { margin: .3rem 0 .6rem; font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.1; letter-spacing: -.05em; }
+        .intro p, .section-copy { margin: 0; color: var(--muted); }
+
+        .quick-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 78px; }
+        .quick-link { display: block; min-height: 148px; padding: 1.25rem; border: 1px solid var(--line); border-radius: 22px; background: white; text-decoration: none; transition: transform .18s ease, box-shadow .18s ease; }
+        .quick-link:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(7,62,49,.1); }
+        .quick-icon { display: grid; place-items: center; width: 42px; height: 42px; margin-bottom: .8rem; border-radius: 14px; color: var(--forest); background: var(--mint-soft); font-size: 1.25rem; }
+        .quick-link strong { display: block; color: var(--ink); }
+        .quick-link span { display: block; margin-top: .25rem; color: var(--muted); font-size: .88rem; line-height: 1.4; }
+
+        .support-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 58px; }
+        .questions { display: grid; gap: 12px; }
+        details { overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: white; }
+        details[open] { border-color: #afdccc; }
+        summary { position: relative; padding: 1.15rem 3.3rem 1.15rem 1.2rem; color: var(--ink); font-weight: 800; cursor: pointer; list-style: none; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: "+"; position: absolute; top: .85rem; right: 1.15rem; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; color: var(--forest); background: var(--mint-soft); font-size: 1.2rem; font-weight: 500; }
+        details[open] summary::after { content: "–"; }
+        .answer { padding: 0 1.2rem 1.2rem; color: #405650; }
+        .answer p { margin: 0 0 .75rem; }
+        .answer p:last-child { margin-bottom: 0; }
+        .answer ul { margin: .4rem 0; padding-left: 1.15rem; }
+
+        .side { position: sticky; top: 24px; align-self: start; }
+        .side-card { padding: 1.35rem; border-radius: 23px; background: var(--sand); }
+        .side-card + .side-card { margin-top: 14px; background: #f2f7f2; }
+        .side-card h3 { margin: 0 0 .4rem; font-size: 1.1rem; }
+        .side-card p { margin: 0 0 .8rem; color: var(--muted); font-size: .92rem; }
+        .contact-button { display: inline-flex; align-items: center; min-height: 42px; padding: 0 .9rem; border-radius: 999px; color: white; background: var(--forest); font-size: .86rem; font-weight: 800; text-decoration: none; }
+
+        .safety { margin-top: 70px; padding: clamp(1.5rem, 4vw, 2.7rem); border-radius: 28px; color: white; background: var(--forest); }
+        .safety h2 { margin: 0 0 .65rem; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -.045em; }
+        .safety p { max-width: 790px; margin: 0; color: #c8e0d8; }
+        .safety strong { color: #7ce0c9; }
+
+        footer { padding: 30px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; }
+
+        @media (max-width: 760px) {
+            .container { width: min(100% - 32px, 600px); }
+            .hero { padding: 60px 0; }
+            .quick-links { grid-template-columns: 1fr; margin-bottom: 58px; }
+            .quick-link { min-height: 0; }
+            .support-layout { grid-template-columns: 1fr; gap: 34px; }
+            .side { position: static; }
+            main { padding: 44px 0 60px; }
+            .safety { margin-top: 52px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container hero">
+            <p class="eyebrow">Centre d’aide Ascens</p>
+            <h1>Comment pouvons-nous vous aider ?</h1>
+            <p class="hero-text">Retrouvez les réponses pour explorer les lieux d’escalade, organiser votre sortie et contribuer à la carte Ascens.</p>
+
+            <form class="search" role="search" onsubmit="return searchSupport(event)">
+                <span aria-hidden="true">⌕</span>
+                <input id="support-search" type="search" placeholder="Rechercher dans l’aide" aria-label="Rechercher dans l’aide">
+                <button type="submit">Rechercher</button>
+            </form>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <p class="eyebrow" style="color:#168e77">Les réponses essentielles</p>
+            <h2>Utiliser Ascens en toute simplicité</h2>
+            <p>Commencez ici pour trouver rapidement l’aide dont vous avez besoin.</p>
+        </section>
+
+        <section class="quick-links" aria-label="Accès rapides">
+            <a class="quick-link" href="#localisation"><div class="quick-icon">⌖</div><strong>Ma position</strong><span>Autoriser ou modifier la localisation.</span></a>
+            <a class="quick-link" href="#recherche"><div class="quick-icon">⌕</div><strong>Rechercher un lieu</strong><span>Trouver une salle, un bloc ou une falaise.</span></a>
+            <a class="quick-link" href="#favoris"><div class="quick-icon">♡</div><strong>Mes favoris</strong><span>Enregistrer et retrouver vos lieux.</span></a>
+            <a class="quick-link" href="#contribuer"><div class="quick-icon">＋</div><strong>Contribuer</strong><span>Proposer ou compléter une fiche.</span></a>
+            <a class="quick-link" href="#hors-ligne"><div class="quick-icon">◒</div><strong>Sans réseau</strong><span>Consulter les lieux déjà chargés.</span></a>
+            <a class="quick-link" href="#contact"><div class="quick-icon">✉</div><strong>Nous contacter</strong><span>Une question ou un problème ?</span></a>
+        </section>
+
+        <div class="support-layout">
+            <section>
+                <p class="eyebrow" style="color:#168e77">Questions fréquentes</p>
+                <h2 class="section-title">Trouver une réponse</h2>
+
+                <div class="questions">
+                    <details id="localisation">
+                        <summary>Pourquoi Ascens demande-t-elle ma position ?</summary>
+                        <div class="answer"><p>Votre position permet à Ascens d’afficher les lieux d’escalade proches de vous, de calculer leur distance et de classer les résultats par proximité.</p><p>Elle est facultative : vous pouvez chercher une ville ou une commune sans l’autoriser.</p></div>
+                    </details>
+
+                    <details>
+                        <summary>Comment autoriser ou modifier la localisation ?</summary>
+                        <div class="answer"><p>Sur votre iPhone, ouvrez <strong>Réglages</strong>, puis <strong>Confidentialité et sécurité</strong>, <strong>Service de localisation</strong>, et choisissez Ascens.</p><p>Vous pouvez sélectionner « Lorsque l’app est active » ou désactiver l’accès à tout moment.</p></div>
+                    </details>
+
+                    <details id="recherche">
+                        <summary>Comment rechercher un lieu ou une ville ?</summary>
+                        <div class="answer"><p>Utilisez la barre de recherche en haut de la carte et saisissez le nom d’un lieu, d’une ville ou d’une commune. Ascens centre ensuite la carte sur la zone recherchée et affiche les lieux disponibles autour de celle-ci.</p></div>
+                    </details>
+
+                    <details>
+                        <summary>Comment fonctionnent les filtres ?</summary>
+                        <div class="answer"><p>Vous pouvez filtrer les résultats selon :</p><ul><li>la pratique : bloc ou voie ;</li><li>le cadre : intérieur ou extérieur ;</li><li>le rayon de recherche : de 10 à 100 kilomètres.</li></ul><p>Les filtres s’appliquent à la carte comme à la liste de lieux.</p></div>
+                    </details>
+
+                    <details>
+                        <summary>Pourquoi une information manque-t-elle sur une fiche ?</summary>
+                        <div class="answer"><p>Les fiches rassemblent les informations disponibles depuis OpenStreetMap, Apple Plans et la communauté Ascens. Un champ vide signifie qu’aucune source ne l’a renseigné ; cela ne veut pas dire que la réponse est négative.</p><p>Les accès, horaires et règles sur place peuvent évoluer : vérifiez-les toujours avant votre sortie.</p></div>
+                    </details>
+
+                    <details id="favoris">
+                        <summary>Comment ajouter ou supprimer un favori ?</summary>
+                        <div class="answer"><p>Ouvrez la fiche d’un lieu puis utilisez le bouton favori. Vos favoris apparaissent dans l’onglet « Favoris » de l’application.</p><p>Vous pouvez les supprimer depuis cet onglet lorsque vous ne souhaitez plus les conserver.</p></div>
+                    </details>
+
+                    <details>
+                        <summary>Comment lancer un itinéraire ?</summary>
+                        <div class="answer"><p>Depuis la fiche d’un lieu, touchez l’action d’itinéraire. Ascens ouvre Apple Plans avec le lieu sélectionné comme destination.</p></div>
+                    </details>
+
+                    <details id="hors-ligne">
+                        <summary>Ascens fonctionne-t-elle sans réseau ?</summary>
+                        <div class="answer"><p>Les lieux déjà chargés et vos favoris restent disponibles sans connexion. En revanche, la recherche de nouveaux lieux et l’affichage du fond de carte nécessitent généralement un accès au réseau.</p></div>
+                    </details>
+
+                    <details id="contribuer">
+                        <summary>Comment proposer un lieu manquant ?</summary>
+                        <div class="answer"><p>Utilisez le bouton de contribution dans l’application pour proposer une salle, un bloc ou une falaise absent(e) de la carte. Renseignez uniquement les informations utiles à la communauté.</p><p>Chaque proposition est examinée avant publication.</p></div>
+                    </details>
+
+                    <details>
+                        <summary>Comment compléter une fiche existante ?</summary>
+                        <div class="answer"><p>Au bas d’une fiche incomplète, choisissez « Compléter cette fiche ». Vous pouvez par exemple ajouter une approche, une cotation, un type de rocher, des horaires ou des informations d’accès.</p><p>Vos ajouts restent visibles sur votre appareil puis peuvent être envoyés pour modération.</p></div>
+                    </details>
+                </div>
+            </section>
+
+            <aside class="side" id="contact">
+                <div class="side-card">
+                    <h3>Besoin d’aide ?</h3>
+                    <p>Si vous ne trouvez pas la réponse à votre question, écrivez-nous.</p>
+                    <a class="contact-button" href="mailto:info@patoswitch.fr?subject=Assistance%20Ascens">Contacter l’assistance</a>
+                </div>
+                <div class="side-card">
+                    <h3>Signaler une information</h3>
+                    <p>Un lieu est mal placé, fermé ou incomplet ? Utilisez la contribution dans l’application ou écrivez-nous.</p>
+                    <a href="mailto:info@patoswitch.fr?subject=Signalement%20Ascens">info@patoswitch.fr</a>
+                </div>
+            </aside>
+        </div>
+
+        <section class="safety">
+            <h2>Ascens aide à préparer votre sortie.</h2>
+            <p>Les informations affichées peuvent évoluer. Vérifiez toujours les conditions d’accès, les règles locales et l’état du site avant de grimper. <strong>Ascens ne remplace ni une formation à l’escalade ni votre jugement sur le terrain.</strong></p>
+        </section>
+    </main>
+
+    <footer><div class="container">Assistance Ascens · Dernière mise à jour : 19 août 2026</div></footer>
+
+    <script>
+        function searchSupport(event) {
+            event.preventDefault();
+            const query = document.getElementById("support-search").value.trim().toLocaleLowerCase("fr");
+            const questions = [...document.querySelectorAll("details")];
+
+            if (!query) {
+                questions.forEach((question) => { question.open = false; });
+                return false;
+            }
+
+            const matchingQuestion = questions.find((question) =>
+                question.textContent.toLocaleLowerCase("fr").includes(query)
+            );
+
+            questions.forEach((question) => { question.open = question === matchingQuestion; });
+
+            if (matchingQuestion) {
+                matchingQuestion.scrollIntoView({ behavior: "smooth", block: "center" });
+            } else {
+                window.location.href = "mailto:info@patoswitch.fr?subject=" + encodeURIComponent("Question d’assistance Ascens : " + query);
+            }
+
+            return false;
+        }
+    </script>
+</body>
+</html>

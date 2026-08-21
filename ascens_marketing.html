@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Ascens : trouvez les salles, blocs et falaises autour de vous.">
+    <title>Ascens — Explorer. Grimper. Partager.</title>
+    <style>
+        :root {
+            --forest: #073e31;
+            --forest-deep: #042d25;
+            --mint: #2ec9a7;
+            --mint-soft: #dff8ef;
+            --sand: #f5eedb;
+            --canvas: #fcfcf9;
+            --ink: #132d28;
+            --muted: #60736c;
+            --line: #dce6e0;
+            --shadow: 0 22px 60px rgba(5, 58, 46, .13);
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--canvas);
+            font-family: ui-rounded, "Avenir Next", Avenir, "Nunito Sans", system-ui, sans-serif;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        .container { width: min(1160px, calc(100% - 48px)); margin: auto; }
+        .eyebrow { color: #168e77; font-size: .75rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+        .button {
+            display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+            min-height: 52px; padding: 0 1.25rem; border-radius: 999px; font-weight: 800;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .button:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(7, 62, 49, .17); }
+        .button-primary { background: var(--forest); color: white; }
+        .button-secondary { background: white; border: 1px solid var(--line); }
+
+        nav { height: 88px; display: flex; align-items: center; justify-content: space-between; }
+        .brand { display: flex; align-items: center; gap: .75rem; font-size: 1.45rem; font-weight: 900; letter-spacing: -.05em; }
+        .brand img { width: 45px; height: 45px; object-fit: contain; border-radius: 13px; }
+        .nav-links { display: flex; align-items: center; gap: 1.7rem; font-weight: 700; color: #405851; }
+        .nav-links a:hover { color: var(--mint); }
+        .nav-cta { min-height: 43px; padding: 0 1rem; font-size: .9rem; }
+
+        .hero { position: relative; overflow: hidden; min-height: 630px; padding: 52px 0 76px; isolation: isolate; }
+        .hero::before {
+            content: ""; position: absolute; z-index: -2; inset: 0;
+            background: radial-gradient(circle at 70% 22%, #fbf1d8 0, transparent 19%), linear-gradient(112deg, #fff 0%, #f7faf4 80%);
+        }
+        .hero-art { position: absolute; z-index: -1; right: -8%; bottom: -13%; width: min(850px, 66vw); opacity: .85; mix-blend-mode: multiply; }
+        .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 2rem; }
+        h1 { max-width: 660px; margin: .55rem 0 1.2rem; font-size: clamp(3.3rem, 7vw, 6.1rem); line-height: .96; letter-spacing: -.075em; }
+        .hero h1 span { color: var(--mint); }
+        .lead { max-width: 540px; color: #49615a; font-size: clamp(1.05rem, 2vw, 1.22rem); line-height: 1.6; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+        .trust { display: flex; gap: 1.2rem; margin-top: 2.3rem; color: #536861; font-size: .9rem; font-weight: 700; }
+        .trust span::before { content: "✓"; display: inline-grid; place-items: center; width: 20px; height: 20px; margin-right: .35rem; color: var(--forest); background: var(--mint-soft); border-radius: 50%; }
+        .phone-wrap { position: relative; justify-self: center; width: min(100%, 360px); margin-top: 20px; }
+        .phone-wrap::before { content: ""; position: absolute; inset: 11% -11% 8%; z-index: -1; border-radius: 50%; background: #c9f1e3; filter: blur(3px); }
+        .phone { display: block; width: 100%; filter: drop-shadow(0 28px 25px rgba(5, 52, 43, .24)); }
+        .float-card { position: absolute; right: -75px; bottom: 14%; padding: .85rem 1rem; border: 1px solid rgba(255,255,255,.8); border-radius: 17px; background: rgba(255,255,255,.9); box-shadow: var(--shadow); font-size: .85rem; font-weight: 800; }
+        .float-card b { display: block; color: var(--mint); font-size: 1.25rem; }
+
+        .intro { padding: 105px 0; text-align: center; }
+        .intro h2, .section-heading h2 { margin: .45rem auto .7rem; font-size: clamp(2.2rem, 4.5vw, 3.8rem); line-height: 1.04; letter-spacing: -.055em; }
+        .intro p { max-width: 680px; margin: auto; color: var(--muted); font-size: 1.1rem; line-height: 1.65; }
+        .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 46px; text-align: left; }
+        .feature { min-height: 220px; padding: 1.5rem; border: 1px solid var(--line); border-radius: 24px; background: white; }
+        .feature-icon { display: grid; place-items: center; width: 47px; height: 47px; margin-bottom: 1rem; border-radius: 16px; background: var(--mint-soft); color: var(--forest); font-size: 1.55rem; }
+        .feature h3 { margin: 0 0 .55rem; font-size: 1.18rem; letter-spacing: -.025em; }
+        .feature p { margin: 0; color: var(--muted); font-size: .94rem; line-height: 1.55; }
+
+        .showcase { padding: 105px 0; background: var(--forest); color: white; }
+        .showcase-grid { display: grid; grid-template-columns: .88fr 1.12fr; align-items: center; gap: 6rem; }
+        .showcase h2 { margin: .55rem 0 1rem; font-size: clamp(2.2rem, 4.4vw, 3.65rem); line-height: 1.05; letter-spacing: -.06em; }
+        .showcase p { color: #c1d8d0; line-height: 1.65; }
+        .points { display: grid; gap: .9rem; margin: 1.75rem 0 2rem; }
+        .points div { display: flex; gap: .75rem; align-items: flex-start; }
+        .points i { display: grid; flex: 0 0 25px; place-items: center; width: 25px; height: 25px; margin-top: .05rem; border-radius: 50%; background: var(--mint); color: var(--forest); font-style: normal; font-weight: 900; }
+        .map-card { position: relative; overflow: hidden; max-width: 430px; margin: auto; padding: 14px; border: 1px solid rgba(255,255,255,.18); border-radius: 36px; background: rgba(255,255,255,.1); box-shadow: 0 25px 70px rgba(0,0,0,.25); }
+        .map-card img { display: block; width: 100%; border-radius: 26px; }
+
+        .guide { padding: 105px 0; background: #f2f7f2; }
+        .guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: center; }
+        .guide-visual { position: relative; min-height: 430px; overflow: hidden; border-radius: 32px; background: var(--sand); }
+        .guide-visual img { position: absolute; right: -38%; bottom: -2%; width: 117%; mix-blend-mode: multiply; }
+        .guide-visual .label { position: absolute; top: 30px; left: 30px; width: 200px; padding: 1rem; border-radius: 18px; background: white; box-shadow: var(--shadow); font-weight: 800; }
+        .guide-visual .label small { display: block; margin-top: .3rem; color: var(--muted); font-weight: 600; line-height: 1.4; }
+        .guide-list { display: grid; gap: 1rem; margin-top: 1.6rem; }
+        .guide-list div { padding: 1rem 1.1rem; border-radius: 16px; background: white; font-weight: 800; }
+        .guide-list span { margin-right: .65rem; color: var(--mint); }
+
+        .community { padding: 105px 0; text-align: center; }
+        .community-card { max-width: 900px; margin: 42px auto 0; padding: clamp(2rem, 6vw, 4.5rem); overflow: hidden; border-radius: 34px; color: white; background: linear-gradient(135deg, var(--forest), #12634f); position: relative; }
+        .community-card::after { content: ""; position: absolute; width: 420px; height: 420px; right: -150px; bottom: -270px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; box-shadow: 0 0 0 38px rgba(255,255,255,.06), 0 0 0 76px rgba(255,255,255,.04); }
+        .community-card h2 { position: relative; z-index: 1; max-width: 640px; margin: 0 auto .8rem; font-size: clamp(2rem, 4.2vw, 3.3rem); line-height: 1.05; letter-spacing: -.05em; }
+        .community-card p { position: relative; z-index: 1; max-width: 570px; margin: auto; color: #d1e6df; line-height: 1.6; }
+        .community-card .button { position: relative; z-index: 1; margin-top: 1.7rem; color: var(--forest); background: white; }
+
+        footer { padding: 42px 0; border-top: 1px solid var(--line); }
+        .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: .86rem; }
+        .footer-links { display: flex; gap: 1.1rem; }
+
+        @media (max-width: 760px) {
+            .container { width: min(100% - 32px, 560px); }
+            nav { height: 74px; }
+            .nav-links { display: none; }
+            .hero { min-height: auto; padding-top: 38px; }
+            .hero-grid, .showcase-grid, .guide-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .hero-art { width: 115vw; right: -47%; bottom: 3%; opacity: .36; }
+            .phone-wrap { width: 285px; }
+            .float-card { right: -20px; bottom: 8%; }
+            .features { grid-template-columns: 1fr; }
+            .feature { min-height: auto; }
+            .showcase { padding: 78px 0; }
+            .guide { padding: 78px 0; }
+            .guide-visual { min-height: 330px; }
+            .intro, .community { padding: 78px 0; }
+            .footer-row { align-items: flex-start; flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <header class="container">
+        <nav aria-label="Navigation principale">
+            <a class="brand" href="#accueil"><img src="ascens-logo.png" alt="Logo Ascens">Ascens</a>
+            <div class="nav-links"><a href="#fonctionnalites">Fonctionnalités</a><a href="#guide">Le guide</a><a href="#communaute">Communauté</a></div>
+            <a class="button button-primary nav-cta" href="#telecharger">Bientôt disponible</a>
+        </nav>
+    </header>
+
+    <main id="accueil">
+        <section class="hero">
+            <img class="hero-art" src="hero-climber.png" alt="">
+            <div class="container hero-grid">
+                <div>
+                    <p class="eyebrow">L’application pour grimper local</p>
+                    <h1>L’escalade,<br><span>autour de vous.</span></h1>
+                    <p class="lead">Trouvez les salles, les blocs et les falaises qui vous donnent envie de grimper. Ascens rassemble les lieux utiles pour préparer votre prochaine sortie.</p>
+                    <div class="hero-actions"><a class="button button-primary" href="#telecharger">Découvrir Ascens <span>→</span></a><a class="button button-secondary" href="#fonctionnalites">Voir les fonctionnalités</a></div>
+                    <div class="trust"><span>Sans compte</span><span>Conçu en France</span><span>Pour tous les niveaux</span></div>
+                </div>
+                <div class="phone-wrap">
+                    <img class="phone" src="app-map.png" alt="Capture de l’application Ascens et de sa carte de lieux d’escalade">
+                    <div class="float-card"><b>25 km</b> autour de vous</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="intro container" id="fonctionnalites">
+            <p class="eyebrow">Tout pour choisir votre prochaine sortie</p>
+            <h2>Moins de recherches.<br>Plus de grimpe.</h2>
+            <p>Que vous cherchiez une salle pour ce soir, un bloc pour le week-end ou une falaise à découvrir, Ascens vous aide à trouver le bon lieu, au bon moment.</p>
+            <div class="features">
+                <article class="feature"><div class="feature-icon">⌖</div><h3>Carte interactive</h3><p>Explorez les lieux d’escalade autour de vous, ou recherchez une ville partout en France.</p></article>
+                <article class="feature"><div class="feature-icon">⌕</div><h3>Recherche & filtres</h3><p>Affinez par pratique — bloc ou voie —, par environnement et par distance.</p></article>
+                <article class="feature"><div class="feature-icon">▤</div><h3>Fiches utiles</h3><p>Accès, horaires, cotations, approche, équipement, contacts et informations pratiques.</p></article>
+                <article class="feature"><div class="feature-icon">♡</div><h3>Vos favoris</h3><p>Gardez vos lieux préférés à portée de main pour décider plus vite de votre prochaine séance.</p></article>
+                <article class="feature"><div class="feature-icon">↗</div><h3>Itinéraire en un geste</h3><p>Ouvrez directement l’itinéraire vers le lieu choisi dans Apple Plans.</p></article>
+                <article class="feature"><div class="feature-icon">◒</div><h3>Même sans réseau</h3><p>Les lieux déjà chargés restent consultables, même au pied de la falaise.</p></article>
+            </div>
+        </section>
+
+        <section class="showcase">
+            <div class="container showcase-grid">
+                <div>
+                    <p class="eyebrow" style="color:#69ddc3">Une carte, vraiment pensée grimpe</p>
+                    <h2>Salles, blocs et falaises. Enfin réunis.</h2>
+                    <p>Ascens rassemble des données d’OpenStreetMap, d’Apple Plans et de la communauté pour vous donner une vue claire des possibilités autour de vous.</p>
+                    <div class="points"><div><i>✓</i><span>Des résultats triés par distance</span></div><div><i>✓</i><span>Des sources indiquées sur chaque fiche</span></div><div><i>✓</i><span>Des informations qui s’enrichissent au fil des contributions</span></div></div>
+                    <a class="button" style="background:#2ec9a7;color:#073e31" href="#communaute">Faire grandir la carte</a>
+                </div>
+                <div class="map-card"><img src="app-map.png" alt="La carte Ascens affiche les salles et sites d’escalade proches"></div>
+            </div>
+        </section>
+
+        <section class="guide" id="guide">
+            <div class="container guide-grid">
+                <div class="guide-visual"><div class="label">Le guide Ascens<small>Les repères pour grimper avec confiance.</small></div><img src="hero-climber.png" alt="Illustration d’un grimpeur en montagne"></div>
+                <div><p class="eyebrow">Pour débuter, progresser, comprendre</p><h2 style="margin:.45rem 0 .8rem;font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:1.05;letter-spacing:-.055em">Bien plus qu’une carte.</h2><p style="color:var(--muted);line-height:1.65">Un guide clair accompagne chaque grimpeur : du choix du matériel aux cotations, des vérifications essentielles aux gestes de sécurité.</p><div class="guide-list"><div><span>✓</span>Comprendre les cotations</div><div><span>✓</span>Préparer sa sortie et son matériel</div><div><span>✓</span>Adopter les bons réflexes de sécurité</div><div><span>✓</span>Accéder à un glossaire de l’escalade</div></div></div>
+            </div>
+        </section>
+
+        <section class="community container" id="communaute">
+            <p class="eyebrow">Une carte qui grandit avec vous</p>
+            <h2>Vous connaissez un lieu<br>que les autres devraient connaître ?</h2>
+            <div class="community-card" id="telecharger"><h2>Partagez votre terrain de jeu.</h2><p>Proposez un lieu manquant ou complétez une fiche existante. Chaque contribution est relue avant publication, pour garder la carte utile à toute la communauté.</p><a class="button" href="#accueil">Ascens arrive bientôt</a></div>
+        </section>
+    </main>
+
+    <footer><div class="container footer-row"><a class="brand" href="#accueil"><img src="ascens-logo.png" alt="">Ascens</a><span>Explorer. Grimper. Partager.</span><div class="footer-links"><a href="ascens_privacy.html">Confidentialité</a><a href="ascens_support.html">Assistance</a></div></div></footer>
+</body>
+</html>
