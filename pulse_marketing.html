@@ -98,9 +98,18 @@
         @media (max-width: 820px) { .hero { grid-template-columns: 1fr; gap: 20px; padding-top: 42px; text-align: center; } .intro { margin-inline: auto; } .actions { justify-content: center; } .visual { min-height: 460px; } .features { grid-template-columns: 1fr 1fr; } .modes { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 520px) { .container { width: min(100% - 28px, 1120px); } nav { padding-top: 16px; } .hero { min-height: 0; padding-bottom: 62px; } h1 { font-size: 3.25rem; } .visual { min-height: 405px; } .phone { transform: rotate(3deg) scale(.9); } .floating.one { left: -5px; } .floating.two { right: -5px; } section { padding: 65px 0; } .features, .modes { grid-template-columns: 1fr; } .cta { padding: 57px 23px; border-radius: 27px; } }
         @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; } }
+        .home-button {
+            position: fixed; top: max(16px, env(safe-area-inset-top)); left: max(16px, env(safe-area-inset-left)); z-index: 1000;
+            display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px;
+            border: 1px solid rgba(17, 19, 26, 0.12); border-radius: 999px; background: rgba(255, 255, 255, 0.92);
+            color: #11131A; box-shadow: 0 8px 24px rgba(17, 19, 26, 0.16); text-decoration: none;
+            font: 700 15px -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; -webkit-tap-highlight-color: transparent;
+        }
+        .home-button:active { transform: scale(0.96); }
     </style>
 </head>
 <body>
+    <a class="home-button" href="index.html" aria-label="Retour à l'accueil Pato Apps">⌂ Accueil</a>
     <div class="page-glow"></div>
     <header class="container">
         <nav aria-label="Navigation principale">
