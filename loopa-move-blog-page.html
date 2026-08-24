@@ -656,8 +656,8 @@
       }
     }
     .home-button {
-      position: fixed; top: max(16px, env(safe-area-inset-top)); left: max(16px, env(safe-area-inset-left)); z-index: 1000;
-      display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px;
+      position: relative; display: flex; width: fit-content; margin: max(16px, env(safe-area-inset-top)) 16px 0;
+      align-items: center; gap: 8px; min-height: 44px; padding: 0 14px;
       border: 1px solid rgba(17, 19, 26, 0.12); border-radius: 999px; background: rgba(255, 255, 255, 0.92);
       color: #11131A; box-shadow: 0 8px 24px rgba(17, 19, 26, 0.16); text-decoration: none;
       font: 700 15px -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; -webkit-tap-highlight-color: transparent;
