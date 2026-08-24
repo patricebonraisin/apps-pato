@@ -680,7 +680,7 @@
             }
         }
         .home-button {
-            position: relative; display: flex; width: fit-content; margin: max(16px, env(safe-area-inset-top)) 16px 0;
+            display: flex; width: fit-content; margin: 24px auto calc(24px + env(safe-area-inset-bottom));
             align-items: center; gap: 8px; min-height: 44px; padding: 0 14px;
             border: 1px solid rgba(17, 19, 26, 0.12); border-radius: 999px; background: rgba(255, 255, 255, 0.92);
             color: #11131A; box-shadow: 0 8px 24px rgba(17, 19, 26, 0.16); text-decoration: none;
@@ -690,7 +690,6 @@
     </style>
 </head>
 <body>
-    <a class="home-button" href="index.html" aria-label="Retour à l'accueil Pato Apps">⌂ Accueil</a>
     <div class="page">
         <nav class="nav" aria-label="Navigation principale">
             <div class="brand"><span class="brand-icon">☀</span> Pato Météo</div>
@@ -899,5 +898,6 @@
             © 2026 Pato Switch. Pato Météo utilise les services météo d'Apple. Apple Watch et App Store sont des marques d'Apple Inc.
         </footer>
     </div>
+    <a class="home-button" href="index.html" aria-label="Retour à l'accueil Pato Apps">⌂ Accueil</a>
 </body>
 </html>

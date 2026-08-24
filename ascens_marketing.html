@@ -124,10 +124,9 @@
             .footer-row { align-items: flex-start; flex-direction: column; }
         }
         .home-button {
-            position: relative;
             display: flex;
             width: fit-content;
-            margin: max(16px, env(safe-area-inset-top)) 16px 0;
+            margin: 24px auto calc(24px + env(safe-area-inset-bottom));
             align-items: center;
             gap: 8px;
             min-height: 44px;
@@ -148,7 +147,6 @@
     </style>
 </head>
 <body>
-    <a class="home-button" href="index.html" aria-label="Retour à l'accueil Pato Apps">⌂ Accueil</a>
     <header class="container">
         <nav aria-label="Navigation principale">
             <a class="brand" href="#accueil"><img src="ascens-logo.png" alt="Logo Ascens">Ascens</a>
@@ -217,5 +215,6 @@
     </main>
 
     <footer><div class="container footer-row"><a class="brand" href="#accueil"><img src="ascens-logo.png" alt="">Ascens</a><span>Explorer. Grimper. Partager.</span><div class="footer-links"><a href="ascens_privacy.html">Confidentialité</a><a href="ascens_support.html">Assistance</a></div></div></footer>
+    <a class="home-button" href="index.html" aria-label="Retour à l'accueil Pato Apps">⌂ Accueil</a>
 </body>
 </html>

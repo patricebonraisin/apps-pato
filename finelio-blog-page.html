@@ -208,10 +208,9 @@
       }
     }
     .home-button {
-      position: relative;
       display: flex;
       width: fit-content;
-      margin: max(16px, env(safe-area-inset-top)) 16px 0;
+      margin: 24px auto calc(24px + env(safe-area-inset-bottom));
       align-items: center;
       gap: 8px;
       min-height: 44px;
@@ -233,7 +232,6 @@
 </head>
 
 <body>
-  <a class="home-button" href="index.html" aria-label="Retour à l'accueil Pato Apps">⌂ Accueil</a>
 
   <div class="container">
 
@@ -345,5 +343,6 @@
 
   </div>
 
+  <a class="home-button" href="index.html" aria-label="Retour à l'accueil Pato Apps">⌂ Accueil</a>
 </body>
 </html>
