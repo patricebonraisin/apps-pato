@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#eef3ff">
+    <title>Assistance — Pulse</title>
+    <style>
+        :root {
+            --cyan: #05c2f5;
+            --blue: #1f6bf5;
+            --violet: #7a33fa;
+            --pink: #f529a8;
+            --ink: #151527;
+            --muted: #77758a;
+            --panel: rgba(255, 255, 255, .58);
+            --stroke: rgba(255, 255, 255, .72);
+        }
+
+        * { box-sizing: border-box; }
+
+        html { background: #eef3ff; }
+
+        body {
+            min-width: 320px;
+            margin: 0;
+            color: var(--ink);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+            line-height: 1.5;
+            background:
+                radial-gradient(circle at 8% 10%, rgba(31, 107, 245, .22), transparent 31rem),
+                radial-gradient(circle at 90% 84%, rgba(245, 41, 168, .18), transparent 32rem),
+                linear-gradient(165deg, #e9f2ff 0%, #f4efff 52%, #fff0f8 100%);
+        }
+
+        a { color: inherit; }
+
+        .page {
+            width: min(100% - 40px, 760px);
+            margin: 0 auto;
+            padding: 34px 0 56px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: #25243a;
+            font-size: .8rem;
+            font-weight: 800;
+            letter-spacing: .22em;
+            text-decoration: none;
+        }
+
+        .mark {
+            position: relative;
+            display: inline-grid;
+            width: 38px;
+            height: 38px;
+            place-items: center;
+            border: 5px solid transparent;
+            border-radius: 50%;
+            background: linear-gradient(#f7f9ff, #f7f9ff) padding-box,
+                        linear-gradient(135deg, var(--cyan), var(--blue), var(--violet), var(--pink)) border-box;
+            box-shadow: 0 0 22px rgba(122, 51, 250, .32);
+        }
+
+        .mark::after {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cyan), var(--blue), var(--violet), var(--pink));
+            content: "";
+        }
+
+        header {
+            padding: 58px 8px 38px;
+            text-align: center;
+        }
+
+        h1, h2, h3, p { margin-top: 0; }
+
+        h1 {
+            max-width: 12ch;
+            margin: 16px auto;
+            font-size: clamp(2.25rem, 9vw, 4rem);
+            line-height: 1.04;
+            letter-spacing: -.055em;
+        }
+
+        .gradient-text {
+            background: linear-gradient(105deg, var(--cyan), #6b8cff 40%, var(--pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .intro {
+            max-width: 42rem;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: clamp(1rem, 2.8vw, 1.15rem);
+        }
+
+        .section-title {
+            margin: 38px 4px 15px;
+            font-size: .78rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+            color: #44425a;
+        }
+
+        .grid {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .card, details {
+            border: 1px solid var(--stroke);
+            border-radius: 22px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, .76), rgba(255, 255, 255, .43));
+            box-shadow: 0 12px 30px rgba(67, 72, 142, .12), inset 0 1px rgba(255, 255, 255, .65);
+            backdrop-filter: blur(16px);
+        }
+
+        .card {
+            display: block;
+            min-height: 158px;
+            padding: 22px;
+            text-decoration: none;
+            transition: transform .18s ease, border-color .18s ease;
+        }
+
+        .card:hover, .card:focus-visible {
+            border-color: rgba(5, 194, 245, .75);
+            transform: translateY(-3px);
+            outline: none;
+        }
+
+        .icon {
+            display: grid;
+            width: 42px;
+            height: 42px;
+            margin-bottom: 14px;
+            place-items: center;
+            border-radius: 50%;
+            color: var(--cyan);
+            font-size: 1.25rem;
+            background: rgba(5, 194, 245, .14);
+        }
+
+        h2 {
+            margin-bottom: 4px;
+            font-size: 1rem;
+        }
+
+        .card p, details p {
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        .faq { display: grid; gap: 10px; }
+
+        details { padding: 0 20px; }
+
+        summary {
+            position: relative;
+            padding: 18px 30px 18px 0;
+            cursor: pointer;
+            font-weight: 700;
+            list-style: none;
+        }
+
+        summary::-webkit-details-marker { display: none; }
+
+        summary::after {
+            position: absolute;
+            top: 15px;
+            right: 0;
+            color: var(--cyan);
+            content: "+";
+            font-size: 1.45rem;
+            font-weight: 400;
+        }
+
+        details[open] summary::after { content: "–"; }
+        details p { padding-bottom: 18px; }
+
+        .contact {
+            margin-top: 38px;
+            padding: 30px 24px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .contact h2 { font-size: 1.45rem; }
+        .contact p { margin: 0 auto 20px; color: var(--muted); }
+
+        .button {
+            display: inline-block;
+            padding: 14px 22px;
+            border-radius: 14px;
+            color: white;
+            font-size: .9rem;
+            font-weight: 800;
+            letter-spacing: .06em;
+            text-decoration: none;
+            background: linear-gradient(125deg, var(--blue), var(--violet), var(--pink));
+            box-shadow: 0 10px 24px rgba(122, 51, 250, .42);
+        }
+
+        footer {
+            padding-top: 30px;
+            color: #858398;
+            font-size: .78rem;
+            text-align: center;
+        }
+
+        footer a { color: var(--cyan); text-underline-offset: 3px; }
+
+        @media (max-width: 540px) {
+            .page { width: min(100% - 28px, 760px); padding-top: 24px; }
+            header { padding: 46px 4px 28px; }
+            .grid { grid-template-columns: 1fr; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { scroll-behavior: auto !important; transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <a class="brand" href="#" aria-label="Pulse, accueil">
+            <span class="mark" aria-hidden="true"></span>
+            PULSE
+        </a>
+
+        <header>
+            <p class="section-title">CENTRE D’AIDE</p>
+            <h1>Comment pouvons-nous <span class="gradient-text">vous aider&nbsp;?</span></h1>
+            <p class="intro">Retrouvez les réponses pour profiter de chaque partie, garder le rythme et résoudre les petits imprévus.</p>
+        </header>
+
+        <section aria-labelledby="quick-help">
+            <h2 id="quick-help" class="section-title">AIDE RAPIDE</h2>
+            <div class="grid">
+                <a class="card" href="#jouer">
+                    <span class="icon" aria-hidden="true">◎</span>
+                    <h2>Bien démarrer</h2>
+                    <p>Les règles essentielles pour réussir votre premier pulse.</p>
+                </a>
+                <a class="card" href="#modes">
+                    <span class="icon" aria-hidden="true">✦</span>
+                    <h2>Modes de jeu</h2>
+                    <p>Classique, Zen, Chrono et Défi du jour : choisissez votre rythme.</p>
+                </a>
+                <a class="card" href="#scores">
+                    <span class="icon" aria-hidden="true">↗</span>
+                    <h2>Scores &amp; statistiques</h2>
+                    <p>Comprendre vos records, combos et classements.</p>
+                </a>
+                <a class="card" href="#faq">
+                    <span class="icon" aria-hidden="true">?</span>
+                    <h2>Questions fréquentes</h2>
+                    <p>Une réponse claire aux problèmes les plus courants.</p>
+                </a>
+            </div>
+        </section>
+
+        <section id="jouer" aria-labelledby="jouer-title">
+            <h2 id="jouer-title" class="section-title">JOUER À PULSE</h2>
+            <div class="faq">
+                <details open>
+                    <summary>Comment marquer des points&nbsp;?</summary>
+                    <p>Touchez l’écran lorsque le cercle coloré rejoint la cible lumineuse. Plus votre timing est précis, plus votre combo et votre score progressent.</p>
+                </details>
+                <details id="modes">
+                    <summary>Quel mode choisir&nbsp;?</summary>
+                    <p>Le mode Classique est le défi principal. Le mode Zen permet de s’entraîner sans fin de partie sur un raté. En Chrono, vous avez 60 secondes pour marquer le plus de points possible. Le Défi du jour propose le même déroulé à tous les joueurs, avec une tentative quotidienne.</p>
+                </details>
+                <details id="scores">
+                    <summary>Où retrouver mes records&nbsp;?</summary>
+                    <p>Depuis l’écran d’accueil, ouvrez les statistiques pour consulter vos meilleurs scores. Si Game Center est connecté, vous pouvez aussi comparer vos performances dans les classements.</p>
+                </details>
+            </div>
+        </section>
+
+        <section id="faq" aria-labelledby="faq-title">
+            <h2 id="faq-title" class="section-title">QUESTIONS FRÉQUENTES</h2>
+            <div class="faq">
+                <details>
+                    <summary>Le son ou les vibrations ne fonctionnent pas.</summary>
+                    <p>Vérifiez d’abord les réglages de Pulse. Assurez-vous ensuite que le mode silencieux, le volume de l’appareil et les réglages système d’accessibilité ne désactivent pas ces retours.</p>
+                </details>
+                <details>
+                    <summary>Mon score ne se synchronise pas avec Game Center.</summary>
+                    <p>Connectez-vous à Game Center dans les réglages iOS, puis relancez Pulse. Une connexion internet peut être nécessaire pour envoyer les scores vers les classements.</p>
+                </details>
+                <details>
+                    <summary>Comment recommencer le tutoriel&nbsp;?</summary>
+                    <p>Depuis l’écran d’accueil, ouvrez les réglages, puis choisissez l’option permettant de revoir le tutoriel.</p>
+                </details>
+            </div>
+        </section>
+
+        <section class="contact card" aria-labelledby="contact-title">
+            <h2 id="contact-title">Toujours besoin d’aide&nbsp;?</h2>
+            <p>Décrivez-nous votre question et indiquez la version de Pulse utilisée. Nous ferons notre possible pour vous répondre rapidement.</p>
+            <a class="button" href="mailto:info@patoswitch.fr">CONTACTER L’ASSISTANCE</a>
+        </section>
+
+        <footer>
+            <p>© Pato Switch · <a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a></p>
+        </footer>
+    </main>
+</body>
+</html>
