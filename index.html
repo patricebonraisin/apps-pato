@@ -522,10 +522,36 @@ header p {
 }
 
 footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     text-align: center;
     padding: 34px 20px 46px;
     color: var(--muted);
     font-size: 14px;
+}
+
+.update-button {
+    min-height: 36px;
+    border: 1px solid rgba(52,84,195,0.16);
+    border-radius: 999px;
+    padding: 0 13px;
+    color: var(--pato-blue);
+    background: rgba(255,255,255,0.68);
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.update-button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.update-status {
+    min-height: 1.2em;
+    font-size: 12px;
 }
 
 .install-prompt {
@@ -852,7 +878,9 @@ footer {
 </div>
 
 <footer>
-    © 2026 Pato Apps · Créé avec soin, curiosité et quelques pixels bien rangés.
+    <span>© 2026 Pato Apps · Créé avec soin, curiosité et quelques pixels bien rangés.</span>
+    <button class="update-button" id="update-button" type="button">Vérifier les nouveautés</button>
+    <span class="update-status" id="update-status" role="status" aria-live="polite"></span>
 </footer>
 
 <aside class="install-prompt" id="install-prompt" role="dialog" aria-labelledby="install-prompt-title" aria-describedby="install-prompt-text">
@@ -1074,6 +1102,24 @@ try {
 } catch {
     // The guide starts without a preselected intention when browser storage is unavailable.
 }
+
+const updateButton = document.getElementById("update-button");
+const updateStatus = document.getElementById("update-status");
+
+updateButton.addEventListener("click", async () => {
+    updateButton.disabled = true;
+    updateStatus.textContent = "Recherche d’une nouvelle version…";
+
+    try {
+        const registration = await navigator.serviceWorker?.getRegistration();
+        await registration?.update();
+        updateStatus.textContent = "Page actualisée.";
+    } catch {
+        updateStatus.textContent = "Impossible de vérifier les nouveautés hors ligne.";
+    }
+
+    window.setTimeout(() => window.location.reload(), 400);
+});
 </script>
 
 </body>

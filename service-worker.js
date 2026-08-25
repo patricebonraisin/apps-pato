@@ -1,4 +1,4 @@
-const CACHE_NAME = "pato-apps-v7";
+const CACHE_NAME = "pato-apps-v8";
 
 const FILES_TO_CACHE = [
   "./",
@@ -55,6 +55,13 @@ self.addEventListener("fetch", event => {
 
   const requestURL = new URL(event.request.url);
   if (requestURL.origin !== self.location.origin) {
+    return;
+  }
+
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request).catch(() => caches.match(event.request).then(response => response || caches.match("index.html")))
+    );
     return;
   }
 
