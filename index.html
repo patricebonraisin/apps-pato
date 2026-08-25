@@ -505,7 +505,7 @@ footer {
     }
 }
 
-@media (min-width: 681px) {
+@media (min-width: 681px) and (pointer: fine) {
     .install-prompt {
         display: none !important;
     }
@@ -703,11 +703,13 @@ const installPromptStorageKey = "pato-apps-install-prompt-dismissed";
 const userAgent = navigator.userAgent;
 const isIOS = /iPad|iPhone|iPod/.test(userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 const isAndroid = /Android/.test(userAgent);
+const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
 const isStandalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+const shouldForceInstallPrompt = new URLSearchParams(window.location.search).has("show-install");
 let deferredInstallPrompt;
 
 function canShowInstallPrompt() {
-    return (isIOS || isAndroid) && !isStandalone && localStorage.getItem(installPromptStorageKey) !== "true";
+    return (isIOS || isAndroid || isTouchDevice) && !isStandalone && (shouldForceInstallPrompt || localStorage.getItem(installPromptStorageKey) !== "true");
 }
 
 function showInstallPrompt() {
@@ -717,6 +719,8 @@ function showInstallPrompt() {
 
     if (isIOS) {
         installPromptText.textContent = "Gardez ce portail à portée de main : touchez Partager, puis « Sur l’écran d’accueil ».";
+    } else if (isAndroid) {
+        installPromptText.textContent = "Gardez ce portail à portée de main, comme une application, depuis le menu de votre navigateur.";
     } else {
         installPromptText.textContent = "Gardez ce portail à portée de main, comme une application, depuis le menu de votre navigateur.";
     }
