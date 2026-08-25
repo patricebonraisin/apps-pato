@@ -238,6 +238,149 @@ header p {
     font-weight: 700;
 }
 
+.pato-guide {
+    margin: 10px 0 26px;
+    padding: 28px;
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 32px;
+    background: rgba(255,255,255,0.72);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(26px) saturate(1.15);
+    -webkit-backdrop-filter: blur(26px) saturate(1.15);
+}
+
+.pato-guide__eyebrow,
+.favorites-panel__eyebrow {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--pato-blue);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.pato-guide h2,
+.favorites-panel h2 {
+    margin: 0;
+    font-size: clamp(25px, 3vw, 34px);
+    letter-spacing: -0.04em;
+}
+
+.pato-guide > p,
+.favorites-panel > p {
+    max-width: 680px;
+    margin: 10px 0 18px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+}
+
+.intent-options,
+.intent-results,
+.favorites-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.intent-option,
+.intent-result,
+.favorite-chip {
+    min-height: 44px;
+    border: 1px solid rgba(52,84,195,0.14);
+    border-radius: 999px;
+    padding: 0 15px;
+    color: var(--ink);
+    background: rgba(255,255,255,0.9);
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.intent-option:hover,
+.intent-option[aria-pressed="true"],
+.intent-result:hover,
+.favorite-chip:hover {
+    color: white;
+    background: var(--pato-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(52, 84, 195, 0.2);
+}
+
+.intent-result {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.guide-result {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+}
+
+.guide-result p {
+    margin: 0 0 12px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+}
+
+.favorites-panel {
+    margin: 0 0 4px;
+    padding: 22px 26px;
+    border-radius: 28px;
+    background: rgba(23,43,140,0.96);
+    color: white;
+    box-shadow: 0 18px 42px rgba(23,43,140,0.2);
+}
+
+.favorites-panel__eyebrow {
+    color: rgba(255,255,255,0.72);
+}
+
+.favorites-panel > p {
+    color: rgba(255,255,255,0.76);
+}
+
+.favorite-chip {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--pato-blue-deep);
+    border-color: transparent;
+}
+
+.favorite-button {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 1px solid rgba(52,84,195,0.12);
+    border-radius: 50%;
+    color: var(--pato-blue);
+    background: rgba(255,255,255,0.86);
+    box-shadow: 0 8px 20px rgba(22, 28, 45, 0.08);
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.favorite-button[aria-pressed="true"] {
+    color: white;
+    background: var(--pato-blue);
+}
+
+.intent-option:focus-visible,
+.intent-result:focus-visible,
+.favorite-chip:focus-visible,
+.favorite-button:focus-visible {
+    outline: 3px solid rgba(250,151,72,0.75);
+    outline-offset: 3px;
+}
+
 .apps {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -503,6 +646,11 @@ footer {
     .card {
         min-height: auto;
     }
+
+    .pato-guide,
+    .favorites-panel {
+        padding: 22px;
+    }
 }
 
 @media (min-width: 681px) and (pointer: fine) {
@@ -550,9 +698,35 @@ footer {
         </div>
     </section>
 
+    <section class="pato-guide" aria-labelledby="pato-guide-title">
+        <span class="pato-guide__eyebrow">Le guide Pato</span>
+        <h2 id="pato-guide-title">Que voulez-vous faire aujourd’hui ?</h2>
+        <p>Choisissez une envie, nous vous orientons vers les applications les plus utiles. Rien n’est envoyé : ce choix reste sur votre appareil.</p>
+        <div class="intent-options" aria-label="Choisir une intention">
+            <button class="intent-option" type="button" data-intent="bouger" aria-pressed="false">Bouger dehors</button>
+            <button class="intent-option" type="button" data-intent="sortie" aria-pressed="false">Préparer une sortie</button>
+            <button class="intent-option" type="button" data-intent="animal" aria-pressed="false">Prendre soin d’un animal</button>
+            <button class="intent-option" type="button" data-intent="epargne" aria-pressed="false">Comprendre mon épargne</button>
+            <button class="intent-option" type="button" data-intent="proche" aria-pressed="false">Rassurer un proche</button>
+            <button class="intent-option" type="button" data-intent="detente" aria-pressed="false">Me détendre</button>
+        </div>
+        <div class="guide-result" id="guide-result" aria-live="polite" hidden>
+            <p id="guide-result-text"></p>
+            <div class="intent-results" id="guide-result-links"></div>
+        </div>
+    </section>
+
+    <section class="favorites-panel" id="favorites-panel" aria-labelledby="favorites-title" hidden>
+        <span class="favorites-panel__eyebrow">Mes apps Pato</span>
+        <h2 id="favorites-title">Vos raccourcis sont prêts.</h2>
+        <p>Retrouvez les apps que vous avez épinglées.</p>
+        <div class="favorites-list" id="favorites-list"></div>
+    </section>
+
     <section class="apps" id="apps">
 
-        <div class="card">
+        <div class="card" data-app-id="ascens" data-app-name="Ascens" data-app-page="ascens_marketing.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Ascens aux favoris">♡</button>
             <div class="icon-wrap">
                 <img class="icon" src="ascens-logo.png" alt="Logo Ascens">
             </div>
@@ -564,7 +738,8 @@ footer {
             <a href="ascens_marketing.html">Découvrir · bientôt disponible</a>
         </div>
 
-        <div class="card">
+        <div class="card" data-app-id="patolife" data-app-name="Pato Life" data-app-page="pato-life-blog-page.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Pato Life aux favoris">♡</button>
             <div class="icon-wrap">
                 <img class="icon" src="patolife.png" alt="Icône Pato Life">
             </div>
@@ -579,7 +754,8 @@ footer {
             </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-app-id="melovia" data-app-name="Melovia" data-app-page="melovia-blog-page.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Melovia aux favoris">♡</button>
             <div class="icon-wrap">
                 <img class="icon" src="melovia.png" alt="Icône Melovia">
             </div>
@@ -594,7 +770,8 @@ footer {
             </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-app-id="finelio" data-app-name="Finelio" data-app-page="finelio-blog-page.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Finelio aux favoris">♡</button>
             <div class="icon-wrap">
                 <img class="icon" src="finelio.png" alt="Icône Finelio">
             </div>
@@ -609,7 +786,8 @@ footer {
             </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-app-id="loopa" data-app-name="Loopa Move" data-app-page="loopa-move-blog-page.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Loopa Move aux favoris">♡</button>
             <div class="icon-wrap">
                 <img class="icon" src="loopamove.png" alt="Icône Loopa Move">
             </div>
@@ -624,7 +802,8 @@ footer {
             </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-app-id="meteo" data-app-name="Pato Météo" data-app-page="Pato_meteo_MarketingPage.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Pato Météo aux favoris">♡</button>
             <div class="icon-wrap">
                 <img class="icon" src="pato-meteo.png" alt="Icône Pato Météo">
             </div>
@@ -639,7 +818,8 @@ footer {
             </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-app-id="toujours" data-app-name="Toujours Là" data-app-page="page-marketing-encore-la.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Toujours Là aux favoris">♡</button>
             <div class="icon-wrap">
                 <img class="icon" src="encore_la.png" alt="Icône Toujours Là">
             </div>
@@ -654,7 +834,8 @@ footer {
             </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-app-id="pulse" data-app-name="Pulse" data-app-page="pulse_marketing.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Pulse aux favoris">♡</button>
             <div class="icon-wrap">
                 <img class="icon" src="pulse_game.png" alt="Icône Pulse">
             </div>
@@ -754,6 +935,145 @@ installPromptDismiss.addEventListener("click", () => {
 window.addEventListener("load", () => {
     window.setTimeout(showInstallPrompt, 1200);
 });
+
+const guideRecommendations = {
+    bouger: {
+        message: "Pour une envie de bouger, composez un parcours puis choisissez le meilleur créneau.",
+        apps: ["loopa", "meteo"]
+    },
+    sortie: {
+        message: "Pour préparer une sortie, repérez le terrain, imaginez votre boucle et vérifiez les conditions.",
+        apps: ["ascens", "loopa", "meteo"]
+    },
+    animal: {
+        message: "Pour garder l’essentiel de la vie de votre compagnon bien organisé, Melovia est le bon point de départ.",
+        apps: ["melovia"]
+    },
+    epargne: {
+        message: "Pour comprendre ce que vos placements vous rapportent vraiment, commencez avec Finelio.",
+        apps: ["finelio"]
+    },
+    proche: {
+        message: "Pour installer un repère simple et rassurant avec ceux qui comptent, découvrez Toujours Là.",
+        apps: ["toujours"]
+    },
+    detente: {
+        message: "Pour une pause plus calme ou un défi de quelques secondes, voici vos deux compagnons Pato.",
+        apps: ["patolife", "pulse"]
+    }
+};
+
+const favoritesStorageKey = "pato-apps-favorites";
+const intentStorageKey = "pato-apps-last-intent";
+const appCards = [...document.querySelectorAll(".card[data-app-id]")];
+const favoritePanel = document.getElementById("favorites-panel");
+const favoritesList = document.getElementById("favorites-list");
+const guideResult = document.getElementById("guide-result");
+const guideResultText = document.getElementById("guide-result-text");
+const guideResultLinks = document.getElementById("guide-result-links");
+const intentOptions = [...document.querySelectorAll(".intent-option")];
+
+function readStoredList(key) {
+    try {
+        const value = JSON.parse(localStorage.getItem(key));
+        return Array.isArray(value) ? value : [];
+    } catch {
+        return [];
+    }
+}
+
+function saveStoredValue(key, value) {
+    try {
+        localStorage.setItem(key, JSON.stringify(value));
+    } catch {
+        // The guide remains usable when browser storage is unavailable.
+    }
+}
+
+function getCard(appID) {
+    return appCards.find(card => card.dataset.appId === appID);
+}
+
+function updateFavoriteButton(card, isFavorite) {
+    const button = card.querySelector(".favorite-button");
+    const appName = card.dataset.appName;
+    button.setAttribute("aria-pressed", String(isFavorite));
+    button.setAttribute("aria-label", `${isFavorite ? "Retirer" : "Ajouter"} ${appName} ${isFavorite ? "des" : "aux"} favoris`);
+    button.textContent = isFavorite ? "♥" : "♡";
+}
+
+function renderFavorites() {
+    const favorites = readStoredList(favoritesStorageKey).filter(appID => getCard(appID));
+    favoritesList.replaceChildren();
+    favoritePanel.hidden = favorites.length === 0;
+
+    appCards.forEach(card => updateFavoriteButton(card, favorites.includes(card.dataset.appId)));
+
+    favorites.forEach(appID => {
+        const card = getCard(appID);
+        const link = document.createElement("a");
+        link.className = "favorite-chip";
+        link.href = card.dataset.appPage;
+        link.textContent = card.dataset.appName;
+        favoritesList.append(link);
+    });
+}
+
+function showRecommendation(intent) {
+    const recommendation = guideRecommendations[intent];
+    if (!recommendation) {
+        return;
+    }
+
+    saveStoredValue(intentStorageKey, intent);
+    intentOptions.forEach(option => option.setAttribute("aria-pressed", String(option.dataset.intent === intent)));
+    guideResultText.textContent = recommendation.message;
+    guideResultLinks.replaceChildren();
+
+    recommendation.apps.forEach(appID => {
+        const card = getCard(appID);
+        if (!card) {
+            return;
+        }
+
+        const link = document.createElement("a");
+        link.className = "intent-result";
+        link.href = card.dataset.appPage;
+        link.textContent = card.dataset.appName;
+        guideResultLinks.append(link);
+    });
+
+    guideResult.hidden = false;
+}
+
+intentOptions.forEach(option => {
+    option.addEventListener("click", () => showRecommendation(option.dataset.intent));
+});
+
+appCards.forEach(card => {
+    const button = card.querySelector(".favorite-button");
+    button.addEventListener("click", () => {
+        const favorites = readStoredList(favoritesStorageKey);
+        const appID = card.dataset.appId;
+        const updatedFavorites = favorites.includes(appID)
+            ? favorites.filter(favoriteID => favoriteID !== appID)
+            : [...favorites, appID];
+
+        saveStoredValue(favoritesStorageKey, updatedFavorites);
+        renderFavorites();
+    });
+});
+
+renderFavorites();
+
+try {
+    const savedIntent = JSON.parse(localStorage.getItem(intentStorageKey));
+    if (typeof savedIntent === "string") {
+        showRecommendation(savedIntent);
+    }
+} catch {
+    // The guide starts without a preselected intention when browser storage is unavailable.
+}
 </script>
 
 </body>
