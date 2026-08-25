@@ -2,8 +2,9 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Découvrez les applications iPhone Pato : sorties, météo, animaux, épargne, lecture, proches et jeux.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez les applications iPhone Pato : sorties, météo, animaux, épargne, lecture, proches et jeux.">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Pato Apps</title>
     <link rel="canonical" href="https://www.patoswitch.fr/">
     <meta property="og:type" content="website">
@@ -384,6 +385,81 @@ footer {
     font-size: 14px;
 }
 
+.install-prompt {
+    position: fixed;
+    z-index: 10;
+    right: 18px;
+    bottom: 18px;
+    left: 18px;
+    display: none;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 18px;
+    border: 1px solid rgba(255,255,255,0.82);
+    border-radius: 24px;
+    background: rgba(255,255,255,0.94);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
+
+.install-prompt.is-visible {
+    display: block;
+}
+
+.install-prompt__top {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+}
+
+.install-prompt__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    box-shadow: 0 8px 18px rgba(22, 28, 45, 0.14);
+}
+
+.install-prompt h2 {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+}
+
+.install-prompt p {
+    margin: 5px 0 0;
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+.install-prompt__actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.install-prompt button {
+    min-height: 40px;
+    border: 0;
+    border-radius: 999px;
+    padding: 0 14px;
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.install-prompt__install {
+    color: white;
+    background: var(--pato-blue);
+}
+
+.install-prompt__dismiss {
+    color: var(--ink-soft);
+    background: transparent;
+}
+
 @media (max-width: 980px) {
     .apps {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -426,6 +502,12 @@ footer {
 
     .card {
         min-height: auto;
+    }
+}
+
+@media (min-width: 681px) {
+    .install-prompt {
+        display: none !important;
     }
 }
 
@@ -592,12 +674,82 @@ footer {
     © 2026 Pato Apps · Créé avec soin, curiosité et quelques pixels bien rangés.
 </footer>
 
+<aside class="install-prompt" id="install-prompt" role="dialog" aria-labelledby="install-prompt-title" aria-describedby="install-prompt-text">
+    <div class="install-prompt__top">
+        <img class="install-prompt__icon" src="accueil.png" alt="">
+        <div>
+            <h2 id="install-prompt-title">Installer Pato Apps</h2>
+            <p id="install-prompt-text"></p>
+        </div>
+    </div>
+    <div class="install-prompt__actions">
+        <button class="install-prompt__install" id="install-prompt-action" type="button" hidden>Installer</button>
+        <button class="install-prompt__dismiss" id="install-prompt-dismiss" type="button">Plus tard</button>
+    </div>
+</aside>
+
 <script>
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
         navigator.serviceWorker.register("service-worker.js");
     });
 }
+
+const installPrompt = document.getElementById("install-prompt");
+const installPromptText = document.getElementById("install-prompt-text");
+const installPromptAction = document.getElementById("install-prompt-action");
+const installPromptDismiss = document.getElementById("install-prompt-dismiss");
+const installPromptStorageKey = "pato-apps-install-prompt-dismissed";
+const userAgent = navigator.userAgent;
+const isIOS = /iPad|iPhone|iPod/.test(userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const isAndroid = /Android/.test(userAgent);
+const isStandalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+let deferredInstallPrompt;
+
+function canShowInstallPrompt() {
+    return (isIOS || isAndroid) && !isStandalone && localStorage.getItem(installPromptStorageKey) !== "true";
+}
+
+function showInstallPrompt() {
+    if (!canShowInstallPrompt()) {
+        return;
+    }
+
+    if (isIOS) {
+        installPromptText.textContent = "Gardez ce portail à portée de main : touchez Partager, puis « Sur l’écran d’accueil ».";
+    } else {
+        installPromptText.textContent = "Gardez ce portail à portée de main, comme une application, depuis le menu de votre navigateur.";
+    }
+
+    installPrompt.classList.add("is-visible");
+}
+
+window.addEventListener("beforeinstallprompt", event => {
+    event.preventDefault();
+    deferredInstallPrompt = event;
+    installPromptAction.hidden = false;
+    showInstallPrompt();
+});
+
+installPromptAction.addEventListener("click", async () => {
+    if (!deferredInstallPrompt) {
+        return;
+    }
+
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = undefined;
+    installPrompt.classList.remove("is-visible");
+});
+
+installPromptDismiss.addEventListener("click", () => {
+    localStorage.setItem(installPromptStorageKey, "true");
+    installPrompt.classList.remove("is-visible");
+});
+
+window.addEventListener("load", () => {
+    window.setTimeout(showInstallPrompt, 1200);
+});
 </script>
 
 </body>
