@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#eef3ff">
+    <title>Politique de confidentialité — Pulse</title>
+    <style>
+        :root {
+            --cyan: #05c2f5;
+            --blue: #1f6bf5;
+            --violet: #7a33fa;
+            --pink: #f529a8;
+            --ink: #151527;
+            --muted: #77758a;
+            --stroke: rgba(255, 255, 255, .72);
+        }
+
+        * { box-sizing: border-box; }
+        html { background: #eef3ff; }
+        body {
+            min-width: 320px;
+            margin: 0;
+            color: var(--ink);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+            line-height: 1.55;
+            background:
+                radial-gradient(circle at 8% 10%, rgba(31, 107, 245, .22), transparent 31rem),
+                radial-gradient(circle at 90% 84%, rgba(245, 41, 168, .18), transparent 32rem),
+                linear-gradient(165deg, #e9f2ff 0%, #f4efff 52%, #fff0f8 100%);
+        }
+
+        a { color: inherit; }
+        .page { width: min(100% - 40px, 760px); margin: 0 auto; padding: 34px 0 56px; }
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: #25243a;
+            font-size: .8rem;
+            font-weight: 800;
+            letter-spacing: .22em;
+            text-decoration: none;
+        }
+
+        .mark {
+            display: inline-grid;
+            width: 38px;
+            height: 38px;
+            place-items: center;
+            border: 5px solid transparent;
+            border-radius: 50%;
+            background: linear-gradient(#f7f9ff, #f7f9ff) padding-box,
+                        linear-gradient(135deg, var(--cyan), var(--blue), var(--violet), var(--pink)) border-box;
+            box-shadow: 0 0 22px rgba(122, 51, 250, .32);
+        }
+
+        .mark::after {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cyan), var(--blue), var(--violet), var(--pink));
+            content: "";
+        }
+
+        header { padding: 58px 8px 36px; text-align: center; }
+        h1, h2, p { margin-top: 0; }
+        h1 {
+            max-width: 13ch;
+            margin: 16px auto;
+            font-size: clamp(2.25rem, 9vw, 4rem);
+            line-height: 1.04;
+            letter-spacing: -.055em;
+        }
+
+        .gradient-text {
+            background: linear-gradient(105deg, var(--cyan), #6b8cff 40%, var(--pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .intro, .updated { color: var(--muted); }
+        .intro { max-width: 40rem; margin: 0 auto 12px; font-size: clamp(1rem, 2.8vw, 1.15rem); }
+        .updated { margin-bottom: 0; font-size: .82rem; }
+        .section-title {
+            margin: 36px 4px 14px;
+            color: #44425a;
+            font-size: .78rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+        }
+
+        .card {
+            padding: 22px;
+            border: 1px solid var(--stroke);
+            border-radius: 22px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, .76), rgba(255, 255, 255, .43));
+            box-shadow: 0 12px 30px rgba(67, 72, 142, .12), inset 0 1px rgba(255, 255, 255, .65);
+            backdrop-filter: blur(16px);
+        }
+
+        .card + .card { margin-top: 12px; }
+        .icon {
+            display: grid;
+            width: 42px;
+            height: 42px;
+            margin-bottom: 14px;
+            place-items: center;
+            border-radius: 50%;
+            color: var(--cyan);
+            font-size: 1.25rem;
+            background: rgba(5, 194, 245, .14);
+        }
+
+        h2 { margin-bottom: 7px; font-size: 1.06rem; }
+        .card p { margin-bottom: 0; color: var(--muted); font-size: .94rem; }
+        .card ul { margin: 12px 0 0; padding-left: 20px; color: var(--muted); font-size: .94rem; }
+        .card li + li { margin-top: 6px; }
+        .email { color: var(--blue); font-weight: 700; text-underline-offset: 3px; }
+
+        footer { padding-top: 30px; color: #858398; font-size: .78rem; text-align: center; }
+        footer a { color: var(--cyan); text-underline-offset: 3px; }
+
+        @media (max-width: 540px) {
+            .page { width: min(100% - 28px, 760px); padding-top: 24px; }
+            header { padding: 46px 4px 28px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { scroll-behavior: auto !important; transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <a class="brand" href="#" aria-label="Pulse, accueil">
+            <span class="mark" aria-hidden="true"></span>
+            PULSE
+        </a>
+
+        <header>
+            <p class="section-title">VOTRE VIE PRIVÉE</p>
+            <h1>Politique de <span class="gradient-text">confidentialité</span></h1>
+            <p class="intro">Pulse a été pensé pour jouer simplement, sans publicité ni suivi publicitaire.</p>
+            <p class="updated">Dernière mise à jour : 25 août 2026</p>
+        </header>
+
+        <section aria-labelledby="overview-title">
+            <h2 id="overview-title" class="section-title">L’ESSENTIEL</h2>
+            <article class="card">
+                <span class="icon" aria-hidden="true">✓</span>
+                <h2>Vos données restent limitées</h2>
+                <p>Pulse ne collecte pas de données de profil, de données de localisation, d’identifiants publicitaires ni de données d’utilisation à des fins d’analyse ou de publicité.</p>
+            </article>
+        </section>
+
+        <section aria-labelledby="data-title">
+            <h2 id="data-title" class="section-title">DONNÉES UTILISÉES PAR PULSE</h2>
+            <article class="card">
+                <h2>Scores et préférences</h2>
+                <p>Pulse enregistre vos meilleurs scores, statistiques de jeu, progression du défi quotidien, préférences de son et de vibrations, ainsi que l’état du tutoriel. Ces informations permettent au jeu de fonctionner et de conserver votre progression.</p>
+            </article>
+            <article class="card">
+                <h2>Synchronisation iCloud</h2>
+                <p>Lorsque vous êtes connecté à iCloud, certaines données de jeu et préférences sont synchronisées au moyen du trousseau de valeurs iCloud d’Apple afin de les retrouver sur vos appareils associés au même compte Apple.</p>
+            </article>
+            <article class="card">
+                <h2>Game Center</h2>
+                <p>Si vous choisissez de vous connecter à Game Center, Pulse transmet votre meilleur score à Game Center pour les classements. La gestion de votre compte Game Center et des données associées est assurée par Apple, conformément à sa propre politique de confidentialité.</p>
+            </article>
+        </section>
+
+        <section aria-labelledby="no-collection-title">
+            <h2 id="no-collection-title" class="section-title">CE QUE PULSE NE FAIT PAS</h2>
+            <article class="card">
+                <h2>Pas de suivi commercial</h2>
+                <ul>
+                    <li>Pas de publicité ni d’achat intégré.</li>
+                    <li>Pas de traceur analytique ou marketing tiers.</li>
+                    <li>Pas de collecte de votre position, contacts, photos, microphone ou caméra.</li>
+                    <li>Pas de vente ni de partage de vos données à des fins publicitaires.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section aria-labelledby="control-title">
+            <h2 id="control-title" class="section-title">VOS CHOIX</h2>
+            <article class="card">
+                <h2>Gérer vos données</h2>
+                <p>Vous pouvez désactiver Game Center dans les réglages de votre appareil. Vous pouvez aussi supprimer les données de Pulse en supprimant l’application et, si nécessaire, gérer ses données iCloud depuis les réglages de votre compte Apple. Les données Game Center se gèrent depuis les services Apple.</p>
+            </article>
+        </section>
+
+        <section aria-labelledby="contact-title">
+            <h2 id="contact-title" class="section-title">NOUS CONTACTER</h2>
+            <article class="card">
+                <h2>Une question sur votre vie privée&nbsp;?</h2>
+                <p>Pour toute question concernant cette politique ou vos données, écrivez-nous à <a class="email" href="mailto:info@patoswitch.fr">info@patoswitch.fr</a>.</p>
+            </article>
+        </section>
+
+        <footer>
+            <p>© Pato Switch · <a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a></p>
+        </footer>
+    </main>
+</body>
+</html>
