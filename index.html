@@ -3,8 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Découvrez les applications iPhone Pato : sorties, météo, animaux, épargne, lecture, proches et jeux.">
     <title>Pato Apps</title>
+    <link rel="canonical" href="https://www.patoswitch.fr/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Pato Apps">
+    <meta property="og:title" content="Pato Apps — Des applications iPhone très utiles">
+    <meta property="og:description" content="Découvrez les applications iPhone Pato : sorties, météo, animaux, épargne, lecture, proches et jeux.">
+    <meta property="og:url" content="https://www.patoswitch.fr/">
+    <meta property="og:image" content="https://www.patoswitch.fr/accueil.png">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="apple-touch-icon" href="accueil.png">
+    <link rel="manifest" href="manifest.json">
 <script>
 if ("scrollRestoration" in history) {
     history.scrollRestoration = "manual";
@@ -313,12 +324,19 @@ header p {
     margin: 0 0 22px;
 }
 
+.card-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
 .card a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 9px;
-    margin-top: auto;
     width: fit-content;
     background: #fff;
     color: var(--pato-blue);
@@ -343,6 +361,20 @@ header p {
 
 .card a:hover::after {
     transform: translateX(3px);
+}
+
+.card .details-link {
+    color: var(--ink-soft);
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    padding-inline: 4px;
+}
+
+.card .details-link:hover {
+    color: var(--pato-blue);
+    background: transparent;
+    box-shadow: none;
 }
 
 footer {
@@ -447,7 +479,7 @@ footer {
                 Trouver les salles, blocs et falaises autour de soi,
                 préparer sa sortie et partager les meilleurs terrains de jeu.
             </p>
-            <a href="ascens_marketing.html">Découvrir</a>
+            <a href="ascens_marketing.html">Découvrir · bientôt disponible</a>
         </div>
 
         <div class="card">
@@ -459,7 +491,10 @@ footer {
                 Une nouvelle façon de lire et vivre l’univers du blog Pato,
                 avec une expérience plus fluide, plus personnelle et plus moderne.
             </p>
-            <a href="pato-life-blog-page.html">Découvrir</a>
+            <div class="card-actions">
+                <a href="https://apps.apple.com/us/app/pato-life/id6760929480" target="_blank" rel="noopener noreferrer">Télécharger</a>
+                <a class="details-link" href="pato-life-blog-page.html">En savoir plus</a>
+            </div>
         </div>
 
         <div class="card">
@@ -471,7 +506,10 @@ footer {
                 Une application pensée pour accompagner la vie de vos animaux :
                 santé, souvenirs, documents et moments précieux.
             </p>
-            <a href="melovia-blog-page.html">Découvrir</a>
+            <div class="card-actions">
+                <a href="https://apps.apple.com/fr/app/melovia/id6761615290" target="_blank" rel="noopener noreferrer">Télécharger</a>
+                <a class="details-link" href="melovia-blog-page.html">En savoir plus</a>
+            </div>
         </div>
 
         <div class="card">
@@ -483,7 +521,10 @@ footer {
                 Comprendre plus simplement son épargne, ses rendements
                 et les frais qui grignotent parfois les performances.
             </p>
-            <a href="finelio-blog-page.html">Découvrir</a>
+            <div class="card-actions">
+                <a href="https://apps.apple.com/fr/app/finelio/id6762891560" target="_blank" rel="noopener noreferrer">Télécharger</a>
+                <a class="details-link" href="finelio-blog-page.html">En savoir plus</a>
+            </div>
         </div>
 
         <div class="card">
@@ -495,7 +536,10 @@ footer {
                 Générer des boucles de marche, course ou vélo autour de soi,
                 pour redécouvrir son environnement autrement.
             </p>
-            <a href="loopa-move-blog-page.html">Découvrir</a>
+            <div class="card-actions">
+                <a href="https://apps.apple.com/app/loopa-move/id6769142014" target="_blank" rel="noopener noreferrer">Télécharger</a>
+                <a class="details-link" href="loopa-move-blog-page.html">En savoir plus</a>
+            </div>
         </div>
 
         <div class="card">
@@ -507,7 +551,10 @@ footer {
                 La météo pensée comme un coach de sorties :
                 marcher, courir, randonner ou rouler au meilleur moment.
             </p>
-            <a href="Pato_meteo_MarketingPage.html">Découvrir</a>
+            <div class="card-actions">
+                <a href="https://apps.apple.com/fr/app/pato-m%C3%A9t%C3%A9o/id6795985697?uo=4" target="_blank" rel="noopener noreferrer">Télécharger</a>
+                <a class="details-link" href="Pato_meteo_MarketingPage.html">En savoir plus</a>
+            </div>
         </div>
 
         <div class="card">
@@ -519,7 +566,10 @@ footer {
                 Un repère quotidien pour rassurer ses proches :
                 confirmer que tout va bien et alerter en cas de silence inhabituel.
             </p>
-            <a href="page-marketing-encore-la.html">Découvrir</a>
+            <div class="card-actions">
+                <a href="https://apps.apple.com/app/toujours-l%C3%A0-pour-vos-proches/id6786242885" target="_blank" rel="noopener noreferrer">Télécharger</a>
+                <a class="details-link" href="page-marketing-encore-la.html">En savoir plus</a>
+            </div>
         </div>
 
         <div class="card">
@@ -531,7 +581,7 @@ footer {
                 Un jeu de timing aussi simple qu’addictif : observez le rythme,
                 touchez au moment parfait et poussez votre meilleur score.
             </p>
-            <a href="pulse_marketing.html">Découvrir</a>
+            <a href="pulse_marketing.html">Découvrir · bientôt disponible</a>
         </div>
 
     </section>
@@ -541,6 +591,14 @@ footer {
 <footer>
     © 2026 Pato Apps · Créé avec soin, curiosité et quelques pixels bien rangés.
 </footer>
+
+<script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js");
+    });
+}
+</script>
 
 </body>
 </html>
