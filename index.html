@@ -995,6 +995,16 @@ const guideRecommendations = {
 const favoritesStorageKey = "pato-apps-favorites";
 const intentStorageKey = "pato-apps-last-intent";
 const appCards = [...document.querySelectorAll(".card[data-app-id]")];
+const appsSection = document.getElementById("apps");
+const appDisplayOrder = ["patolife", "melovia", "finelio", "loopa", "toujours", "meteo", "ascens", "pulse"];
+
+appDisplayOrder.forEach(appID => {
+    const card = appCards.find(card => card.dataset.appId === appID);
+    if (card) {
+        appsSection.append(card);
+    }
+});
+
 const favoritePanel = document.getElementById("favorites-panel");
 const favoritesList = document.getElementById("favorites-list");
 const guideResult = document.getElementById("guide-result");
