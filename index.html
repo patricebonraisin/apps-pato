@@ -19,7 +19,7 @@
     <link rel="apple-touch-icon" href="accueil.png">
     <script>
         const appIcon = document.querySelector('link[rel="apple-touch-icon"]');
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        if (appIcon && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             appIcon.href = 'accueil_dark.png';
         }
     </script>
@@ -504,8 +504,6 @@ header p {
 }
 
 .card a:hover {
-
-[File truncated: 718 more lines available. Use 'offset' and 'limit' parameters to read more content.]
     color: white;
     background: var(--pato-blue);
     transform: translateY(-2px);
@@ -606,8 +604,6 @@ footer {
 
 .install-prompt p {
     margin: 5px 0 0;
-
-[File truncated: 538 more lines available. Use 'offset' and 'limit' parameters to read more content.]
     color: var(--ink-soft);
     font-size: 14px;
     line-height: 1.45;
@@ -1006,8 +1002,6 @@ const isStandalone = window.matchMedia("(display-mode: standalone)").matches || 
 const shouldForceInstallPrompt = new URLSearchParams(window.location.search).has("show-install");
 let deferredInstallPrompt;
 
-
-[File truncated: 218 more lines available. Use 'offset' and 'limit' parameters to read more content.]
 function canShowInstallPrompt() {
     return (isIOS || isAndroid || isTouchDevice) && !isStandalone && (shouldForceInstallPrompt || localStorage.getItem(installPromptStorageKey) !== "true");
 }
@@ -1085,16 +1079,6 @@ const guideRecommendations = {
 const favoritesStorageKey = "pato-apps-favorites";
 const intentStorageKey = "pato-apps-last-intent";
 const appCards = [...document.querySelectorAll(".card[data-app-id]")];
-const appsSection = document.getElementById("apps");
-const appDisplayOrder = ["patolife", "melovia", "finelio", "loopa", "toujours", "meteo", "ascens", "pulse"];
-
-appDisplayOrder.forEach(appID => {
-    const card = appCards.find(card => card.dataset.appId === appID);
-    if (card) {
-        appsSection.append(card);
-    }
-});
-
 const favoritePanel = document.getElementById("favorites-panel");
 const favoritesList = document.getElementById("favorites-list");
 const guideResult = document.getElementById("guide-result");

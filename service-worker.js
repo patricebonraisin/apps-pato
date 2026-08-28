@@ -1,10 +1,11 @@
-const CACHE_NAME = "pato-apps-v8";
+const CACHE_NAME = "pato-apps-v9";
 
 const FILES_TO_CACHE = [
   "./",
   "index.html",
   "manifest.json",
   "accueil.png",
+  "accueil_dark.png",
   "app-map.png",
   "ascens-logo.png",
   "hero-climber.png",
