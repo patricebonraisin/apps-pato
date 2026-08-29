@@ -582,6 +582,28 @@
             color: var(--ink);
         }
 
+        .home-button {
+            display: flex;
+            width: fit-content;
+            margin: 24px auto calc(24px + env(safe-area-inset-bottom));
+            align-items: center;
+            gap: 8px;
+            min-height: 44px;
+            padding: 0 14px;
+            border: 1px solid rgba(17, 19, 26, 0.12);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.92);
+            color: #11131A;
+            box-shadow: 0 8px 24px rgba(17, 19, 26, 0.16);
+            text-decoration: none;
+            font: 700 15px -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .home-button:active {
+            transform: scale(0.96);
+        }
+
         footer {
             width: min(1120px, calc(100% - 40px));
             margin: 0 auto;
@@ -878,5 +900,7 @@
             © 2026 Pato Switch · Toujours Là · Présence rassurante. En cas de danger immédiat, contactez les services d'urgence habituels.
         </footer>
     </div>
+
+    <a class="home-button" href="index.html" aria-label="Retour à l'accueil Pato Apps">⌂ Accueil</a>
 </body>
 </html>
