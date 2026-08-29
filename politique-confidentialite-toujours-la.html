@@ -8,14 +8,14 @@
         :root {
             --ink: #1f2930;
             --muted: #53605e;
-            --line: #d8e0dc;
+            --line: #dde1e6;
             --paper: #f6f8f7;
             --surface: #ffffff;
-            --soft: #eef5f2;
-            --blue: #3d6ead;
-            --blue-soft: #e8f0fa;
-            --green: #388c61;
-            --green-soft: #dcefe6;
+            --soft: #eef1f4;
+            --blue: #2966db;
+            --blue-soft: #e4ecfb;
+            --gold: #94610a;
+            --gold-soft: #f6ecd8;
             --warning: #7a4f18;
             --warning-soft: #fff3dd;
         }
@@ -26,7 +26,7 @@
 
         body {
             margin: 0;
-            background: linear-gradient(180deg, rgba(56, 140, 97, 0.12), var(--paper) 280px);
+            background: linear-gradient(180deg, rgba(41, 102, 219, 0.12), var(--paper) 280px);
             color: var(--ink);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             line-height: 1.58;
@@ -59,7 +59,7 @@
             height: 38px;
             place-items: center;
             border-radius: 12px;
-            background: linear-gradient(135deg, var(--blue), var(--green));
+            background: linear-gradient(135deg, var(--blue), var(--gold));
             color: #ffffff;
             font-size: 22px;
             font-weight: 900;
@@ -67,7 +67,7 @@
 
         .eyebrow {
             margin: 0 0 10px;
-            color: var(--green);
+            color: var(--gold);
             font-size: 13px;
             font-weight: 800;
             letter-spacing: 0.08em;
@@ -107,7 +107,7 @@
         .summary-item strong {
             display: block;
             margin-bottom: 6px;
-            color: var(--green);
+            color: var(--gold);
             font-size: 16px;
         }
 
@@ -193,8 +193,8 @@
             margin-bottom: 12px;
             place-items: center;
             border-radius: 10px;
-            background: var(--green-soft);
-            color: var(--green);
+            background: var(--gold-soft);
+            color: var(--gold);
             font-weight: 900;
         }
 
@@ -248,7 +248,7 @@
             <p class="eyebrow">Confidentialité</p>
             <h1>Politique de confidentialité</h1>
             <p class="intro">
-                Toujours Là est conçue pour rassurer les proches avec un minimum de données et sans suivi publicitaire. Cette politique explique quelles informations sont utilisées et pourquoi.
+                Toujours Là est conçue pour rassurer votre entourage avec un minimum de données et sans suivi publicitaire. Cette politique explique quelles informations sont utilisées et pourquoi.
             </p>
             <div class="summary" aria-label="Résumé confidentialité">
                 <div class="summary-item">
@@ -257,7 +257,7 @@
                 </div>
                 <div class="summary-item">
                     <strong>Pas de compte Toujours Là</strong>
-                    <span>Le lien entre proches passe par l’espace iCloud privé des utilisateurs concernés.</span>
+                    <span>Le lien entre les personnes passe par l’espace iCloud privé des utilisateurs concernés.</span>
                 </div>
                 <div class="summary-item">
                     <strong>Validation humaine</strong>
@@ -273,15 +273,15 @@
                 <div class="table">
                     <div class="row">
                         <strong>Profil</strong>
-                        <span>Prénom et numéro mobile de la personne accompagnée, afin de personnaliser l’accueil, signer les messages préparés et permettre aux proches connectés de la joindre lors d’une alerte.</span>
+                        <span>Prénom et numéro mobile de la personne accompagnée, afin de personnaliser l’accueil, signer les messages préparés et permettre aux personnes connectées de la joindre lors d’une alerte.</span>
                     </div>
                     <div class="row">
                         <strong>Routine</strong>
                         <span>Heure du point quotidien, jours actifs, rappels, pause et préférences liées à la synchronisation.</span>
                     </div>
                     <div class="row">
-                        <strong>Proches</strong>
-                        <span>Nom, lien, numéro mobile, rôle du proche et état d’invitation iCloud.</span>
+                        <strong>Entourage</strong>
+                        <span>Nom, lien, numéro mobile, rôle de la personne et état d’invitation iCloud.</span>
                     </div>
                     <div class="row">
                         <strong>Confirmations</strong>
@@ -300,12 +300,12 @@
                     <div class="card">
                         <span class="card-icon">i</span>
                         <h3>Sur l’iPhone</h3>
-                        <p>Les réglages, confirmations et proches sont enregistrés dans l’app pour permettre le fonctionnement quotidien, l’historique et les rappels locaux.</p>
+                        <p>Les réglages, les confirmations et l’entourage sont enregistrés dans l’app pour permettre le fonctionnement quotidien, l’historique et les rappels locaux.</p>
                     </div>
                     <div class="card">
                         <span class="card-icon">☁</span>
                         <h3>Dans iCloud</h3>
-                        <p>iCloud peut être utilisé pour synchroniser les données et relier les proches connectés. Toujours Là ne maintient pas de serveur applicatif propre pour ces échanges.</p>
+                        <p>iCloud peut être utilisé pour synchroniser les données et relier les personnes connectées. Toujours Là ne maintient pas de serveur applicatif propre pour ces échanges.</p>
                     </div>
                 </div>
             </section>
@@ -313,9 +313,9 @@
             <section>
                 <h2>Notifications, SMS et appels</h2>
                 <ul>
-                    <li>Les notifications locales servent à rappeler le point quotidien ou à prévenir un proche connecté lorsqu’un point reste sans réponse.</li>
+                    <li>Les notifications locales servent à rappeler le point quotidien ou à prévenir une personne connectée lorsqu’un point reste sans réponse.</li>
                     <li>Les SMS de réassurance et d’aide sont préparés par l’application, mais l’envoi doit être validé par l’utilisateur dans Messages.</li>
-                    <li>Le bouton “Besoin d’aide” peut proposer d’appeler un proche ou de préparer un SMS, après confirmation de l’utilisateur.</li>
+                    <li>Le bouton “Besoin d’aide” peut proposer d’appeler une personne ou de préparer un SMS, après confirmation de l’utilisateur.</li>
                     <li>Toujours Là n’est pas un service d’urgence et ne remplace pas les services médicaux, sociaux ou de secours.</li>
                 </ul>
             </section>
@@ -333,7 +333,7 @@
 
             <section class="warning">
                 <h2>Suppression des données</h2>
-                <p>Depuis l’écran Confidentialité de l’application, l’utilisateur peut supprimer les données présentes sur cet iPhone : confirmations, proches, horaires, pause, prénom, message personnalisé, rappels programmés et état de configuration initiale.</p>
+                <p>Depuis l’écran Confidentialité de l’application, l’utilisateur peut supprimer les données présentes sur cet iPhone : confirmations, entourage, horaires, pause, prénom, message personnalisé, rappels programmés et état de configuration initiale.</p>
                 <p>Les données synchronisées via iCloud restent soumises aux réglages iCloud de l’utilisateur et aux mécanismes Apple associés à son compte.</p>
             </section>
 
