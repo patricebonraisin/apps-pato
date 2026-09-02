@@ -19,6 +19,7 @@
     <style>
 
         :root {
+            color-scheme: light dark;
             --accent: #d66147;
             --accent-strong: #b04536;
             --warm-ink: #472e24;
@@ -387,6 +388,61 @@
         }
 
         .home-button:active { transform: scale(0.96); }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --accent-strong: #f0916d;
+                --warm-ink: #f4efe9;
+                --warm-ink-soft: #cbb9ae;
+                --surface: rgba(40, 31, 29, 0.86);
+                --shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+            }
+
+            body {
+                background:
+                    radial-gradient(circle at top left, rgba(255,255,255,0.05), transparent 28%),
+                    radial-gradient(circle at top right, rgba(214,97,71,0.14), transparent 24%),
+                    radial-gradient(circle at bottom left, rgba(117,166,209,0.10), transparent 22%),
+                    linear-gradient(135deg, #17110f 0%, #14100f 42%, #121317 100%);
+            }
+
+            .topbar-inner {
+                background: rgba(40, 31, 29, 0.55);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            }
+
+            .hero-card {
+                background: linear-gradient(145deg, rgba(46,36,33,0.92), rgba(30,23,21,0.72));
+            }
+
+            .eyebrow {
+                background: rgba(255,255,255,0.08);
+            }
+
+            .pill {
+                background: rgba(255,255,255,0.08);
+            }
+
+            .screen-card {
+                background: rgba(46,36,33,0.9);
+                box-shadow: 0 18px 36px rgba(0,0,0,0.35);
+            }
+
+            .screen-card.emergency {
+                background: linear-gradient(145deg, rgba(120,45,42,0.96), rgba(90,28,26,0.94));
+            }
+
+            .footer-inner {
+                border-top-color: rgba(255,255,255,0.12);
+            }
+
+            .home-button {
+                border-color: rgba(255, 255, 255, 0.14);
+                background: rgba(40, 31, 29, 0.92);
+                color: #f4efe9;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            }
+        }
     </style>
 </head>
 

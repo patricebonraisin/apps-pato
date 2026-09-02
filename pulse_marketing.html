@@ -16,6 +16,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <style>
         :root {
+            color-scheme: light dark;
             --ink: #16172b;
             --muted: #696b81;
             --blue: #167cf5;
@@ -115,6 +116,43 @@
             font: 700 15px -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; -webkit-tap-highlight-color: transparent;
         }
         .home-button:active { transform: scale(0.96); }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --ink: #eef0fa;
+                --muted: #a6a8bd;
+                --card: rgba(255, 255, 255, .06);
+                --line: rgba(255, 255, 255, .16);
+            }
+
+            body {
+                background: #0d0e18;
+            }
+
+            .eyebrow {
+                color: #b39dff;
+                background: rgba(255, 255, 255, .08);
+            }
+
+            .secondary {
+                background: rgba(255, 255, 255, .08);
+            }
+
+            .mode {
+                background: rgba(255, 255, 255, .06);
+            }
+
+            .floating {
+                background: rgba(20, 20, 35, .75);
+            }
+
+            .home-button {
+                border-color: rgba(255, 255, 255, 0.14);
+                background: rgba(20, 20, 35, 0.92);
+                color: #eef0fa;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            }
+        }
     </style>
 </head>
 <body>

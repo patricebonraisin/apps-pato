@@ -6,7 +6,9 @@
     <title>Toujours Là - Présence rassurante</title>
     <style>
         :root {
+            color-scheme: light dark;
             --ink: #22262b;
+            --text: var(--ink);
             --muted: #5b6470;
             --line: #dde1e6;
             --soft: #eef1f4;
@@ -14,6 +16,7 @@
             --blue: #2966db;
             --blue-soft: #e4ecfb;
             --gold: #94610a;
+            --accent-text: var(--gold);
             --gold-soft: #f6ecd8;
             --shadow: 0 22px 60px rgba(34, 38, 43, 0.16);
         }
@@ -29,7 +32,7 @@
         body {
             margin: 0;
             background: var(--paper);
-            color: var(--ink);
+            color: var(--text);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             line-height: 1.5;
         }
@@ -55,7 +58,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            color: var(--ink);
+            color: var(--text);
             font-size: 20px;
             font-weight: 800;
             text-decoration: none;
@@ -99,7 +102,7 @@
 
         .eyebrow {
             margin: 0 0 16px;
-            color: var(--gold);
+            color: var(--accent-text);
             font-size: 13px;
             font-weight: 800;
             letter-spacing: 0.08em;
@@ -493,7 +496,7 @@
             place-items: center;
             border-radius: 12px;
             background: var(--soft);
-            color: var(--gold);
+            color: var(--accent-text);
             font-size: 22px;
             font-weight: 900;
         }
@@ -682,6 +685,43 @@
 
             .cta-box {
                 padding: 24px;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --paper: #12151a;
+                --text: #eef1f4;
+                --line: rgba(255, 255, 255, 0.14);
+                --soft: #1b2027;
+                --accent-text: #e0ac5c;
+            }
+
+            .button.secondary,
+            .trust-item,
+            .feature,
+            .role-card {
+                background: #1b1f23;
+            }
+
+            .role-card {
+                border-color: rgba(224, 172, 92, 0.25);
+            }
+
+            .nav-links,
+            .hero-copy,
+            .trust-item span,
+            .section-copy,
+            .role-card p,
+            footer {
+                color: #a9b0b9;
+            }
+
+            .home-button {
+                border-color: rgba(255, 255, 255, 0.14);
+                background: rgba(27, 31, 35, 0.92);
+                color: #eef1f4;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
             }
         }
 

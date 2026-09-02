@@ -16,6 +16,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <style>
         :root {
+            color-scheme: light dark;
             --forest: #073e31;
             --forest-deep: #042d25;
             --mint: #2ec9a7;
@@ -152,6 +153,57 @@
 
         .home-button:active {
             transform: scale(0.96);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --canvas: #0d1210;
+                --ink: #eef4f1;
+                --muted: #9fb0a9;
+                --line: rgba(255, 255, 255, 0.14);
+                --sand: #1a201c;
+            }
+
+            .hero::before {
+                background:
+                    radial-gradient(circle at 70% 22%, rgba(46, 201, 167, 0.14), transparent 19%),
+                    linear-gradient(112deg, #0d1210 0%, #10160f 80%);
+            }
+
+            .lead {
+                color: #b9c9c2;
+            }
+
+            .trust {
+                color: #a9bab3;
+            }
+
+            .nav-links {
+                color: #9fb0a9;
+            }
+
+            .button-secondary,
+            .feature,
+            .guide-visual .label,
+            .guide-list div {
+                background: #171c19;
+            }
+
+            .guide {
+                background: #10140f;
+            }
+
+            .float-card {
+                background: rgba(20, 26, 23, 0.88);
+                border-color: rgba(255, 255, 255, 0.14);
+            }
+
+            .home-button {
+                border-color: rgba(255, 255, 255, 0.14);
+                background: rgba(23, 28, 25, 0.92);
+                color: #eef4f1;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            }
         }
     </style>
 </head>

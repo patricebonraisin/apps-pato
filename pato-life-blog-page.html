@@ -19,8 +19,10 @@
 <style>
 
 :root {
+    color-scheme: light dark;
     --primary: #143d8c;
     --secondary: #cf5987;
+    --accent-text: var(--primary);
     --primary-soft: rgba(20, 61, 140, 0.12);
     --secondary-soft: rgba(207, 89, 135, 0.14);
     --background: #f2f2f7;
@@ -189,7 +191,7 @@ h1 {
 .stat-value {
     font-size: 28px;
     font-weight: 800;
-    color: var(--primary);
+    color: var(--accent-text);
 }
 
 .stat-label,
@@ -208,7 +210,7 @@ h1 {
 .card h2 {
     font-size: 30px;
     margin-bottom: 10px;
-    color: var(--primary);
+    color: var(--accent-text);
 }
 
 .feature-grid {
@@ -233,7 +235,7 @@ h1 {
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, var(--primary-soft), var(--secondary-soft));
-    color: var(--primary);
+    color: var(--accent-text);
     font-weight: 800;
     margin-bottom: 14px;
 }
@@ -301,6 +303,37 @@ footer {
         font: 700 15px -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; -webkit-tap-highlight-color: transparent;
     }
     .home-button:active { transform: scale(0.96); }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --accent-text: #82b1ff;
+        --primary-soft: rgba(130, 177, 255, 0.16);
+        --secondary-soft: rgba(255, 145, 181, 0.16);
+        --background: #0b0d13;
+        --surface: rgba(28, 31, 42, 0.88);
+        --surface-solid: #1c1f2a;
+        --text: #f2f3f7;
+        --text-muted: #aeb3c2;
+        --border: rgba(255, 255, 255, 0.12);
+        --shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+        --hero-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    }
+
+    body {
+        background:
+            radial-gradient(circle at top left, rgba(207, 89, 135, 0.16), transparent 28%),
+            radial-gradient(circle at top right, rgba(20, 61, 140, 0.22), transparent 32%),
+            linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 22%),
+            var(--background);
+    }
+
+    .home-button {
+        border-color: rgba(255, 255, 255, 0.14);
+        background: rgba(28, 31, 42, 0.92);
+        color: #f2f3f7;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+}
 </style>
 </head>
 
