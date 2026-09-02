@@ -18,10 +18,25 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="apple-touch-icon" href="accueil.png">
     <script>
-        const appIcon = document.querySelector('link[rel="apple-touch-icon"]');
-        if (appIcon && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            appIcon.href = 'accueil_dark.png';
-        }
+        (function () {
+            let storedTheme = null;
+            try {
+                storedTheme = localStorage.getItem("pato-apps-theme");
+            } catch {
+                storedTheme = null;
+            }
+
+            const theme = storedTheme === "light" || storedTheme === "dark"
+                ? storedTheme
+                : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+
+            document.documentElement.setAttribute("data-theme", theme);
+
+            const appIcon = document.querySelector('link[rel="apple-touch-icon"]');
+            if (appIcon && theme === "dark") {
+                appIcon.href = "accueil_dark.png";
+            }
+        })();
     </script>
     <link rel="manifest" href="manifest.json">
 <script>
@@ -92,6 +107,35 @@ header {
     position: relative;
     text-align: center;
     padding: 34px 0 54px;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 18px;
+    right: 4px;
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border: 1px solid rgba(52, 84, 195, 0.12);
+    border-radius: 50%;
+    background: rgba(255,255,255,0.76);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: var(--shadow-soft);
+    font-size: 19px;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+}
+
+.theme-toggle:focus-visible {
+    outline: 3px solid rgba(250,151,72,0.75);
+    outline-offset: 3px;
 }
 
 .badge {
@@ -636,82 +680,81 @@ footer {
     background: transparent;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        color-scheme: dark;
-        --ink: #F4F6FF;
-        --ink-soft: #C4C9D9;
-        --muted: #A9B0C3;
-        --surface: rgba(27, 32, 49, 0.78);
-        --surface-strong: rgba(34, 40, 60, 0.92);
-        --line: rgba(236, 240, 255, 0.16);
-        --shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
-        --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.26);
-    }
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --ink: #F4F6FF;
+    --ink-soft: #C4C9D9;
+    --muted: #A9B0C3;
+    --surface: rgba(27, 32, 49, 0.78);
+    --surface-strong: rgba(34, 40, 60, 0.92);
+    --line: rgba(236, 240, 255, 0.16);
+    --shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
+    --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.26);
+}
 
-    body {
-        background:
-            radial-gradient(circle at 8% 8%, rgba(80, 109, 220, 0.26), transparent 30%),
-            radial-gradient(circle at 92% 12%, rgba(250, 151, 72, 0.14), transparent 28%),
-            radial-gradient(circle at 50% 92%, rgba(52, 84, 195, 0.20), transparent 34%),
-            linear-gradient(180deg, #121521 0%, #171C2A 44%, #10131D 100%);
-    }
+html[data-theme="dark"] body {
+    background:
+        radial-gradient(circle at 8% 8%, rgba(80, 109, 220, 0.26), transparent 30%),
+        radial-gradient(circle at 92% 12%, rgba(250, 151, 72, 0.14), transparent 28%),
+        radial-gradient(circle at 50% 92%, rgba(52, 84, 195, 0.20), transparent 34%),
+        linear-gradient(180deg, #121521 0%, #171C2A 44%, #10131D 100%);
+}
 
-    body::before {
-        background-image:
-            linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
-    }
+html[data-theme="dark"] body::before {
+    background-image:
+        linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+}
 
-    .badge,
-    .secondary-action,
-    .panel-card,
-    .pato-guide,
-    .icon-wrap,
-    .update-button,
-    .install-prompt {
-        background: rgba(31, 37, 55, 0.78);
-        border-color: rgba(255,255,255,0.14);
-    }
+html[data-theme="dark"] .badge,
+html[data-theme="dark"] .theme-toggle,
+html[data-theme="dark"] .secondary-action,
+html[data-theme="dark"] .panel-card,
+html[data-theme="dark"] .pato-guide,
+html[data-theme="dark"] .icon-wrap,
+html[data-theme="dark"] .update-button,
+html[data-theme="dark"] .install-prompt {
+    background: rgba(31, 37, 55, 0.78);
+    border-color: rgba(255,255,255,0.14);
+}
 
-    .card {
-        border-color: rgba(255,255,255,0.14);
-    }
+html[data-theme="dark"] .card {
+    border-color: rgba(255,255,255,0.14);
+}
 
-    .card::after {
-        background: linear-gradient(180deg, rgba(48, 56, 80, 0.78), rgba(25, 30, 45, 0.68));
-    }
+html[data-theme="dark"] .card::after {
+    background: linear-gradient(180deg, rgba(48, 56, 80, 0.78), rgba(25, 30, 45, 0.68));
+}
 
-    .card:hover {
-        border-color: rgba(255,255,255,0.26);
-    }
+html[data-theme="dark"] .card:hover {
+    border-color: rgba(255,255,255,0.26);
+}
 
-    .intent-option,
-    .intent-result,
-    .favorite-chip,
-    .favorite-button,
-    .card a {
-        color: #DEE4FF;
-        background: rgba(46, 54, 77, 0.92);
-        border-color: rgba(141, 161, 255, 0.28);
-    }
+html[data-theme="dark"] .intent-option,
+html[data-theme="dark"] .intent-result,
+html[data-theme="dark"] .favorite-chip,
+html[data-theme="dark"] .favorite-button,
+html[data-theme="dark"] .card a {
+    color: #DEE4FF;
+    background: rgba(46, 54, 77, 0.92);
+    border-color: rgba(141, 161, 255, 0.28);
+}
 
-    .card .details-link,
-    .install-prompt__dismiss {
-        color: var(--ink-soft);
-        background: transparent;
-        border-color: transparent;
-    }
+html[data-theme="dark"] .card .details-link,
+html[data-theme="dark"] .install-prompt__dismiss {
+    color: var(--ink-soft);
+    background: transparent;
+    border-color: transparent;
+}
 
-    .favorite-button[aria-pressed="true"],
-    .intent-option:hover,
-    .intent-option[aria-pressed="true"],
-    .intent-result:hover,
-    .favorite-chip:hover,
-    .card a:hover {
-        color: white;
-        background: var(--pato-blue);
-    }
+html[data-theme="dark"] .favorite-button[aria-pressed="true"],
+html[data-theme="dark"] .intent-option:hover,
+html[data-theme="dark"] .intent-option[aria-pressed="true"],
+html[data-theme="dark"] .intent-result:hover,
+html[data-theme="dark"] .favorite-chip:hover,
+html[data-theme="dark"] .card a:hover {
+    color: white;
+    background: var(--pato-blue);
 }
 
 @media (max-width: 980px) {
@@ -783,6 +826,9 @@ footer {
 <div class="page-shell">
 
     <header>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Activer le thème sombre">
+            <span aria-hidden="true">🌙</span>
+        </button>
         <div class="badge">Collection maison</div>
         <h1>Des apps <span class="mobile-title-break"></span>très utiles,<br><span class="gradient-text">avec une touche <span class="mobile-title-break"></span>très... "Pato"</span></h1>
         <p>
@@ -1191,6 +1237,51 @@ try {
 } catch {
     // The guide starts without a preselected intention when browser storage is unavailable.
 }
+
+const themeStorageKey = "pato-apps-theme";
+const themeToggle = document.getElementById("theme-toggle");
+const themeToggleIcon = themeToggle.querySelector("span");
+const prefersDarkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+function applyTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+
+    const appIcon = document.querySelector('link[rel="apple-touch-icon"]');
+    if (appIcon) {
+        appIcon.href = theme === "dark" ? "accueil_dark.png" : "accueil.png";
+    }
+
+    themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
+    themeToggle.setAttribute("aria-label", theme === "dark" ? "Activer le thème clair" : "Activer le thème sombre");
+    themeToggleIcon.textContent = theme === "dark" ? "☀️" : "🌙";
+}
+
+applyTheme(document.documentElement.getAttribute("data-theme") || "light");
+
+themeToggle.addEventListener("click", () => {
+    const nextTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    applyTheme(nextTheme);
+
+    try {
+        localStorage.setItem(themeStorageKey, nextTheme);
+    } catch {
+        // The toggle still works for this visit when browser storage is unavailable.
+    }
+});
+
+prefersDarkQuery.addEventListener("change", event => {
+    let hasManualTheme = false;
+
+    try {
+        hasManualTheme = localStorage.getItem(themeStorageKey) !== null;
+    } catch {
+        hasManualTheme = false;
+    }
+
+    if (!hasManualTheme) {
+        applyTheme(event.matches ? "dark" : "light");
+    }
+});
 
 const updateButton = document.getElementById("update-button");
 const updateStatus = document.getElementById("update-status");
