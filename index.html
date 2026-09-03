@@ -583,6 +583,33 @@ footer {
     font-size: 14px;
 }
 
+.footer-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.footer-link:hover {
+    color: var(--pato-blue);
+}
+
+.footer-link__icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
 .update-button {
     min-height: 36px;
     border: 1px solid rgba(52,84,195,0.16);
@@ -1013,7 +1040,16 @@ html[data-theme="dark"] .card a:hover {
 
 <footer>
     <span>© 2026 Pato Apps · Créé avec soin, curiosité et quelques pixels bien rangés.</span>
-    <span>Contact : <a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a></span>
+    <div class="footer-links">
+        <a class="footer-link" href="mailto:info@patoswitch.fr">
+            <svg class="footer-link__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1.4 2 6.86 5.42a1 1 0 0 0 1.24 0L19.36 7H4.4Zm15.6 1.24-6.6 5.22a3 3 0 0 1-3.72 0L4.08 8.24V17h15.92V8.24Z" fill="currentColor"/></svg>
+            <span>info@patoswitch.fr</span>
+        </a>
+        <a class="footer-link" href="https://www.instagram.com/pato.apps" target="_blank" rel="noopener noreferrer">
+            <svg class="footer-link__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.2c2.67 0 3 .01 4.05.06 1.05.05 1.77.22 2.4.46.65.25 1.2.6 1.73 1.12.52.53.87 1.08 1.12 1.73.24.63.41 1.35.46 2.4.05 1.05.06 1.38.06 4.05s-.01 3-.06 4.05c-.05 1.05-.22 1.77-.46 2.4-.25.65-.6 1.2-1.12 1.73-.53.52-1.08.87-1.73 1.12-.63.24-1.35.41-2.4.46-1.05.05-1.38.06-4.05.06s-3-.01-4.05-.06c-1.05-.05-1.77-.22-2.4-.46a4.9 4.9 0 0 1-1.73-1.12 4.9 4.9 0 0 1-1.12-1.73c-.24-.63-.41-1.35-.46-2.4C2.21 15 2.2 14.67 2.2 12s.01-3 .06-4.05c.05-1.05.22-1.77.46-2.4.25-.65.6-1.2 1.12-1.73.53-.52 1.08-.87 1.73-1.12.63-.24 1.35-.41 2.4-.46C9 2.21 9.33 2.2 12 2.2Zm0 1.8c-2.63 0-2.94.01-3.98.06-.86.04-1.32.18-1.63.3-.41.16-.7.35-1.01.66-.31.31-.5.6-.66 1.01-.12.31-.26.77-.3 1.63C4.37 8.7 4.36 9 4.36 12s.01 3.3.06 4.34c.04.86.18 1.32.3 1.63.16.41.35.7.66 1.01.31.31.6.5 1.01.66.31.12.77.26 1.63.3 1.04.05 1.35.06 3.98.06s2.94-.01 3.98-.06c.86-.04 1.32-.18 1.63-.3.41-.16.7-.35 1.01-.66.31-.31.5-.6.66-1.01.12-.31.26-.77.3-1.63.05-1.04.06-1.35.06-4.34s-.01-3.3-.06-4.34c-.04-.86-.18-1.32-.3-1.63a2.7 2.7 0 0 0-.66-1.01 2.7 2.7 0 0 0-1.01-.66c-.31-.12-.77-.26-1.63-.3C14.94 4.01 14.63 4 12 4Zm0 3.05a4.95 4.95 0 1 1 0 9.9 4.95 4.95 0 0 1 0-9.9Zm0 1.8a3.15 3.15 0 1 0 0 6.3 3.15 3.15 0 0 0 0-6.3Zm5.1-3.15a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1Z" fill="currentColor"/></svg>
+            <span>Instagram</span>
+        </a>
+    </div>
     <button class="update-button" id="update-button" type="button">Vérifier les nouveautés</button>
     <span class="update-status" id="update-status" role="status" aria-live="polite"></span>
 </footer>
