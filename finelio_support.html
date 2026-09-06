@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Aide et assistance pour l’application Finelio.">
+    <title>Assistance — Finelio</title>
+    <style>
+        :root {
+            color: #1f2a28;
+            background: #f7f5ec;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.65;
+        }
+
+        * { box-sizing: border-box; }
+        body { margin: 0; }
+
+        main {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 32px 20px;
+        }
+
+        .hero {
+            padding: 32px;
+            color: #fff;
+            background: linear-gradient(135deg, #2c3a35 0%, #18211f 100%);
+            border-radius: 24px;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.10);
+        }
+
+        .badge {
+            display: inline-block;
+            margin-bottom: 16px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        h1, h2 { font-family: Georgia, serif; }
+
+        h1 {
+            margin: 0 0 12px;
+            color: #fff;
+            font-size: clamp(2rem, 5vw, 2.125rem);
+            line-height: 1.2;
+        }
+
+        .intro { margin: 0; color: rgba(255, 255, 255, 0.88); font-size: 18px; }
+        .content { display: grid; gap: 16px; margin-top: 24px; }
+
+        section {
+            padding: 22px;
+            background: #fbfbf8;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 22px;
+        }
+
+        section.contact {
+            background: #f6f8f6;
+            border-color: rgba(39, 61, 53, 0.10);
+        }
+
+        h2 { margin: 0 0 10px; color: #1f2a28; font-size: 24px; line-height: 1.3; }
+        h3 { margin: 0 0 8px; color: #1f2a28; font-size: 20px; line-height: 1.35; }
+        p { margin: 0; color: #5b6763; }
+        p + p { margin-top: 14px; }
+        a { color: #2a5a4b; font-weight: 600; text-decoration: none; }
+        a:hover, a:focus-visible { text-decoration: underline; }
+
+        @media (max-width: 600px) {
+            main { padding: 20px 16px; }
+            .hero, section { padding: 24px 20px; }
+            h2 { font-size: 21px; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header class="hero">
+            <div class="badge">Assistance Finelio</div>
+            <h1>Comment utiliser Finelio</h1>
+            <p class="intro">Finelio vous aide à mieux comprendre le rendement réel de vos placements, simplement.</p>
+        </header>
+
+        <div class="content">
+            <section>
+                <h2>Bien démarrer</h2>
+                <p>Finelio permet soit de retrouver un rendement annualisé à partir d’une valeur finale, soit de projeter une valeur future à partir d’un taux saisi. Selon le produit choisi, ce taux peut être lu en brut ou en net de frais de gestion.</p>
+            </section>
+
+            <section>
+                <h3>1. Choisissez le bon mode</h3>
+                <p>Le mode Simple convient à un placement sans frais complexes, comme un livret. Le mode Avancé permet de renseigner les dates, les versements programmés, les frais et la fiscalité estimée.</p>
+            </section>
+
+            <section>
+                <h3>2. Sélectionnez votre logique de calcul</h3>
+                <p>Utilisez <strong>Valeur finale</strong> si vous connaissez le montant obtenu au terme du placement. Utilisez <strong>Rendement du contrat</strong> si vous connaissez déjà le taux annuel du support et souhaitez projeter une valeur future.</p>
+            </section>
+
+            <section>
+                <h3>3. Renseignez vos versements</h3>
+                <p>Finelio prend en compte un versement initial et, en mode avancé, des versements programmés par paliers. Vous pouvez définir plusieurs périodes avec une date d’effet, un montant et une fréquence mensuelle, trimestrielle ou annuelle.</p>
+            </section>
+
+            <section>
+                <h3>4. Ajoutez frais et fiscalité si besoin</h3>
+                <p>Les frais de versement réduisent immédiatement le capital réellement investi. Les frais annuels de gestion réduisent le rendement net chaque année. Le mode <strong>Après fiscalité</strong> applique une estimation simple sur le gain uniquement.</p>
+            </section>
+
+            <section>
+                <h3>5. Comparez un même objectif sur 5 produits</h3>
+                <p>Depuis l’accueil, ouvrez <strong>Comparer un objectif</strong>. Indiquez un capital cible, une durée et votre budget mensuel : Finelio affiche l’effort mensuel requis pour chacun des cinq produits. Les hypothèses de rendement peuvent être personnalisées ; les résultats sont indicatifs et hors fiscalité.</p>
+            </section>
+
+            <section>
+                <h3>6. Lisez les résultats</h3>
+                <p>Le bloc principal met en avant l’indicateur le plus important selon le mode choisi : rendement constaté ou valeur future estimée. Les cartes complémentaires détaillent ensuite le capital net investi, les frais, la comparaison avancée et la lecture du calcul.</p>
+            </section>
+
+            <section>
+                <h3>7. Sauvegardez et exportez</h3>
+                <p>Vous pouvez utiliser des profils d’exemple, sauvegarder vos scénarios, les renommer, les dupliquer, les comparer et générer un export PDF personnalisé avec un prénom et un nom.</p>
+            </section>
+
+            <section class="contact">
+                <h2>Besoin d’aide supplémentaire ?</h2>
+                <p>Si vous avez une question sur l’utilisation de Finelio, la lecture d’un résultat ou l’export de vos documents, vous pouvez nous contacter à l’adresse suivante :</p>
+                <p><a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a></p>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
