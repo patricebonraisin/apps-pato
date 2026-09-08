@@ -111,6 +111,24 @@
         .benefit h3 { margin: 23px 0 9px; font-size: 1.25rem; }
         .benefit p { margin: 0; color: var(--muted); line-height: 1.55; }
 
+        .feature-showcase { padding: 12px 0 96px; }
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 40px; }
+        .feature-card {
+            min-height: 250px; padding: 30px; border: 1px solid var(--line); border-radius: var(--radius);
+            background: linear-gradient(145deg, #fff, #f8fbff); box-shadow: 0 16px 36px rgb(15 44 84 / 5%);
+        }
+        .feature-card:nth-child(2) { background: linear-gradient(145deg, #fff, #f7fffb); }
+        .feature-card:nth-child(3) { background: linear-gradient(145deg, #fff, #faf8ff); }
+        .feature-card:nth-child(4) { background: linear-gradient(145deg, #fff, #fffaf3); }
+        .feature-tag { display: inline-flex; padding: 6px 10px; border-radius: 999px; color: var(--blue-deep); background: #e8f3ff; font-size: .78rem; font-weight: 800; }
+        .feature-card:nth-child(2) .feature-tag { color: #14835a; background: #e7f9ef; }
+        .feature-card:nth-child(3) .feature-tag { color: #6853dd; background: #eeeaff; }
+        .feature-card:nth-child(4) .feature-tag { color: #a36a00; background: #fff2d8; }
+        .feature-card h3 { margin: 20px 0 10px; font-size: 1.45rem; letter-spacing: -.03em; }
+        .feature-card p { max-width: 430px; margin: 0; color: var(--muted); line-height: 1.6; }
+        .feature-points { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+        .feature-points span { padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); background: rgb(255 255 255 / 72%); font-size: .84rem; font-weight: 700; }
+
         .statement { padding: 80px 0; color: white; background: var(--ink); }
         .statement-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 50px; align-items: center; }
         .statement h2 { margin: 0; font-size: clamp(2.15rem, 4vw, 3.55rem); line-height: 1.03; letter-spacing: -.055em; }
@@ -133,6 +151,9 @@
             .benefits { padding: 70px 0; }
             .benefit-grid { grid-template-columns: 1fr; margin-top: 30px; }
             .benefit { min-height: 0; }
+            .feature-showcase { padding-bottom: 70px; }
+            .feature-grid { grid-template-columns: 1fr; margin-top: 30px; }
+            .feature-card { min-height: 0; }
             .statement { padding: 64px 0; }
         }
 
@@ -191,7 +212,7 @@
                 <div class="hero-copy">
                     <div class="eyebrow">Compatible avec Home Assistant</div>
                     <h1>Votre maison,<br><span>simplement.</span></h1>
-                    <p class="intro">Assistant Maison rassemble l’essentiel de votre installation Home Assistant dans une interface claire, agréable et pensée pour tous les jours.</p>
+                    <p class="intro">Assistant Maison rassemble l’essentiel de votre installation Home Assistant : lumière, climat, volets, caméras, scènes et capteurs, dans une interface claire pensée pour tous les jours.</p>
                     <div class="actions">
                         <a class="button" href="#telecharger">Découvrir Assistant Maison <span aria-hidden="true">→</span></a>
                         <span class="fine-print">Vos appareils, vos pièces, vos habitudes.</span>
@@ -213,17 +234,48 @@
                 <article class="benefit">
                     <div class="benefit-icon" aria-hidden="true">⌂</div>
                     <h3>Une maison qui vous ressemble</h3>
-                    <p>Retrouvez vos favoris, organisés par famille : éclairage, confort, volets, scènes et bien plus.</p>
+                    <p>Retrouvez vos favoris organisés par famille : éclairage, ambiance, énergie, volets, caméras, scènes et bien plus.</p>
                 </article>
                 <article class="benefit">
                     <div class="benefit-icon" aria-hidden="true">☀</div>
                     <h3>Les bons gestes, tout de suite</h3>
-                    <p>Allumez, éteignez, ajustez une consigne ou lancez une scène, directement depuis l’Accueil.</p>
+                    <p>Allumez, éteignez, ajustez une consigne, pilotez un volet ou lancez une scène, directement depuis l’Accueil.</p>
                 </article>
                 <article class="benefit">
                     <div class="benefit-icon" aria-hidden="true">✓</div>
                     <h3>Simple et rassurante</h3>
-                    <p>Un état de connexion clair, des informations lisibles et vos données conservées sur vos appareils Apple.</p>
+                    <p>Un état de connexion clair, des informations lisibles et un jeton Home Assistant stocké en toute sécurité dans le trousseau Apple.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="feature-showcase container" aria-labelledby="fonctionnalites">
+            <div class="section-kicker">Pensée pour votre quotidien</div>
+            <h2 id="fonctionnalites" class="section-title">Les fonctions qui rendent votre maison plus simple à piloter.</h2>
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <span class="feature-tag">Volets &amp; stores</span>
+                    <h3>Une commande qui reste lisible</h3>
+                    <p>Ouvrez, arrêtez ou fermez vos volets. Pour les motorisations sans retour d’état, l’app conserve la dernière position demandée afin de garder une information utile.</p>
+                    <div class="feature-points"><span>Ouvrir</span><span>Arrêter</span><span>Fermer</span><span>Position</span></div>
+                </article>
+                <article class="feature-card">
+                    <span class="feature-tag">Confort</span>
+                    <h3>Température et scènes, sans détour</h3>
+                    <p>Consultez la température actuelle, ajustez votre consigne et changez de mode. Lancez aussi vos scènes et routines préférées depuis le même espace.</p>
+                    <div class="feature-points"><span>Climat</span><span>Consigne</span><span>Modes</span><span>Scènes</span></div>
+                </article>
+                <article class="feature-card">
+                    <span class="feature-tag">Caméras</span>
+                    <h3>Vos aperçus caméra, au bon endroit</h3>
+                    <p>Affichez l’image disponible de toute entité caméra Home Assistant, directement dans l’app. La disponibilité d’un flux direct dépend ensuite de votre intégration caméra.</p>
+                    <div class="feature-points"><span>Ring</span><span>Reolink</span><span>UniFi</span><span>Frigate</span></div>
+                </article>
+                <article class="feature-card">
+                    <span class="feature-tag">Données &amp; sécurité</span>
+                    <h3>Votre installation reste la vôtre</h3>
+                    <p>L’app utilise votre propre instance Home Assistant et votre jeton d’accès. Elle ne demande aucun compte supplémentaire et ne transmet pas vos identifiants dans les liens.</p>
+                    <div class="feature-points"><span>Home Assistant</span><span>Trousseau Apple</span><span>Connexion sécurisée</span></div>
                 </article>
             </div>
         </section>
