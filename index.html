@@ -572,6 +572,21 @@ header p {
     box-shadow: none;
 }
 
+.soon-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: fit-content;
+    padding: 13px 18px;
+    border: 1px dashed rgba(52,84,195,0.3);
+    border-radius: 999px;
+    color: var(--pato-blue);
+    background: rgba(52,84,195,0.06);
+    font-weight: 800;
+    font-size: 16px;
+}
+
 footer {
     display: flex;
     flex-direction: column;
@@ -774,6 +789,12 @@ html[data-theme="dark"] .install-prompt__dismiss {
     border-color: transparent;
 }
 
+html[data-theme="dark"] .soon-badge {
+    color: #A9B7FF;
+    background: rgba(141, 161, 255, 0.12);
+    border-color: rgba(141, 161, 255, 0.32);
+}
+
 html[data-theme="dark"] .favorite-button[aria-pressed="true"],
 html[data-theme="dark"] .intent-option:hover,
 html[data-theme="dark"] .intent-option[aria-pressed="true"],
@@ -893,6 +914,7 @@ html[data-theme="dark"] .card a:hover {
             <button class="intent-option" type="button" data-intent="epargne" aria-pressed="false">Comprendre mon épargne</button>
             <button class="intent-option" type="button" data-intent="proche" aria-pressed="false">Rassurer un proche</button>
             <button class="intent-option" type="button" data-intent="detente" aria-pressed="false">Me détendre</button>
+            <button class="intent-option" type="button" data-intent="maison" aria-pressed="false">Piloter ma maison</button>
         </div>
         <div class="guide-result" id="guide-result" aria-live="polite" hidden>
             <p id="guide-result-text"></p>
@@ -1037,6 +1059,22 @@ html[data-theme="dark"] .card a:hover {
             </div>
         </div>
 
+        <div class="card" data-app-id="am" data-app-name="Assistant Maison" data-app-page="AM_marketing.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Assistant Maison aux favoris">♡</button>
+            <div class="icon-wrap">
+                <img class="icon" src="assets/assistant-maison-logo.png" alt="Logo Assistant Maison">
+            </div>
+            <h2>Assistant Maison</h2>
+            <p>
+                Le pilotage quotidien de votre installation Home Assistant,
+                réuni dans une interface claire et agréable à utiliser.
+            </p>
+            <div class="card-actions">
+                <span class="soon-badge" role="status">Bientôt disponible</span>
+                <a class="details-link" href="AM_marketing.html">En savoir plus</a>
+            </div>
+        </div>
+
     </section>
 
 </div>
@@ -1162,6 +1200,10 @@ const guideRecommendations = {
     detente: {
         message: "Pour une pause plus calme ou un défi de quelques secondes, voici vos deux compagnons Pato.",
         apps: ["patolife", "pulse"]
+    },
+    maison: {
+        message: "Pour garder vos appareils Home Assistant à portée de main, Assistant Maison est fait pour ça.",
+        apps: ["am"]
     }
 };
 
