@@ -906,7 +906,7 @@ html[data-theme="dark"] .card a:hover {
         <div class="panel-card stat-card">
             <div>
                 <span>8</span>
-                <small>apps et bientôt <span>9</span>publiées dans la collection sur l'App Store</small>
+                <small>apps et bientôt <span>10</span>publiées dans la collection sur l'App Store</small>
                 <small class="compat-note">Compatible iPhone 11 ou plus récent • iOS 26 requis</small>
             </div>
         </div>
@@ -922,6 +922,7 @@ html[data-theme="dark"] .card a:hover {
             <button class="intent-option" type="button" data-intent="animal" aria-pressed="false">Prendre soin d’un animal</button>
             <button class="intent-option" type="button" data-intent="epargne" aria-pressed="false">Comprendre mon épargne</button>
             <button class="intent-option" type="button" data-intent="proche" aria-pressed="false">Rassurer un proche</button>
+            <button class="intent-option" type="button" data-intent="famille" aria-pressed="false">Explorer mon histoire familiale</button>
             <button class="intent-option" type="button" data-intent="detente" aria-pressed="false">Me détendre</button>
             <button class="intent-option" type="button" data-intent="maison" aria-pressed="false">Piloter ma maison</button>
         </div>
@@ -1084,6 +1085,22 @@ html[data-theme="dark"] .card a:hover {
             </div>
         </div>
 
+        <div class="card" data-app-id="arbre-familial" data-app-name="Arbre familial" data-app-page="AF_marketing.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Arbre familial aux favoris">♡</button>
+            <div class="icon-wrap">
+                <img class="icon" src="mon_arbre.png" alt="Logo Arbre familial">
+            </div>
+            <h2>Arbre familial</h2>
+            <p>
+                Explorez votre histoire familiale, reliez les générations
+                et transmettez les souvenirs qui comptent.
+            </p>
+            <div class="card-actions">
+                <span class="soon-badge" role="status">Bientôt disponible</span>
+                <a class="details-link" href="AF_marketing.html">En savoir plus</a>
+            </div>
+        </div>
+
     </section>
 
 </div>
@@ -1205,6 +1222,10 @@ const guideRecommendations = {
     proche: {
         message: "Pour installer un repère simple et rassurant avec ceux qui comptent, découvrez Toujours Là.",
         apps: ["toujours"]
+    },
+    famille: {
+        message: "Pour explorer les générations et transmettre les souvenirs qui comptent, découvrez Arbre familial.",
+        apps: ["arbre-familial"]
     },
     detente: {
         message: "Pour une pause plus calme ou un défi de quelques secondes, voici vos deux compagnons Pato.",

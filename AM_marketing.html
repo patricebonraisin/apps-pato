@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#0D7DF2">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0D7DF2">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0D1420">
     <meta name="description" content="Assistant Maison simplifie le pilotage quotidien de votre installation Home Assistant.">
     <title>Assistant Maison — Votre maison, simplement</title>
     <style>
@@ -188,6 +189,111 @@
         }
 
         @media (prefers-color-scheme: dark) {
+            :root {
+                color-scheme: dark;
+                --blue: #2e91f5;
+                --blue-deep: #8bc8ff;
+                --ink: #edf4ff;
+                --muted: #b4c3d6;
+                --surface: #0d1420;
+                --green: #73dd5b;
+                --gold: #ffc452;
+                --line: rgba(173, 202, 238, 0.2);
+            }
+
+            body {
+                background: #0d1420;
+            }
+
+            .hero {
+                background: linear-gradient(135deg, #101b2b 0%, #0d1420 58%, #101d30 100%);
+            }
+
+            .hero::before {
+                background: rgb(46 145 245 / 17%);
+            }
+
+            .button {
+                background: #2e91f5;
+                box-shadow: 0 13px 25px rgb(46 145 245 / 28%);
+            }
+
+            .button:hover {
+                box-shadow: 0 17px 30px rgb(46 145 245 / 36%);
+            }
+
+            .benefit {
+                background: #162133;
+            }
+
+            .benefit-icon {
+                color: #8bc8ff;
+                background: #1a3451;
+            }
+
+            .benefit:nth-child(2) .benefit-icon {
+                color: #ffc452;
+                background: #3b2d16;
+            }
+
+            .benefit:nth-child(3) .benefit-icon {
+                color: #73dd5b;
+                background: #173a25;
+            }
+
+            .feature-card,
+            .feature-card:nth-child(2),
+            .feature-card:nth-child(3),
+            .feature-card:nth-child(4) {
+                background: linear-gradient(145deg, #162133, #111b2b);
+                box-shadow: 0 16px 36px rgb(0 0 0 / 18%);
+            }
+
+            .feature-tag {
+                color: #8bc8ff;
+                background: #1a3451;
+            }
+
+            .feature-card:nth-child(2) .feature-tag {
+                color: #7be3b3;
+                background: #17382c;
+            }
+
+            .feature-card:nth-child(3) .feature-tag {
+                color: #c2b5ff;
+                background: #2b2550;
+            }
+
+            .feature-card:nth-child(4) .feature-tag {
+                color: #ffc96c;
+                background: #3b2d16;
+            }
+
+            .feature-points span {
+                color: var(--ink);
+                background: rgb(13 20 32 / 82%);
+            }
+
+            .statement {
+                background: #08111f;
+            }
+
+            .statement p {
+                color: #c2cedd;
+            }
+
+            .statement h2 span {
+                color: #8bd9ff;
+            }
+
+            .download {
+                background: linear-gradient(180deg, #101c2d, #0d1420);
+            }
+
+            footer {
+                color: var(--muted);
+            }
+
             .home-button {
                 border-color: rgba(255, 255, 255, 0.14);
                 background: rgba(20, 20, 35, 0.92);
