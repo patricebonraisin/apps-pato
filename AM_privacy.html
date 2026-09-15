@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0D7DF2">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0D1420">
+    <meta name="description" content="Politique de confidentialité d’Assistant Maison : aucune collecte, connexion directe à votre propre installation Home Assistant.">
+    <title>Politique de confidentialité — Assistant Maison</title>
+    <style>
+        :root {
+            --blue: #0d7df2;
+            --blue-deep: #0752c7;
+            --ink: #142033;
+            --muted: #64748b;
+            --surface: #f5f8fd;
+            --green: #5cca41;
+            --line: #dce7f7;
+            --radius: 24px;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--blue-deep); text-decoration: none; font-weight: 650; }
+        a:hover, a:focus-visible { text-decoration: underline; }
+        .container { width: min(880px, calc(100% - 40px)); margin: 0 auto; }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 82px;
+        }
+        .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 760; font-size: 1.12rem; color: var(--ink); }
+        .brand img { width: 38px; height: 38px; border-radius: 11px; box-shadow: 0 8px 22px rgb(13 125 242 / 18%); }
+        .nav-link { color: var(--muted); font-weight: 650; font-size: .95rem; }
+
+        .policy-hero {
+            padding: 56px 0 44px;
+            background: linear-gradient(135deg, #f5faff 0%, #fff 58%, #f1f8ff 100%);
+        }
+        .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--blue-deep); font-weight: 760; font-size: .92rem; }
+        .eyebrow::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 5px rgb(92 202 65 / 16%); }
+        h1 { margin: 16px 0 12px; font-size: clamp(2.1rem, 5vw, 3.1rem); line-height: 1.05; letter-spacing: -.045em; }
+        .updated { margin: 0; color: var(--muted); font-size: 1.02rem; }
+        .lede { max-width: 620px; margin: 14px 0 0; color: var(--muted); font-size: 1.1rem; line-height: 1.55; }
+
+        main { padding: 8px 0 96px; }
+        .content { display: grid; gap: 16px; margin-top: 8px; }
+
+        section.card {
+            padding: 26px 28px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: #fff;
+        }
+        section.card.highlight {
+            background: linear-gradient(145deg, #fff, #f6faff);
+        }
+
+        h2 { margin: 0 0 10px; font-size: 1.28rem; letter-spacing: -.02em; }
+        section.card p { margin: 0; color: var(--muted); line-height: 1.65; }
+        section.card p + p { margin-top: 12px; }
+
+        footer { padding: 28px 0 36px; color: var(--muted); font-size: .9rem; text-align: center; }
+
+        @media (max-width: 420px) {
+            .container { width: min(100% - 28px, 880px); }
+            .nav { min-height: 70px; }
+            .nav-link { display: none; }
+            section.card { padding: 22px; }
+        }
+
+        .home-button {
+            display: flex;
+            width: fit-content;
+            margin: 24px auto calc(24px + env(safe-area-inset-bottom));
+            align-items: center;
+            gap: 8px;
+            min-height: 44px;
+            padding: 0 14px;
+            border: 1px solid rgba(17, 19, 26, 0.12);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.92);
+            color: #11131A;
+            box-shadow: 0 8px 24px rgba(17, 19, 26, 0.16);
+            text-decoration: none;
+            font: 700 15px -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .home-button:active {
+            transform: scale(0.96);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                color-scheme: dark;
+                --blue: #2e91f5;
+                --blue-deep: #8bc8ff;
+                --ink: #edf4ff;
+                --muted: #b4c3d6;
+                --surface: #0d1420;
+                --green: #73dd5b;
+                --line: rgba(173, 202, 238, 0.2);
+            }
+
+            body { background: #0d1420; }
+
+            .policy-hero {
+                background: linear-gradient(135deg, #101b2b 0%, #0d1420 58%, #101d30 100%);
+            }
+
+            section.card {
+                background: #162133;
+            }
+
+            section.card.highlight {
+                background: linear-gradient(145deg, #162133, #111b2b);
+            }
+
+            footer { color: var(--muted); }
+
+            .home-button {
+                border-color: rgba(255, 255, 255, 0.14);
+                background: rgba(20, 20, 35, 0.92);
+                color: #eef0fa;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="container nav">
+        <a class="brand" href="AM_marketing.html" aria-label="Assistant Maison, accueil">
+            <img src="assets/assistant-maison-logo.png" alt="">
+            <span>Assistant Maison</span>
+        </a>
+        <a class="nav-link" href="AM_marketing.html#decouvrir">Découvrir l’application</a>
+    </header>
+
+    <section class="policy-hero">
+        <div class="container">
+            <div class="eyebrow">Confidentialité</div>
+            <h1>Politique de confidentialité</h1>
+            <p class="updated">Dernière mise à jour : 15 septembre 2026</p>
+            <p class="lede">Assistant Maison ne collecte rien : l’application se connecte directement à votre propre installation Home Assistant, sans compte, sans publicité et sans serveur intermédiaire.</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="content">
+            <section class="card">
+                <h2>Identité de l’éditeur</h2>
+                <p>Éditeur : Patrice Bonraisin<br>Nom commercial : Pato Switch<br>Application : Assistant Maison<br>Contact : <a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a></p>
+            </section>
+
+            <section class="card highlight">
+                <h2>1. Aucune collecte, aucun compte</h2>
+                <p>Assistant Maison ne demande aucun compte, n’affiche aucune publicité et n’intègre aucun outil de suivi, de statistiques ou de service tiers. Aucune donnée n’est envoyée à Pato Switch ni à qui que ce soit d’autre.</p>
+            </section>
+
+            <section class="card">
+                <h2>2. Connexion à votre Home Assistant</h2>
+                <p>L’adresse de votre installation Home Assistant et le jeton d’accès longue durée que vous saisissez servent uniquement à connecter l’application directement à votre propre serveur Home Assistant.</p>
+                <p>Assistant Maison n’a pas de serveur : les échanges se font uniquement entre votre iPhone et votre installation Home Assistant, jamais via un intermédiaire exploité par l’éditeur.</p>
+            </section>
+
+            <section class="card">
+                <h2>3. Données traitées et leur stockage</h2>
+                <p>Le jeton d’accès est enregistré dans le Trousseau iCloud de votre iPhone (chiffré), et synchronisé uniquement entre vos propres appareils Apple si le Trousseau iCloud est activé.</p>
+                <p>L’adresse de votre Home Assistant, vos favoris et les appareils masqués sont enregistrés localement sur votre iPhone. L’adresse est également synchronisée via iCloud (trousseau de clés-valeurs privé) pour rester disponible sur vos autres appareils connectés au même identifiant Apple.</p>
+            </section>
+
+            <section class="card">
+                <h2>4. Face ID et Touch ID</h2>
+                <p>Le verrouillage optionnel de l’application utilise Face ID, Touch ID ou le code de votre iPhone via le système d’authentification d’Apple (Local Authentication). Assistant Maison ne voit, ne collecte ni ne stocke aucune donnée biométrique : celle-ci reste gérée entièrement par iOS et n’est jamais transmise à l’éditeur.</p>
+            </section>
+
+            <section class="card">
+                <h2>5. Caméras et états de vos appareils</h2>
+                <p>Les images de caméra et les états de vos appareils (lumières, volets, serrures, climat, etc.) proviennent directement de votre Home Assistant et transitent uniquement entre lui et votre iPhone. Rien n’est enregistré ni conservé par l’application ou par l’éditeur.</p>
+            </section>
+
+            <section class="card">
+                <h2>6. Partage des données</h2>
+                <p>Aucune donnée traitée par Assistant Maison n’est partagée avec des tiers. L’application ne met en place ni publicité ciblée, ni revente de données, ni profilage commercial des utilisateurs.</p>
+            </section>
+
+            <section class="card">
+                <h2>7. Conservation, suppression et droits</h2>
+                <p>Le bouton « Déconnecter Home Assistant » dans les réglages de l’application supprime immédiatement l’adresse et le jeton enregistrés sur cet iPhone. Désinstaller l’application supprime l’ensemble des données locales (favoris, appareils masqués, préférences de verrouillage).</p>
+                <p>Comme Assistant Maison ne conserve rien sur un serveur, il n’existe aucune donnée à supprimer du côté de l’éditeur au-delà de celle présente sur vos appareils. Si vous avez transmis volontairement des informations personnelles par email, vous disposez d’un droit d’accès, de rectification et d’effacement de ces informations, sur simple demande à l’adresse ci-dessous.</p>
+            </section>
+
+            <section class="card">
+                <h2>8. Modifications de cette politique</h2>
+                <p>Cette politique de confidentialité peut être mise à jour afin de refléter les évolutions de l’application ou de la réglementation applicable. La date de dernière mise à jour figure en haut de cette page.</p>
+            </section>
+
+            <section class="card">
+                <h2>9. Contact</h2>
+                <p>Pour toute question relative à la présente politique de confidentialité, vous pouvez contacter :</p>
+                <p>Patrice Bonraisin · Pato Switch<br><a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a> · <a href="https://www.patoswitch.fr">patoswitch.fr</a></p>
+            </section>
+        </div>
+    </main>
+
+    <footer class="container">Assistant Maison · Une interface simple pour votre maison connectée. · <a href="AM_support.html">Assistance</a></footer>
+
+    <a class="home-button" href="/" aria-label="Retour à l'accueil Pato Apps">⌂ Accueil</a>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0D7DF2">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0D1420">
+    <meta name="description" content="Assistance Assistant Maison : connecter votre Home Assistant, gérer vos favoris et répondre aux questions fréquentes.">
+    <title>Assistance — Assistant Maison</title>
+    <style>
+        :root {
+            --blue: #0d7df2;
+            --blue-deep: #0752c7;
+            --ink: #142033;
+            --muted: #64748b;
+            --surface: #f5f8fd;
+            --green: #5cca41;
+            --line: #dce7f7;
+            --radius: 24px;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--blue-deep); text-decoration: none; font-weight: 650; }
+        a:hover, a:focus-visible { text-decoration: underline; }
+        .container { width: min(880px, calc(100% - 40px)); margin: 0 auto; }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 82px;
+        }
+        .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 760; font-size: 1.12rem; color: var(--ink); }
+        .brand img { width: 38px; height: 38px; border-radius: 11px; box-shadow: 0 8px 22px rgb(13 125 242 / 18%); }
+        .nav-link { color: var(--muted); font-weight: 650; font-size: .95rem; }
+
+        .page-hero {
+            padding: 56px 0 44px;
+            background: linear-gradient(135deg, #f5faff 0%, #fff 58%, #f1f8ff 100%);
+        }
+        .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--blue-deep); font-weight: 760; font-size: .92rem; }
+        .eyebrow::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 5px rgb(92 202 65 / 16%); }
+        h1 { margin: 16px 0 12px; font-size: clamp(2.1rem, 5vw, 3.1rem); line-height: 1.05; letter-spacing: -.045em; }
+        .lede { max-width: 620px; margin: 14px 0 0; color: var(--muted); font-size: 1.1rem; line-height: 1.55; }
+
+        main { padding: 8px 0 96px; }
+        .content { display: grid; gap: 16px; margin-top: 8px; }
+
+        section.card {
+            padding: 26px 28px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: #fff;
+        }
+        section.card.contact {
+            background: linear-gradient(145deg, #fff, #f6faff);
+        }
+
+        h2 { margin: 0 0 10px; font-size: 1.28rem; letter-spacing: -.02em; }
+        section.card p { margin: 0; color: var(--muted); line-height: 1.65; }
+        section.card p + p { margin-top: 12px; }
+        section.card ol, section.card ul { margin: 0; padding-left: 1.2em; color: var(--muted); line-height: 1.65; }
+        section.card li + li { margin-top: 6px; }
+        section.card strong { color: var(--ink); }
+
+        footer { padding: 28px 0 36px; color: var(--muted); font-size: .9rem; text-align: center; }
+        footer a { color: var(--blue-deep); font-weight: 650; text-decoration: underline; }
+
+        @media (max-width: 420px) {
+            .container { width: min(100% - 28px, 880px); }
+            .nav { min-height: 70px; }
+            .nav-link { display: none; }
+            section.card { padding: 22px; }
+        }
+
+        .home-button {
+            display: flex;
+            width: fit-content;
+            margin: 24px auto calc(24px + env(safe-area-inset-bottom));
+            align-items: center;
+            gap: 8px;
+            min-height: 44px;
+            padding: 0 14px;
+            border: 1px solid rgba(17, 19, 26, 0.12);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.92);
+            color: #11131A;
+            box-shadow: 0 8px 24px rgba(17, 19, 26, 0.16);
+            text-decoration: none;
+            font: 700 15px -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .home-button:active {
+            transform: scale(0.96);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                color-scheme: dark;
+                --blue: #2e91f5;
+                --blue-deep: #8bc8ff;
+                --ink: #edf4ff;
+                --muted: #b4c3d6;
+                --surface: #0d1420;
+                --green: #73dd5b;
+                --line: rgba(173, 202, 238, 0.2);
+            }
+
+            body { background: #0d1420; }
+
+            .page-hero {
+                background: linear-gradient(135deg, #101b2b 0%, #0d1420 58%, #101d30 100%);
+            }
+
+            section.card {
+                background: #162133;
+            }
+
+            section.card.contact {
+                background: linear-gradient(145deg, #162133, #111b2b);
+            }
+
+            footer { color: var(--muted); }
+
+            .home-button {
+                border-color: rgba(255, 255, 255, 0.14);
+                background: rgba(20, 20, 35, 0.92);
+                color: #eef0fa;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="container nav">
+        <a class="brand" href="AM_marketing.html" aria-label="Assistant Maison, accueil">
+            <img src="assets/assistant-maison-logo.png" alt="">
+            <span>Assistant Maison</span>
+        </a>
+        <a class="nav-link" href="AM_marketing.html#decouvrir">Découvrir l’application</a>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <div class="eyebrow">Assistance</div>
+            <h1>Comment utiliser Assistant Maison</h1>
+            <p class="lede">Connectez votre Home Assistant, retrouvez vos favoris et gardez le contrôle de votre maison. Voici les réponses aux questions les plus fréquentes.</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="content">
+            <section class="card">
+                <h2>Bien démarrer</h2>
+                <p>Assistant Maison fonctionne avec une installation Home Assistant déjà configurée : elle ne remplace pas Home Assistant et n’ajoute pas directement d’appareils. Un mode d’emploi complet est aussi disponible directement dans l’application, depuis Réglages → Mode d’emploi.</p>
+            </section>
+
+            <section class="card">
+                <h2>1. Connecter Assistant Maison à Home Assistant</h2>
+                <p>Dans <strong>Réglages → Connexion Home Assistant</strong>, renseignez l’adresse de votre installation (par exemple <code>http://homeassistant.local:8123</code>) ainsi qu’un jeton d’accès longue durée, puis appuyez sur <strong>Tester la connexion</strong>.</p>
+            </section>
+
+            <section class="card">
+                <h2>2. Où trouver ou créer un jeton d’accès longue durée ?</h2>
+                <ol>
+                    <li>Ouvrez Home Assistant et accédez à votre profil utilisateur.</li>
+                    <li>Descendez jusqu’à la section « Jetons d’accès longue durée ».</li>
+                    <li>Choisissez « Créer un jeton » et donnez-lui un nom, par exemple « Assistant Maison ».</li>
+                    <li>Copiez le jeton affiché : Home Assistant ne l’affiche qu’une seule fois.</li>
+                    <li>Collez-le dans le champ « Jeton d’accès » de l’application.</li>
+                </ol>
+            </section>
+
+            <section class="card">
+                <h2>3. Accès depuis l’extérieur de votre domicile</h2>
+                <p>Une adresse locale (comme <code>homeassistant.local</code>) fonctionne uniquement lorsque votre iPhone est connecté au même réseau que Home Assistant. Pour piloter votre maison depuis l’extérieur, votre Home Assistant doit proposer un accès distant sécurisé, par exemple via Home Assistant Cloud (Nabu Casa) ou une autre méthode d’accès distant de votre choix. Ce n’est pas obligatoire : l’adresse locale suffit si vous n’utilisez l’application que chez vous.</p>
+            </section>
+
+            <section class="card">
+                <h2>4. Favoris et appareils masqués</h2>
+                <p>Ajoutez une étoile à un appareil dans l’onglet <strong>Appareils</strong> pour le retrouver rapidement sur l’écran d’accueil. À l’inverse, masquez les appareils ou entités que vous ne souhaitez pas voir : ils restent accessibles à tout moment depuis <strong>Réglages → Appareils masqués</strong>, où vous pouvez les réafficher.</p>
+            </section>
+
+            <section class="card">
+                <h2>5. Verrouillage Face ID</h2>
+                <p>Vous pouvez protéger l’accès à l’application avec Face ID, Touch ID ou le code de votre iPhone en activant l’option dans <strong>Réglages → Verrouillage</strong>. Si l’authentification échoue ou n’est pas configurée, un bouton « Déverrouiller » reste disponible pour réessayer.</p>
+            </section>
+
+            <section class="card">
+                <h2>6. Un appareil apparaît indisponible</h2>
+                <p>Cela signifie que Home Assistant ne transmet pas actuellement son état. Essayez d’actualiser l’application, puis vérifiez l’appareil et son intégration directement dans Home Assistant si le problème persiste.</p>
+            </section>
+
+            <section class="card">
+                <h2>7. Caméras</h2>
+                <p>Assistant Maison affiche l’image disponible pour toute entité caméra transmise par Home Assistant. La qualité et la disponibilité d’un flux dépendent de votre intégration caméra (Ring, Reolink, UniFi Protect, Frigate, etc.).</p>
+            </section>
+
+            <section class="card contact">
+                <h2>Besoin d’aide supplémentaire ?</h2>
+                <p>Si votre question ne trouve pas de réponse ici, écrivez-nous :</p>
+                <p><a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a></p>
+                <p>Pour toute question sur les données traitées par l’application, consultez notre <a href="AM_privacy.html">politique de confidentialité</a>.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer class="container">Assistant Maison · Une interface simple pour votre maison connectée.</footer>
+
+    <a class="home-button" href="/" aria-label="Retour à l'accueil Pato Apps">⌂ Accueil</a>
+</body>
+</html>
