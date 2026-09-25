@@ -748,7 +748,9 @@ html[data-theme="dark"] body {
         radial-gradient(circle at 92% 12%, rgba(250, 151, 72, 0.14), transparent 28%),
         radial-gradient(circle at 50% 92%, rgba(52, 84, 195, 0.20), transparent 34%),
         linear-gradient(180deg, #121521 0%, #171C2A 44%, #10131D 100%);
-}
+
+[File truncated: 685 more lines available. Use 'offset' and 'limit' parameters to read more content.]
+[File truncated: 668 more lines available. Use 'offset' and 'limit' parameters to read more content.]}
 
 html[data-theme="dark"] body::before {
     background-image:
@@ -906,7 +908,7 @@ html[data-theme="dark"] .card a:hover {
         <div class="panel-card stat-card">
             <div>
                 <span>8</span>
-                <small>apps et bientôt <span>10</span>publiées dans la collection sur l'App Store</small>
+                <small>apps et bientôt <span>11</span>publiées dans la collection sur l'App Store</small>
                 <small class="compat-note">Compatible iPhone 11 ou plus récent • iOS 26 requis</small>
             </div>
         </div>
@@ -923,6 +925,7 @@ html[data-theme="dark"] .card a:hover {
             <button class="intent-option" type="button" data-intent="epargne" aria-pressed="false">Comprendre mon épargne</button>
             <button class="intent-option" type="button" data-intent="proche" aria-pressed="false">Rassurer un proche</button>
             <button class="intent-option" type="button" data-intent="famille" aria-pressed="false">Explorer mon histoire familiale</button>
+            <button class="intent-option" type="button" data-intent="souvenirs" aria-pressed="false">Partager mes souvenirs</button>
             <button class="intent-option" type="button" data-intent="detente" aria-pressed="false">Me détendre</button>
             <button class="intent-option" type="button" data-intent="maison" aria-pressed="false">Piloter ma maison</button>
         </div>
@@ -1101,6 +1104,22 @@ html[data-theme="dark"] .card a:hover {
             </div>
         </div>
 
+        <div class="card" data-app-id="entrenous" data-app-name="EntreNous" data-app-page="EntreNous_marketing.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter EntreNous aux favoris">♡</button>
+            <div class="icon-wrap">
+                <img class="icon" src="EntreNous.png" alt="Icône EntreNous">
+            </div>
+            <h2>EntreNous</h2>
+            <p>
+                Un journal privé pour garder, partager et retrouver
+                les souvenirs qui comptent avec vos proches.
+            </p>
+            <div class="card-actions">
+                <span class="soon-badge" role="status">Bientôt disponible</span>
+                <a class="details-link" href="EntreNous_marketing.html">En savoir plus</a>
+            </div>
+        </div>
+
     </section>
 
 </div>
@@ -1226,6 +1245,10 @@ const guideRecommendations = {
     famille: {
         message: "Pour explorer les générations et transmettre les souvenirs qui comptent, découvrez Arbre familial.",
         apps: ["arbre-familial"]
+    },
+    souvenirs: {
+        message: "Pour garder les moments importants et les partager dans un cercle privé, découvrez EntreNous.",
+        apps: ["entrenous"]
     },
     detente: {
         message: "Pour une pause plus calme ou un défi de quelques secondes, voici vos deux compagnons Pato.",
