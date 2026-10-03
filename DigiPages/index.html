@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f7f7f8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="DigiPages">
+    <title>DigiPages</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app">
+        <section class="landing-page screen" data-screen="home" aria-labelledby="page-title">
+            <div class="hero">
+                <p class="brand">DigiPages</p>
+                <div class="hero-content">
+                    <h1 id="page-title">Votre produit mérite sa page.</h1>
+                    <p class="introduction">Créez simplement la page digitale de votre produit connecté.</p>
+                </div>
+                <button class="primary-button" type="button" data-action="open-models">Créer une page</button>
+                <p class="association-note">À associer à votre produit NFC ou QR code.</p>
+            </div>
+        </section>
+
+        <section class="models-page screen" data-screen="models" aria-labelledby="models-title" hidden>
+            <div class="models-container">
+                <header class="models-header">
+                    <button class="back-button" type="button" data-action="go-home" aria-label="Retour à l'accueil">
+                        <span aria-hidden="true">‹</span>
+                        Retour
+                    </button>
+                    <p class="brand">DigiPages</p>
+                </header>
+
+                <div class="models-intro">
+                    <h1 id="models-title">Quel type de page souhaitez-vous créer&nbsp;?</h1>
+                    <p>Choisissez le modèle qui correspond à votre produit.</p>
+                </div>
+
+                <div class="model-grid">
+                    <button class="model-card" type="button" data-action="open-business-card">
+                        <span class="availability">Disponible</span>
+                        <span class="model-card-content">
+                            <span class="model-title">Carte de visite</span>
+                            <span class="model-description">Partagez vos coordonnées professionnelles.</span>
+                        </span>
+                    </button>
+
+                    <button class="model-card" type="button" data-action="open-animal">
+                        <span class="availability">Disponible</span>
+                        <span class="model-card-content">
+                            <span class="model-title">Identification d'un animal</span>
+                            <span class="model-description">Retrouvez facilement son propriétaire.</span>
+                        </span>
+                    </button>
+
+                    <article class="model-card unavailable" aria-label="Entreprise — Bientôt disponible">
+                        <span class="coming-soon">Bientôt disponible</span>
+                        <span class="model-title">Entreprise</span>
+                    </article>
+
+                    <article class="model-card unavailable" aria-label="Réseaux sociaux — Bientôt disponible">
+                        <span class="coming-soon">Bientôt disponible</span>
+                        <span class="model-title">Réseaux sociaux</span>
+                    </article>
+
+                    <article class="model-card unavailable" aria-label="Produit — Bientôt disponible">
+                        <span class="coming-soon">Bientôt disponible</span>
+                        <span class="model-title">Produit</span>
+                    </article>
+
+                    <article class="model-card unavailable" aria-label="Événement — Bientôt disponible">
+                        <span class="coming-soon">Bientôt disponible</span>
+                        <span class="model-title">Événement</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-page screen" data-screen="business-card" aria-labelledby="business-card-title" hidden>
+            <div class="form-container">
+                <header class="models-header">
+                    <button class="back-button" type="button" data-action="go-models" aria-label="Retour au choix des modèles">
+                        <span aria-hidden="true">‹</span>
+                        Retour
+                    </button>
+                    <p class="brand">DigiPages</p>
+                </header>
+
+                <div class="form-intro">
+                    <h1 id="business-card-title">Votre carte de visite</h1>
+                    <p>Renseignez les informations que vous souhaitez partager.</p>
+                </div>
+
+                <form class="business-card-form" novalidate>
+                    <section class="form-section" aria-labelledby="identity-title">
+                        <h2 id="identity-title">Identité</h2>
+
+                        <div class="field-group photo-field">
+                            <label for="photo">Photo ou logo</label>
+                            <input id="photo" name="photo" type="file" accept="image/*">
+                        </div>
+
+                        <div class="field-grid">
+                            <div class="field-group">
+                                <label for="first-name">Prénom</label>
+                                <input id="first-name" name="first-name" type="text" autocomplete="given-name">
+                            </div>
+                            <div class="field-group">
+                                <label for="last-name">Nom</label>
+                                <input id="last-name" name="last-name" type="text" autocomplete="family-name">
+                            </div>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="company">Société</label>
+                            <input id="company" name="company" type="text" autocomplete="organization">
+                        </div>
+
+                        <div class="field-group">
+                            <label for="position">Fonction</label>
+                            <input id="position" name="position" type="text" autocomplete="organization-title">
+                        </div>
+                    </section>
+
+                    <section class="form-section" aria-labelledby="contact-title">
+                        <h2 id="contact-title">Coordonnées</h2>
+
+                        <div class="field-group">
+                            <label for="phone">Téléphone</label>
+                            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel">
+                        </div>
+
+                        <div class="field-group">
+                            <label for="email">Adresse e-mail</label>
+                            <input id="email" name="email" type="email" inputmode="email" autocomplete="email">
+                        </div>
+
+                        <div class="field-group">
+                            <label for="address">Adresse professionnelle</label>
+                            <textarea id="address" name="address" rows="3" autocomplete="street-address"></textarea>
+                        </div>
+                    </section>
+
+                    <section class="form-section" aria-labelledby="activity-title">
+                        <h2 id="activity-title">Activité</h2>
+
+                        <div class="field-group">
+                            <label for="website">Site internet</label>
+                            <input id="website" name="website" type="url" inputmode="url" autocomplete="url" placeholder="https://">
+                        </div>
+
+                        <div class="field-group">
+                            <label for="description">Description de l'activité</label>
+                            <textarea id="description" name="description" rows="4"></textarea>
+                        </div>
+                    </section>
+
+                    <section class="form-section" aria-labelledby="social-title">
+                        <h2 id="social-title">Réseaux sociaux</h2>
+
+                        <div class="field-group">
+                            <label for="linkedin">LinkedIn</label>
+                            <input id="linkedin" name="linkedin" type="url" inputmode="url" autocomplete="url" placeholder="https://">
+                        </div>
+
+                        <div class="field-group">
+                            <label for="instagram">Instagram</label>
+                            <input id="instagram" name="instagram" type="url" inputmode="url" autocomplete="url" placeholder="https://">
+                        </div>
+
+                        <div class="field-group">
+                            <label for="facebook">Facebook</label>
+                            <input id="facebook" name="facebook" type="url" inputmode="url" autocomplete="url" placeholder="https://">
+                        </div>
+                    </section>
+
+                    <button class="primary-button form-button" type="button" data-action="open-preview">Continuer</button>
+                    <button class="clear-draft-button" type="button" data-action="clear-business-card-draft">Effacer le brouillon</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="form-page screen" data-screen="animal" aria-labelledby="animal-title" hidden>
+            <div class="form-container">
+                <header class="models-header">
+                    <button class="back-button" type="button" data-action="go-models-from-animal" aria-label="Retour au choix des modèles">
+                        <span aria-hidden="true">‹</span>
+                        Retour
+                    </button>
+                    <p class="brand">DigiPages</p>
+                </header>
+
+                <div class="form-intro">
+                    <h1 id="animal-title">Votre animal</h1>
+                    <p>Renseignez les informations utiles pour le retrouver et le protéger.</p>
+                </div>
+
+                <form class="animal-form" novalidate>
+                    <section class="form-section" aria-labelledby="animal-section-title">
+                        <h2 id="animal-section-title">Mon animal</h2>
+
+                        <div class="field-group photo-field">
+                            <label for="animal-photo">Photo</label>
+                            <input id="animal-photo" name="animal-photo" type="file" accept="image/*">
+                        </div>
+
+                        <div class="field-group">
+                            <label for="animal-name">Nom de l'animal</label>
+                            <input id="animal-name" name="animal-name" type="text">
+                        </div>
+
+                        <div class="field-group">
+                            <label for="animal-breed">Race</label>
+                            <input id="animal-breed" name="animal-breed" type="text">
+                        </div>
+
+                        <div class="field-grid">
+                            <div class="field-group">
+                                <label for="animal-sex">Sexe</label>
+                                <select id="animal-sex" name="animal-sex">
+                                    <option value="">Non renseigné</option>
+                                    <option>Mâle</option>
+                                    <option>Femelle</option>
+                                </select>
+                            </div>
+                            <div class="field-group">
+                                <label for="animal-birth-date">Date de naissance</label>
+                                <input id="animal-birth-date" name="animal-birth-date" type="date">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="form-section" aria-labelledby="owner-section-title">
+                        <h2 id="owner-section-title">Son propriétaire</h2>
+
+                        <div class="field-group">
+                            <label for="owner-name">Nom du propriétaire</label>
+                            <input id="owner-name" name="owner-name" type="text" autocomplete="name">
+                        </div>
+
+                        <div class="field-group">
+                            <label for="owner-phone">Numéro de téléphone</label>
+                            <input id="owner-phone" name="owner-phone" type="tel" inputmode="tel" autocomplete="tel">
+                        </div>
+
+                        <div class="field-group">
+                            <label for="owner-location">Adresse ou commune de résidence</label>
+                            <input id="owner-location" name="owner-location" type="text" autocomplete="street-address">
+                        </div>
+                    </section>
+
+                    <section class="form-section" aria-labelledby="emergency-section-title">
+                        <h2 id="emergency-section-title">En cas d'urgence</h2>
+
+                        <div class="field-group">
+                            <label for="emergency-name">Nom de la personne à contacter</label>
+                            <input id="emergency-name" name="emergency-name" type="text" autocomplete="name">
+                        </div>
+
+                        <div class="field-group">
+                            <label for="emergency-phone">Numéro de téléphone d'urgence</label>
+                            <input id="emergency-phone" name="emergency-phone" type="tel" inputmode="tel">
+                        </div>
+                    </section>
+
+                    <section class="form-section" aria-labelledby="veterinarian-section-title">
+                        <h2 id="veterinarian-section-title">Vétérinaire</h2>
+
+                        <div class="field-group">
+                            <label for="veterinarian-name">Nom du vétérinaire ou de la clinique</label>
+                            <input id="veterinarian-name" name="veterinarian-name" type="text">
+                        </div>
+
+                        <div class="field-group">
+                            <label for="veterinarian-phone">Numéro de téléphone du vétérinaire</label>
+                            <input id="veterinarian-phone" name="veterinarian-phone" type="tel" inputmode="tel">
+                        </div>
+                    </section>
+
+                    <section class="form-section" aria-labelledby="important-info-section-title">
+                        <h2 id="important-info-section-title">Informations importantes</h2>
+
+                        <div class="field-group">
+                            <label for="animal-important-info">Informations accessibles concernant l'animal</label>
+                            <textarea id="animal-important-info" name="animal-important-info" rows="5"></textarea>
+                        </div>
+                    </section>
+
+                    <button class="primary-button form-button" type="button" data-action="open-animal-preview">Continuer</button>
+                    <button class="clear-draft-button" type="button" data-action="clear-animal-draft">Effacer le brouillon</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="preview-page animal-preview-page screen" data-screen="animal-preview" aria-labelledby="animal-preview-title" hidden>
+            <div class="preview-container">
+                <header class="models-header">
+                    <button class="back-button" type="button" data-action="edit-animal" aria-label="Modifier la fiche de l'animal">
+                        <span aria-hidden="true">‹</span>
+                        Modifier
+                    </button>
+                    <p class="brand">DigiPages</p>
+                </header>
+
+                <article class="animal-profile" aria-labelledby="animal-preview-title">
+                    <img class="animal-preview-photo" data-animal-preview="photo" alt="" hidden>
+
+                    <div class="animal-profile-header">
+                        <p class="animal-profile-eyebrow">Fiche d'identification</p>
+                        <h1 id="animal-preview-title" data-animal-preview="name" hidden></h1>
+                        <p class="animal-profile-meta" data-animal-preview="meta" hidden></p>
+                    </div>
+
+                    <div class="animal-profile-details" data-animal-preview="details" hidden></div>
+
+                    <div class="animal-profile-actions" data-animal-preview="actions" hidden></div>
+                </article>
+
+                <button class="primary-button publish-button" type="button">Publier ma page</button>
+            </div>
+        </section>
+
+        <section class="preview-page screen" data-screen="preview" aria-labelledby="preview-title" hidden>
+            <div class="preview-container">
+                <header class="models-header">
+                    <button class="back-button" type="button" data-action="edit-business-card" aria-label="Modifier la carte de visite">
+                        <span aria-hidden="true">‹</span>
+                        Modifier
+                    </button>
+                    <p class="brand">DigiPages</p>
+                </header>
+
+                <article class="digital-card" aria-labelledby="preview-title">
+                    <img class="preview-photo" data-preview="photo" alt="" hidden>
+
+                    <div class="preview-identity">
+                        <h1 id="preview-title" data-preview="name"></h1>
+                        <p class="preview-company" data-preview="company" hidden></p>
+                        <p class="preview-position" data-preview="position" hidden></p>
+                    </div>
+
+                    <p class="preview-description" data-preview="description" hidden></p>
+
+                    <div class="preview-details" data-preview="details" hidden></div>
+
+                    <div class="preview-actions" data-preview="actions" hidden></div>
+                </article>
+
+                <button class="primary-button publish-button" type="button">Publier ma page</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
