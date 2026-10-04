@@ -112,25 +112,28 @@ function clearDraft(form, key, message) {
 }
 
 function showScreen(screen) {
-    homeScreen.hidden = screen !== "home";
-    modelsScreen.hidden = screen !== "models";
-    businessCardScreen.hidden = screen !== "business-card";
-    previewScreen.hidden = screen !== "preview";
-    animalScreen.hidden = screen !== "animal";
-    animalPreviewScreen.hidden = screen !== "animal-preview";
+    const screens = {
+        home: homeScreen,
+        models: modelsScreen,
+        "business-card": businessCardScreen,
+        preview: previewScreen,
+        animal: animalScreen,
+        "animal-preview": animalPreviewScreen
+    };
+    const nextScreen = screens[screen];
 
-    if (screen === "home") {
-        openModelsButton.focus();
-    } else if (screen === "models") {
-        goHomeButton.focus();
-    } else if (screen === "business-card") {
-        goModelsButton.focus();
-    } else if (screen === "animal") {
-        goModelsFromAnimalButton.focus();
-    } else if (screen === "animal-preview") {
-        editAnimalButton.focus();
-    } else {
-        editBusinessCardButton.focus();
+    Object.values(screens).forEach((element) => {
+        element.hidden = element !== nextScreen;
+    });
+
+    window.scrollTo(0, 0);
+
+    // Le titre annonce le nouvel écran aux lecteurs d’écran sans attirer le regard
+    // vers le bouton Retour ou modifier l’ordre naturel de navigation au clavier.
+    const heading = nextScreen.querySelector("h1");
+
+    if (heading) {
+        heading.focus({ preventScroll: true });
     }
 }
 

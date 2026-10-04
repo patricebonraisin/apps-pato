@@ -21,6 +21,22 @@ button {
     font: inherit;
 }
 
+.screen:not([hidden]) {
+    animation: screen-enter 180ms ease-out both;
+}
+
+@keyframes screen-enter {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .landing-page {
     display: grid;
     min-height: 100svh;
@@ -35,11 +51,20 @@ button {
 }
 
 .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
     margin: 0;
     color: #6e6e73;
     font-size: 0.95rem;
     font-weight: 600;
     letter-spacing: -0.01em;
+}
+
+.brand img {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
 }
 
 .hero-content {
@@ -109,7 +134,7 @@ h1 {
 .models-container {
     width: min(100%, 760px);
     margin: 0 auto;
-    padding: 8px 0 40px;
+    padding: 4px 0 32px;
 }
 
 .models-header {
@@ -151,7 +176,7 @@ h1 {
 
 .models-intro {
     max-width: 490px;
-    margin-top: 56px;
+    margin-top: 36px;
 }
 
 .models-intro h1 {
@@ -162,7 +187,7 @@ h1 {
 }
 
 .models-intro p {
-    margin: 18px 0 0;
+    margin: 12px 0 0;
     color: #6e6e73;
     font-size: 1.03rem;
     letter-spacing: -0.015em;
@@ -171,15 +196,15 @@ h1 {
 
 .model-grid {
     display: grid;
-    gap: 12px;
-    margin-top: 40px;
+    gap: 10px;
+    margin-top: 28px;
 }
 
 .model-card {
     position: relative;
     display: flex;
-    min-height: 126px;
-    padding: 22px;
+    min-height: 108px;
+    padding: 18px;
     border: 1px solid #e2e2e5;
     border-radius: 20px;
     background: #fff;
@@ -245,16 +270,26 @@ button.model-card:focus-visible {
     color: #347047;
 }
 
+.model-card:not(.unavailable) {
+    box-shadow: 0 4px 14px rgba(29, 29, 31, 0.03);
+}
+
 .unavailable {
+    min-height: 76px;
     justify-content: flex-end;
     flex-direction: column;
-    background: #f2f2f4;
-    color: #89898e;
+    padding: 14px 16px;
+    background: #f5f5f7;
+    color: #a1a1a6;
 }
 
 .coming-soon {
-    background: #e7e7ea;
-    color: #77777d;
+    top: 14px;
+    right: 16px;
+    padding: 4px 8px;
+    background: #eeeeF0;
+    color: #89898e;
+    font-size: 0.68rem;
 }
 
 .form-page {
@@ -733,7 +768,11 @@ button.model-card:focus-visible {
     }
 
     .model-card {
-        min-height: 154px;
+        min-height: 136px;
+    }
+
+    .model-card.unavailable {
+        min-height: 92px;
     }
 }
 
@@ -752,7 +791,12 @@ button.model-card:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .primary-button {
+    .screen:not([hidden]) {
+        animation: none;
+    }
+
+    .primary-button,
+    button.model-card {
         transition: none;
     }
 }
