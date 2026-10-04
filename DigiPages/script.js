@@ -4,6 +4,8 @@ const businessCardScreen = document.querySelector('[data-screen="business-card"]
 const previewScreen = document.querySelector('[data-screen="preview"]');
 const animalScreen = document.querySelector('[data-screen="animal"]');
 const animalPreviewScreen = document.querySelector('[data-screen="animal-preview"]');
+const publishedScreen = document.querySelector('[data-screen="published"]');
+const publicScreen = document.querySelector('[data-screen="public"]');
 const openModelsButton = document.querySelector('[data-action="open-models"]');
 const openBusinessCardButton = document.querySelector('[data-action="open-business-card"]');
 const openAnimalButton = document.querySelector('[data-action="open-animal"]');
@@ -16,6 +18,13 @@ const editBusinessCardButton = document.querySelector('[data-action="edit-busine
 const editAnimalButton = document.querySelector('[data-action="edit-animal"]');
 const clearBusinessCardDraftButton = document.querySelector('[data-action="clear-business-card-draft"]');
 const clearAnimalDraftButton = document.querySelector('[data-action="clear-animal-draft"]');
+const publishBusinessCardButton = document.querySelector('[data-action="publish-business-card"]');
+const publishAnimalButton = document.querySelector('[data-action="publish-animal"]');
+const openPublishedPageButton = document.querySelector('[data-action="open-published-page"]');
+const copyPublishedLinkButton = document.querySelector('[data-action="copy-published-link"]');
+const editPublishedPageButton = document.querySelector('[data-action="edit-published-page"]');
+const publishedURL = document.querySelector('[data-published-url]');
+const publicContent = document.querySelector('[data-public-content]');
 const businessCardForm = document.querySelector(".business-card-form");
 const animalForm = document.querySelector(".animal-form");
 const photoInput = document.querySelector("#photo");
@@ -35,7 +44,9 @@ const animalPreviewActions = document.querySelector('[data-animal-preview="actio
 const textEncoder = new TextEncoder();
 const businessCardDraftKey = "digipages.business-card-draft";
 const animalDraftKey = "digipages.animal-draft";
+const publishedPagesKey = "digipages.published-pages";
 
+let currentPublishedPage;
 let photoURL;
 let animalPhotoURL;
 let contactURL;
@@ -118,7 +129,9 @@ function showScreen(screen) {
         "business-card": businessCardScreen,
         preview: previewScreen,
         animal: animalScreen,
-        "animal-preview": animalPreviewScreen
+        "animal-preview": animalPreviewScreen,
+        published: publishedScreen,
+        public: publicScreen
     };
     const nextScreen = screens[screen];
 
@@ -127,6 +140,379 @@ function showScreen(screen) {
     });
 
     window.scrollTo(0, 0);
+}
+
+function readPublishedPages() {
+    try {
+        const pages = JSON.parse(localStorage.getItem(publishedPagesKey) || "{}");
+
+        return pages && typeof pages === "object" ? pages : {};
+    } catch {
+        return {};
+    }
+}
+
+function publicationID() {
+    const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    const values = new Uint8Array(6);
+
+    if (window.crypto?.getRandomValues) {
+        window.crypto.getRandomValues(values);
+    } else {
+        values.forEach((_, index) => {
+            values[index] = Math.floor(Math.random() * 256);
+        });
+    }
+
+    return Array.from(values, (value) => alphabet[value % alphabet.length]).join("");
+}
+
+function appBasePath() {
+    const [path] = window.location.pathname.split("/p/");
+
+    return path.endsWith("/") ? path : `${path}/`;
+}
+
+function publicationPath(id) {
+    return `${appBasePath()}p/${id}`;
+}
+
+function publicationURLFor(id) {
+    return new URL(publicationPath(id), window.location.origin).href;
+}
+
+function publicationIDFromPath() {
+    const match = window.location.pathname.match(/\/p\/([A-Z0-9]+)\/?$/i);
+
+    return match ? match[1].toUpperCase() : "";
+}
+
+function fileAsDataURL(input) {
+    const [file] = input.files;
+
+    if (!file) {
+        return Promise.resolve("");
+    }
+
+    return new Promise((resolve) => {
+        const reader = new FileReader();
+
+        reader.addEventListener("load", () => resolve(typeof reader.result === "string" ? reader.result : ""));
+        reader.addEventListener("error", () => resolve(""));
+        reader.readAsDataURL(file);
+    });
+}
+
+function businessCardData() {
+    return {
+        firstName: valueFor("first-name"),
+        lastName: valueFor("last-name"),
+        company: valueFor("company"),
+        position: valueFor("position"),
+        phone: valueFor("phone"),
+        email: valueFor("email"),
+        address: valueFor("address"),
+        website: valueFor("website"),
+        description: valueFor("description"),
+        linkedin: valueFor("linkedin"),
+        instagram: valueFor("instagram"),
+        facebook: valueFor("facebook")
+    };
+}
+
+function animalData() {
+    return {
+        name: valueFor("animal-name"),
+        breed: valueFor("animal-breed"),
+        sex: valueFor("animal-sex"),
+        birthDate: valueFor("animal-birth-date"),
+        ownerName: valueFor("owner-name"),
+        ownerPhone: valueFor("owner-phone"),
+        ownerLocation: valueFor("owner-location"),
+        emergencyName: valueFor("emergency-name"),
+        emergencyPhone: valueFor("emergency-phone"),
+        veterinarianName: valueFor("veterinarian-name"),
+        veterinarianPhone: valueFor("veterinarian-phone"),
+        importantInfo: valueFor("animal-important-info")
+    };
+}
+
+function savePublishedPage(page) {
+    const pages = readPublishedPages();
+
+    pages[page.id] = page;
+
+    try {
+        localStorage.setItem(publishedPagesKey, JSON.stringify(pages));
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+function createElement(tagName, className = "", text = "") {
+    const element = document.createElement(tagName);
+
+    if (className) {
+        element.className = className;
+    }
+
+    if (text) {
+        element.textContent = text;
+    }
+
+    return element;
+}
+
+function appendPublicDetail(container, label, value, important = false) {
+    if (!value) {
+        return;
+    }
+
+    const detail = createElement("div", important ? "animal-detail animal-detail-important" : "preview-detail");
+    const detailLabel = createElement("span", important ? "animal-detail-label" : "preview-detail-label", label);
+    const detailValue = createElement("span", important ? "animal-detail-value" : "preview-detail-value", value);
+
+    detail.append(detailLabel, detailValue);
+    container.append(detail);
+}
+
+function appendPublicAction(container, label, href, primary = false) {
+    if (!href) {
+        return;
+    }
+
+    const action = createElement("a", primary ? "animal-call-action animal-call-primary" : "preview-action", label);
+
+    action.href = href;
+
+    if (/^https?:/i.test(href)) {
+        action.target = "_blank";
+        action.rel = "noopener noreferrer";
+    }
+
+    container.append(action);
+}
+
+function publicBrand() {
+    const brand = createElement("div", "brand");
+    const logo = document.createElement("img");
+
+    logo.src = new URL("icons/icon-192.png", `${window.location.origin}${appBasePath()}`).href;
+    logo.alt = "";
+    logo.width = 32;
+    logo.height = 32;
+    brand.append(logo, document.createTextNode("DigiPages"));
+
+    return brand;
+}
+
+function renderBusinessCardPublicPage(page) {
+    const { data, photo } = page;
+    const article = createElement("article", "digital-card public-card");
+    const name = [data.firstName, data.lastName].filter(Boolean).join(" ") || data.company || "Carte de visite";
+    const identity = createElement("div", "preview-identity");
+
+    if (photo) {
+        const image = createElement("img", "preview-photo");
+
+        image.src = photo;
+        image.alt = "";
+        article.append(image);
+    }
+
+    identity.append(createElement("h1", "", name));
+
+    if (data.company) {
+        identity.append(createElement("p", "preview-company", data.company));
+    }
+
+    if (data.position) {
+        identity.append(createElement("p", "preview-position", data.position));
+    }
+
+    article.append(identity);
+
+    if (data.description) {
+        article.append(createElement("p", "preview-description", data.description));
+    }
+
+    const details = createElement("div", "preview-details");
+
+    appendPublicDetail(details, "Téléphone", data.phone);
+    appendPublicDetail(details, "E-mail", data.email);
+    appendPublicDetail(details, "Adresse", data.address);
+    appendPublicDetail(details, "Site internet", data.website);
+
+    if (details.childElementCount) {
+        article.append(details);
+    }
+
+    const actions = createElement("div", "preview-actions");
+
+    appendPublicAction(actions, "Appeler", data.phone ? `tel:${data.phone.replace(/[^\d+*#(),;.-]/g, "")}` : "");
+    appendPublicAction(actions, "Envoyer un e-mail", data.email ? `mailto:${encodeURIComponent(data.email)}` : "");
+    appendPublicAction(actions, "Ouvrir le site", externalURL(data.website));
+    appendPublicAction(actions, "LinkedIn", externalURL(data.linkedin));
+    appendPublicAction(actions, "Instagram", externalURL(data.instagram));
+    appendPublicAction(actions, "Facebook", externalURL(data.facebook));
+
+    if (actions.childElementCount) {
+        article.append(actions);
+    }
+
+    return article;
+}
+
+function renderAnimalPublicPage(page) {
+    const { data, photo } = page;
+    const article = createElement("article", "animal-profile public-card");
+    const header = createElement("div", "animal-profile-header");
+    const meta = [data.breed, data.sex, formatAnimalBirthDate(data.birthDate)].filter(Boolean).join(" · ");
+
+    if (photo) {
+        const image = createElement("img", "animal-preview-photo");
+
+        image.src = photo;
+        image.alt = data.name ? `Photo de ${data.name}` : "";
+        article.append(image);
+    }
+
+    header.append(createElement("p", "animal-profile-eyebrow", "Fiche d'identification"));
+    header.append(createElement("h1", "", data.name || "Mon animal"));
+
+    if (meta) {
+        header.append(createElement("p", "animal-profile-meta", meta));
+    }
+
+    article.append(header);
+
+    const details = createElement("div", "animal-profile-details");
+
+    appendPublicDetail(details, "Propriétaire", data.ownerName);
+    appendPublicDetail(details, "Adresse ou commune", data.ownerLocation);
+    appendPublicDetail(details, "Contact d'urgence", data.emergencyName);
+    appendPublicDetail(details, "Vétérinaire", data.veterinarianName);
+    appendPublicDetail(details, "Informations importantes", data.importantInfo, true);
+
+    if (details.childElementCount) {
+        article.append(details);
+    }
+
+    const actions = createElement("div", "animal-profile-actions");
+
+    appendPublicAction(actions, "Appeler le propriétaire", data.ownerPhone ? `tel:${data.ownerPhone.replace(/[^\d+*#(),;.-]/g, "")}` : "", true);
+    appendPublicAction(actions, "Appeler le contact d'urgence", data.emergencyPhone ? `tel:${data.emergencyPhone.replace(/[^\d+*#(),;.-]/g, "")}` : "");
+    appendPublicAction(actions, "Appeler le vétérinaire", data.veterinarianPhone ? `tel:${data.veterinarianPhone.replace(/[^\d+*#(),;.-]/g, "")}` : "");
+
+    if (actions.childElementCount) {
+        article.append(actions);
+    }
+
+    return article;
+}
+
+function renderPublicPage(page) {
+    publicContent.replaceChildren(publicBrand(), page.type === "animal"
+        ? renderAnimalPublicPage(page)
+        : renderBusinessCardPublicPage(page));
+}
+
+function showPublicationConfirmation(page) {
+    currentPublishedPage = page;
+    const url = publicationURLFor(page.id);
+
+    publishedURL.href = url;
+    publishedURL.textContent = url;
+    showScreen("published");
+}
+
+async function publishPage(type) {
+    const pages = readPublishedPages();
+    let id = publicationID();
+
+    while (pages[id]) {
+        id = publicationID();
+    }
+
+    const isAnimal = type === "animal";
+    const page = {
+        id,
+        type: isAnimal ? "animal" : "business-card",
+        createdAt: new Date().toISOString(),
+        data: isAnimal ? animalData() : businessCardData(),
+        photo: await fileAsDataURL(isAnimal ? animalPhotoInput : photoInput)
+    };
+
+    if (!savePublishedPage(page)) {
+        if (page.photo) {
+            page.photo = "";
+
+            if (savePublishedPage(page)) {
+                window.alert("La page a été publiée, mais la photo n'a pas pu être enregistrée localement.");
+                showPublicationConfirmation(page);
+                return;
+            }
+        }
+
+        window.alert("La publication n'a pas pu être enregistrée localement.");
+        return;
+    }
+
+    showPublicationConfirmation(page);
+}
+
+function openPublishedPage() {
+    if (!currentPublishedPage) {
+        return;
+    }
+
+    window.history.pushState({}, "", publicationPath(currentPublishedPage.id));
+    renderPublicPage(currentPublishedPage);
+    showScreen("public");
+}
+
+async function copyPublishedLink() {
+    if (!currentPublishedPage) {
+        return;
+    }
+
+    const url = publicationURLFor(currentPublishedPage.id);
+
+    try {
+        await navigator.clipboard.writeText(url);
+        copyPublishedLinkButton.textContent = "Lien copié";
+    } catch {
+        window.prompt("Copiez ce lien :", url);
+    }
+}
+
+function editPublishedPage() {
+    if (!currentPublishedPage) {
+        return;
+    }
+
+    showScreen(currentPublishedPage.type === "animal" ? "animal" : "business-card");
+}
+
+function loadPublicationFromURL() {
+    const id = publicationIDFromPath();
+
+    if (!id) {
+        return false;
+    }
+
+    const page = readPublishedPages()[id];
+
+    if (!page) {
+        return false;
+    }
+
+    currentPublishedPage = page;
+    renderPublicPage(page);
+    showScreen("public");
+
+    return true;
 }
 
 function valueFor(id) {
@@ -484,6 +870,19 @@ goModelsButton.addEventListener("click", () => showScreen("models"));
 goModelsFromAnimalButton.addEventListener("click", () => showScreen("models"));
 editBusinessCardButton.addEventListener("click", () => showScreen("business-card"));
 editAnimalButton.addEventListener("click", () => showScreen("animal"));
+publishBusinessCardButton.addEventListener("click", () => publishPage("business-card"));
+publishAnimalButton.addEventListener("click", () => publishPage("animal"));
+openPublishedPageButton.addEventListener("click", openPublishedPage);
+copyPublishedLinkButton.addEventListener("click", copyPublishedLink);
+editPublishedPageButton.addEventListener("click", editPublishedPage);
+
+window.addEventListener("popstate", () => {
+    if (!loadPublicationFromURL()) {
+        showScreen("home");
+    }
+});
+
+loadPublicationFromURL();
 
 if ("serviceWorker" in navigator && window.isSecureContext) {
     navigator.serviceWorker.register("./service-worker.js").catch(() => {

@@ -720,6 +720,110 @@ button.model-card:focus-visible {
     outline-offset: 3px;
 }
 
+.publication-page,
+.public-page {
+    min-height: 100svh;
+    padding: 24px;
+}
+
+.publication-container,
+.public-container {
+    width: min(100%, 560px);
+    margin: 0 auto;
+    padding: 8px 0 48px;
+}
+
+.publication-confirmation {
+    margin-top: 72px;
+    text-align: center;
+}
+
+.publication-eyebrow {
+    margin: 0 0 12px;
+    color: #86868b;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.publication-confirmation h1 {
+    max-width: none;
+    font-size: clamp(2.2rem, 10vw, 3.4rem);
+}
+
+.publication-confirmation > p:not(.publication-eyebrow) {
+    max-width: 360px;
+    margin: 18px auto 0;
+    color: #6e6e73;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.publication-url {
+    display: block;
+    margin-top: 26px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: #f2f2f4;
+    color: #1d1d1f;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    overflow-wrap: anywhere;
+    text-decoration: none;
+}
+
+.publication-actions {
+    display: grid;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.publication-actions .primary-button {
+    max-width: none;
+    margin-top: 0;
+}
+
+.secondary-button,
+.text-button {
+    width: 100%;
+    min-height: 50px;
+    border: 0;
+    border-radius: 14px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.secondary-button {
+    background: #e9e9ed;
+    color: #1d1d1f;
+}
+
+.text-button {
+    min-height: auto;
+    padding: 10px;
+    background: transparent;
+    color: #6e6e73;
+}
+
+.secondary-button:focus-visible,
+.text-button:focus-visible {
+    outline: 3px solid #0071e3;
+    outline-offset: 3px;
+}
+
+.public-container > .brand {
+    margin-bottom: 36px;
+}
+
+.public-card {
+    margin-top: 0;
+}
+
 .landing-page {
     padding-top: max(24px, env(safe-area-inset-top, 0px));
     padding-right: max(24px, env(safe-area-inset-right, 0px));
@@ -729,7 +833,9 @@ button.model-card:focus-visible {
 
 .models-page,
 .form-page,
-.preview-page {
+.preview-page,
+.publication-page,
+.public-page {
     padding-top: max(24px, env(safe-area-inset-top, 0px));
     padding-right: max(24px, env(safe-area-inset-right, 0px));
     padding-bottom: max(24px, env(safe-area-inset-bottom, 0px));

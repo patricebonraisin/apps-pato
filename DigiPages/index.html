@@ -322,7 +322,7 @@
                     <div class="animal-profile-actions" data-animal-preview="actions" hidden></div>
                 </article>
 
-                <button class="primary-button publish-button" type="button">Publier ma page</button>
+                <button class="primary-button publish-button" type="button" data-action="publish-animal">Publier ma page</button>
             </div>
         </section>
 
@@ -352,8 +352,29 @@
                     <div class="preview-actions" data-preview="actions" hidden></div>
                 </article>
 
-                <button class="primary-button publish-button" type="button">Publier ma page</button>
+                <button class="primary-button publish-button" type="button" data-action="publish-business-card">Publier ma page</button>
             </div>
+        </section>
+
+        <section class="publication-page screen" data-screen="published" aria-labelledby="published-title" hidden>
+            <div class="publication-container">
+                <div class="brand"><img src="icons/icon-192.png" alt="" width="32" height="32">DigiPages</div>
+                <div class="publication-confirmation">
+                    <p class="publication-eyebrow">Publication terminée</p>
+                    <h1 tabindex="-1" id="published-title">Votre page est publiée</h1>
+                    <p>Votre lien unique est prêt à être associé à votre QR code ou votre puce NFC.</p>
+                    <a class="publication-url" data-published-url href=""></a>
+                    <div class="publication-actions">
+                        <button class="primary-button" type="button" data-action="open-published-page">Ouvrir ma page</button>
+                        <button class="secondary-button" type="button" data-action="copy-published-link">Copier le lien</button>
+                        <button class="text-button" type="button" data-action="edit-published-page">Modifier</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="public-page screen" data-screen="public" aria-live="polite" hidden>
+            <div class="public-container" data-public-content></div>
         </section>
     </main>
 
