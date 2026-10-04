@@ -1,4 +1,4 @@
-const cacheName = "digipages-v2";
+const cacheName = "digipages-v3";
 const appShell = [
     "./",
     "./index.html",
@@ -9,6 +9,10 @@ const appShell = [
     "./icons/icon-192.png",
     "./icons/icon-512.png"
 ];
+const networkFirstAssets = new Set(
+    ["./", "./index.html", "./style.css", "./script.js", "./manifest.json"]
+        .map((path) => new URL(path, self.registration.scope).href)
+);
 
 self.addEventListener("install", (event) => {
     event.waitUntil(
@@ -32,6 +36,27 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
     if (event.request.method !== "GET") {
+        return;
+    }
+
+    if (networkFirstAssets.has(event.request.url)) {
+        event.respondWith(
+            fetch(event.request, { cache: "no-store" })
+                .then(async (response) => {
+                    if (response.ok) {
+                        const cache = await caches.open(cacheName);
+
+                        await cache.put(event.request, response.clone());
+                    }
+
+                    return response;
+                })
+                .catch(() =>
+                    caches.match(event.request).then((cachedResponse) =>
+                        cachedResponse || Response.error()
+                    )
+                )
+        );
         return;
     }
 
