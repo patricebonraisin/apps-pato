@@ -1,10 +1,13 @@
-const cacheName = "digipages-v1";
+const cacheName = "digipages-v2";
 const appShell = [
     "./",
     "./index.html",
     "./style.css",
     "./script.js",
-    "./manifest.json"
+    "./manifest.json",
+    "./icons/apple-touch-icon.png",
+    "./icons/icon-192.png",
+    "./icons/icon-512.png"
 ];
 
 self.addEventListener("install", (event) => {
