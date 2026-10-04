@@ -127,14 +127,6 @@ function showScreen(screen) {
     });
 
     window.scrollTo(0, 0);
-
-    // Le titre annonce le nouvel écran aux lecteurs d’écran sans attirer le regard
-    // vers le bouton Retour ou modifier l’ordre naturel de navigation au clavier.
-    const heading = nextScreen.querySelector("h1");
-
-    if (heading) {
-        heading.focus({ preventScroll: true });
-    }
 }
 
 function valueFor(id) {
