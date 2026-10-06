@@ -44,9 +44,11 @@ const animalPreviewActions = document.querySelector('[data-animal-preview="actio
 const textEncoder = new TextEncoder();
 const businessCardDraftKey = "digipages.business-card-draft";
 const animalDraftKey = "digipages.animal-draft";
-const publishedPagesKey = "digipages.published-pages";
+const editTokensKey = "digipages.edit-tokens";
+const apiBaseURL = "https://patoleblog.fr/wp-json/digipages/v1/pages";
 
 let currentPublishedPage;
+let currentEditingPage;
 let photoURL;
 let animalPhotoURL;
 let contactURL;
@@ -142,29 +144,30 @@ function showScreen(screen) {
     window.scrollTo(0, 0);
 }
 
-function readPublishedPages() {
+function readEditTokens() {
     try {
-        const pages = JSON.parse(localStorage.getItem(publishedPagesKey) || "{}");
+        const tokens = JSON.parse(localStorage.getItem(editTokensKey) || "{}");
 
-        return pages && typeof pages === "object" ? pages : {};
+        return tokens && typeof tokens === "object" ? tokens : {};
     } catch {
         return {};
     }
 }
 
-function publicationID() {
-    const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-    const values = new Uint8Array(6);
+function editTokenFor(publicID) {
+    return readEditTokens()[publicID] || "";
+}
 
-    if (window.crypto?.getRandomValues) {
-        window.crypto.getRandomValues(values);
-    } else {
-        values.forEach((_, index) => {
-            values[index] = Math.floor(Math.random() * 256);
-        });
+function saveEditToken(publicID, editToken) {
+    try {
+        const tokens = readEditTokens();
+
+        tokens[publicID] = editToken;
+        localStorage.setItem(editTokensKey, JSON.stringify(tokens));
+        return true;
+    } catch {
+        return false;
     }
-
-    return Array.from(values, (value) => alphabet[value % alphabet.length]).join("");
 }
 
 function appBasePath() {
@@ -237,17 +240,37 @@ function animalData() {
     };
 }
 
-function savePublishedPage(page) {
-    const pages = readPublishedPages();
+function normalizeBackendPage(page) {
+    const data = page && typeof page.data === "object" && page.data ? page.data : {};
+    const photo = typeof data.photo === "string" ? data.photo : (page.image_url || "");
 
-    pages[page.id] = page;
+    return {
+        id: page.public_id,
+        type: page.page_type,
+        data,
+        photo,
+        createdAt: page.created_at,
+        updatedAt: page.updated_at
+    };
+}
 
-    try {
-        localStorage.setItem(publishedPagesKey, JSON.stringify(pages));
-        return true;
-    } catch {
-        return false;
+async function requestPage(path = "", options = {}) {
+    const response = await fetch(apiBaseURL + path, {
+        ...options,
+        headers: {
+            "Content-Type": "application/json",
+            ...(options.headers || {})
+        }
+    });
+
+    if (!response.ok) {
+        const error = new Error("request-failed");
+
+        error.status = response.status;
+        throw error;
     }
+
+    return response.json();
 }
 
 function createElement(tagName, className = "", text = "") {
@@ -413,63 +436,105 @@ function renderAnimalPublicPage(page) {
 }
 
 function renderPublicPage(page) {
-    publicContent.replaceChildren(publicBrand(), page.type === "animal"
+    const card = page.type === "animal"
         ? renderAnimalPublicPage(page)
-        : renderBusinessCardPublicPage(page));
+        : renderBusinessCardPublicPage(page);
+    const elements = [publicBrand(), card];
+
+    if (editTokenFor(page.id)) {
+        const editButton = createElement("button", "text-button", "Modifier cette page");
+
+        editButton.type = "button";
+        editButton.addEventListener("click", () => startEditingPage(page));
+        elements.push(editButton);
+    }
+
+    publicContent.replaceChildren(...elements);
+}
+
+function showPublicMessage(message) {
+    publicContent.replaceChildren(
+        publicBrand(),
+        createElement("article", "public-card", message)
+    );
+    showScreen("public");
 }
 
 function showPublicationConfirmation(page) {
     currentPublishedPage = page;
+    currentEditingPage = page;
     const url = publicationURLFor(page.id);
 
     publishedURL.href = url;
     publishedURL.textContent = url;
+    editPublishedPageButton.hidden = !editTokenFor(page.id);
     showScreen("published");
 }
 
-async function publishPage(type) {
-    const pages = readPublishedPages();
-    let id = publicationID();
+function pagePayload(type, photo) {
+    const data = type === "animal" ? animalData() : businessCardData();
 
-    while (pages[id]) {
-        id = publicationID();
-    }
-
-    const isAnimal = type === "animal";
-    const page = {
-        id,
-        type: isAnimal ? "animal" : "business-card",
-        createdAt: new Date().toISOString(),
-        data: isAnimal ? animalData() : businessCardData(),
-        photo: await fileAsDataURL(isAnimal ? animalPhotoInput : photoInput)
+    return {
+        page_type: type,
+        data: { ...data, photo },
+        image_url: null
     };
-
-    if (!savePublishedPage(page)) {
-        if (page.photo) {
-            page.photo = "";
-
-            if (savePublishedPage(page)) {
-                window.alert("La page a été publiée, mais la photo n'a pas pu être enregistrée localement.");
-                showPublicationConfirmation(page);
-                return;
-            }
-        }
-
-        window.alert("La publication n'a pas pu être enregistrée localement.");
-        return;
-    }
-
-    showPublicationConfirmation(page);
 }
 
-function openPublishedPage() {
+async function publishPage(type) {
+    const button = type === "animal" ? publishAnimalButton : publishBusinessCardButton;
+    const originalLabel = button.textContent;
+    const selectedPhoto = await fileAsDataURL(type === "animal" ? animalPhotoInput : photoInput);
+    const photo = selectedPhoto || (currentEditingPage && currentEditingPage.type === type
+        ? currentEditingPage.photo
+        : "");
+    const token = currentEditingPage && currentEditingPage.type === type
+        ? editTokenFor(currentEditingPage.id)
+        : "";
+
+    button.disabled = true;
+    button.textContent = "Publication…";
+
+    try {
+        const payload = pagePayload(type, photo);
+        const response = token
+            ? await requestPage("/" + currentEditingPage.id, {
+                method: "PUT",
+                headers: { "X-DigiPages-Edit-Token": token },
+                body: JSON.stringify(payload)
+            })
+            : await requestPage("", {
+                method: "POST",
+                body: JSON.stringify(payload)
+            });
+        const page = normalizeBackendPage(response);
+
+        if (response.edit_token) {
+            saveEditToken(page.id, response.edit_token);
+        }
+
+        showPublicationConfirmation(page);
+    } catch (error) {
+        if (token && error.status === 403) {
+            window.alert("La modification a été refusée.");
+        } else if (error.status) {
+            window.alert("La publication est impossible pour le moment. Réessayez plus tard.");
+        } else {
+            window.alert("Le serveur est indisponible. Vérifiez votre connexion et réessayez.");
+        }
+    } finally {
+        button.disabled = false;
+        button.textContent = originalLabel;
+    }
+}
+
+async function openPublishedPage() {
     if (!currentPublishedPage) {
         return;
     }
 
     window.history.pushState({}, "", publicationPath(currentPublishedPage.id));
-    renderPublicPage(currentPublishedPage);
-    showScreen("public");
+    await loadPublicationFromURL();
 }
 
 async function copyPublishedLink() {
@@ -487,30 +552,80 @@ async function copyPublishedLink() {
     }
 }
 
-function editPublishedPage() {
-    if (!currentPublishedPage) {
+function setFormValues(values) {
+    Object.entries(values).forEach(([id, value]) => {
+        const field = document.querySelector("#" + id);
+
+        if (field && typeof value === "string") {
+            field.value = value;
+        }
+    });
+}
+
+function startEditingPage(page) {
+    currentEditingPage = page;
+
+    if (page.type === "animal") {
+        setFormValues({
+            "animal-name": page.data.name,
+            "animal-breed": page.data.breed,
+            "animal-sex": page.data.sex,
+            "animal-birth-date": page.data.birthDate,
+            "owner-name": page.data.ownerName,
+            "owner-phone": page.data.ownerPhone,
+            "owner-location": page.data.ownerLocation,
+            "emergency-name": page.data.emergencyName,
+            "emergency-phone": page.data.emergencyPhone,
+            "veterinarian-name": page.data.veterinarianName,
+            "veterinarian-phone": page.data.veterinarianPhone,
+            "animal-important-info": page.data.importantInfo
+        });
+        showScreen("animal");
         return;
     }
 
-    showScreen(currentPublishedPage.type === "animal" ? "animal" : "business-card");
+    setFormValues({
+        "first-name": page.data.firstName,
+        "last-name": page.data.lastName,
+        company: page.data.company,
+        position: page.data.position,
+        phone: page.data.phone,
+        email: page.data.email,
+        address: page.data.address,
+        website: page.data.website,
+        description: page.data.description,
+        linkedin: page.data.linkedin,
+        instagram: page.data.instagram,
+        facebook: page.data.facebook
+    });
+    showScreen("business-card");
 }
 
-function loadPublicationFromURL() {
+function editPublishedPage() {
+    if (currentPublishedPage && editTokenFor(currentPublishedPage.id)) {
+        startEditingPage(currentPublishedPage);
+    }
+}
+
+async function loadPublicationFromURL() {
     const id = publicationIDFromPath();
 
     if (!id) {
         return false;
     }
 
-    const page = readPublishedPages()[id];
+    showPublicMessage("Chargement de la page…");
 
-    if (!page) {
-        return false;
+    try {
+        const page = normalizeBackendPage(await requestPage("/" + id.toLowerCase()));
+
+        currentPublishedPage = page;
+        renderPublicPage(page);
+    } catch (error) {
+        showPublicMessage(error.status === 404
+            ? "Cette page est introuvable."
+            : "Le serveur est indisponible. Réessayez plus tard.");
     }
-
-    currentPublishedPage = page;
-    renderPublicPage(page);
-    showScreen("public");
 
     return true;
 }
@@ -733,15 +848,18 @@ function updateAnimalPhotoPreview() {
     }
 
     const [photo] = animalPhotoInput.files;
+    const source = photo
+        ? URL.createObjectURL(photo)
+        : (currentEditingPage && currentEditingPage.type === "animal" ? currentEditingPage.photo : "");
 
-    if (!photo) {
+    if (!source) {
         animalPreviewPhoto.removeAttribute("src");
         animalPreviewPhoto.hidden = true;
         return;
     }
 
-    animalPhotoURL = URL.createObjectURL(photo);
-    animalPreviewPhoto.src = animalPhotoURL;
+    animalPhotoURL = photo ? source : undefined;
+    animalPreviewPhoto.src = source;
     animalPreviewPhoto.hidden = false;
 }
 
@@ -790,15 +908,18 @@ function updatePhotoPreview() {
     }
 
     const [photo] = photoInput.files;
+    const source = photo
+        ? URL.createObjectURL(photo)
+        : (currentEditingPage && currentEditingPage.type === "business-card" ? currentEditingPage.photo : "");
 
-    if (!photo) {
+    if (!source) {
         previewPhoto.removeAttribute("src");
         previewPhoto.hidden = true;
         return;
     }
 
-    photoURL = URL.createObjectURL(photo);
-    previewPhoto.src = photoURL;
+    photoURL = photo ? source : undefined;
+    previewPhoto.src = source;
     previewPhoto.hidden = false;
 }
 
@@ -855,8 +976,14 @@ clearAnimalDraftButton.addEventListener("click", () => {
 });
 
 openModelsButton.addEventListener("click", () => showScreen("models"));
-openBusinessCardButton.addEventListener("click", () => showScreen("business-card"));
-openAnimalButton.addEventListener("click", () => showScreen("animal"));
+openBusinessCardButton.addEventListener("click", () => {
+    currentEditingPage = undefined;
+    showScreen("business-card");
+});
+openAnimalButton.addEventListener("click", () => {
+    currentEditingPage = undefined;
+    showScreen("animal");
+});
 openAnimalPreviewButton.addEventListener("click", () => {
     renderAnimalPreview();
     showScreen("animal-preview");
