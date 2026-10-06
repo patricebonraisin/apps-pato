@@ -864,7 +864,7 @@ function showPublicMessage(message) {
     showScreen("public");
 }
 
-function showPublicationConfirmation(page) {
+function showPublicationConfirmation(page, canClaim = false) {
     currentPublishedPage = page;
     currentEditingPage = page;
     const url = publicationURLFor(page.id);
@@ -872,7 +872,7 @@ function showPublicationConfirmation(page) {
     publishedURL.href = url;
     publishedURL.textContent = url;
     editPublishedPageButton.hidden = !editTokenFor(page.id);
-    claimPagePrompt.hidden = isAuthenticated() || !editTokenFor(page.id) || Boolean(page.isOwned);
+    claimPagePrompt.hidden = !canClaim;
     showScreen("published");
 }
 
@@ -929,7 +929,7 @@ async function publishPage(type) {
         }
 
         page.isOwned = isAuthenticated();
-        showPublicationConfirmation(page);
+        showPublicationConfirmation(page, !isAuthenticated() && Boolean(response.edit_token));
     } catch (error) {
         if (error.message === "invalid-image") {
             window.alert("Cette photo n’est pas valide. Choisissez une image puis réessayez.");
