@@ -1244,6 +1244,82 @@ button.model-card:focus-visible,
     padding: 8px 13px;
 }
 
+.recover-pages-button {
+    margin-top: 14px;
+    color: var(--accent-blue-deep);
+}
+
+.login-page {
+    display: grid;
+    min-height: 100svh;
+    padding: 24px;
+    background: var(--gradient-page);
+    place-items: center;
+}
+
+.login-container {
+    width: min(100%, 480px);
+}
+
+.login-card {
+    margin-top: 24px;
+    padding: 32px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: var(--radius-card);
+    background: var(--surface);
+    box-shadow: var(--shadow-soft);
+}
+
+.login-card h1 {
+    max-width: none;
+    margin: 0;
+    font-size: clamp(2.1rem, 9vw, 3.2rem);
+}
+
+.login-card > p:not(.publication-eyebrow):not(.login-message) {
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.login-card form {
+    display: grid;
+    gap: 10px;
+    margin-top: 28px;
+}
+
+.login-card label {
+    color: var(--text-secondary);
+    font-size: 0.86rem;
+    font-weight: 600;
+}
+
+.login-card input {
+    min-height: 52px;
+    padding: 14px 15px;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-control);
+    background: rgba(255, 255, 255, 0.82);
+    font: inherit;
+}
+
+.login-card input:focus {
+    outline: 0;
+    border-color: rgba(23, 105, 223, 0.58);
+    box-shadow: 0 0 0 4px rgba(23, 105, 223, 0.12);
+}
+
+.login-card .primary-button {
+    max-width: none;
+    margin-top: 12px;
+}
+
+.login-message {
+    min-height: 1.5em;
+    margin: 18px 0 0;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
 @media (min-width: 640px) {
     .field-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -23,12 +23,30 @@
                     <p class="introduction">Créez simplement la page digitale de votre produit connecté.</p>
                 </div>
                 <button class="primary-button" type="button" data-action="open-models">Créer une page</button>
+                <button class="text-button recover-pages-button" type="button" data-action="open-recover-pages">Retrouver mes pages</button>
                 <div class="auth-actions" data-auth-actions hidden>
                     <p class="auth-email" data-auth-email></p>
                     <button class="secondary-button" type="button" data-action="open-my-pages">Mes pages</button>
                     <button class="text-button" type="button" data-action="sign-out">Se déconnecter</button>
                 </div>
                 <p class="association-note">À associer à votre produit NFC ou QR code.</p>
+            </div>
+        </section>
+
+        <section class="login-page screen" data-screen="recover-pages" aria-labelledby="recover-pages-title" hidden>
+            <div class="login-container">
+                <button class="back-button" type="button" data-action="close-recover-pages"><span aria-hidden="true">‹</span>Retour</button>
+                <article class="login-card">
+                    <p class="publication-eyebrow">Connexion par e-mail</p>
+                    <h1 tabindex="-1" id="recover-pages-title">Retrouver mes pages</h1>
+                    <p>Entrez votre adresse e-mail. Nous vous enverrons un lien de connexion.</p>
+                    <form data-recover-pages-form>
+                        <label for="recover-email">Adresse e-mail</label>
+                        <input id="recover-email" type="email" inputmode="email" autocomplete="email" required>
+                        <button class="primary-button" type="submit">Recevoir mon lien</button>
+                    </form>
+                    <p class="login-message" data-recover-pages-message aria-live="polite"></p>
+                </article>
             </div>
         </section>
 

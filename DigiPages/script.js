@@ -7,6 +7,7 @@ const animalPreviewScreen = document.querySelector('[data-screen="animal-preview
 const publishedScreen = document.querySelector('[data-screen="published"]');
 const publicScreen = document.querySelector('[data-screen="public"]');
 const myPagesScreen = document.querySelector('[data-screen="my-pages"]');
+const recoverPagesScreen = document.querySelector('[data-screen="recover-pages"]');
 const openModelsButton = document.querySelector('[data-action="open-models"]');
 const openBusinessCardButton = document.querySelector('[data-action="open-business-card"]');
 const openAnimalButton = document.querySelector('[data-action="open-animal"]');
@@ -31,6 +32,11 @@ const authActions = document.querySelector('[data-auth-actions]');
 const authEmail = document.querySelector('[data-auth-email]');
 const myPagesEmail = document.querySelector('[data-my-pages-email]');
 const myPagesContent = document.querySelector('[data-my-pages-content]');
+const openRecoverPagesButton = document.querySelector('[data-action="open-recover-pages"]');
+const closeRecoverPagesButton = document.querySelector('[data-action="close-recover-pages"]');
+const recoverPagesForm = document.querySelector('[data-recover-pages-form]');
+const recoverEmailInput = document.querySelector('#recover-email');
+const recoverPagesMessage = document.querySelector('[data-recover-pages-message]');
 const publishedURL = document.querySelector('[data-published-url]');
 const publicContent = document.querySelector('[data-public-content]');
 const businessCardForm = document.querySelector(".business-card-form");
@@ -58,6 +64,7 @@ const uploadURL = "https://patoleblog.fr/wp-json/digipages/v1/upload";
 const verifyMagicLinkURL = "https://patoleblog.fr/wp-json/digipages/v1/auth/verify";
 const authSessionKey = "digipages.auth-session";
 const myPagesURL = "https://patoleblog.fr/wp-json/digipages/v1/me/pages";
+const requestMagicLinkURL = "https://patoleblog.fr/wp-json/digipages/v1/auth/request-link";
 
 let currentPublishedPage;
 let currentEditingPage;
@@ -146,7 +153,8 @@ function showScreen(screen) {
         "animal-preview": animalPreviewScreen,
         published: publishedScreen,
         public: publicScreen,
-        "my-pages": myPagesScreen
+        "my-pages": myPagesScreen,
+        "recover-pages": recoverPagesScreen
     };
     const nextScreen = screens[screen];
 
@@ -228,6 +236,7 @@ function updateAuthControls() {
     const session = readAuthSession();
 
     authActions.hidden = !session;
+    openRecoverPagesButton.hidden = Boolean(session);
     authEmail.textContent = session ? session.email : "";
     myPagesEmail.textContent = session ? session.email : "";
 }
@@ -316,6 +325,38 @@ async function openMyPages() {
         renderMyPages(Array.isArray(pages) ? pages.map(normalizeBackendPage) : []);
     } catch {
         myPagesContent.replaceChildren(createElement("article", "public-card", "Impossible de charger vos pages pour le moment."));
+    }
+}
+
+async function requestMagicLink(event) {
+    event.preventDefault();
+
+    const email = recoverEmailInput.value.trim().toLowerCase();
+
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+        recoverPagesMessage.textContent = "Vérifiez votre adresse e-mail.";
+        return;
+    }
+
+    const submitButton = recoverPagesForm.querySelector('button[type="submit"]');
+
+    submitButton.disabled = true;
+    try {
+        const response = await fetch(requestMagicLinkURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email })
+        });
+
+        if (!response.ok) {
+            throw new Error("request-link-failed");
+        }
+
+        recoverPagesMessage.textContent = "Un lien de connexion vient de vous être envoyé par e-mail. Le lien est valable 15 minutes.";
+    } catch {
+        recoverPagesMessage.textContent = "Impossible d’envoyer le lien pour le moment. Réessayez plus tard.";
+    } finally {
+        submitButton.disabled = false;
     }
 }
 
@@ -1305,6 +1346,12 @@ clearAnimalDraftButton.addEventListener("click", () => {
 });
 
 openModelsButton.addEventListener("click", () => showScreen("models"));
+openRecoverPagesButton.addEventListener("click", () => {
+    recoverPagesMessage.textContent = "";
+    showScreen("recover-pages");
+});
+closeRecoverPagesButton.addEventListener("click", () => showScreen("home"));
+recoverPagesForm.addEventListener("submit", requestMagicLink);
 openMyPagesButton.addEventListener("click", openMyPages);
 signOutButton.addEventListener("click", () => {
     clearAuthSession();
