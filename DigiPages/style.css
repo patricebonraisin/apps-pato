@@ -1320,6 +1320,25 @@ button.model-card:focus-visible,
     line-height: 1.5;
 }
 
+.claim-page-prompt {
+    display: grid;
+    gap: 8px;
+    margin-top: 24px;
+    padding: 18px;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-control);
+    background: var(--surface-soft);
+    color: var(--text-secondary);
+}
+
+.claim-page-prompt strong {
+    color: var(--text-primary);
+}
+
+.claim-page-prompt .secondary-button {
+    width: 100%;
+}
+
 @media (min-width: 640px) {
     .field-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));

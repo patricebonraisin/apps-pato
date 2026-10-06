@@ -38,6 +38,8 @@ const recoverPagesForm = document.querySelector('[data-recover-pages-form]');
 const recoverEmailInput = document.querySelector('#recover-email');
 const recoverPagesMessage = document.querySelector('[data-recover-pages-message]');
 const publishedURL = document.querySelector('[data-published-url]');
+const claimPagePrompt = document.querySelector('[data-claim-page-prompt]');
+const claimPageButton = document.querySelector('[data-action="claim-page"]');
 const publicContent = document.querySelector('[data-public-content]');
 const businessCardForm = document.querySelector(".business-card-form");
 const animalForm = document.querySelector(".animal-form");
@@ -64,6 +66,8 @@ const uploadURL = "https://patoleblog.fr/wp-json/digipages/v1/upload";
 const verifyMagicLinkURL = "https://patoleblog.fr/wp-json/digipages/v1/auth/verify";
 const authSessionKey = "digipages.auth-session";
 const myPagesURL = "https://patoleblog.fr/wp-json/digipages/v1/me/pages";
+const claimPageURL = "https://patoleblog.fr/wp-json/digipages/v1/me/claim-page";
+const pendingClaimKey = "digipages.pending-claim";
 const requestMagicLinkURL = "https://patoleblog.fr/wp-json/digipages/v1/auth/request-link";
 
 let currentPublishedPage;
@@ -372,15 +376,68 @@ function showAuthenticationMessage(message, canReturnHome = false) {
     const card = createElement("article", "public-card", message);
 
     if (canReturnHome) {
-        const button = createElement("button", "secondary-button", "Revenir à l’accueil");
+        const claimed = message.startsWith("Cette page est maintenant");
+        const button = createElement("button", "secondary-button", claimed ? "Voir mes pages" : "Revenir à l’accueil");
 
         button.type = "button";
-        button.addEventListener("click", () => showScreen("home"));
+        button.addEventListener("click", () => claimed ? openMyPages() : showScreen("home"));
         card.append(button);
     }
 
     publicContent.replaceChildren(publicBrand(), card);
     showScreen("public");
+}
+
+function savePendingClaim(page) {
+    try {
+        localStorage.setItem(pendingClaimKey, JSON.stringify({ publicId: page.id, editToken: editTokenFor(page.id) }));
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+function readPendingClaim() {
+    try {
+        const claim = JSON.parse(localStorage.getItem(pendingClaimKey) || "");
+
+        return claim && typeof claim.publicId === "string" && typeof claim.editToken === "string" ? claim : null;
+    } catch {
+        return null;
+    }
+}
+
+function clearPendingClaim() {
+    try {
+        localStorage.removeItem(pendingClaimKey);
+    } catch {
+        // The page remains published even if storage is unavailable.
+    }
+}
+
+async function claimPendingPage() {
+    const claim = readPendingClaim();
+
+    if (!claim) {
+        return false;
+    }
+
+    try {
+        const response = await fetch(claimPageURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", ...authRequestHeaders() },
+            body: JSON.stringify({ public_id: claim.publicId, edit_token: claim.editToken })
+        });
+
+        if (!response.ok) {
+            throw new Error("claim-failed");
+        }
+
+        clearPendingClaim();
+        return true;
+    } catch {
+        return false;
+    }
 }
 
 async function verifyMagicLink(token) {
@@ -409,9 +466,15 @@ async function verifyMagicLink(token) {
 
         updateAuthControls();
         removeMagicLinkFromURL();
-        showAuthenticationMessage("Connexion réussie");
 
-        window.setTimeout(() => showScreen("home"), 1200);
+        if (await claimPendingPage()) {
+            showAuthenticationMessage("Cette page est maintenant associée à votre compte.", true);
+        } else if (readPendingClaim()) {
+            showAuthenticationMessage("Impossible d’associer cette page à votre compte.", true);
+        } else {
+            showAuthenticationMessage("Connexion réussie");
+            window.setTimeout(() => showScreen("home"), 1200);
+        }
     } catch {
         removeMagicLinkFromURL();
         showAuthenticationMessage("Ce lien de connexion est invalide ou a expiré.", true);
@@ -809,6 +872,7 @@ function showPublicationConfirmation(page) {
     publishedURL.href = url;
     publishedURL.textContent = url;
     editPublishedPageButton.hidden = !editTokenFor(page.id);
+    claimPagePrompt.hidden = isAuthenticated() || !editTokenFor(page.id) || Boolean(page.isOwned);
     showScreen("published");
 }
 
@@ -1350,7 +1414,10 @@ openRecoverPagesButton.addEventListener("click", () => {
     recoverPagesMessage.textContent = "";
     showScreen("recover-pages");
 });
-closeRecoverPagesButton.addEventListener("click", () => showScreen("home"));
+closeRecoverPagesButton.addEventListener("click", () => {
+    clearPendingClaim();
+    showScreen("home");
+});
 recoverPagesForm.addEventListener("submit", requestMagicLink);
 openMyPagesButton.addEventListener("click", openMyPages);
 signOutButton.addEventListener("click", () => {
@@ -1384,6 +1451,12 @@ publishBusinessCardButton.addEventListener("click", () => publishPage("business-
 publishAnimalButton.addEventListener("click", () => publishPage("animal"));
 openPublishedPageButton.addEventListener("click", openPublishedPage);
 copyPublishedLinkButton.addEventListener("click", copyPublishedLink);
+claimPageButton.addEventListener("click", () => {
+    if (currentPublishedPage && savePendingClaim(currentPublishedPage)) {
+        recoverPagesMessage.textContent = "";
+        showScreen("recover-pages");
+    }
+});
 editPublishedPageButton.addEventListener("click", editPublishedPage);
 
 async function initializeApplication() {
