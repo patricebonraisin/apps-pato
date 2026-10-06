@@ -64,10 +64,12 @@ button {
 }
 
 .landing-page {
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     min-height: 100svh;
     padding: 24px;
-    place-items: center;
 }
 
 .hero {
@@ -932,6 +934,34 @@ button.model-card:focus-visible {
 .publication-page,
 .public-page {
     background: var(--gradient-page);
+}
+
+.site-credit {
+    margin-top: 32px;
+    color: var(--text-tertiary);
+    font-size: 0.75rem;
+    letter-spacing: -0.005em;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.site-credit a {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: none;
+    text-underline-offset: 3px;
+    transition: color 180ms ease, text-decoration-color 180ms ease;
+}
+
+.site-credit a:hover {
+    color: var(--accent-blue);
+    text-decoration: underline;
+}
+
+.site-credit a:focus-visible {
+    border-radius: 4px;
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 3px;
 }
 
 .hero {
