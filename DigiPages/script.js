@@ -171,23 +171,19 @@ function saveEditToken(publicID, editToken) {
 }
 
 function appBasePath() {
-    const [path] = window.location.pathname.split("/p/");
+    const path = window.location.pathname;
 
     return path.endsWith("/") ? path : `${path}/`;
 }
 
-function publicationPath(id) {
-    return `${appBasePath()}p/${id}`;
-}
-
 function publicationURLFor(id) {
-    return new URL(publicationPath(id), window.location.origin).href;
+    return new URL(appBasePath() + "?p=" + encodeURIComponent(id), window.location.origin).href;
 }
 
-function publicationIDFromPath() {
-    const match = window.location.pathname.match(/\/p\/([A-Z0-9]+)\/?$/i);
+function publicationIDFromURL() {
+    const params = new URLSearchParams(window.location.search);
 
-    return match ? match[1].toUpperCase() : "";
+    return (params.get("p") || "").trim();
 }
 
 function fileAsDataURL(input) {
@@ -533,7 +529,7 @@ async function openPublishedPage() {
         return;
     }
 
-    window.history.pushState({}, "", publicationPath(currentPublishedPage.id));
+    window.history.pushState({}, "", publicationURLFor(currentPublishedPage.id));
     await loadPublicationFromURL();
 }
 
@@ -608,7 +604,7 @@ function editPublishedPage() {
 }
 
 async function loadPublicationFromURL() {
-    const id = publicationIDFromPath();
+    const id = publicationIDFromURL();
 
     if (!id) {
         return false;
