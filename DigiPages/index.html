@@ -142,8 +142,20 @@
                         </div>
 
                         <div class="field-group">
-                            <label for="address">Adresse professionnelle</label>
-                            <textarea id="address" name="address" rows="3" autocomplete="street-address"></textarea>
+                            <label for="street-address">Adresse</label>
+                            <textarea id="street-address" name="street-address" rows="3" autocomplete="street-address"></textarea>
+                        </div>
+
+                        <div class="field-grid">
+                            <div class="field-group">
+                                <label for="postal-code">Code postal</label>
+                                <input id="postal-code" name="postal-code" type="text" inputmode="numeric" autocomplete="postal-code">
+                            </div>
+
+                            <div class="field-group">
+                                <label for="city">Ville</label>
+                                <input id="city" name="city" type="text" autocomplete="address-level2">
+                            </div>
                         </div>
                     </section>
 
@@ -250,8 +262,20 @@
                         </div>
 
                         <div class="field-group">
-                            <label for="owner-location">Adresse ou commune de résidence</label>
-                            <input id="owner-location" name="owner-location" type="text" autocomplete="street-address">
+                            <label for="owner-address">Adresse</label>
+                            <input id="owner-address" name="owner-address" type="text" autocomplete="street-address">
+                        </div>
+
+                        <div class="field-grid">
+                            <div class="field-group">
+                                <label for="owner-postal-code">Code postal</label>
+                                <input id="owner-postal-code" name="owner-postal-code" type="text" inputmode="numeric" autocomplete="postal-code">
+                            </div>
+
+                            <div class="field-group">
+                                <label for="owner-city">Ville</label>
+                                <input id="owner-city" name="owner-city" type="text" autocomplete="address-level2">
+                            </div>
                         </div>
                     </section>
 

@@ -282,7 +282,9 @@ function businessCardData() {
         position: valueFor("position"),
         phone: valueFor("phone"),
         email: valueFor("email"),
-        address: valueFor("address"),
+        streetAddress: valueFor("street-address"),
+        postalCode: valueFor("postal-code"),
+        city: valueFor("city"),
         website: valueFor("website"),
         description: valueFor("description"),
         linkedin: valueFor("linkedin"),
@@ -299,13 +301,36 @@ function animalData() {
         birthDate: valueFor("animal-birth-date"),
         ownerName: valueFor("owner-name"),
         ownerPhone: valueFor("owner-phone"),
-        ownerLocation: valueFor("owner-location"),
+        ownerAddress: valueFor("owner-address"),
+        ownerPostalCode: valueFor("owner-postal-code"),
+        ownerCity: valueFor("owner-city"),
         emergencyName: valueFor("emergency-name"),
         emergencyPhone: valueFor("emergency-phone"),
         veterinarianName: valueFor("veterinarian-name"),
         veterinarianPhone: valueFor("veterinarian-phone"),
         importantInfo: valueFor("animal-important-info")
     };
+}
+
+function formattedAddress(data, streetKey, postalCodeKey, cityKey, legacyKey) {
+    const streetAddress = typeof data[streetKey] === "string" ? data[streetKey].trim() : "";
+    const postalCode = typeof data[postalCodeKey] === "string" ? data[postalCodeKey].trim() : "";
+    const city = typeof data[cityKey] === "string" ? data[cityKey].trim() : "";
+    const locality = [postalCode, city].filter(Boolean).join(" ");
+
+    if (streetAddress || locality) {
+        return [streetAddress, locality].filter(Boolean).join("\n");
+    }
+
+    return typeof data[legacyKey] === "string" ? data[legacyKey].trim() : "";
+}
+
+function businessAddress(data) {
+    return formattedAddress(data, "streetAddress", "postalCode", "city", "address");
+}
+
+function ownerAddress(data) {
+    return formattedAddress(data, "ownerAddress", "ownerPostalCode", "ownerCity", "ownerLocation");
 }
 
 function normalizeBackendPage(page) {
@@ -364,6 +389,7 @@ function appendPublicDetail(container, label, value, important = false) {
     const detailLabel = createElement("span", important ? "animal-detail-label" : "preview-detail-label", label);
     const detailValue = createElement("span", important ? "animal-detail-value" : "preview-detail-value", value);
 
+    detailValue.style.whiteSpace = "pre-line";
     detail.append(detailLabel, detailValue);
     container.append(detail);
 }
@@ -432,7 +458,7 @@ function renderBusinessCardPublicPage(page) {
 
     appendPublicDetail(details, "Téléphone", data.phone);
     appendPublicDetail(details, "E-mail", data.email);
-    appendPublicDetail(details, "Adresse", data.address);
+    appendPublicDetail(details, "Adresse", businessAddress(data));
     appendPublicDetail(details, "Site internet", data.website);
 
     if (details.childElementCount) {
@@ -481,7 +507,7 @@ function renderAnimalPublicPage(page) {
     const details = createElement("div", "animal-profile-details");
 
     appendPublicDetail(details, "Propriétaire", data.ownerName);
-    appendPublicDetail(details, "Adresse ou commune", data.ownerLocation);
+    appendPublicDetail(details, "Adresse", ownerAddress(data));
     appendPublicDetail(details, "Contact d'urgence", data.emergencyName);
     appendPublicDetail(details, "Vétérinaire", data.veterinarianName);
     appendPublicDetail(details, "Informations importantes", data.importantInfo, true);
@@ -652,7 +678,9 @@ function startEditingPage(page) {
             "animal-birth-date": page.data.birthDate,
             "owner-name": page.data.ownerName,
             "owner-phone": page.data.ownerPhone,
-            "owner-location": page.data.ownerLocation,
+            "owner-address": page.data.ownerAddress || page.data.ownerLocation,
+            "owner-postal-code": page.data.ownerPostalCode,
+            "owner-city": page.data.ownerCity,
             "emergency-name": page.data.emergencyName,
             "emergency-phone": page.data.emergencyPhone,
             "veterinarian-name": page.data.veterinarianName,
@@ -670,7 +698,9 @@ function startEditingPage(page) {
         position: page.data.position,
         phone: page.data.phone,
         email: page.data.email,
-        address: page.data.address,
+        "street-address": page.data.streetAddress || page.data.address,
+        "postal-code": page.data.postalCode,
+        city: page.data.city,
         website: page.data.website,
         description: page.data.description,
         linkedin: page.data.linkedin,
@@ -752,6 +782,7 @@ function addDetail(label, value) {
     itemLabel.textContent = label;
     itemValue.className = "preview-detail-value";
     itemValue.textContent = value;
+    itemValue.style.whiteSpace = "pre-line";
     item.append(itemLabel, itemValue);
     previewDetails.append(item);
 }
@@ -832,8 +863,12 @@ function createVCard(data) {
         lines.push(`EMAIL;TYPE=INTERNET:${escapeVCardValue(data.email)}`);
     }
 
-    if (data.address) {
-        lines.push(`ADR;TYPE=WORK;CHARSET=UTF-8:;;${escapeVCardValue(data.address)};;;;`);
+    const streetAddress = typeof data.streetAddress === "string" ? data.streetAddress : (data.address || "");
+    const city = typeof data.city === "string" ? data.city : "";
+    const postalCode = typeof data.postalCode === "string" ? data.postalCode : "";
+
+    if (streetAddress || city || postalCode) {
+        lines.push(`ADR;TYPE=WORK;CHARSET=UTF-8:;;${escapeVCardValue(streetAddress)};${escapeVCardValue(city)};;${escapeVCardValue(postalCode)};`);
     }
 
     if (data.website) {
@@ -859,7 +894,7 @@ function addContactAction(data) {
         data.position,
         data.phone,
         data.email,
-        data.address,
+        businessAddress(data),
         data.website
     ].some(Boolean);
 
@@ -903,6 +938,7 @@ function addAnimalDetail(label, value, important = false) {
     itemLabel.textContent = label;
     itemValue.className = "animal-detail-value";
     itemValue.textContent = value;
+    itemValue.style.whiteSpace = "pre-line";
     item.append(itemLabel, itemValue);
     animalPreviewDetails.append(item);
 }
@@ -950,7 +986,9 @@ function renderAnimalPreview() {
         birthDate: valueFor("animal-birth-date"),
         ownerName: valueFor("owner-name"),
         ownerPhone: valueFor("owner-phone"),
-        ownerLocation: valueFor("owner-location"),
+        ownerAddress: valueFor("owner-address"),
+        ownerPostalCode: valueFor("owner-postal-code"),
+        ownerCity: valueFor("owner-city"),
         emergencyName: valueFor("emergency-name"),
         emergencyPhone: valueFor("emergency-phone"),
         veterinarianName: valueFor("veterinarian-name"),
@@ -965,7 +1003,7 @@ function renderAnimalPreview() {
 
     animalPreviewDetails.replaceChildren();
     addAnimalDetail("Propriétaire", data.ownerName);
-    addAnimalDetail("Adresse ou commune", data.ownerLocation);
+    addAnimalDetail("Adresse", ownerAddress(data));
     addAnimalDetail("Contact d'urgence", data.emergencyName);
     addAnimalDetail("Vétérinaire", data.veterinarianName);
     addAnimalDetail("Informations importantes", data.importantInfo, true);
@@ -1010,7 +1048,9 @@ function renderPreview() {
         position: valueFor("position"),
         phone: valueFor("phone"),
         email: valueFor("email"),
-        address: valueFor("address"),
+        streetAddress: valueFor("street-address"),
+        postalCode: valueFor("postal-code"),
+        city: valueFor("city"),
         website: valueFor("website"),
         description: valueFor("description"),
         linkedin: valueFor("linkedin"),
@@ -1027,7 +1067,7 @@ function renderPreview() {
     previewDetails.replaceChildren();
     addDetail("Téléphone", data.phone);
     addDetail("E-mail", data.email);
-    addDetail("Adresse", data.address);
+    addDetail("Adresse", businessAddress(data));
     addDetail("Site internet", data.website);
     previewDetails.hidden = !previewDetails.childElementCount;
 
