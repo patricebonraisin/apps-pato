@@ -46,6 +46,7 @@ const businessCardDraftKey = "digipages.business-card-draft";
 const animalDraftKey = "digipages.animal-draft";
 const editTokensKey = "digipages.edit-tokens";
 const apiBaseURL = "https://patoleblog.fr/wp-json/digipages/v1/pages";
+const uploadURL = "https://patoleblog.fr/wp-json/digipages/v1/upload";
 
 let currentPublishedPage;
 let currentEditingPage;
@@ -189,11 +190,11 @@ function publicationIDFromURL() {
 const maxPhotoDimension = 1600;
 const photoJPEGQuality = 0.8;
 
-function fileAsDataURL(input) {
+function optimizedImageBlob(input) {
     const [file] = input.files;
 
     if (!file) {
-        return Promise.resolve("");
+        return Promise.resolve(null);
     }
 
     if (!file.type.startsWith("image/")) {
@@ -201,48 +202,76 @@ function fileAsDataURL(input) {
     }
 
     return new Promise((resolve, reject) => {
-        const reader = new FileReader();
+        const image = new Image();
+        const sourceURL = URL.createObjectURL(file);
 
-        reader.addEventListener("load", () => {
-            if (typeof reader.result !== "string") {
+        image.addEventListener("load", () => {
+            URL.revokeObjectURL(sourceURL);
+
+            const largestDimension = Math.max(image.naturalWidth, image.naturalHeight);
+
+            if (!largestDimension) {
                 reject(new Error("invalid-image"));
                 return;
             }
 
-            const image = new Image();
+            const scale = Math.min(1, maxPhotoDimension / largestDimension);
+            const width = Math.max(1, Math.round(image.naturalWidth * scale));
+            const height = Math.max(1, Math.round(image.naturalHeight * scale));
+            const canvas = document.createElement("canvas");
+            const context = canvas.getContext("2d");
 
-            image.addEventListener("load", () => {
-                const largestDimension = Math.max(image.naturalWidth, image.naturalHeight);
+            if (!context) {
+                reject(new Error("invalid-image"));
+                return;
+            }
 
-                if (!largestDimension) {
+            canvas.width = width;
+            canvas.height = height;
+            context.fillStyle = "#ffffff";
+            context.fillRect(0, 0, width, height);
+            context.drawImage(image, 0, 0, width, height);
+            canvas.toBlob((blob) => {
+                if (blob) {
+                    resolve(blob);
+                } else {
                     reject(new Error("invalid-image"));
-                    return;
                 }
-
-                const scale = Math.min(1, maxPhotoDimension / largestDimension);
-                const width = Math.max(1, Math.round(image.naturalWidth * scale));
-                const height = Math.max(1, Math.round(image.naturalHeight * scale));
-                const canvas = document.createElement("canvas");
-                const context = canvas.getContext("2d");
-
-                if (!context) {
-                    reject(new Error("invalid-image"));
-                    return;
-                }
-
-                canvas.width = width;
-                canvas.height = height;
-                context.fillStyle = "#ffffff";
-                context.fillRect(0, 0, width, height);
-                context.drawImage(image, 0, 0, width, height);
-                resolve(canvas.toDataURL("image/jpeg", photoJPEGQuality));
-            });
-            image.addEventListener("error", () => reject(new Error("invalid-image")));
-            image.src = reader.result;
+            }, "image/jpeg", photoJPEGQuality);
         });
-        reader.addEventListener("error", () => reject(new Error("invalid-image")));
-        reader.readAsDataURL(file);
+        image.addEventListener("error", () => {
+            URL.revokeObjectURL(sourceURL);
+            reject(new Error("invalid-image"));
+        });
+        image.src = sourceURL;
     });
+}
+
+async function uploadImage(blob) {
+    const formData = new FormData();
+
+    formData.append("file", blob, "digipages-photo.jpg");
+
+    try {
+        const response = await fetch(uploadURL, {
+            method: "POST",
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error("upload-failed");
+        }
+
+        const result = await response.json();
+
+        if (!result || typeof result.url !== "string" || !result.url) {
+            throw new Error("upload-failed");
+        }
+
+        return result.url;
+    } catch {
+        throw new Error("upload-failed");
+    }
 }
 
 function businessCardData() {
@@ -281,7 +310,7 @@ function animalData() {
 
 function normalizeBackendPage(page) {
     const data = page && typeof page.data === "object" && page.data ? page.data : {};
-    const photo = typeof data.photo === "string" ? data.photo : (page.image_url || "");
+    const photo = typeof page.image_url === "string" ? page.image_url : "";
 
     return {
         id: page.public_id,
@@ -510,13 +539,13 @@ function showPublicationConfirmation(page) {
     showScreen("published");
 }
 
-function pagePayload(type, photo) {
+function pagePayload(type, imageURL) {
     const data = type === "animal" ? animalData() : businessCardData();
 
     return {
         page_type: type,
-        data: { ...data, photo },
-        image_url: null
+        data,
+        image_url: imageURL || null
     };
 }
 
@@ -531,11 +560,18 @@ async function publishPage(type) {
     button.textContent = "Publication…";
 
     try {
-        const selectedPhoto = await fileAsDataURL(type === "animal" ? animalPhotoInput : photoInput);
-        const photo = selectedPhoto || (currentEditingPage && currentEditingPage.type === type
+        const imageInput = type === "animal" ? animalPhotoInput : photoInput;
+        const imageBlob = await optimizedImageBlob(imageInput);
+        let imageURL = currentEditingPage && currentEditingPage.type === type
             ? currentEditingPage.photo
-            : "");
-        const payload = pagePayload(type, photo);
+            : "";
+
+        if (imageBlob) {
+            imageURL = await uploadImage(imageBlob);
+            imageInput.value = "";
+        }
+
+        const payload = pagePayload(type, imageURL);
         const response = token
             ? await requestPage("/" + currentEditingPage.id, {
                 method: "PUT",
@@ -556,6 +592,8 @@ async function publishPage(type) {
     } catch (error) {
         if (error.message === "invalid-image") {
             window.alert("Cette photo n’est pas valide. Choisissez une image puis réessayez.");
+        } else if (error.message === "upload-failed") {
+            window.alert("L’envoi de la photo a échoué. Réessayez avec une autre image.");
         } else if (token && error.status === 403) {
             window.alert("La modification a été refusée.");
         } else if (error.status) {
