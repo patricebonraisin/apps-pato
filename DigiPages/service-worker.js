@@ -1,4 +1,4 @@
-const cacheName = "digipages-v15";
+const cacheName = "digipages-v16";
 const appShell = [
     "./",
     "./index.html",

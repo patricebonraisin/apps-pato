@@ -732,7 +732,7 @@ function publicBrand() {
 
     const iconPath = isShortcutPage ? "icons/raccourci-192.png" : "icons/icon-192.png";
 
-    logo.src = new URL(iconPath, `${window.location.origin}${appBasePath()}`).href;
+    logo.src = new URL(iconPath, new URL("./", window.location.href)).href;
     logo.alt = "";
     logo.width = 32;
     logo.height = 32;
