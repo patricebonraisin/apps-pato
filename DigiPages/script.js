@@ -186,6 +186,9 @@ function publicationIDFromURL() {
     return (params.get("p") || "").trim();
 }
 
+const maxPhotoDimension = 1600;
+const photoJPEGQuality = 0.8;
+
 function fileAsDataURL(input) {
     const [file] = input.files;
 
@@ -193,11 +196,51 @@ function fileAsDataURL(input) {
         return Promise.resolve("");
     }
 
-    return new Promise((resolve) => {
+    if (!file.type.startsWith("image/")) {
+        return Promise.reject(new Error("invalid-image"));
+    }
+
+    return new Promise((resolve, reject) => {
         const reader = new FileReader();
 
-        reader.addEventListener("load", () => resolve(typeof reader.result === "string" ? reader.result : ""));
-        reader.addEventListener("error", () => resolve(""));
+        reader.addEventListener("load", () => {
+            if (typeof reader.result !== "string") {
+                reject(new Error("invalid-image"));
+                return;
+            }
+
+            const image = new Image();
+
+            image.addEventListener("load", () => {
+                const largestDimension = Math.max(image.naturalWidth, image.naturalHeight);
+
+                if (!largestDimension) {
+                    reject(new Error("invalid-image"));
+                    return;
+                }
+
+                const scale = Math.min(1, maxPhotoDimension / largestDimension);
+                const width = Math.max(1, Math.round(image.naturalWidth * scale));
+                const height = Math.max(1, Math.round(image.naturalHeight * scale));
+                const canvas = document.createElement("canvas");
+                const context = canvas.getContext("2d");
+
+                if (!context) {
+                    reject(new Error("invalid-image"));
+                    return;
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+                context.fillStyle = "#ffffff";
+                context.fillRect(0, 0, width, height);
+                context.drawImage(image, 0, 0, width, height);
+                resolve(canvas.toDataURL("image/jpeg", photoJPEGQuality));
+            });
+            image.addEventListener("error", () => reject(new Error("invalid-image")));
+            image.src = reader.result;
+        });
+        reader.addEventListener("error", () => reject(new Error("invalid-image")));
         reader.readAsDataURL(file);
     });
 }
@@ -480,10 +523,6 @@ function pagePayload(type, photo) {
 async function publishPage(type) {
     const button = type === "animal" ? publishAnimalButton : publishBusinessCardButton;
     const originalLabel = button.textContent;
-    const selectedPhoto = await fileAsDataURL(type === "animal" ? animalPhotoInput : photoInput);
-    const photo = selectedPhoto || (currentEditingPage && currentEditingPage.type === type
-        ? currentEditingPage.photo
-        : "");
     const token = currentEditingPage && currentEditingPage.type === type
         ? editTokenFor(currentEditingPage.id)
         : "";
@@ -492,6 +531,10 @@ async function publishPage(type) {
     button.textContent = "Publication…";
 
     try {
+        const selectedPhoto = await fileAsDataURL(type === "animal" ? animalPhotoInput : photoInput);
+        const photo = selectedPhoto || (currentEditingPage && currentEditingPage.type === type
+            ? currentEditingPage.photo
+            : "");
         const payload = pagePayload(type, photo);
         const response = token
             ? await requestPage("/" + currentEditingPage.id, {
@@ -511,7 +554,9 @@ async function publishPage(type) {
 
         showPublicationConfirmation(page);
     } catch (error) {
-        if (token && error.status === 403) {
+        if (error.message === "invalid-image") {
+            window.alert("Cette photo n’est pas valide. Choisissez une image puis réessayez.");
+        } else if (token && error.status === 403) {
             window.alert("La modification a été refusée.");
         } else if (error.status) {
             window.alert("La publication est impossible pour le moment. Réessayez plus tard.");
