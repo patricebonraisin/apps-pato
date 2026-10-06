@@ -133,6 +133,9 @@ h1 {
 .models-page {
     min-height: 100svh;
     padding: 24px;
+    background:
+        radial-gradient(circle at 15% 0%, rgba(220, 230, 255, 0.5), transparent 30rem),
+        linear-gradient(145deg, #fbfaf8 0%, #f7f8ff 100%);
 }
 
 .models-container {
@@ -179,121 +182,152 @@ h1 {
 }
 
 .models-intro {
-    max-width: 490px;
-    margin-top: 36px;
+    max-width: 520px;
+    margin-top: 42px;
 }
 
 .models-intro h1 {
     max-width: 100%;
     margin: 0;
-    font-size: clamp(2rem, 8vw, 3.2rem);
+    font-size: clamp(2.2rem, 8vw, 3.35rem);
+    letter-spacing: -0.045em;
     text-align: left;
 }
 
 .models-intro p {
-    margin: 12px 0 0;
-    color: #6e6e73;
-    font-size: 1.03rem;
-    letter-spacing: -0.015em;
-    line-height: 1.5;
+    margin: 13px 0 0;
+    color: #71717a;
+    font-size: 1.02rem;
+    font-weight: 400;
+    letter-spacing: -0.012em;
+    line-height: 1.55;
 }
 
 .model-grid {
     display: grid;
-    gap: 10px;
-    margin-top: 28px;
+    gap: 14px;
+    margin-top: 32px;
 }
 
 .model-card {
     position: relative;
-    display: flex;
-    min-height: 108px;
-    padding: 18px;
-    border: 1px solid #e2e2e5;
-    border-radius: 20px;
-    background: #fff;
-    color: #1d1d1f;
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    grid-template-rows: 1fr;
+    min-height: 154px;
+    padding: 24px;
+    border: 1px solid rgba(81, 78, 106, 0.12);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.82);
+    color: #252432;
     text-align: left;
 }
 
 button.model-card {
     width: 100%;
     cursor: pointer;
-    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    transition: background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
 }
 
 button.model-card:hover {
-    border-color: #c8c8cc;
-    box-shadow: 0 8px 22px rgba(29, 29, 31, 0.06);
+    border-color: rgba(92, 105, 191, 0.25);
+    background: #ffffff;
+    box-shadow: 0 12px 30px rgba(46, 45, 75, 0.08);
+    transform: translateY(-2px);
 }
 
 button.model-card:active {
-    transform: scale(0.99);
+    transform: translateY(0);
 }
 
 button.model-card:focus-visible {
-    outline: 3px solid #0071e3;
+    outline: 3px solid #6574d9;
     outline-offset: 3px;
 }
 
+.model-icon {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border-radius: 13px;
+    background: linear-gradient(145deg, #eef1ff, #f3efff);
+    color: #5e69c8;
+}
+
+.model-icon svg {
+    width: 21px;
+    height: 21px;
+}
+
 .model-card-content {
-    display: flex;
-    flex-direction: column;
-    align-self: flex-end;
-    gap: 7px;
-    padding-right: 64px;
+    display: grid;
+    grid-template-rows: minmax(42px, auto) minmax(38px, 1fr);
+    gap: 8px;
+    min-width: 0;
+    padding: 2px 50px 0 2px;
 }
 
 .model-title {
-    font-size: 1.05rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
+    align-self: end;
+    font-size: 1.08rem;
+    font-weight: 650;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
 }
 
 .model-description {
-    color: #6e6e73;
-    font-size: 0.92rem;
-    letter-spacing: -0.01em;
-    line-height: 1.35;
+    align-self: start;
+    color: #777684;
+    font-size: 0.88rem;
+    letter-spacing: -0.008em;
+    line-height: 1.45;
 }
 
 .availability,
 .coming-soon {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    padding: 5px 9px;
-    border-radius: 999px;
+    top: 25px;
+    right: 24px;
     font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: -0.005em;
+    letter-spacing: -0.01em;
 }
 
 .availability {
-    background: #eaf5ed;
-    color: #347047;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #5c806b;
+}
+
+.availability::before {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: #68a27e;
+    content: "";
 }
 
 .model-card:not(.unavailable) {
-    box-shadow: 0 4px 14px rgba(29, 29, 31, 0.03);
+    box-shadow: 0 3px 12px rgba(46, 45, 75, 0.035);
 }
 
 .unavailable {
-    min-height: 76px;
-    justify-content: flex-end;
-    flex-direction: column;
-    padding: 14px 16px;
-    background: #f5f5f7;
-    color: #a1a1a6;
+    opacity: 0.58;
+    background: rgba(247, 247, 250, 0.72);
+    color: #777682;
+}
+
+.unavailable .model-icon {
+    background: #f0f0f3;
+    color: #9897a2;
 }
 
 .coming-soon {
-    top: 14px;
-    right: 16px;
-    padding: 4px 8px;
-    background: #eeeeF0;
-    color: #89898e;
-    font-size: 0.68rem;
+    color: #8a8993;
+    font-size: 0.69rem;
+    font-weight: 500;
 }
 
 .form-page {
@@ -877,12 +911,9 @@ button.model-card:focus-visible {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .model-card {
-        min-height: 136px;
-    }
-
+    .model-card,
     .model-card.unavailable {
-        min-height: 92px;
+        min-height: 164px;
     }
 }
 
