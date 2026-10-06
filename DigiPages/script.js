@@ -730,7 +730,9 @@ function publicBrand() {
     const brand = createElement("div", "brand");
     const logo = document.createElement("img");
 
-    logo.src = new URL("icons/icon-192.png", `${window.location.origin}${appBasePath()}`).href;
+    const iconPath = isShortcutPage ? "icons/raccourci-192.png" : "icons/icon-192.png";
+
+    logo.src = new URL(iconPath, `${window.location.origin}${appBasePath()}`).href;
     logo.alt = "";
     logo.width = 32;
     logo.height = 32;
