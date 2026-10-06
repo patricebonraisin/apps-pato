@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f7f7f8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="DigiPages">
+    <title>Raccourci DigiPages</title>
+    <link rel="icon" href="icons/icon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-shortcut-page="true">
+    <main class="app">
+        <section class="public-page screen" data-screen="public" aria-live="polite" hidden>
+            <div class="public-container">
+                <aside class="shortcut-instructions">
+                    <strong>Créer un raccourci</strong>
+                    Sur iPhone, utilisez Partager puis « Ajouter à l’écran d’accueil ». Sur Android, utilisez le menu du navigateur puis « Ajouter à l’écran d’accueil ».
+                </aside>
+                <div data-public-content></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

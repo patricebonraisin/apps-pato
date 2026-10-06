@@ -1,3 +1,4 @@
+const isShortcutPage = document.body.dataset.shortcutPage === "true";
 const homeScreen = document.querySelector('[data-screen="home"]');
 const modelsScreen = document.querySelector('[data-screen="models"]');
 const businessCardScreen = document.querySelector('[data-screen="business-card"]');
@@ -162,7 +163,7 @@ function showScreen(screen) {
     };
     const nextScreen = screens[screen];
 
-    Object.values(screens).forEach((element) => {
+    Object.values(screens).filter(Boolean).forEach((element) => {
         element.hidden = element !== nextScreen;
     });
 
@@ -495,6 +496,10 @@ function publicationIDFromURL() {
     const params = new URLSearchParams(window.location.search);
 
     return (params.get("p") || "").trim();
+}
+
+function shortcutURLFor(id) {
+    return new URL(appBasePath() + "raccourci.html?p=" + encodeURIComponent(id), window.location.origin).href;
 }
 
 const maxPhotoDimension = 1600;
@@ -845,7 +850,17 @@ function renderPublicPage(page) {
         : renderBusinessCardPublicPage(page);
     const elements = [publicBrand(), card];
 
-    if (editTokenFor(page.id)) {
+    if (!isShortcutPage) {
+        const shortcutButton = createElement("button", "text-button public-shortcut-button", "Créer un raccourci");
+
+        shortcutButton.type = "button";
+        shortcutButton.addEventListener("click", () => {
+            window.location.assign(shortcutURLFor(page.id));
+        });
+        elements.push(shortcutButton);
+    }
+
+    if (!isShortcutPage && editTokenFor(page.id)) {
         const editButton = createElement("button", "text-button", "Modifier cette page");
 
         editButton.type = "button";
@@ -1399,66 +1414,6 @@ function renderPreview() {
     updatePhotoPreview();
 }
 
-configureDraft(businessCardForm, businessCardDraftKey);
-configureDraft(animalForm, animalDraftKey);
-
-clearBusinessCardDraftButton.addEventListener("click", () => {
-    clearDraft(businessCardForm, businessCardDraftKey, "Effacer le brouillon de votre carte de visite ?");
-});
-clearAnimalDraftButton.addEventListener("click", () => {
-    clearDraft(animalForm, animalDraftKey, "Effacer le brouillon de votre fiche animal ?");
-});
-
-openModelsButton.addEventListener("click", () => showScreen("models"));
-openRecoverPagesButton.addEventListener("click", () => {
-    recoverPagesMessage.textContent = "";
-    showScreen("recover-pages");
-});
-closeRecoverPagesButton.addEventListener("click", () => {
-    clearPendingClaim();
-    showScreen("home");
-});
-recoverPagesForm.addEventListener("submit", requestMagicLink);
-openMyPagesButton.addEventListener("click", openMyPages);
-signOutButton.addEventListener("click", () => {
-    clearAuthSession();
-    updateAuthControls();
-    showScreen("home");
-});
-goHomeFromPagesButton.addEventListener("click", () => showScreen("home"));
-openBusinessCardButton.addEventListener("click", () => {
-    currentEditingPage = undefined;
-    showScreen("business-card");
-});
-openAnimalButton.addEventListener("click", () => {
-    currentEditingPage = undefined;
-    showScreen("animal");
-});
-openAnimalPreviewButton.addEventListener("click", () => {
-    renderAnimalPreview();
-    showScreen("animal-preview");
-});
-openPreviewButton.addEventListener("click", () => {
-    renderPreview();
-    showScreen("preview");
-});
-goHomeButton.addEventListener("click", () => showScreen("home"));
-goModelsButton.addEventListener("click", () => showScreen("models"));
-goModelsFromAnimalButton.addEventListener("click", () => showScreen("models"));
-editBusinessCardButton.addEventListener("click", () => showScreen("business-card"));
-editAnimalButton.addEventListener("click", () => showScreen("animal"));
-publishBusinessCardButton.addEventListener("click", () => publishPage("business-card"));
-publishAnimalButton.addEventListener("click", () => publishPage("animal"));
-openPublishedPageButton.addEventListener("click", openPublishedPage);
-copyPublishedLinkButton.addEventListener("click", copyPublishedLink);
-claimPageButton.addEventListener("click", () => {
-    if (currentPublishedPage && savePendingClaim(currentPublishedPage)) {
-        recoverPagesMessage.textContent = "";
-        showScreen("recover-pages");
-    }
-});
-editPublishedPageButton.addEventListener("click", editPublishedPage);
-
 async function initializeApplication() {
     const magicToken = new URLSearchParams(window.location.search).get("magic");
 
@@ -1472,15 +1427,88 @@ async function initializeApplication() {
     }
 }
 
-window.addEventListener("popstate", async () => {
-    await initializeApplication();
-});
+async function initializeShortcutPage() {
+    if (!publicationIDFromURL()) {
+        showPublicMessage("Ce raccourci ne contient pas de page valide.");
+        return;
+    }
 
-updateAuthControls();
-initializeApplication();
+    await loadPublicationFromURL();
+}
 
-if ("serviceWorker" in navigator && window.isSecureContext) {
-    navigator.serviceWorker.register("./service-worker.js").catch(() => {
-        // La PWA reste utilisable même si l'enregistrement échoue.
+if (isShortcutPage) {
+    initializeShortcutPage();
+} else {
+    configureDraft(businessCardForm, businessCardDraftKey);
+    configureDraft(animalForm, animalDraftKey);
+
+    clearBusinessCardDraftButton.addEventListener("click", () => {
+        clearDraft(businessCardForm, businessCardDraftKey, "Effacer le brouillon de votre carte de visite ?");
     });
+    clearAnimalDraftButton.addEventListener("click", () => {
+        clearDraft(animalForm, animalDraftKey, "Effacer le brouillon de votre fiche animal ?");
+    });
+
+    openModelsButton.addEventListener("click", () => showScreen("models"));
+    openRecoverPagesButton.addEventListener("click", () => {
+        recoverPagesMessage.textContent = "";
+        showScreen("recover-pages");
+    });
+    closeRecoverPagesButton.addEventListener("click", () => {
+        clearPendingClaim();
+        showScreen("home");
+    });
+    recoverPagesForm.addEventListener("submit", requestMagicLink);
+    openMyPagesButton.addEventListener("click", openMyPages);
+    signOutButton.addEventListener("click", () => {
+        clearAuthSession();
+        updateAuthControls();
+        showScreen("home");
+    });
+    goHomeFromPagesButton.addEventListener("click", () => showScreen("home"));
+    openBusinessCardButton.addEventListener("click", () => {
+        currentEditingPage = undefined;
+        showScreen("business-card");
+    });
+    openAnimalButton.addEventListener("click", () => {
+        currentEditingPage = undefined;
+        showScreen("animal");
+    });
+    openAnimalPreviewButton.addEventListener("click", () => {
+        renderAnimalPreview();
+        showScreen("animal-preview");
+    });
+    openPreviewButton.addEventListener("click", () => {
+        renderPreview();
+        showScreen("preview");
+    });
+    goHomeButton.addEventListener("click", () => showScreen("home"));
+    goModelsButton.addEventListener("click", () => showScreen("models"));
+    goModelsFromAnimalButton.addEventListener("click", () => showScreen("models"));
+    editBusinessCardButton.addEventListener("click", () => showScreen("business-card"));
+    editAnimalButton.addEventListener("click", () => showScreen("animal"));
+    publishBusinessCardButton.addEventListener("click", () => publishPage("business-card"));
+    publishAnimalButton.addEventListener("click", () => publishPage("animal"));
+    openPublishedPageButton.addEventListener("click", openPublishedPage);
+    copyPublishedLinkButton.addEventListener("click", copyPublishedLink);
+    claimPageButton.addEventListener("click", () => {
+        if (currentPublishedPage && savePendingClaim(currentPublishedPage)) {
+            recoverPagesMessage.textContent = "";
+            showScreen("recover-pages");
+        }
+    });
+    editPublishedPageButton.addEventListener("click", editPublishedPage);
+
+    window.addEventListener("popstate", async () => {
+        await initializeApplication();
+    });
+
+    updateAuthControls();
+    initializeApplication();
+
+    if ("serviceWorker" in navigator && window.isSecureContext) {
+        navigator.serviceWorker.register("./service-worker.js").catch(() => {
+            // La PWA reste utilisable même si l'enregistrement échoue.
+        });
+    }
 }

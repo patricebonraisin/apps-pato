@@ -878,6 +878,27 @@ button.model-card:focus-visible {
     margin-bottom: 36px;
 }
 
+.public-shortcut-button {
+    margin-top: 14px;
+}
+
+.shortcut-instructions {
+    margin: 0 0 20px;
+    padding: 14px 16px;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-control);
+    background: var(--surface);
+    color: var(--text-secondary);
+    font-size: 0.87rem;
+    line-height: 1.45;
+}
+
+.shortcut-instructions strong {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--text-primary);
+}
+
 .public-card {
     margin-top: 0;
 }
