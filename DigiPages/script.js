@@ -47,6 +47,8 @@ const animalDraftKey = "digipages.animal-draft";
 const editTokensKey = "digipages.edit-tokens";
 const apiBaseURL = "https://patoleblog.fr/wp-json/digipages/v1/pages";
 const uploadURL = "https://patoleblog.fr/wp-json/digipages/v1/upload";
+const verifyMagicLinkURL = "https://patoleblog.fr/wp-json/digipages/v1/auth/verify";
+const authSessionKey = "digipages.auth-session";
 
 let currentPublishedPage;
 let currentEditingPage;
@@ -168,6 +170,98 @@ function saveEditToken(publicID, editToken) {
         return true;
     } catch {
         return false;
+    }
+}
+
+function readAuthSession() {
+    try {
+        const session = JSON.parse(localStorage.getItem(authSessionKey) || "");
+
+        return session
+            && typeof session.sessionToken === "string"
+            && typeof session.email === "string"
+            ? session
+            : null;
+    } catch {
+        return null;
+    }
+}
+
+function saveAuthSession(session) {
+    try {
+        localStorage.setItem(authSessionKey, JSON.stringify(session));
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+function clearAuthSession() {
+    try {
+        localStorage.removeItem(authSessionKey);
+    } catch {
+        // The interface remains usable if local storage is unavailable.
+    }
+}
+
+function isAuthenticated() {
+    return Boolean(readAuthSession());
+}
+
+function removeMagicLinkFromURL() {
+    const url = new URL(window.location.href);
+
+    url.search = "";
+    url.hash = "";
+    window.history.replaceState({}, "", url.pathname);
+}
+
+function showAuthenticationMessage(message, canReturnHome = false) {
+    const card = createElement("article", "public-card", message);
+
+    if (canReturnHome) {
+        const button = createElement("button", "secondary-button", "Revenir à l’accueil");
+
+        button.type = "button";
+        button.addEventListener("click", () => showScreen("home"));
+        card.append(button);
+    }
+
+    publicContent.replaceChildren(publicBrand(), card);
+    showScreen("public");
+}
+
+async function verifyMagicLink(token) {
+    showAuthenticationMessage("Connexion en cours…");
+
+    try {
+        const response = await fetch(verifyMagicLinkURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ token })
+        });
+
+        if (!response.ok) {
+            throw new Error("invalid-magic-link");
+        }
+
+        const result = await response.json();
+
+        if (!result || typeof result.session_token !== "string" || typeof result.user?.email !== "string") {
+            throw new Error("invalid-magic-link");
+        }
+
+        if (!saveAuthSession({ sessionToken: result.session_token, email: result.user.email })) {
+            throw new Error("invalid-magic-link");
+        }
+
+        removeMagicLinkFromURL();
+        showAuthenticationMessage("Connexion réussie");
+
+        window.setTimeout(() => showScreen("home"), 1200);
+    } catch {
+        removeMagicLinkFromURL();
+        showAuthenticationMessage("Ce lien de connexion est invalide ou a expiré.", true);
     }
 }
 
@@ -1122,13 +1216,24 @@ openPublishedPageButton.addEventListener("click", openPublishedPage);
 copyPublishedLinkButton.addEventListener("click", copyPublishedLink);
 editPublishedPageButton.addEventListener("click", editPublishedPage);
 
-window.addEventListener("popstate", () => {
-    if (!loadPublicationFromURL()) {
+async function initializeApplication() {
+    const magicToken = new URLSearchParams(window.location.search).get("magic");
+
+    if (magicToken) {
+        await verifyMagicLink(magicToken);
+        return;
+    }
+
+    if (!await loadPublicationFromURL()) {
         showScreen("home");
     }
+}
+
+window.addEventListener("popstate", async () => {
+    await initializeApplication();
 });
 
-loadPublicationFromURL();
+initializeApplication();
 
 if ("serviceWorker" in navigator && window.isSecureContext) {
     navigator.serviceWorker.register("./service-worker.js").catch(() => {
