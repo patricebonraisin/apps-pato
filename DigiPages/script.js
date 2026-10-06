@@ -6,6 +6,7 @@ const animalScreen = document.querySelector('[data-screen="animal"]');
 const animalPreviewScreen = document.querySelector('[data-screen="animal-preview"]');
 const publishedScreen = document.querySelector('[data-screen="published"]');
 const publicScreen = document.querySelector('[data-screen="public"]');
+const myPagesScreen = document.querySelector('[data-screen="my-pages"]');
 const openModelsButton = document.querySelector('[data-action="open-models"]');
 const openBusinessCardButton = document.querySelector('[data-action="open-business-card"]');
 const openAnimalButton = document.querySelector('[data-action="open-animal"]');
@@ -23,6 +24,13 @@ const publishAnimalButton = document.querySelector('[data-action="publish-animal
 const openPublishedPageButton = document.querySelector('[data-action="open-published-page"]');
 const copyPublishedLinkButton = document.querySelector('[data-action="copy-published-link"]');
 const editPublishedPageButton = document.querySelector('[data-action="edit-published-page"]');
+const openMyPagesButton = document.querySelector('[data-action="open-my-pages"]');
+const signOutButton = document.querySelector('[data-action="sign-out"]');
+const goHomeFromPagesButton = document.querySelector('[data-action="go-home-from-pages"]');
+const authActions = document.querySelector('[data-auth-actions]');
+const authEmail = document.querySelector('[data-auth-email]');
+const myPagesEmail = document.querySelector('[data-my-pages-email]');
+const myPagesContent = document.querySelector('[data-my-pages-content]');
 const publishedURL = document.querySelector('[data-published-url]');
 const publicContent = document.querySelector('[data-public-content]');
 const businessCardForm = document.querySelector(".business-card-form");
@@ -49,6 +57,7 @@ const apiBaseURL = "https://patoleblog.fr/wp-json/digipages/v1/pages";
 const uploadURL = "https://patoleblog.fr/wp-json/digipages/v1/upload";
 const verifyMagicLinkURL = "https://patoleblog.fr/wp-json/digipages/v1/auth/verify";
 const authSessionKey = "digipages.auth-session";
+const myPagesURL = "https://patoleblog.fr/wp-json/digipages/v1/me/pages";
 
 let currentPublishedPage;
 let currentEditingPage;
@@ -136,7 +145,8 @@ function showScreen(screen) {
         animal: animalScreen,
         "animal-preview": animalPreviewScreen,
         published: publishedScreen,
-        public: publicScreen
+        public: publicScreen,
+        "my-pages": myPagesScreen
     };
     const nextScreen = screens[screen];
 
@@ -208,6 +218,107 @@ function isAuthenticated() {
     return Boolean(readAuthSession());
 }
 
+function authRequestHeaders() {
+    const session = readAuthSession();
+
+    return session ? { Authorization: "Bearer " + session.sessionToken } : {};
+}
+
+function updateAuthControls() {
+    const session = readAuthSession();
+
+    authActions.hidden = !session;
+    authEmail.textContent = session ? session.email : "";
+    myPagesEmail.textContent = session ? session.email : "";
+}
+
+function pageTitle(page) {
+    if (page.type === "animal") {
+        return page.data.name || "Fiche animal";
+    }
+
+    return [page.data.firstName, page.data.lastName].filter(Boolean).join(" ") || page.data.company || "Carte de visite";
+}
+
+function pageTypeLabel(type) {
+    return type === "animal" ? "Identification d’un animal" : "Carte de visite";
+}
+
+function formatPageDate(value) {
+    const date = new Date(value.replace(" ", "T") + "Z");
+
+    return Number.isNaN(date.getTime()) ? "" : new Intl.DateTimeFormat("fr-FR", { dateStyle: "medium" }).format(date);
+}
+
+function renderMyPages(pages) {
+    myPagesContent.replaceChildren();
+
+    if (!pages.length) {
+        const message = createElement("article", "public-card", "Vous n’avez encore créé aucune page.");
+        const button = createElement("button", "primary-button", "Créer une page");
+
+        button.type = "button";
+        button.addEventListener("click", () => showScreen("models"));
+        message.append(button);
+        myPagesContent.append(message);
+        return;
+    }
+
+    pages.forEach((page) => {
+        const card = createElement("article", "my-page-card");
+        const details = createElement("div", "my-page-details");
+        const title = createElement("h2", "", pageTitle(page));
+        const meta = createElement("p", "", pageTypeLabel(page.type) + (page.updatedAt ? " · Modifiée le " + formatPageDate(page.updatedAt) : ""));
+
+        details.append(title, meta);
+        if (page.photo) {
+            const image = createElement("img", "my-page-photo");
+
+            image.src = page.photo;
+            image.alt = "";
+            card.append(image);
+        }
+        const openButton = createElement("button", "secondary-button", "Ouvrir");
+        const editButton = createElement("button", "text-button", "Modifier");
+
+        openButton.type = "button";
+        editButton.type = "button";
+        openButton.addEventListener("click", async () => {
+            window.history.pushState({}, "", publicationURLFor(page.id));
+            await loadPublicationFromURL();
+        });
+        editButton.addEventListener("click", () => startEditingPage({ ...page, isOwned: true }));
+        card.append(details, openButton, editButton);
+        myPagesContent.append(card);
+    });
+}
+
+async function openMyPages() {
+    const session = readAuthSession();
+
+    if (!session) {
+        showScreen("home");
+        return;
+    }
+
+    myPagesContent.replaceChildren(createElement("article", "public-card", "Chargement de vos pages…"));
+    showScreen("my-pages");
+
+    try {
+        const response = await fetch(myPagesURL, { headers: authRequestHeaders() });
+
+        if (!response.ok) {
+            throw new Error("my-pages-failed");
+        }
+
+        const pages = await response.json();
+
+        renderMyPages(Array.isArray(pages) ? pages.map(normalizeBackendPage) : []);
+    } catch {
+        myPagesContent.replaceChildren(createElement("article", "public-card", "Impossible de charger vos pages pour le moment."));
+    }
+}
+
 function removeMagicLinkFromURL() {
     const url = new URL(window.location.href);
 
@@ -255,6 +366,7 @@ async function verifyMagicLink(token) {
             throw new Error("invalid-magic-link");
         }
 
+        updateAuthControls();
         removeMagicLinkFromURL();
         showAuthenticationMessage("Connexion réussie");
 
@@ -675,6 +787,8 @@ async function publishPage(type) {
     const token = currentEditingPage && currentEditingPage.type === type
         ? editTokenFor(currentEditingPage.id)
         : "";
+    const canUpdate = currentEditingPage && currentEditingPage.type === type
+        && (Boolean(token) || Boolean(currentEditingPage.isOwned && isAuthenticated()));
 
     button.disabled = true;
     button.textContent = "Publication…";
@@ -692,14 +806,15 @@ async function publishPage(type) {
         }
 
         const payload = pagePayload(type, imageURL);
-        const response = token
+        const response = canUpdate
             ? await requestPage("/" + currentEditingPage.id, {
                 method: "PUT",
-                headers: { "X-DigiPages-Edit-Token": token },
+                headers: { ...authRequestHeaders(), ...(token ? { "X-DigiPages-Edit-Token": token } : {}) },
                 body: JSON.stringify(payload)
             })
             : await requestPage("", {
                 method: "POST",
+                headers: authRequestHeaders(),
                 body: JSON.stringify(payload)
             });
         const page = normalizeBackendPage(response);
@@ -708,6 +823,7 @@ async function publishPage(type) {
             saveEditToken(page.id, response.edit_token);
         }
 
+        page.isOwned = isAuthenticated();
         showPublicationConfirmation(page);
     } catch (error) {
         if (error.message === "invalid-image") {
@@ -1189,6 +1305,13 @@ clearAnimalDraftButton.addEventListener("click", () => {
 });
 
 openModelsButton.addEventListener("click", () => showScreen("models"));
+openMyPagesButton.addEventListener("click", openMyPages);
+signOutButton.addEventListener("click", () => {
+    clearAuthSession();
+    updateAuthControls();
+    showScreen("home");
+});
+goHomeFromPagesButton.addEventListener("click", () => showScreen("home"));
 openBusinessCardButton.addEventListener("click", () => {
     currentEditingPage = undefined;
     showScreen("business-card");
@@ -1233,6 +1356,7 @@ window.addEventListener("popstate", async () => {
     await initializeApplication();
 });
 
+updateAuthControls();
 initializeApplication();
 
 if ("serviceWorker" in navigator && window.isSecureContext) {

@@ -23,7 +23,23 @@
                     <p class="introduction">Créez simplement la page digitale de votre produit connecté.</p>
                 </div>
                 <button class="primary-button" type="button" data-action="open-models">Créer une page</button>
+                <div class="auth-actions" data-auth-actions hidden>
+                    <p class="auth-email" data-auth-email></p>
+                    <button class="secondary-button" type="button" data-action="open-my-pages">Mes pages</button>
+                    <button class="text-button" type="button" data-action="sign-out">Se déconnecter</button>
+                </div>
                 <p class="association-note">À associer à votre produit NFC ou QR code.</p>
+            </div>
+        </section>
+
+        <section class="my-pages-page screen" data-screen="my-pages" aria-labelledby="my-pages-title" hidden>
+            <div class="my-pages-container">
+                <header class="models-header">
+                    <button class="back-button" type="button" data-action="go-home-from-pages" aria-label="Retour à l'accueil"><span aria-hidden="true">‹</span>Retour</button>
+                    <div class="brand"><img src="icons/icon-192.png" alt="" width="32" height="32">DigiPages</div>
+                </header>
+                <div class="form-intro"><h1 tabindex="-1" id="my-pages-title">Mes pages</h1><p data-my-pages-email></p></div>
+                <div class="my-pages-list" data-my-pages-content></div>
             </div>
         </section>
 
