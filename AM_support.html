@@ -162,12 +162,14 @@
         <div class="content">
             <section class="card">
                 <h2>Bien démarrer</h2>
-                <p>Assistant Maison fonctionne avec une installation Home Assistant déjà configurée : elle ne remplace pas Home Assistant et n’ajoute pas directement d’appareils. Un mode d’emploi complet est aussi disponible directement dans l’application, depuis Réglages → Mode d’emploi.</p>
+                <p>Assistant Maison fonctionne avec une installation Home Assistant déjà configurée : elle ne remplace pas Home Assistant et n’ajoute pas directement d’appareils. Un mode d’emploi complet est aussi disponible directement dans l’application, depuis <strong>Réglages → Mode d’emploi</strong>.</p>
+                <p>Vous n’avez pas encore Home Assistant, ou souhaitez simplement découvrir l’application ? Touchez <strong>Réglages → Essayer en mode démo</strong> : une maison fictive s’affiche, entièrement hors ligne. Pour en sortir, touchez <strong>Quitter le mode démo</strong>.</p>
             </section>
 
             <section class="card">
                 <h2>1. Connecter Assistant Maison à Home Assistant</h2>
-                <p>Dans <strong>Réglages → Connexion Home Assistant</strong>, renseignez l’adresse de votre installation (par exemple <code>http://homeassistant.local:8123</code>) ainsi qu’un jeton d’accès longue durée, puis appuyez sur <strong>Tester la connexion</strong>.</p>
+                <p>Dans <strong>Réglages → Connexion Home Assistant</strong>, renseignez l’adresse locale de votre installation (par exemple <code>http://homeassistant.local:8123</code>), son adresse distante si vous en avez une, ainsi qu’un jeton d’accès longue durée, puis touchez <strong>Tester et enregistrer</strong>. Vos informations ne sont enregistrées qu’une fois la connexion vérifiée.</p>
+                <p>Copiez l’adresse complète, y compris <code>http://</code> ou <code>https://</code> : les navigateurs masquent souvent ce début d’adresse.</p>
             </section>
 
             <section class="card">
@@ -183,26 +185,40 @@
 
             <section class="card">
                 <h2>3. Accès depuis l’extérieur de votre domicile</h2>
-                <p>Une adresse locale (comme <code>homeassistant.local</code>) fonctionne uniquement lorsque votre iPhone est connecté au même réseau que Home Assistant. Pour piloter votre maison depuis l’extérieur, votre Home Assistant doit proposer un accès distant sécurisé, par exemple via Home Assistant Cloud (Nabu Casa) ou une autre méthode d’accès distant de votre choix. Ce n’est pas obligatoire : l’adresse locale suffit si vous n’utilisez l’application que chez vous.</p>
+                <p>Une adresse locale (comme <code>homeassistant.local</code>) fonctionne uniquement lorsque votre iPhone est connecté au même réseau que Home Assistant. Pour piloter votre maison depuis l’extérieur, votre Home Assistant doit proposer un accès distant sécurisé, par exemple via Home Assistant Cloud (Nabu Casa) ou votre propre nom de domaine.</p>
+                <p>Saisissez cette adresse dans le champ <strong>Adresse distante</strong> : l’application utilise automatiquement l’adresse locale à la maison et l’adresse distante à l’extérieur, sans aucune manipulation. Avec Home Assistant Cloud, vous trouverez l’adresse distante dans Home Assistant, sous <strong>Paramètres → Home Assistant Cloud</strong>.</p>
+                <p>Ce n’est pas obligatoire : l’adresse locale suffit si vous n’utilisez l’application que chez vous.</p>
             </section>
 
             <section class="card">
                 <h2>4. Favoris et appareils masqués</h2>
-                <p>Ajoutez une étoile à un appareil dans l’onglet <strong>Appareils</strong> pour le retrouver rapidement sur l’écran d’accueil. À l’inverse, masquez les appareils ou entités que vous ne souhaitez pas voir : ils restent accessibles à tout moment depuis <strong>Réglages → Appareils masqués</strong>, où vous pouvez les réafficher.</p>
+                <p>Ajoutez une étoile à un appareil dans l’onglet <strong>Appareils</strong> pour le retrouver rapidement sur l’écran d’accueil, où vos favoris sont regroupés par catégorie. Vous pouvez réorganiser ces catégories et replier celles que vous consultez moins souvent.</p>
+                <p>À l’inverse, masquez les appareils ou entités que vous ne souhaitez pas voir : ils restent accessibles à tout moment depuis <strong>Réglages → Appareils masqués</strong>, où vous pouvez les réafficher.</p>
             </section>
 
             <section class="card">
-                <h2>5. Verrouillage Face ID</h2>
-                <p>Vous pouvez protéger l’accès à l’application avec Face ID, Touch ID ou le code de votre iPhone en activant l’option dans <strong>Réglages → Verrouillage</strong>. Si l’authentification échoue ou n’est pas configurée, un bouton « Déverrouiller » reste disponible pour réessayer.</p>
+                <h2>5. Températures et pluie de l’accueil</h2>
+                <p>Si votre Home Assistant dispose de capteurs adaptés, le bandeau de l’accueil affiche la température intérieure, la température extérieure et, s’il a plu depuis minuit, la pluie du jour. Les capteurs sont choisis automatiquement d’après leur nom et leur pièce.</p>
+                <p>Pour choisir vous-même les capteurs, ou masquer l’une de ces informations, ouvrez <strong>Réglages → Températures de l’accueil</strong>. Sans capteur adapté, rien ne s’affiche.</p>
             </section>
 
             <section class="card">
-                <h2>6. Un appareil apparaît indisponible</h2>
+                <h2>6. Synchronisation entre vos appareils</h2>
+                <p>Si iCloud est activé, vos adresses, votre jeton d’accès, vos favoris, vos appareils masqués et l’activation du verrouillage sont synchronisés entre vos appareils Apple connectés au même identifiant Apple. Le bouton <strong>Déconnecter Home Assistant</strong> supprime les adresses et le jeton sur tous ces appareils.</p>
+            </section>
+
+            <section class="card">
+                <h2>7. Verrouillage Face ID ou Touch ID</h2>
+                <p>Vous pouvez protéger l’accès à l’application avec Face ID, Touch ID ou le code de votre iPhone en activant l’option <strong>Verrouillage Face ID</strong> (ou Touch ID, selon votre appareil) dans les Réglages de l’application. Si l’authentification échoue, un bouton « Déverrouiller » reste disponible pour réessayer.</p>
+            </section>
+
+            <section class="card">
+                <h2>8. Un appareil apparaît indisponible</h2>
                 <p>Cela signifie que Home Assistant ne transmet pas actuellement son état. Essayez d’actualiser l’application, puis vérifiez l’appareil et son intégration directement dans Home Assistant si le problème persiste.</p>
             </section>
 
             <section class="card">
-                <h2>7. Caméras</h2>
+                <h2>9. Caméras</h2>
                 <p>Assistant Maison affiche l’image disponible pour toute entité caméra transmise par Home Assistant. La qualité et la disponibilité d’un flux dépendent de votre intégration caméra (Ring, Reolink, UniFi Protect, Frigate, etc.).</p>
             </section>
 
@@ -215,7 +231,7 @@
         </div>
     </main>
 
-    <footer class="container">Assistant Maison · Une interface simple pour votre maison connectée.</footer>
+    <footer class="container">Assistant Maison · Une interface simple pour votre maison connectée. · <a href="AM_privacy.html">Politique de confidentialité</a></footer>
 
     <a class="home-button" href="/" aria-label="Retour à l'accueil Pato Apps">⌂ Accueil</a>
 </body>
