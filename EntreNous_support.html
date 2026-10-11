@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Assistance et questions fréquentes de l'application EntreNous.">
+    <title>Assistance — EntreNous</title>
+    <script>
+        // Same theme as EntreNous_marketing.html: the visitor's choice there, otherwise the system's.
+        (function () {
+            let savedTheme;
+            try {
+                savedTheme = localStorage.getItem("entrenous-theme");
+            } catch {
+                savedTheme = null;
+            }
+            document.documentElement.dataset.theme = savedTheme === "light" || savedTheme === "dark"
+                ? savedTheme
+                : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        })();
+    </script>
+    <style>
+        :root {
+            --coral: #fa6b6b;
+            --blush: #3d78d6;
+            --violet: #7d4ced;
+            --blue: #3891f5;
+            --teal: #2ead9e;
+            --ink: #251f36;
+            --muted: #6d6878;
+            --paper: #fffaff;
+            --card: #ffffff;
+            --line: rgba(91, 70, 145, .14);
+            --soft: rgba(125, 76, 237, .08);
+            --gradient: linear-gradient(125deg, var(--coral), var(--blush) 38%, var(--violet) 68%, var(--blue));
+        }
+
+        html[data-theme="dark"] {
+            --ink: #f4f0fb;
+            --muted: #b9b2c8;
+            --paper: #17131f;
+            --card: #221c2d;
+            --line: rgba(196, 178, 240, .16);
+            --soft: rgba(125, 76, 237, .18);
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--paper);
+            font-family: ui-rounded, "SF Pro Rounded", "Avenir Next", Avenir, system-ui, sans-serif;
+            line-height: 1.65;
+        }
+
+        a { color: var(--violet); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+        html[data-theme="dark"] a { color: #b79cff; }
+
+        .container { width: min(980px, calc(100% - 40px)); margin: auto; }
+
+        header { color: white; background: var(--gradient); }
+        .hero { padding: 78px 0 70px; }
+
+        .eyebrow {
+            margin: 0 0 .8rem;
+            color: rgba(255, 255, 255, .85);
+            font-size: .75rem;
+            font-weight: 850;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            max-width: 720px;
+            margin: 0;
+            font-size: clamp(2.5rem, 6vw, 4.4rem);
+            line-height: 1.02;
+            letter-spacing: -.05em;
+        }
+
+        .hero p:last-child { max-width: 680px; margin: 1.35rem 0 0; color: rgba(255, 255, 255, .92); font-size: 1.1rem; }
+
+        main { padding: 66px 0 84px; }
+
+        .layout { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 60px; }
+
+        .toc { position: sticky; top: 24px; align-self: start; }
+        .toc h2 { margin: 0 0 .75rem; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
+        .toc a { display: block; padding: .38rem 0; color: var(--muted); font-size: .9rem; text-decoration: none; }
+        .toc a:hover { color: var(--violet); font-weight: 800; }
+
+        article section { padding: 0 0 2.4rem; }
+        article h2 { margin: 0 0 .8rem; font-size: 1.45rem; line-height: 1.2; letter-spacing: -.03em; }
+        article p { margin: 0 0 1rem; color: var(--muted); }
+
+        .contact-card {
+            padding: 1.5rem;
+            border: 1px solid var(--line);
+            border-radius: 23px;
+            background: var(--soft);
+        }
+        .contact-card h2 { margin-bottom: .45rem; }
+        .contact-card p { margin-bottom: .7rem; }
+        .contact-card + section { margin-top: 2.4rem; }
+
+        .updated { margin: 1rem 0 0; color: rgba(255, 255, 255, .85); font-size: .95rem; font-weight: 700; }
+
+        footer { padding: 0 0 48px; color: var(--muted); font-size: .9rem; }
+        footer .container { display: flex; flex-wrap: wrap; gap: 1.2rem; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 24px; }
+        footer nav { display: flex; gap: 1.2rem; }
+
+        @media (max-width: 720px) {
+            .container { width: min(100% - 32px, 600px); }
+            .hero { padding: 42px 0 48px; }
+            main { padding: 42px 0 58px; }
+            .layout { grid-template-columns: 1fr; gap: 32px; }
+            .toc { position: static; padding: 1rem; border-radius: 16px; background: var(--soft); }
+            .toc a { display: inline-block; margin-right: .8rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="hero">
+                <p class="eyebrow">EntreNous</p>
+                <h1>Assistance</h1>
+                <p>Une question, un problème, une suggestion ? Voici comment obtenir de l’aide, et les réponses aux questions les plus fréquentes.</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="layout">
+            <nav class="toc" aria-label="Sommaire">
+                <h2>Sommaire</h2>
+                <a href="#contact">Nous contacter</a>
+                <a href="#inviter">Inviter dans un cercle</a>
+                <a href="#manquants">Souvenirs manquants</a>
+                <a href="#dayone">Import Day One</a>
+                <a href="#sauvegarde">Restauration</a>
+                <a href="#publications">Masquer, modifier, supprimer</a>
+                <a href="#verrouillage">Face ID / Touch ID</a>
+                <a href="#notifications">Notifications</a>
+                <a href="#donnees">Supprimer mes données</a>
+                <a href="#suggestions">Suggestions</a>
+                <a href="#fonctionnalites">Fonctionnalités</a>
+            </nav>
+
+            <article>
+                <section id="contact" class="contact-card">
+                    <h2>Nous contacter</h2>
+                    <p>Pour toute question, tout problème ou toute suggestion : <a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a>.</p>
+                    <p>Indiquez si possible le numéro de version et de build d’EntreNous (visible en bas de Réglages) et une courte description de ce qui s’est passé — cela nous permet de répondre plus vite et plus précisément.</p>
+                </section>
+
+                <section id="inviter">
+                    <h2>Inviter quelqu’un dans un cercle</h2>
+                    <p>Un ordre précis est à respecter : la personne doit d’abord installer EntreNous avant que vous lui envoyiez le lien d’invitation du cercle. Si le lien est ouvert avant que l’app soit installée, l’invitation ne fonctionnera pas.</p>
+                    <p>Si l’invitation ne fonctionne toujours pas après avoir installé l’app puis rouvert le lien, renvoyez un nouveau lien d’invitation depuis le cercle concerné.</p>
+                </section>
+
+                <section id="manquants">
+                    <h2>Des souvenirs n’apparaissent pas ou semblent manquants</h2>
+                    <p>Vérifiez d’abord votre connexion internet, puis que votre identifiant Apple est bien connecté à iCloud et dispose d’assez d’espace de stockage (Réglages système ▸ votre nom ▸ iCloud).</p>
+                    <p>Fermez ensuite complètement EntreNous (glissez-la hors des applications récentes) et rouvrez-la : la plupart des souvenirs qui semblaient manquants réapparaissent après ce relancement complet, le temps que la synchronisation avec iCloud se termine.</p>
+                    <p>Après une réinstallation, un indicateur « Récupération depuis iCloud… » peut s’afficher brièvement : c’est normal, laissez-le le temps de se terminer avant de conclure que des souvenirs ont disparu.</p>
+                </section>
+
+                <section id="dayone">
+                    <h2>Un import depuis Day One échoue</h2>
+                    <p>Si l’archive vient d’iCloud Drive, assurez-vous qu’elle est entièrement téléchargée sur l’appareil avant de la sélectionner (touchez-la dans Fichiers et attendez la fin du téléchargement si une icône de nuage est encore visible).</p>
+                    <p>Un import interrompu reprend sans créer de doublon si vous relancez la même archive : les souvenirs déjà importés sont simplement ignorés la seconde fois.</p>
+                </section>
+
+                <section id="sauvegarde">
+                    <h2>Une restauration de sauvegarde échoue</h2>
+                    <p>Les mêmes conseils que pour un import Day One s’appliquent : vérifiez d’abord que l’archive est entièrement téléchargée si elle vient d’iCloud Drive.</p>
+                    <p>Une restauration interrompue reprend elle aussi sans créer de doublon si vous relancez la même sauvegarde. Les souvenirs restaurés rejoignent toujours Mon journal, même ceux issus à l’origine d’un cercle partagé — c’est normal, pas une erreur.</p>
+                </section>
+
+                <section id="publications">
+                    <h2>Masquer, modifier ou supprimer une publication</h2>
+                    <p>Masquer une publication (icône d’œil barré) la retire uniquement de votre propre affichage, sans la supprimer ni la cacher aux autres membres d’un cercle partagé. Retrouvez-la dans Réglages ▸ Publications masquées pour la faire réapparaître.</p>
+                    <p>Dans un cercle partagé, seul l’auteur d’une publication peut la modifier ou la supprimer réellement — les autres membres peuvent seulement réagir, commenter, ou la masquer pour eux-mêmes.</p>
+                </section>
+
+                <section id="verrouillage">
+                    <h2>Verrouillage Face ID / Touch ID</h2>
+                    <p>Si Face ID ou Touch ID échoue, EntreNous propose automatiquement le code de votre iPhone à la place : vous ne pouvez pas rester bloqué hors de votre propre journal tant que vous connaissez ce code.</p>
+                    <p>Pour désactiver le verrouillage, ouvrez Réglages ▸ Confidentialité puis désactivez l’interrupteur — une authentification peut vous être demandée pour confirmer.</p>
+                </section>
+
+                <section id="notifications">
+                    <h2>Je ne reçois pas de notifications</h2>
+                    <p>Vérifiez d’abord que les notifications sont autorisées pour EntreNous dans Réglages système ▸ Notifications, puis que le réglage correspondant est bien activé dans Réglages ▸ Notifications au sein de l’application.</p>
+                </section>
+
+                <section id="donnees">
+                    <h2>Supprimer mes données</h2>
+                    <p>Vos souvenirs vivent dans votre propre base iCloud. Supprimer un souvenir l’efface de votre iCloud et de tous vos appareils ; supprimer un cercle déplace ses souvenirs dans Mon journal. Supprimer l’application n’efface que la copie présente sur votre iPhone : vos souvenirs restent dans iCloud et réapparaissent à la réinstallation. Voir la <a href="EntreNous_privacy.html">Politique de confidentialité</a> pour le détail complet.</p>
+                </section>
+
+                <section id="suggestions">
+                    <h2>Suggestions et retours</h2>
+                    <p>Une idée pour améliorer EntreNous ? Écrivez-nous à <a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a> — chaque suggestion est lue.</p>
+                </section>
+
+                <section id="fonctionnalites">
+                    <h2>Découvrir toutes les fonctionnalités</h2>
+                    <p>Le Mode d’emploi, dans les Réglages de l’app, détaille chaque fonctionnalité d’EntreNous : Aujourd’hui, Souvenirs, Cercles, notifications, import Day One, et plus encore.</p>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <span>EntreNous — Les moments qui comptent.</span>
+            <nav aria-label="Liens EntreNous">
+                <a href="EntreNous_marketing.html">Présentation</a>
+                <a href="EntreNous_privacy.html">Confidentialité</a>
+                <a href="/">Accueil Pato Apps</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

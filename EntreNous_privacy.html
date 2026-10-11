@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Politique de confidentialité de l'application EntreNous.">
+    <title>Politique de confidentialité — EntreNous</title>
+    <script>
+        // Same theme as EntreNous_marketing.html: the visitor's choice there, otherwise the system's.
+        (function () {
+            let savedTheme;
+            try {
+                savedTheme = localStorage.getItem("entrenous-theme");
+            } catch {
+                savedTheme = null;
+            }
+            document.documentElement.dataset.theme = savedTheme === "light" || savedTheme === "dark"
+                ? savedTheme
+                : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        })();
+    </script>
+    <style>
+        :root {
+            --coral: #fa6b6b;
+            --blush: #3d78d6;
+            --violet: #7d4ced;
+            --blue: #3891f5;
+            --teal: #2ead9e;
+            --ink: #251f36;
+            --muted: #6d6878;
+            --paper: #fffaff;
+            --card: #ffffff;
+            --line: rgba(91, 70, 145, .14);
+            --soft: rgba(125, 76, 237, .08);
+            --gradient: linear-gradient(125deg, var(--coral), var(--blush) 38%, var(--violet) 68%, var(--blue));
+        }
+
+        html[data-theme="dark"] {
+            --ink: #f4f0fb;
+            --muted: #b9b2c8;
+            --paper: #17131f;
+            --card: #221c2d;
+            --line: rgba(196, 178, 240, .16);
+            --soft: rgba(125, 76, 237, .18);
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--paper);
+            font-family: ui-rounded, "SF Pro Rounded", "Avenir Next", Avenir, system-ui, sans-serif;
+            line-height: 1.65;
+        }
+
+        a { color: var(--violet); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+        html[data-theme="dark"] a { color: #b79cff; }
+
+        .container { width: min(980px, calc(100% - 40px)); margin: auto; }
+
+        header { color: white; background: var(--gradient); }
+        .hero { padding: 78px 0 70px; }
+
+        .eyebrow {
+            margin: 0 0 .8rem;
+            color: rgba(255, 255, 255, .85);
+            font-size: .75rem;
+            font-weight: 850;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            max-width: 720px;
+            margin: 0;
+            font-size: clamp(2.5rem, 6vw, 4.4rem);
+            line-height: 1.02;
+            letter-spacing: -.05em;
+        }
+
+        .hero p:last-child { max-width: 680px; margin: 1.35rem 0 0; color: rgba(255, 255, 255, .92); font-size: 1.1rem; }
+
+        main { padding: 66px 0 84px; }
+
+        .layout { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 60px; }
+
+        .toc { position: sticky; top: 24px; align-self: start; }
+        .toc h2 { margin: 0 0 .75rem; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
+        .toc a { display: block; padding: .38rem 0; color: var(--muted); font-size: .9rem; text-decoration: none; }
+        .toc a:hover { color: var(--violet); font-weight: 800; }
+
+        article section { padding: 0 0 2.4rem; }
+        article h2 { margin: 0 0 .8rem; font-size: 1.45rem; line-height: 1.2; letter-spacing: -.03em; }
+        article p { margin: 0 0 1rem; color: var(--muted); }
+
+        .contact-card {
+            padding: 1.5rem;
+            border: 1px solid var(--line);
+            border-radius: 23px;
+            background: var(--soft);
+        }
+        .contact-card h2 { margin-bottom: .45rem; }
+        .contact-card p { margin-bottom: .7rem; }
+
+        .updated { margin: 1rem 0 0; color: rgba(255, 255, 255, .85); font-size: .95rem; font-weight: 700; }
+
+        footer { padding: 0 0 48px; color: var(--muted); font-size: .9rem; }
+        footer .container { display: flex; flex-wrap: wrap; gap: 1.2rem; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 24px; }
+        footer nav { display: flex; gap: 1.2rem; }
+
+        @media (max-width: 720px) {
+            .container { width: min(100% - 32px, 600px); }
+            .hero { padding: 42px 0 48px; }
+            main { padding: 42px 0 58px; }
+            .layout { grid-template-columns: 1fr; gap: 32px; }
+            .toc { position: static; padding: 1rem; border-radius: 16px; background: var(--soft); }
+            .toc a { display: inline-block; margin-right: .8rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="hero">
+                <p class="eyebrow">EntreNous</p>
+                <h1>Politique de confidentialité</h1>
+                <p class="updated">Dernière mise à jour : 11 octobre 2026</p>
+                <p>EntreNous est édité par Pato Switch (Patrice Bonraisin), développeur indépendant. Cette page explique, en langage clair, quelles données EntreNous traite, où elles vont, et ce que nous ne faisons jamais avec elles.</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="layout">
+            <nav class="toc" aria-label="Sommaire">
+                <h2>Sommaire</h2>
+                <a href="#compte">Aucun compte</a>
+                <a href="#contenu">Ce que vous enregistrez</a>
+                <a href="#icloud">Où vont vos données</a>
+                <a href="#cercles">Le partage dans un cercle</a>
+                <a href="#suggestions">Suggestions</a>
+                <a href="#reformulation">Reformulation</a>
+                <a href="#verrouillage">Face ID / Touch ID</a>
+                <a href="#notifications">Notifications</a>
+                <a href="#dayone">Import Day One</a>
+                <a href="#sauvegarde">Restauration</a>
+                <a href="#diagnostic">Diagnostic</a>
+                <a href="#jamais">Ce que nous ne faisons jamais</a>
+                <a href="#conservation">Conservation</a>
+                <a href="#mineurs">Les mineurs</a>
+                <a href="#modifications">Modifications</a>
+                <a href="#contact">Nous contacter</a>
+            </nav>
+
+            <article>
+                <section id="compte">
+                    <h2>Aucun compte, aucun serveur qui collecte vos souvenirs</h2>
+                    <p>EntreNous ne vous demande jamais de créer de compte, d’indiquer votre email ou votre numéro de téléphone. L’application s’appuie entièrement sur votre identifiant Apple (iCloud) déjà présent sur votre iPhone.</p>
+                    <p>Pato Switch n’exploite aucun serveur qui reçoit, stocke ou analyse le contenu de vos souvenirs. Vos textes, photos, lieux et prénoms tagués ne transitent jamais par une infrastructure que nous possédons.</p>
+                </section>
+
+                <section id="contenu">
+                    <h2>Ce que vous enregistrez</h2>
+                    <p>Un souvenir peut contenir : un texte, jusqu’à six photos, une date, un lieu que vous choisissez d’associer, et les prénoms des personnes présentes que vous tapez vous-même. Rien de tout cela n’est obligatoire à l’exception du texte ou d’une photo.</p>
+                    <p>Le nom affiché pour vous (« Mon identité ») est également stocké de la même façon, pour que vos proches sachent qui a écrit quoi dans un cercle partagé.</p>
+                </section>
+
+                <section id="icloud">
+                    <h2>Où vont vos données</h2>
+                    <p>Vos souvenirs sont stockés dans votre base CloudKit privée, rattachée à votre identifiant Apple, hébergée et protégée par Apple selon ses propres standards de sécurité (chiffrement en transit et au repos).</p>
+                    <p>Nous n’avons pas accès au contenu de votre base privée : seul vous, via votre identifiant Apple, pouvez le consulter. Nous ne recevons aucune copie de vos textes ou de vos photos.</p>
+                </section>
+
+                <section id="cercles">
+                    <h2>Le partage dans un cercle</h2>
+                    <p>Quand vous publiez dans un cercle partagé, le souvenir (et les réactions ou commentaires qui s’y ajoutent) devient visible uniquement par les personnes que vous avez explicitement invitées dans ce cercle, via le mécanisme de partage CloudKit d’Apple.</p>
+                    <p>C’est vous qui envoyez le lien d’invitation, par l’app de messagerie de votre choix. Nous n’avons connaissance ni du contenu de l’invitation, ni de la liste de vos contacts.</p>
+                </section>
+
+                <section id="suggestions">
+                    <h2>Suggestions de photos et de lieux</h2>
+                    <p>Le bouton « Suggestions » s’appuie sur le framework Journaling Suggestions d’Apple. C’est le système iOS, et non EntreNous, qui accède à vos photos ou à votre position pour vous proposer des éléments pertinents.</p>
+                    <p>EntreNous ne reçoit que ce que vous choisissez explicitement d’ajouter à un souvenir. Nous n’interrogeons jamais votre photothèque ou votre position en dehors de ce mécanisme.</p>
+                    <p>Lorsque vous touchez le lieu d’un souvenir, son nom est transmis à l’app Plans d’Apple pour l’afficher sur la carte. Cela ne se produit que si vous touchez ce lieu, et EntreNous n’envoie rien d’autre.</p>
+                </section>
+
+                <section id="reformulation">
+                    <h2>Reformulation assistée par Apple Intelligence</h2>
+                    <p>Sur les appareils compatibles, le bouton « Reformuler » utilise le modèle de langage embarqué d’Apple (Apple Intelligence), exécuté entièrement sur votre iPhone.</p>
+                    <p>Le texte traité ne quitte jamais votre appareil : il n’est envoyé ni à Pato Switch, ni à Apple, ni à aucun service tiers.</p>
+                </section>
+
+                <section id="verrouillage">
+                    <h2>Verrouillage Face ID / Touch ID</h2>
+                    <p>Si vous activez le verrouillage dans Réglages, l’authentification est entièrement gérée par le framework LocalAuthentication d’iOS.</p>
+                    <p>Aucune donnée biométrique n’est jamais transmise à EntreNous, à Pato Switch ou à un serveur quelconque : votre iPhone nous indique seulement si l’authentification a réussi ou non.</p>
+                </section>
+
+                <section id="notifications">
+                    <h2>Notifications</h2>
+                    <p>Les notifications d’activité, de rappel quotidien et de « Ce jour-là » servent uniquement à vous informer de ce qui se passe dans vos propres cercles ou de vos propres souvenirs passés.</p>
+                    <p>Nous n’envoyons jamais de notification publicitaire ou promotionnelle, et aucune donnée de notification n’est exploitée à des fins commerciales.</p>
+                </section>
+
+                <section id="dayone">
+                    <h2>Import depuis Day One</h2>
+                    <p>L’archive Day One que vous choisissez d’importer est lue entièrement sur votre appareil. Son contenu n’est jamais envoyé à un serveur avant d’être, une fois l’import confirmé, enregistré dans votre base iCloud privée comme n’importe quel autre souvenir.</p>
+                </section>
+
+                <section id="sauvegarde">
+                    <h2>Restauration d’une sauvegarde</h2>
+                    <p>Une archive de sauvegarde EntreNous que vous choisissez de restaurer est lue entièrement sur votre appareil, de la même façon qu’une archive Day One. Son contenu n’est jamais envoyé à un serveur avant d’être, une fois la restauration confirmée, enregistré dans votre base iCloud privée.</p>
+                </section>
+
+                <section id="diagnostic">
+                    <h2>Journal de diagnostic</h2>
+                    <p>EntreNous conserve, uniquement sur votre appareil, un journal technique utile en cas de problème (par exemple un échec de synchronisation). Il n’est jamais transmis automatiquement : il ne quitte votre appareil que si vous choisissez vous-même de le copier pour nous l’envoyer.</p>
+                </section>
+
+                <section id="jamais">
+                    <h2>Ce que nous ne faisons jamais</h2>
+                    <p>Pas de publicité, pas de revente ni de partage de vos données avec des tiers, pas d’identifiant publicitaire, pas de traceur ni d’outil d’analyse comportementale, pas de profil public.</p>
+                    <p>EntreNous n’intègre aucun kit logiciel tiers de publicité ou d’analyse.</p>
+                </section>
+
+                <section id="conservation">
+                    <h2>Conservation et suppression</h2>
+                    <p>Vos souvenirs restent dans votre base iCloud aussi longtemps que vous les y laissez. Supprimer un souvenir l’efface de votre iCloud et de tous vos appareils. Supprimer un cercle ne supprime pas ses souvenirs : ils rejoignent Mon journal.</p>
+                    <p>Supprimer l’application efface uniquement la copie présente sur votre iPhone : vos souvenirs restent dans iCloud et réapparaissent si vous la réinstallez. Pour les effacer définitivement, supprimez-les depuis EntreNous avant de désinstaller l’application.</p>
+                    <p>Vous pouvez également masquer une publication localement (Réglages ▸ Publications masquées) sans jamais la supprimer pour les autres membres d’un cercle partagé.</p>
+                </section>
+
+                <section id="mineurs">
+                    <h2>Les mineurs</h2>
+                    <p>EntreNous est un journal familial : les prénoms d’enfants qu’un parent choisit de taguer dans un souvenir restent soumis aux mêmes règles que le reste du contenu (stockage iCloud privé, partage limité au cercle choisi). L’application ne collecte pas sciemment de données auprès d’enfants utilisant l’app de façon autonome.</p>
+                </section>
+
+                <section id="modifications">
+                    <h2>Modifications de cette politique</h2>
+                    <p>Cette politique peut évoluer si EntreNous change la façon dont une fonctionnalité traite vos données. La date de dernière mise à jour, en haut de cette page, reflète toujours la version en vigueur.</p>
+                </section>
+
+                <section id="contact" class="contact-card">
+                    <h2>Nous contacter</h2>
+                    <p>Pour toute question sur cette politique ou sur vos données :</p>
+                    <a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a>
+                </section>
+
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <span>EntreNous — Les moments qui comptent.</span>
+            <nav aria-label="Liens EntreNous">
+                <a href="EntreNous_marketing.html">Présentation</a>
+                <a href="EntreNous_support.html">Assistance</a>
+                <a href="/">Accueil Pato Apps</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>
