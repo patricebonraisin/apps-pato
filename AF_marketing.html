@@ -106,6 +106,12 @@
         .collection-card { display: grid; grid-template-columns: 1fr auto; gap: 34px; align-items: center; max-width: 920px; margin: 0 auto; padding: 42px; border-radius: 20px; background: var(--card); box-shadow: var(--shadow); }
         .collection h2 { margin-bottom: 12px; color: var(--forest); font-size: 31px; font-weight: 500; letter-spacing: -.03em; }.collection p { max-width: 590px; margin: 0; color: var(--muted); line-height: 1.7; }
         .sheet-icon { display: grid; place-items: center; width: 75px; height: 94px; border: 1px solid #cbd9c8; border-radius: 7px; color: #44754b; background: #f5faf2; font-size: 35px; box-shadow: 8px 8px 0 #d9e7d6; }
+        .matrix-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; max-width: 920px; margin: 28px auto 0; }
+        .matrix-step { padding: 26px; border: 1px solid var(--line); border-radius: 18px; background: var(--card); box-shadow: 0 8px 22px rgba(25, 52, 35, .035); }
+        .matrix-step-number { display: grid; place-items: center; width: 36px; height: 36px; margin-bottom: 18px; border-radius: 50%; color: #fff; background: var(--forest); font-family: Georgia, serif; font-weight: 700; }
+        .matrix-step h3 { margin-bottom: 8px; color: var(--forest); font-size: 18px; font-weight: 600; }
+        .collection .matrix-step p { color: var(--muted); font-size: 14px; line-height: 1.6; }
+        .collection .matrix-note { max-width: 920px; margin: 24px auto 0; font-size: 14px; text-align: center; }
 
         footer { padding: 75px 0 38px; color: #d9e5d8; background: #142f24; }
         .footer-top { display: flex; justify-content: space-between; gap: 24px; align-items: flex-end; padding-bottom: 58px; }
@@ -114,9 +120,9 @@
         .footer-bottom a { color: #dcb986; }
 
         @media (max-width: 780px) {
-            .hero { min-height: auto; }.hero-grid, .story-grid { grid-template-columns: 1fr; gap: 52px; }.hero-grid { padding: 55px 0 80px; }.hero-copy { text-align: center; }.lead { margin-right: auto; margin-left: auto; }.actions { justify-content: center; }.promise { justify-content: center; text-align: left; }.phone { width: 320px; transform: rotate(0); }.feature-grid { grid-template-columns: 1fr; }.collection-card { grid-template-columns: 1fr; }.sheet-icon { display: none; }.footer-top, .footer-bottom { align-items: flex-start; flex-direction: column; } section { padding: 82px 0; }
+            .hero { min-height: auto; }.hero-grid, .story-grid { grid-template-columns: 1fr; gap: 52px; }.hero-grid { padding: 55px 0 80px; }.hero-copy { text-align: center; }.lead { margin-right: auto; margin-left: auto; }.actions { justify-content: center; }.promise { justify-content: center; text-align: left; }.phone { width: 320px; transform: rotate(0); }.feature-grid { grid-template-columns: 1fr; }.collection-card { grid-template-columns: 1fr; }.matrix-steps { grid-template-columns: 1fr 1fr; }.sheet-icon { display: none; }.footer-top, .footer-bottom { align-items: flex-start; flex-direction: column; } section { padding: 82px 0; }
         }
-        @media (max-width: 430px) { .container { width: min(100% - 30px, 1120px); }.nav-link { display: none; } h1 { font-size: 46px; }.phone { width: 295px; }.screen { min-height: 520px; }.tree-area { height: 300px; }.person { transform: scale(.88); }.person.b, .person.e { right: 24px; }.person.a, .person.d { left: 27px; }.person.c { left: 113px; }.collection-card { padding: 30px; } }
+        @media (max-width: 430px) { .container { width: min(100% - 30px, 1120px); }.nav-link { display: none; } h1 { font-size: 46px; }.phone { width: 295px; }.screen { min-height: 520px; }.tree-area { height: 300px; }.person { transform: scale(.88); }.person.b, .person.e { right: 24px; }.person.a, .person.d { left: 27px; }.person.c { left: 113px; }.collection-card { padding: 30px; }.matrix-steps { grid-template-columns: 1fr; } }
 
 
         .home-button {
@@ -166,7 +172,8 @@
             }
 
             .button-primary,
-            .brand-mark {
+            .brand-mark,
+            .matrix-step-number {
                 color: #fff;
                 background: #2c6943;
                 box-shadow: 0 10px 20px rgba(0, 0, 0, .24);
@@ -254,12 +261,15 @@
             <div class="container">
                 <div class="intro"><p class="eyebrow">TOUT POUR VOTRE HISTOIRE</p><h2>La généalogie, plus claire et plus personnelle.</h2><p>Une expérience chaleureuse pour retrouver les liens, mettre des visages sur les noms et partager ce qui compte avec les vôtres.</p></div>
                 <div class="feature-grid">
-                    <article class="feature"><div class="feature-icon">↥</div><h3>Import GEDCOM</h3><p>Ouvrez facilement un fichier GEDCOM existant pour retrouver votre arbre dans l’application.</p></article>
+                    <article class="feature"><div class="feature-icon">↥</div><h3>Import facile</h3><p>Ouvrez un fichier GEDCOM existant, la matrice Excel remplie par vos proches, ou une archive partagée avec toutes ses photos.</p></article>
                     <article class="feature"><div class="feature-icon">♧</div><h3>Arbre à explorer</h3><p>Parcourez les générations et choisissez la personne depuis laquelle commencer l’exploration.</p></article>
-                    <article class="feature"><div class="feature-icon">♙</div><h3>Fiches de famille</h3><p>Consultez en détail les informations, parents, enfants, grands-parents et descendants de chaque personne.</p></article>
-                    <article class="feature"><div class="feature-icon">◉</div><h3>Photos associées</h3><p>Ajoutez votre dossier de médias pour relier les souvenirs visuels aux membres de votre famille.</p></article>
-                    <article class="feature"><div class="feature-icon">☷</div><h3>Tous vos proches</h3><p>Retrouvez la liste complète des membres de l’arbre, avec leurs repères de vie, en un seul endroit.</p></article>
-                    <article class="feature"><div class="feature-icon">↗</div><h3>Partage simplifié</h3><p>Créez une archive de l’arbre et de ses photos, prête à être transmise à un proche.</p></article>
+                    <article class="feature"><div class="feature-icon">♙</div><h3>Fiches de famille</h3><p>Consultez et complétez les informations, parents, enfants, grands-parents et descendants de chaque personne.</p></article>
+                    <article class="feature"><div class="feature-icon">✎</div><h3>Un arbre qui s’enrichit</h3><p>Ajoutez de nouvelles personnes, des enfants et des conjoints : les liens se mettent à jour partout, aussitôt.</p></article>
+                    <article class="feature"><div class="feature-icon">◉</div><h3>Des visages sur les noms</h3><p>Choisissez un portrait dans vos photos ou ajoutez votre dossier de médias pour relier les souvenirs à chacun.</p></article>
+                    <article class="feature"><div class="feature-icon">☷</div><h3>Tous vos proches</h3><p>Retrouvez la liste complète des membres avec leurs repères de vie, et gérez plusieurs arbres séparément.</p></article>
+                    <article class="feature"><div class="feature-icon">↗</div><h3>Partage simplifié</h3><p>Envoyez l’arbre complet et ses photos : votre proche l’ouvre d’un simple toucher depuis Messages ou Mail.</p></article>
+                    <article class="feature"><div class="feature-icon">✦</div><h3>Rappels d’anniversaire</h3><p>Recevez une notification le jour de l’anniversaire de chacun de vos proches, dans tous vos arbres.</p></article>
+                    <article class="feature"><div class="feature-icon">⌂</div><h3>Vos données chez vous</h3><p>Sans compte, sans publicité, sans pistage : votre histoire familiale reste sur votre iPhone.</p></article>
                 </div>
             </div>
         </section>
@@ -268,20 +278,29 @@
             <div class="container story-grid">
                 <div><p class="eyebrow">UNE HISTOIRE À VOTRE IMAGE</p><h2>Des données aux souvenirs, chaque lien retrouve sa place.</h2><p class="story-copy">L’application réunit les informations déjà collectées et les rend plus faciles à parcourir, à enrichir et à transmettre, génération après génération.</p></div>
                 <div class="steps">
-                    <div class="step"><div class="step-number">01</div><div><h3>Importez votre arbre</h3><p>Sélectionnez un fichier GEDCOM ou une archive partagée par votre famille.</p></div></div>
-                    <div class="step"><div class="step-number">02</div><div><h3>Ajoutez les visages</h3><p>Associez un dossier de photos pour donner une présence aux personnes de votre arbre.</p></div></div>
+                    <div class="step"><div class="step-number">01</div><div><h3>Importez votre arbre</h3><p>Sélectionnez un fichier GEDCOM, la matrice Excel de collecte familiale ou une archive partagée par votre famille.</p></div></div>
+                    <div class="step"><div class="step-number">02</div><div><h3>Ajoutez les visages</h3><p>Choisissez des portraits ou associez un dossier de photos pour donner une présence aux personnes de votre arbre.</p></div></div>
                     <div class="step"><div class="step-number">03</div><div><h3>Explorez et transmettez</h3><p>Naviguez entre les générations puis partagez l’arbre complet avec ceux qui poursuivront l’histoire.</p></div></div>
                 </div>
             </div>
         </section>
 
-        <section class="collection">
-            <div class="container"><div class="collection-card"><div><p class="eyebrow">COLLECTE FAMILIALE</p><h2>Commencez aussi autour d’une table.</h2><p>Un modèle Excel est disponible dans l’application pour recueillir les informations de la famille, avec vos proches, à votre rythme. Conservez-le précieusement : son import est prévu dans une prochaine version.</p></div><div class="sheet-icon" aria-hidden="true">▤</div></div></div>
+        <section class="collection" id="matrice">
+            <div class="container">
+                <div class="collection-card"><div><p class="eyebrow">COLLECTE FAMILIALE</p><h2>Commencez aussi autour d’une table.</h2><p>Pas encore de logiciel de généalogie ? L’application fournit une matrice Excel : un tableau simple à compléter vous-même, ou à confier à vos proches pour qu’ils y notent ce qu’ils savent. Une fois remplie, il suffit de l’importer pour voir votre arbre apparaître, photos comprises.</p></div><div class="sheet-icon" aria-hidden="true">▤</div></div>
+                <div class="matrix-steps">
+                    <article class="matrix-step"><span class="matrix-step-number">1</span><h3>Téléchargez la matrice</h3><p>Dans les Réglages de l’application, touchez « Télécharger la matrice Excel ». Gardez-la pour vous ou envoyez-la à votre famille.</p></article>
+                    <article class="matrix-step"><span class="matrix-step-number">2</span><h3>Complétez-la</h3><p>Dans Excel, Numbers ou LibreOffice : une personne par ligne, avec ses dates, ses lieux et l’identifiant de ses parents. Des repères rouges signalent les erreurs courantes.</p></article>
+                    <article class="matrix-step"><span class="matrix-step-number">3</span><h3>Ajoutez les photos</h3><p>Rangez portraits et documents dans un dossier Medias, à côté du fichier, puis indiquez pour chaque personne le nom de sa photo.</p></article>
+                    <article class="matrix-step"><span class="matrix-step-number">4</span><h3>Importez-la</h3><p>Importez le fichier .xlsx, ou un ZIP qui réunit le fichier et le dossier Medias : l’arbre se construit tout seul, et un bilan signale les photos manquantes.</p></article>
+                </div>
+                <p class="matrix-note">Besoin d’aide pour la remplir ? Dans l’application, « Comment remplir la matrice ? » explique chaque colonne pas à pas, avec des exemples.</p>
+            </div>
         </section>
     </main>
 
     <footer>
-        <div class="container"><div class="footer-top"><h2>Préservez, explorez et transmettez votre histoire familiale.</h2><a class="button button-primary" href="#accueil">Revenir au début ↑</a></div><div class="footer-bottom"><span>© 2026 Arbre familial</span><a href="#fonctionnalites">Fonctionnalités</a></div></div>
+        <div class="container"><div class="footer-top"><h2>Préservez, explorez et transmettez votre histoire familiale.</h2><a class="button button-primary" href="#accueil">Revenir au début ↑</a></div><div class="footer-bottom"><span>© 2026 Arbre familial · Développée par <a href="https://www.patoswitch.fr">Pato Switch</a></span><span><a href="#fonctionnalites">Fonctionnalités</a> · <a href="#matrice">La matrice Excel</a> · <a href="arbre-familial-assistance.html">Assistance</a> · <a href="arbre-familial-confidentialite.html">Confidentialité</a></span></div></div>
     </footer>
     <a class="home-button" href="/" aria-label="Retour à l'accueil Pato Apps">⌂ Accueil</a>
 </body>

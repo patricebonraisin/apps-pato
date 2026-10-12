@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Politique de confidentialité de l’application Arbre familial, développée par Pato Switch.">
+    <title>Confidentialité — Arbre familial</title>
+    <style>
+        :root {
+            --canvas: #f5f2e8;
+            --card: #fffdf5;
+            --forest: #1a4533;
+            --forest-deep: #102b21;
+            --sage: #7a9e82;
+            --sage-pale: #dce8d9;
+            --bronze: #946638;
+            --ink: #1f2921;
+            --muted: #5c695e;
+            --line: rgba(26, 69, 51, .16);
+            --shadow: 0 22px 55px rgba(25, 52, 35, .13);
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--canvas);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.65;
+        }
+        h1, h2, .eyebrow, .wordmark { font-family: Georgia, "Times New Roman", serif; }
+        a { color: var(--forest); }
+        .container { width: min(780px, calc(100% - 40px)); margin: 0 auto; }
+
+        header { background: linear-gradient(135deg, #f9f6ee, #ece9d9); border-bottom: 1px solid var(--line); }
+        nav { display: flex; align-items: center; padding: 26px 0; }
+        .brand { display: flex; align-items: center; gap: 11px; color: var(--forest); font-weight: 700; text-decoration: none; }
+        .brand-mark { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50% 50% 45% 45%; color: white; background: var(--forest); font-size: 20px; }
+        .wordmark { font-size: 20px; letter-spacing: -.02em; }
+        .intro { padding: 40px 0 56px; }
+        .eyebrow { margin: 0 0 14px; color: var(--bronze); font-size: 13px; font-weight: 700; letter-spacing: .15em; }
+        h1 { margin: 0 0 18px; color: var(--forest-deep); font-size: clamp(38px, 6vw, 58px); font-weight: 500; line-height: 1.02; letter-spacing: -.045em; }
+        .lead { margin: 0; color: var(--muted); font-size: 19px; }
+
+        .summary { margin: -28px 0 48px; padding: 28px 30px; border: 1px solid var(--line); border-radius: 20px; background: var(--card); box-shadow: var(--shadow); }
+        .summary ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+        .summary li { display: flex; gap: 12px; }
+        .summary li::before { content: "✓"; color: var(--sage); font-weight: 800; }
+
+        main section { padding-bottom: 34px; }
+        h2 { margin: 0 0 12px; color: var(--forest); font-size: 27px; font-weight: 500; letter-spacing: -.02em; }
+        p, li { color: var(--ink); }
+        main ul { padding-left: 22px; }
+        .muted { color: var(--muted); font-size: 15px; }
+
+        footer { margin-top: 30px; padding: 30px 0 38px; color: #d9e5d8; background: #142f24; font-size: 13px; }
+        footer a { color: #dcb986; }
+
+        /* Mode sombre : mêmes couleurs que la page de présentation. */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --canvas: #101712;
+                --card: #19231b;
+                --forest: #b9d9bd;
+                --forest-deep: #edf6ed;
+                --sage: #91b796;
+                --sage-pale: #293b2d;
+                --bronze: #dcb986;
+                --ink: #eef4ee;
+                --muted: #b3c3b4;
+                --line: rgba(220, 237, 221, .18);
+                --shadow: 0 22px 55px rgba(0, 0, 0, .28);
+            }
+            header { background: linear-gradient(135deg, #111b14, #17231a); }
+            .brand-mark { color: #fff; background: #2c6943; }
+            footer { background: #0b2116; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a class="brand" href="AF_marketing.html" aria-label="Arbre familial, accueil"><span class="brand-mark">♧</span><span class="wordmark">Arbre familial</span></a>
+            </nav>
+            <div class="intro">
+                <p class="eyebrow">POLITIQUE DE CONFIDENTIALITÉ</p>
+                <h1>Votre histoire familiale reste chez vous.</h1>
+                <p class="lead">Arbre familial a été conçue pour fonctionner sans compte, sans serveur et sans publicité. Cette page explique simplement ce que l’application fait de vos données.</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="summary">
+            <ul>
+                <li>Aucune donnée personnelle n’est collectée ni transmise au développeur.</li>
+                <li>Aucun compte, aucune publicité, aucun pistage, aucun outil de mesure d’audience.</li>
+                <li>Vos arbres et vos photos sont enregistrés uniquement sur votre appareil.</li>
+                <li>Rien n’est partagé sans une action volontaire de votre part.</li>
+            </ul>
+        </div>
+
+        <main>
+            <section>
+                <h2>Les données que vous saisissez</h2>
+                <p>Les arbres généalogiques, fiches de personnes, dates, lieux, notes et photos que vous importez ou ajoutez sont enregistrés dans l’espace privé de l’application, sur votre iPhone. Ils ne sont envoyés vers aucun serveur : le développeur n’y a pas accès.</p>
+                <p>Si vous avez activé la sauvegarde iCloud ou la sauvegarde sur ordinateur de votre iPhone, ces données peuvent y être incluses, comme celles de vos autres applications. Cette sauvegarde est gérée par Apple et par vous, selon les réglages de votre appareil.</p>
+            </section>
+
+            <section>
+                <h2>Photos et fichiers</h2>
+                <p>Pour ajouter un portrait, l’application utilise le sélecteur de photos d’iOS : seule la photo que vous choisissez lui est transmise. Elle n’a pas accès au reste de votre photothèque.</p>
+                <p>De même, lors d’un import (fichier GEDCOM, classeur Excel, archive ZIP ou dossier de médias), seuls les fichiers que vous sélectionnez sont lus et copiés dans l’application.</p>
+            </section>
+
+            <section>
+                <h2>Rappels d’anniversaire</h2>
+                <p>Les rappels d’anniversaire sont facultatifs et désactivés par défaut. Lorsque vous les activez, iOS vous demande l’autorisation d’afficher des notifications. Ces rappels sont programmés directement sur votre appareil, sans passer par un serveur.</p>
+            </section>
+
+            <section>
+                <h2>Partage d’un arbre</h2>
+                <p>Vous pouvez partager un arbre sous forme d’archive (GEDCOM et photos) grâce à la feuille de partage d’iOS : Messages, Mail, AirDrop, Fichiers… Ce partage n’a lieu que si vous le lancez vous-même, vers le destinataire que vous choisissez. La personne qui reçoit l’archive en possède alors une copie.</p>
+                <p>Un arbre contient souvent des informations sur des personnes vivantes (noms, dates de naissance, photos). Nous vous invitons à ne le partager qu’avec des personnes de confiance et, si possible, avec l’accord des intéressés.</p>
+            </section>
+
+            <section>
+                <h2>Liens externes</h2>
+                <p>Les Réglages de l’application contiennent un lien vers le site de Pato Switch. Il s’ouvre dans votre navigateur, qui applique ses propres règles de confidentialité. L’application elle-même ne contacte aucun service en ligne.</p>
+            </section>
+
+            <section>
+                <h2>Supprimer vos données</h2>
+                <p>Vous gardez la maîtrise complète de vos données :</p>
+                <ul>
+                    <li>pour supprimer un arbre et ses photos, ouvrez « Mes arbres » dans l’application et supprimez-le ;</li>
+                    <li>pour tout effacer, supprimez l’application de votre iPhone.</li>
+                </ul>
+                <p>Le développeur ne détenant aucune de vos données, il n’a rien à supprimer de son côté.</p>
+            </section>
+
+            <section>
+                <h2>Enfants</h2>
+                <p>L’application ne collecte aucune donnée, quel que soit l’âge de la personne qui l’utilise.</p>
+            </section>
+
+            <section>
+                <h2>Vos droits</h2>
+                <p>Comme aucune donnée personnelle n’est collectée ni traitée par le développeur, il n’existe pas de traitement au sens du Règlement général sur la protection des données (RGPD) dont vous devriez demander l’accès, la rectification ou l’effacement. Pour toute question, vous pouvez néanmoins nous écrire.</p>
+            </section>
+
+            <section>
+                <h2>Évolution de cette politique</h2>
+                <p>Si une future version de l’application modifie la façon dont vos données sont traitées, cette page sera mise à jour avant la publication de la version concernée.</p>
+                <p class="muted">Dernière mise à jour : 12 octobre 2026.</p>
+            </section>
+
+            <section>
+                <h2>Contact</h2>
+                <p>Arbre familial est développée par Pato Switch.<br>
+                Site : <a href="https://www.patoswitch.fr">www.patoswitch.fr</a><br>
+                E-mail : <a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a></p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            © 2026 Arbre familial · Développée par <a href="https://www.patoswitch.fr">Pato Switch</a> · <a href="arbre-familial-assistance.html">Assistance</a> · <a href="AF_marketing.html">Présentation de l’application</a> · <a href="/">Pato Apps</a>
+        </div>
+    </footer>
+</body>
+</html>
