@@ -595,6 +595,29 @@ header p {
     font-size: 16px;
 }
 
+/* Petit sticker « mise à jour » posé de travers sur une carte, pour signaler une nouveauté récente. */
+.update-sticker {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    width: fit-content;
+    margin: -8px 0 16px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    color: #3A1A00;
+    background: linear-gradient(135deg, #FFB574, var(--pato-orange));
+    box-shadow: 0 10px 22px rgba(250, 151, 72, 0.32);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    transform: rotate(-3deg);
+}
+
+.update-sticker::before {
+    content: "✨";
+    font-size: 12px;
+}
+
 footer {
     display: flex;
     flex-direction: column;
@@ -907,8 +930,8 @@ html[data-theme="dark"] .card a:hover {
         </div>
         <div class="panel-card stat-card">
             <div>
-                <span>9</span>
-                <small>apps et bientôt <span>11</span>publiées dans la collection sur l'App Store</small>
+                <span>10</span>
+                <small>apps et bientôt <span>11</span> publiées dans la collection sur l'App Store</small>
                 <small class="compat-note">Compatible iPhone 11 ou plus récent • iOS 26 requis</small>
             </div>
         </div>
@@ -944,6 +967,22 @@ html[data-theme="dark"] .card a:hover {
 
     <section class="apps" id="apps">
 
+        <div class="card" data-app-id="arbre-familial" data-app-name="Arbre familial" data-app-page="AF_marketing.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Arbre familial aux favoris">♡</button>
+            <div class="icon-wrap">
+                <img class="icon" src="mon_arbre.png" alt="Logo Arbre familial">
+            </div>
+            <h2>Arbre familial</h2>
+            <p>
+                Explorez votre histoire familiale, reliez les générations
+                et transmettez les souvenirs qui comptent.
+            </p>
+            <div class="card-actions">
+                <a href="https://apps.apple.com/app/arbre-familial-g%C3%A9n%C3%A9alogie/id6821957187" target="_blank" rel="noopener noreferrer">Télécharger</a>
+                <a class="details-link" href="AF_marketing.html">En savoir plus</a>
+            </div>
+        </div>
+
         <div class="card" data-app-id="entrenous" data-app-name="EntreNous" data-app-page="EntreNous_marketing.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter EntreNous aux favoris">♡</button>
             <div class="icon-wrap">
@@ -965,6 +1004,7 @@ html[data-theme="dark"] .card a:hover {
             <div class="icon-wrap">
                 <img class="icon" src="pulse_game.png" alt="Icône Pulse">
             </div>
+            <span class="update-sticker">Mis à jour le <time datetime="2026-10-15">15 octobre 2026</time></span>
             <h2>Pulse</h2>
             <p>
                 Un jeu de timing aussi simple qu’addictif : observez le rythme,
@@ -1101,22 +1141,6 @@ html[data-theme="dark"] .card a:hover {
             <div class="card-actions">
                 <span class="soon-badge" role="status">Bientôt disponible</span>
                 <a class="details-link" href="AM_marketing.html">En savoir plus</a>
-            </div>
-        </div>
-
-        <div class="card" data-app-id="arbre-familial" data-app-name="Arbre familial" data-app-page="AF_marketing.html">
-            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Arbre familial aux favoris">♡</button>
-            <div class="icon-wrap">
-                <img class="icon" src="mon_arbre.png" alt="Logo Arbre familial">
-            </div>
-            <h2>Arbre familial</h2>
-            <p>
-                Explorez votre histoire familiale, reliez les générations
-                et transmettez les souvenirs qui comptent.
-            </p>
-            <div class="card-actions">
-                <span class="soon-badge" role="status">Bientôt disponible</span>
-                <a class="details-link" href="AF_marketing.html">En savoir plus</a>
             </div>
         </div>
 
