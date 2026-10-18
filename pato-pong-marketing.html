@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Pato Pong — le classique revisité, pensé pour des matchs rapides et intenses.">
+    <title>Pato Pong — Le classique, revisité.</title>
+    <style>
+        :root {
+            --night: #040917;
+            --night-soft: #091326;
+            --cyan: #29d4fa;
+            --cyan-deep: #00aee8;
+            --orange: #ff7a29;
+            --orange-bright: #ff9b27;
+            --paper: #f4f8ff;
+            --muted: #a4b8d2;
+            --line: rgba(180, 219, 255, .15);
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: var(--paper);
+            background: var(--night);
+            font-family: ui-rounded, "SF Pro Rounded", "Avenir Next", system-ui, sans-serif;
+            overflow-x: hidden;
+        }
+        a { color: inherit; }
+        .orb { position: fixed; z-index: -1; width: 48vw; aspect-ratio: 1; border-radius: 50%; filter: blur(80px); opacity: .14; pointer-events: none; }
+        .orb-cyan { top: -24vw; right: -10vw; background: var(--cyan); }
+        .orb-orange { top: 54rem; left: -28vw; background: var(--orange); }
+        .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+        nav { display: flex; align-items: center; justify-content: space-between; padding: 25px 0; }
+        .brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 900; letter-spacing: .08em; text-decoration: none; }
+        .brand img { width: 38px; height: 38px; border-radius: 11px; box-shadow: 0 0 24px rgba(41, 212, 250, .35); }
+        .nav-link { color: var(--muted); font-size: .9rem; font-weight: 750; text-decoration: none; transition: color .2s ease; }
+        .nav-link:hover { color: var(--cyan); }
+
+        .hero { min-height: 690px; display: grid; grid-template-columns: 1.02fr .98fr; gap: 44px; align-items: center; padding: 55px 0 110px; }
+        .eyebrow { display: inline-flex; align-items: center; gap: 9px; padding: 8px 12px; border: 1px solid rgba(41, 212, 250, .28); border-radius: 999px; color: var(--cyan); background: rgba(41, 212, 250, .07); font-size: .72rem; font-weight: 850; letter-spacing: .11em; }
+        .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 12px var(--orange); }
+        h1 { max-width: 620px; margin: 20px 0; font-size: clamp(3.7rem, 8vw, 7rem); line-height: .88; letter-spacing: -.078em; }
+        h1 .cyan { color: var(--cyan); } h1 .orange { color: var(--orange-bright); }
+        .intro { max-width: 520px; margin: 0; color: var(--muted); font-size: clamp(1.05rem, 1.8vw, 1.22rem); line-height: 1.6; }
+        .actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
+        .button { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 22px; border-radius: 999px; font-size: .95rem; font-weight: 850; text-decoration: none; transition: transform .2s ease, box-shadow .2s ease; }
+        .button:hover { transform: translateY(-3px); }
+        .primary { color: #031120; background: var(--cyan); box-shadow: 0 13px 30px rgba(41, 212, 250, .25); }
+        .secondary { border: 1px solid var(--line); color: var(--paper); background: rgba(255, 255, 255, .04); }
+        .note { margin: 15px 0 0; color: #6f86a5; font-size: .78rem; }
+
+        .game-art { position: relative; min-height: 465px; display: grid; place-items: center; }
+        .game-art::before { content: ""; position: absolute; width: min(480px, 100%); aspect-ratio: 1; border-radius: 50%; background: conic-gradient(from 205deg, var(--cyan), transparent 25%, var(--orange), transparent 68%, var(--cyan)); filter: blur(25px); opacity: .3; animation: breathe 6s ease-in-out infinite alternate; }
+        .court { position: relative; width: min(470px, 100%); aspect-ratio: 1.18; overflow: hidden; border: 1px solid rgba(196, 225, 255, .2); border-radius: 34px; background: linear-gradient(145deg, rgba(11, 29, 52, .98), rgba(3, 10, 23, .98)); box-shadow: 0 30px 80px rgba(0, 0, 0, .45); }
+        .court::after { content: ""; position: absolute; top: 9%; bottom: 9%; left: 50%; border-left: 3px dashed rgba(210, 231, 255, .35); }
+        .paddle { position: absolute; top: 25%; width: 34px; height: 50%; border-radius: 100px; }
+        .paddle.player { left: 13%; background: linear-gradient(90deg, #02bee8, var(--cyan)); box-shadow: 0 0 28px rgba(41, 212, 250, .45); }
+        .paddle.rival { right: 13%; background: linear-gradient(90deg, var(--orange-bright), #ff6f24); box-shadow: 0 0 28px rgba(255, 122, 41, .36); }
+        .ball { position: absolute; z-index: 1; top: 43%; left: 50%; width: 75px; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff 0 43%, #e4ecf5 44% 100%); box-shadow: -32px 18px 44px rgba(41, 212, 250, .28), 22px -13px 38px rgba(255, 122, 41, .3); transform: translate(-50%, -50%); animation: rally 3.8s ease-in-out infinite alternate; }
+        .score { position: absolute; z-index: 2; top: 8%; left: 0; right: 0; display: flex; justify-content: center; gap: 18px; font-size: 1.8rem; font-weight: 900; }
+        .score .left { color: var(--cyan); } .score .right { color: var(--orange); } .score i { color: rgba(255,255,255,.32); font-style: normal; }
+        .badge { position: absolute; z-index: 3; padding: 10px 13px; border: 1px solid var(--line); border-radius: 14px; background: rgba(5, 16, 34, .78); box-shadow: 0 15px 35px rgba(0, 0, 0, .25); backdrop-filter: blur(12px); color: var(--paper); font-size: .77rem; font-weight: 850; }
+        .badge.one { top: 76%; left: -3%; } .badge.two { top: 15%; right: -5%; color: var(--orange-bright); }
+
+        section { padding: 88px 0; }
+        .section-head { max-width: 660px; margin: 0 auto 46px; text-align: center; }
+        .section-head h2 { margin: 16px 0 13px; font-size: clamp(2.3rem, 5vw, 4.45rem); line-height: .98; letter-spacing: -.065em; }
+        .section-head p { margin: 0; color: var(--muted); font-size: 1.04rem; line-height: 1.6; }
+        .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .feature { min-height: 230px; padding: 27px; border: 1px solid var(--line); border-radius: 24px; background: linear-gradient(145deg, rgba(23, 45, 73, .58), rgba(7, 17, 35, .48)); }
+        .feature-mark { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 22px; border-radius: 15px; color: #031120; font-size: 1.35rem; font-weight: 950; }
+        .cyan-bg { background: var(--cyan); } .orange-bg { background: var(--orange); } .white-bg { background: #e9f5ff; }
+        .feature h3 { margin: 0 0 9px; font-size: 1.12rem; }
+        .feature p { margin: 0; color: var(--muted); font-size: .94rem; line-height: 1.58; }
+
+        .modes { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .mode { position: relative; min-height: 290px; overflow: hidden; padding: 35px; border-radius: 30px; }
+        .mode::after { position: absolute; right: 24px; bottom: -23px; font-size: 10rem; font-weight: 950; line-height: 1; opacity: .14; }
+        .classic { background: linear-gradient(130deg, #007da9, #00c6ee); color: #021624; }
+        .classic::after { content: "7"; } .turbo { background: linear-gradient(130deg, #d94b18, #ff9929); color: #291006; } .turbo::after { content: "60"; }
+        .mode small { display: block; margin-bottom: 24px; font-size: .72rem; font-weight: 900; letter-spacing: .13em; }
+        .mode h3 { max-width: 320px; margin: 0 0 12px; font-size: clamp(2rem, 3.5vw, 3.1rem); line-height: .94; letter-spacing: -.055em; }
+        .mode p { max-width: 315px; margin: 0; font-weight: 650; line-height: 1.5; }
+
+        .final-cta { padding: 78px 28px; border: 1px solid rgba(41, 212, 250, .28); border-radius: 34px; text-align: center; background: radial-gradient(circle at 24% 20%, rgba(41, 212, 250, .19), transparent 28%), radial-gradient(circle at 78% 78%, rgba(255, 122, 41, .18), transparent 30%), #08162a; }
+        .final-cta h2 { max-width: 700px; margin: 0 auto 17px; font-size: clamp(2.6rem, 6vw, 5rem); line-height: .95; letter-spacing: -.07em; }
+        .final-cta p { max-width: 510px; margin: 0 auto; color: var(--muted); line-height: 1.55; }
+        footer { padding: 28px 0 44px; color: #6f86a5; font-size: .82rem; text-align: center; }
+        .home-button {
+            display: flex; width: fit-content; margin: 24px auto calc(24px + env(safe-area-inset-bottom));
+            align-items: center; gap: 8px; min-height: 44px; padding: 0 14px;
+            border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 999px; background: rgba(20, 20, 35, 0.92);
+            color: #eef0fa; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); text-decoration: none;
+            font: 700 15px -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; -webkit-tap-highlight-color: transparent;
+        }
+        .home-button:active { transform: scale(0.96); }
+
+        @keyframes rally { to { left: 61%; top: 38%; transform: translate(-50%, -50%) scale(.92); } }
+        @keyframes breathe { to { transform: scale(1.08) rotate(18deg); opacity: .43; } }
+        @media (max-width: 800px) { .hero { grid-template-columns: 1fr; padding-top: 38px; text-align: center; } .hero .intro { margin-inline: auto; } .actions { justify-content: center; } .game-art { margin-top: 12px; } .features { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 560px) { .container { width: min(100% - 28px, 1120px); } nav { padding: 17px 0; } .nav-link { font-size: .78rem; } .hero { min-height: 0; padding-bottom: 70px; } h1 { font-size: 3.75rem; } .court { border-radius: 24px; } .paddle { width: 26px; } .ball { width: 56px; } .badge { font-size: .65rem; } section { padding: 66px 0; } .features, .modes { grid-template-columns: 1fr; } .mode { min-height: 250px; } .final-cta { padding: 58px 20px; border-radius: 26px; } }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; } }
+    </style>
+</head>
+<body>
+    <div class="orb orb-cyan"></div><div class="orb orb-orange"></div>
+    <header class="container">
+        <nav aria-label="Navigation principale">
+            <a class="brand" href="#accueil"><img src="pato-pong-icon.png" alt="Icône Pato Pong">PATO PONG</a>
+            <a class="nav-link" href="#modes">Les modes de jeu ↓</a>
+        </nav>
+    </header>
+    <main id="accueil">
+        <section class="container hero">
+            <div>
+                <span class="eyebrow">LE CLASSIQUE, REVISITÉ</span>
+                <h1>La balle part.<br><span class="cyan">Vous répondez.</span><br><span class="orange">Encore.</span></h1>
+                <p class="intro">Pato Pong remet l’arcade entre vos mains : une raquette, une balle, et ce petit instant où chaque retour change tout.</p>
+                <div class="actions"><a class="button primary" href="#modes">Découvrir les modes</a><a class="button secondary" href="#principe">Comment ça marche ?</a></div>
+                <p class="note">Pensé pour des matchs rapides, intenses et immédiatement rejouables.</p>
+            </div>
+            <div class="game-art" aria-label="Illustration d'une partie de Pato Pong">
+                <div class="badge one">✦ À vous de jouer</div><div class="badge two">TURBO · 60 s</div>
+                <div class="court"><div class="score"><span class="left">4</span><i>—</i><span class="right">3</span></div><div class="paddle player"></div><div class="paddle rival"></div><div class="ball"></div></div>
+            </div>
+        </section>
+        <section id="principe" class="container">
+            <div class="section-head"><span class="eyebrow">DROIT AU BUT</span><h2>Un geste simple.<br>Un match qui s’emballe.</h2><p>Déplacez votre raquette, anticipez la trajectoire et gardez l’échange vivant. Pato Pong va à l’essentiel pour laisser toute la place au réflexe et au plaisir.</p></div>
+            <div class="features">
+                <article class="feature"><div class="feature-mark cyan-bg">↔</div><h3>Un contrôle direct</h3><p>Votre raquette suit votre mouvement. Rien entre vous et la balle.</p></article>
+                <article class="feature"><div class="feature-mark orange-bg">↗</div><h3>La tension monte</h3><p>À chaque retour, le rythme s’accélère. Restez précis jusqu’au point décisif.</p></article>
+                <article class="feature"><div class="feature-mark white-bg">◉</div><h3>Le duel revient</h3><p>Une partie se lance en quelques secondes. Idéal pour une revanche immédiate.</p></article>
+            </div>
+        </section>
+        <section id="modes" class="container">
+            <div class="section-head"><span class="eyebrow">À VOTRE RYTHME</span><h2>Deux façons de renvoyer la balle.</h2><p>Choisissez l’intensité de votre partie, puis entrez sur le terrain.</p></div>
+            <div class="modes">
+                <article class="mode classic"><small>MODE CLASSIQUE</small><h3>Sept points.<br>Un vainqueur.</h3><p>Le Pong traditionnel revisité : prenez l’avantage et soyez le premier à atteindre 7.</p></article>
+                <article class="mode turbo"><small>MODE TURBO</small><h3>60 secondes<br>pour faire la différence.</h3><p>Le chrono est lancé et la vitesse augmente. Chaque échange compte.</p></article>
+            </div>
+        </section>
+        <section class="container"><div class="final-cta"><h2>Prêt à renvoyer la balle&nbsp;?</h2><p>Un écran, deux raquettes, zéro détour. Pato Pong donne une nouvelle impulsion à un grand classique.</p><div class="actions" style="justify-content:center"><a class="button primary" href="#accueil">Retour au service ↑</a></div></div></section>
+    </main>
+    <footer class="container">© 2026 Pato Apps · Pato Pong</footer>
+    <a class="home-button" href="/" aria-label="Retour à l'accueil Pato Apps">⌂ Accueil</a>
+</body>
+</html>
