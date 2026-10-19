@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Assistance Pato Pong : aide, questions fréquentes et contact.">
+    <title>Assistance — Pato Pong</title>
+    <style>
+        :root { --night:#040917; --night-soft:#091326; --cyan:#29d4fa; --orange:#ff7a29; --violet:#9e73f5; --paper:#f4f8ff; --muted:#a4b8d2; --line:rgba(180,219,255,.15); }
+        * { box-sizing:border-box; } html { scroll-behavior:smooth; }
+        body { margin:0; color:var(--paper); background:var(--night); font-family:ui-rounded,"SF Pro Rounded","Avenir Next",system-ui,sans-serif; }
+        a { color:inherit; }.orb { position:fixed; z-index:-1; width:48vw; aspect-ratio:1; border-radius:50%; filter:blur(80px); opacity:.14; pointer-events:none; }.orb-cyan { top:-24vw; right:-10vw; background:var(--cyan); }.orb-orange { bottom:-24vw; left:-10vw; background:var(--orange); }
+        .container { width:min(1020px,calc(100% - 40px)); margin:0 auto; } nav { display:flex; align-items:center; justify-content:space-between; padding:25px 0; }.brand { display:inline-flex; align-items:center; gap:11px; color:var(--paper); font-weight:900; letter-spacing:.08em; text-decoration:none; }.brand img { width:38px; height:38px; border-radius:11px; box-shadow:0 0 24px rgba(41,212,250,.35); }.nav-link { color:var(--muted); font-size:.9rem; font-weight:750; text-decoration:none; }.nav-link:hover { color:var(--cyan); }
+        main { padding:56px 0 88px; }.eyebrow { display:inline-flex; align-items:center; gap:9px; padding:8px 12px; border:1px solid rgba(41,212,250,.28); border-radius:999px; color:var(--cyan); background:rgba(41,212,250,.07); font-size:.72rem; font-weight:850; letter-spacing:.11em; }.eyebrow::before { content:""; width:7px; height:7px; border-radius:50%; background:var(--orange); box-shadow:0 0 12px var(--orange); }h1 { margin:20px 0 16px; font-size:clamp(3rem,8vw,5.8rem); line-height:.9; letter-spacing:-.07em; }h1 span { color:var(--orange); }.lead { max-width:660px; margin:0 0 42px; color:var(--muted); font-size:1.1rem; line-height:1.65; }
+        .quick { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:46px; }.quick a { min-height:156px; padding:23px; border:1px solid var(--line); border-radius:22px; background:linear-gradient(145deg,rgba(23,45,73,.58),rgba(7,17,35,.48)); text-decoration:none; transition:transform .2s ease,border-color .2s ease; }.quick a:hover { transform:translateY(-4px); border-color:rgba(41,212,250,.45); }.quick-mark { display:grid; place-items:center; width:42px; height:42px; margin-bottom:17px; border-radius:13px; color:#031120; background:var(--cyan); font-weight:950; }.quick a:nth-child(2) .quick-mark { background:var(--orange); }.quick a:nth-child(3) .quick-mark { background:var(--violet); }.quick strong { display:block; margin-bottom:7px; font-size:1rem; }.quick span { color:var(--muted); font-size:.87rem; line-height:1.45; }
+        .section-title { margin:0 0 16px; color:var(--cyan); font-size:.76rem; font-weight:850; letter-spacing:.12em; }.faq { display:grid; gap:12px; }.faq details { padding:0 23px; border:1px solid var(--line); border-radius:18px; background:rgba(9,19,38,.72); }.faq summary { padding:21px 28px 21px 0; cursor:pointer; font-weight:780; list-style:none; }.faq summary::after { content:"+"; float:right; color:var(--cyan); font-size:1.3rem; }.faq details[open] summary::after { content:"−"; }.faq p { margin:0 0 20px; color:var(--muted); font-size:.95rem; line-height:1.6; }
+        .contact { margin-top:46px; padding:38px; border:1px solid rgba(41,212,250,.28); border-radius:30px; text-align:center; background:radial-gradient(circle at 20% 20%,rgba(41,212,250,.16),transparent 35%),radial-gradient(circle at 82% 78%,rgba(255,122,41,.14),transparent 32%),#08162a; }.contact h2 { margin:0 0 11px; font-size:clamp(1.7rem,4vw,2.5rem); letter-spacing:-.04em; }.contact p { margin:0; color:var(--muted); line-height:1.6; }.button { display:inline-flex; align-items:center; min-height:52px; margin-top:22px; padding:0 22px; border-radius:999px; color:#031120; background:var(--cyan); font-size:.9rem; font-weight:850; text-decoration:none; box-shadow:0 13px 30px rgba(41,212,250,.22); } footer { padding:28px 0 44px; color:#6f86a5; font-size:.82rem; text-align:center; }footer a { color:var(--cyan); }
+        @media (max-width:700px) { .quick { grid-template-columns:1fr; } } @media (max-width:560px) { .container { width:min(100% - 28px,1020px); } nav { padding:17px 0; }.nav-link { font-size:.78rem; }main { padding-top:34px; }.contact { padding:28px 20px; border-radius:24px; }.faq details { padding:0 18px; } }
+    </style>
+</head>
+<body>
+    <div class="orb orb-cyan"></div><div class="orb orb-orange"></div>
+    <header class="container"><nav aria-label="Navigation principale"><a class="brand" href="pato-pong-marketing.html"><img src="pato-pong-icon.png" alt="Icône Pato Pong">PATO PONG</a><a class="nav-link" href="pato-pong-politique-confidentialite.html">Confidentialité →</a></nav></header>
+    <main class="container">
+        <span class="eyebrow">BESOIN D’UN COUP DE POUCE ?</span>
+        <h1>On remet la balle <span>en jeu.</span></h1>
+        <p class="lead">Quelques réponses rapides pour profiter de Pato Pong. Vous ne trouvez pas votre réponse ? Notre assistance est à votre écoute.</p>
+        <div class="quick" aria-label="Accès rapide"><a href="#jouer"><div class="quick-mark">↕</div><strong>Bien jouer</strong><span>Contrôles et règles essentielles.</span></a><a href="#modes"><div class="quick-mark">4</div><strong>Les modes</strong><span>Choisissez votre façon de jouer.</span></a><a href="#contact"><div class="quick-mark">✉</div><strong>Nous écrire</strong><span>Un problème ou une suggestion ?</span></a></div>
+
+        <section id="jouer"><p class="section-title">BIEN DÉMARRER</p><div class="faq">
+            <details open><summary>Comment déplacer ma raquette ?</summary><p>En partie, posez votre pouce dans la zone de contrôle située à gauche de l’écran, puis faites-le glisser vers le haut ou le bas. La raquette suit votre mouvement : anticipez la balle et renvoyez-la vers l’adversaire.</p></details>
+            <details><summary>Comment gagner une partie ?</summary><p>En mode Classique et Chaos, le premier joueur à atteindre 7 points gagne. En mode Précision, il faut atteindre 15 points. En Turbo, marquez plus de points que l’ordinateur avant la fin des 60 secondes.</p></details>
+            <details><summary>Puis-je mettre une partie en pause ?</summary><p>Oui. Touchez le bouton « Pause » pendant la partie. Vous pourrez reprendre exactement où vous vous êtes arrêté ou revenir à l’accueil.</p></details>
+        </div></section>
+
+        <section id="modes" style="margin-top:46px"><p class="section-title">LES QUATRE MODES</p><div class="faq">
+            <details><summary>Quelle est la différence entre les modes ?</summary><p>Classique revisite le Pong traditionnel. Turbo vous donne 60 secondes pour faire la différence. Chaos ajoute des obstacles mobiles au centre du terrain. Précision fait apparaître des cibles : les atteindre permet de gagner des points bonus.</p></details>
+            <details><summary>Comment fonctionnent les bonus du mode Précision ?</summary><p>Visez les cibles temporaires avec la balle : la cible bleue rapporte 2 points et la cible orange 3 points. Elles ne bloquent pas la balle, elles récompensent simplement votre précision.</p></details>
+            <details><summary>Le jeu devient trop rapide. Est-ce normal ?</summary><p>Oui. Le rythme augmente au fil des échanges pour garder chaque match vivant. Le mode Turbo accélère également avec le temps.</p></details>
+        </div></section>
+
+        <section id="contact" class="contact"><h2>Toujours besoin d’aide ?</h2><p>Décrivez-nous ce qui se passe et, si possible, indiquez le modèle de votre iPhone ou iPad ainsi que la version d’iOS ou iPadOS utilisée.</p><a class="button" href="mailto:info@patoswitch.fr?subject=Assistance%20Pato%20Pong">Contacter l’assistance</a></section>
+    </main>
+    <footer class="container">© 2026 Pato Switch · <a href="pato-pong-politique-confidentialite.html">Politique de confidentialité</a></footer>
+</body>
+</html>

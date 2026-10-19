@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Politique de confidentialité de Pato Pong.">
+    <title>Politique de confidentialité — Pato Pong</title>
+    <style>
+        :root { --night:#040917; --night-soft:#091326; --cyan:#29d4fa; --orange:#ff7a29; --paper:#f4f8ff; --muted:#a4b8d2; --line:rgba(180,219,255,.15); }
+        * { box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body { margin:0; color:var(--paper); background:var(--night); font-family:ui-rounded,"SF Pro Rounded","Avenir Next",system-ui,sans-serif; }
+        a { color:var(--cyan); }
+        .orb { position:fixed; z-index:-1; width:48vw; aspect-ratio:1; border-radius:50%; filter:blur(80px); opacity:.14; pointer-events:none; }
+        .orb-cyan { top:-24vw; right:-10vw; background:var(--cyan); } .orb-orange { bottom:-24vw; left:-10vw; background:var(--orange); }
+        .container { width:min(860px,calc(100% - 40px)); margin:0 auto; }
+        nav { display:flex; align-items:center; justify-content:space-between; padding:25px 0; }
+        .brand { display:inline-flex; align-items:center; gap:11px; color:var(--paper); font-weight:900; letter-spacing:.08em; text-decoration:none; }
+        .brand img { width:38px; height:38px; border-radius:11px; box-shadow:0 0 24px rgba(41,212,250,.35); }
+        .nav-link { color:var(--muted); font-size:.9rem; font-weight:750; text-decoration:none; }
+        .nav-link:hover { color:var(--cyan); }
+        main { padding:56px 0 88px; }
+        .eyebrow { display:inline-flex; align-items:center; gap:9px; padding:8px 12px; border:1px solid rgba(41,212,250,.28); border-radius:999px; color:var(--cyan); background:rgba(41,212,250,.07); font-size:.72rem; font-weight:850; letter-spacing:.11em; }
+        .eyebrow::before { content:""; width:7px; height:7px; border-radius:50%; background:var(--orange); box-shadow:0 0 12px var(--orange); }
+        h1 { max-width:720px; margin:20px 0 16px; font-size:clamp(3rem,8vw,5.8rem); line-height:.9; letter-spacing:-.07em; }
+        h1 span { color:var(--cyan); }
+        .lead { max-width:660px; margin:0; color:var(--muted); font-size:1.1rem; line-height:1.65; }
+        .updated { margin:23px 0 40px; color:#7188a8; font-size:.84rem; }
+        .card { margin:18px 0; padding:28px; border:1px solid var(--line); border-radius:24px; background:linear-gradient(145deg,rgba(23,45,73,.58),rgba(7,17,35,.48)); }
+        h2 { margin:0 0 12px; font-size:1.35rem; letter-spacing:-.025em; }
+        p, li { color:var(--muted); font-size:.98rem; line-height:1.65; }
+        p { margin:0; } p + p { margin-top:13px; } ul { margin:13px 0 0; padding-left:22px; } li + li { margin-top:7px; }
+        .highlight { color:var(--paper); font-weight:750; }
+        .contact { margin-top:32px; padding:32px; border:1px solid rgba(41,212,250,.28); border-radius:28px; background:radial-gradient(circle at 20% 20%,rgba(41,212,250,.16),transparent 35%),#08162a; }
+        .button { display:inline-flex; align-items:center; min-height:50px; margin-top:20px; padding:0 20px; border-radius:999px; color:#031120; background:var(--cyan); font-size:.9rem; font-weight:850; text-decoration:none; box-shadow:0 13px 30px rgba(41,212,250,.22); }
+        footer { padding:28px 0 44px; color:#6f86a5; font-size:.82rem; text-align:center; }
+        @media (max-width:560px) { .container { width:min(100% - 28px,860px); } nav { padding:17px 0; } .nav-link { font-size:.78rem; } main { padding-top:34px; } .card,.contact { padding:22px; border-radius:20px; } }
+    </style>
+</head>
+<body>
+    <div class="orb orb-cyan"></div><div class="orb orb-orange"></div>
+    <header class="container">
+        <nav aria-label="Navigation principale">
+            <a class="brand" href="pato-pong-marketing.html"><img src="pato-pong-icon.png" alt="Icône Pato Pong">PATO PONG</a>
+            <a class="nav-link" href="pato-pong-assistance.html">Assistance →</a>
+        </nav>
+    </header>
+    <main class="container">
+        <span class="eyebrow">VOTRE VIE PRIVÉE</span>
+        <h1>Politique de <span>confidentialité</span></h1>
+        <p class="lead">Pato Pong a été conçu pour aller droit au jeu. L’application ne demande pas de compte et ne collecte pas vos données personnelles pendant vos parties.</p>
+        <p class="updated">Dernière mise à jour : 19 octobre 2026</p>
+
+        <section class="card">
+            <h2>Les données que nous traitons</h2>
+            <p><span class="highlight">Aucune donnée personnelle n’est collectée par Pato Pong.</span> L’application ne demande ni nom, ni adresse e-mail, ni numéro de téléphone, ni identifiant de compte.</p>
+            <p>Les scores et les réglages de jeu ne sont pas enregistrés ni transmis : une partie se déroule uniquement sur votre appareil.</p>
+        </section>
+
+        <section class="card">
+            <h2>Ce que Pato Pong n’utilise pas</h2>
+            <ul>
+                <li>Pas de publicité ni de suivi publicitaire.</li>
+                <li>Pas d’outil d’analyse d’audience ou de statistiques comportementales.</li>
+                <li>Pas d’accès à votre position, vos contacts, vos photos, votre caméra ou votre microphone.</li>
+                <li>Pas de compte utilisateur, de profil ou de partage de données avec des tiers.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>Liens externes</h2>
+            <p>L’application peut proposer un lien vers le site de Pato Switch. Si vous l’ouvrez, votre navigation sur ce site relève de sa propre politique de confidentialité et des réglages de votre navigateur.</p>
+        </section>
+
+        <section class="card">
+            <h2>Nous contacter</h2>
+            <p>Si vous nous écrivez pour obtenir de l’aide, votre adresse e-mail et le contenu de votre message sont utilisés uniquement pour répondre à votre demande. Ils ne sont ni vendus ni utilisés à des fins publicitaires.</p>
+        </section>
+
+        <section class="contact">
+            <h2>Une question sur vos données ?</h2>
+            <p>Écrivez-nous, nous vous répondrons avec plaisir.</p>
+            <a class="button" href="mailto:info@patoswitch.fr?subject=Question%20confidentialit%C3%A9%20Pato%20Pong">Contacter Pato Switch</a>
+        </section>
+    </main>
+    <footer class="container">© 2026 Pato Switch · <a href="pato-pong-marketing.html">Pato Pong</a></footer>
+</body>
+</html>
