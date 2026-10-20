@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Aide et assistance pour l’application Finelio.">
+    <meta name="description" content="Aide et assistance pour l’application Finelio : placements, comparaison d’objectifs, calculette et simulateur de prêt.">
     <title>Assistance — Finelio</title>
     <style>
         :root {
@@ -68,6 +68,7 @@
 
         h2 { margin: 0 0 10px; color: #1f2a28; font-size: 24px; line-height: 1.3; }
         h3 { margin: 0 0 8px; color: #1f2a28; font-size: 20px; line-height: 1.35; }
+        .group-title { margin: 14px 4px 0; font-size: 26px; }
         p { margin: 0; color: #5b6763; }
         p + p { margin-top: 14px; }
         a { color: #2a5a4b; font-weight: 600; text-decoration: none; }
@@ -85,53 +86,86 @@
         <header class="hero">
             <div class="badge">Assistance Finelio</div>
             <h1>Comment utiliser Finelio</h1>
-            <p class="intro">Finelio vous aide à mieux comprendre le rendement réel de vos placements, simplement.</p>
+            <p class="intro">Finelio vous aide à mieux comprendre le rendement réel de vos placements et le coût réel de vos prêts, simplement.</p>
         </header>
 
         <div class="content">
             <section>
                 <h2>Bien démarrer</h2>
-                <p>Finelio permet soit de retrouver un rendement annualisé à partir d’une valeur finale, soit de projeter une valeur future à partir d’un taux saisi. Selon le produit choisi, ce taux peut être lu en brut ou en net de frais de gestion.</p>
+                <p>Finelio permet de retrouver un rendement annualisé à partir d’une valeur finale, de projeter une valeur future à partir d’un taux saisi ou de raisonner par objectif. Selon le produit choisi, ce taux peut être lu en brut, en net de frais de gestion ou après fiscalité.</p>
+                <p>Finelio propose aussi un simulateur de prêt pour calculer une mensualité, un coût total, un TAEG ou une capacité d’emprunt, et préparer un rendez-vous avec votre banquier ou votre courtier.</p>
             </section>
+
+            <h2 class="group-title">Placements</h2>
 
             <section>
                 <h3>1. Choisissez le bon mode</h3>
-                <p>Le mode Simple convient à un placement sans frais complexes, comme un livret. Le mode Avancé permet de renseigner les dates, les versements programmés, les frais et la fiscalité estimée.</p>
+                <p>Le mode Simple convient à un placement sans frais complexes, comme un livret. Le mode Avancé permet de renseigner les dates, les versements programmés, les frais, la fiscalité estimée et les options plus détaillées propres à certains produits.</p>
             </section>
 
             <section>
                 <h3>2. Sélectionnez votre logique de calcul</h3>
-                <p>Utilisez <strong>Valeur finale</strong> si vous connaissez le montant obtenu au terme du placement. Utilisez <strong>Rendement du contrat</strong> si vous connaissez déjà le taux annuel du support et souhaitez projeter une valeur future.</p>
+                <p>Utilisez <strong>Valeur finale</strong> si vous connaissez le montant obtenu au terme du placement. Utilisez <strong>Rendement du contrat</strong> si vous connaissez déjà le taux annuel du support et souhaitez projeter une valeur future. Utilisez <strong>Objectif</strong> si vous souhaitez estimer soit le versement mensuel requis, soit la date d’atteinte d’un capital cible.</p>
             </section>
 
             <section>
                 <h3>3. Renseignez vos versements</h3>
-                <p>Finelio prend en compte un versement initial et, en mode avancé, des versements programmés par paliers. Vous pouvez définir plusieurs périodes avec une date d’effet, un montant et une fréquence mensuelle, trimestrielle ou annuelle.</p>
+                <p>Finelio prend en compte un versement initial et, en mode avancé, des versements programmés par paliers. Vous pouvez définir plusieurs périodes avec une date d’effet, un montant et une fréquence mensuelle, trimestrielle ou annuelle. Dans le PER, l’objectif peut aussi être exprimé en rente mensuelle indicative à partir de l’âge de liquidation choisi.</p>
             </section>
 
             <section>
                 <h3>4. Ajoutez frais et fiscalité si besoin</h3>
-                <p>Les frais de versement réduisent immédiatement le capital réellement investi. Les frais annuels de gestion réduisent le rendement net chaque année. Le mode <strong>Après fiscalité</strong> applique une estimation simple sur le gain uniquement.</p>
+                <p>Les frais de versement réduisent immédiatement le capital réellement investi. Les frais annuels de gestion réduisent le rendement net chaque année. Le mode <strong>Après fiscalité</strong> applique une estimation simple sur le gain uniquement. Selon le produit, vous pouvez aussi renseigner dividendes, frais de garde ou frais de courtage.</p>
             </section>
 
             <section>
-                <h3>5. Comparez un même objectif sur 5 produits</h3>
-                <p>Depuis l’accueil, ouvrez <strong>Comparer un objectif</strong>. Indiquez un capital cible, une durée et votre budget mensuel : Finelio affiche l’effort mensuel requis pour chacun des cinq produits. Les hypothèses de rendement peuvent être personnalisées ; les résultats sont indicatifs et hors fiscalité.</p>
+                <h3>5. Lisez les résultats</h3>
+                <p>Le bloc principal met en avant l’indicateur le plus important selon le mode choisi : rendement constaté, valeur future estimée, versement mensuel requis ou date d’atteinte. Les cartes complémentaires détaillent ensuite le capital net investi, les frais, la lecture du calcul, la lecture de cohérence et, selon l’appareil, une analyse pédagogique locale ou enrichie.</p>
+                <p>L’intelligence artificielle ne réalise aucun calcul : tous les chiffres proviennent du moteur de calcul de Finelio. Elle sert uniquement à rédiger une explication en français, dont les montants et les taux sont vérifiés avant affichage ; en cas d’écart, Finelio affiche une analyse rédigée sans IA.</p>
             </section>
 
             <section>
-                <h3>6. Lisez les résultats</h3>
-                <p>Le bloc principal met en avant l’indicateur le plus important selon le mode choisi : rendement constaté ou valeur future estimée. Les cartes complémentaires détaillent ensuite le capital net investi, les frais, la comparaison avancée et la lecture du calcul.</p>
+                <h3>6. Sauvegardez et exportez</h3>
+                <p>Vous pouvez utiliser des profils d’exemple, sauvegarder vos scénarios, les renommer, les dupliquer, les comparer, conserver un historique local, exporter ou restaurer vos scénarios en JSON et générer un PDF personnalisé avec un prénom et un nom.</p>
             </section>
 
             <section>
-                <h3>7. Sauvegardez et exportez</h3>
-                <p>Vous pouvez utiliser des profils d’exemple, sauvegarder vos scénarios, les renommer, les dupliquer, les comparer et générer un export PDF personnalisé avec un prénom et un nom.</p>
+                <h3>7. Comparez un objectif sur les 5 produits</h3>
+                <p>Depuis la carte <strong>Comparer un objectif</strong> de l’accueil, saisissez un capital cible, une durée et votre budget mensuel, avec éventuellement un capital déjà disponible. Finelio calcule l’effort mensuel nécessaire pour chacun des 5 produits avec leurs hypothèses de frais par défaut, que vous pouvez personnaliser, et le compare à votre budget. Cette comparaison est faite hors fiscalité : chaque produit garde son propre régime fiscal à la sortie.</p>
+            </section>
+
+            <section>
+                <h3>8. Utilisez la calculette</h3>
+                <p>Le bouton <strong>+/−</strong> en haut de l’accueil et le bouton <strong>Calculette</strong> du formulaire ouvrent des mini-outils de calcul rapide : montant net investi après frais d’entrée, montant brut à verser pour obtenir un net souhaité, rendement annualisé, effort réel d’un versement PER après avantage fiscal, et calcul de prêt.</p>
+            </section>
+
+            <h2 class="group-title">Prêts</h2>
+
+            <section>
+                <h3>9. Simulez un prêt</h3>
+                <p>Ouvrez la carte <strong>Simuler un prêt</strong> de l’accueil, ou l’onglet <strong>Prêt</strong> de la calculette. Choisissez <strong>Mensualité</strong> si vous connaissez le montant à emprunter, ou <strong>Capacité d’emprunt</strong> si vous partez de la mensualité que vous pouvez rembourser. Renseignez le taux nominal, la durée et, si vous le souhaitez, l’assurance emprunteur, calculée sur le capital initial ou sur le capital restant dû.</p>
+                <p>Deux sections facultatives complètent la simulation : <strong>Frais annexes et TAEG</strong> (frais de dossier, garantie, courtage) pour obtenir le coût total réel et le TAEG, et <strong>Taux d’endettement</strong> pour comparer vos mensualités à vos revenus au regard de la norme de 35 % du HCSF.</p>
+            </section>
+
+            <section>
+                <h3>10. Lisez la simulation de prêt</h3>
+                <p>Le résultat affiche la mensualité, le coût des intérêts, de l’assurance et des frais, le coût total du crédit et le TAEG. La carte <strong>Comparer les durées</strong> montre l’effet d’une durée plus courte ou plus longue sur la mensualité et le coût total. Le graphique montre, année par année, la part des intérêts qui diminue au profit du capital remboursé ; touchez une barre pour afficher le détail de l’année. Le tableau d’amortissement donne enfin les montants exacts.</p>
+                <p>Il s’agit d’une simulation indicative à taux fixe : seule l’offre de prêt remise par votre banque fait foi.</p>
+            </section>
+
+            <section>
+                <h3>11. Enregistrez vos simulations de prêt</h3>
+                <p>Touchez <strong>Enregistrer</strong> sous le résultat et donnez un nom à la simulation, par exemple « Offre de ma banque » ou « Proposition du courtier ». Vos simulations apparaissent ensuite sur l’accueil, dans <strong>Scénarios sauvegardés</strong>, à côté de vos scénarios de placement : touchez-en une pour l’ouvrir dans le simulateur. Elles sont aussi listées en haut du simulateur, dans <strong>Mes simulations enregistrées</strong>, pour passer rapidement d’une offre à l’autre ; utilisez le menu « … » pour les renommer, les dupliquer ou les supprimer. Seules les conditions du prêt sont enregistrées ; vos revenus et autres crédits ne le sont jamais. Les simulations de prêt sont incluses dans l’export et l’import JSON des réglages.</p>
+            </section>
+
+            <section>
+                <h3>12. Préparez votre rendez-vous bancaire</h3>
+                <p>Touchez <strong>Exporter en PDF</strong> pour créer le document « Mon projet de prêt », à présenter à votre banquier ou à votre courtier. Vous pouvez y indiquer votre nom et choisir d’inclure ou non votre situation (revenus, autres crédits, taux d’endettement) : cette option est désactivée par défaut. Le PDF reprend votre demande, le coût du crédit, les durées comparées, le graphique et le tableau d’amortissement, puis s’envoie par e-mail, par Messages ou s’enregistre dans Fichiers.</p>
             </section>
 
             <section class="contact">
                 <h2>Besoin d’aide supplémentaire ?</h2>
-                <p>Si vous avez une question sur l’utilisation de Finelio, la lecture d’un résultat ou l’export de vos documents, vous pouvez nous contacter à l’adresse suivante :</p>
+                <p>Si vous avez une question sur l’utilisation de Finelio, la lecture d’un résultat, une simulation de prêt ou l’export de vos documents, vous pouvez nous contacter à l’adresse suivante :</p>
                 <p><a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a></p>
             </section>
         </div>
