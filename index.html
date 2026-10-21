@@ -930,7 +930,7 @@ html[data-theme="dark"] .card a:hover {
         </div>
         <div class="panel-card stat-card">
             <div>
-                <span>10</span>
+                <span>11</span>
                 <small>apps et bientôt <span>12</span> publiées dans la collection sur l'App Store</small>
                 <small class="compat-note">Compatible iPhone 11 ou plus récent • iOS 26 requis</small>
             </div>
@@ -966,6 +966,23 @@ html[data-theme="dark"] .card a:hover {
     </section>
 
     <section class="apps" id="apps">
+
+        <div class="card" data-app-id="am" data-app-name="Ma Maison" data-app-page="AM_marketing.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Ma Maison aux favoris">♡</button>
+            <div class="icon-wrap">
+                <img class="icon" src="assets/assistant-maison-logo.png" alt="Logo Ma Maison">
+            </div>
+            <span class="update-sticker">Nouveau · <time datetime="2026-10-21">21 octobre 2026</time></span>
+            <h2>Ma Maison</h2>
+            <p>
+                Le pilotage quotidien de votre installation Home Assistant,
+                réuni dans une interface claire et agréable à utiliser.
+            </p>
+            <div class="card-actions">
+                <a href="https://apps.apple.com/app/ma-maison-domotique/id6812423817" target="_blank" rel="noopener noreferrer">Télécharger</a>
+                <a class="details-link" href="AM_marketing.html">En savoir plus</a>
+            </div>
+        </div>
 
         <div class="card" data-app-id="entrenous" data-app-name="EntreNous" data-app-page="EntreNous_marketing.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter EntreNous aux favoris">♡</button>
@@ -1135,22 +1152,6 @@ html[data-theme="dark"] .card a:hover {
             </div>
         </div>
 
-        <div class="card" data-app-id="am" data-app-name="Assistant Maison" data-app-page="AM_marketing.html">
-            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Assistant Maison aux favoris">♡</button>
-            <div class="icon-wrap">
-                <img class="icon" src="assets/assistant-maison-logo.png" alt="Logo Assistant Maison">
-            </div>
-            <h2>Assistant Maison</h2>
-            <p>
-                Le pilotage quotidien de votre installation Home Assistant,
-                réuni dans une interface claire et agréable à utiliser.
-            </p>
-            <div class="card-actions">
-                <span class="soon-badge" role="status">Bientôt disponible</span>
-                <a class="details-link" href="AM_marketing.html">En savoir plus</a>
-            </div>
-        </div>
-
         <div class="card" data-app-id="pato-pong" data-app-name="Pato Rebond" data-app-page="pato-pong-marketing.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Pato Rebond aux favoris">♡</button>
             <div class="icon-wrap">
@@ -1302,7 +1303,7 @@ const guideRecommendations = {
         apps: ["patolife", "pulse", "pato-pong"]
     },
     maison: {
-        message: "Pour garder vos appareils Home Assistant à portée de main, Assistant Maison est fait pour ça.",
+        message: "Pour garder vos appareils Home Assistant à portée de main, Ma Maison est faite pour ça.",
         apps: ["am"]
     }
 };
