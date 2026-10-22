@@ -39,12 +39,16 @@
             box-sizing: border-box;
         }
 
+        /* Couleur de fond propre à html : sans elle, le navigateur étend le fond du body
+           à toute la fenêtre et répète ses dégradés sous le pied de page (bande claire). */
         html {
             scroll-behavior: smooth;
+            background: #f2f1f6;
         }
 
         body {
             margin: 0;
+            min-height: 100vh;
             font-family: "Avenir Next", "Nunito", "Segoe UI", sans-serif;
             color: var(--warm-ink);
             background:
@@ -52,6 +56,7 @@
                 radial-gradient(circle at top right, rgba(214,97,71,0.10), transparent 24%),
                 radial-gradient(circle at bottom left, rgba(117,166,209,0.10), transparent 22%),
                 linear-gradient(135deg, #fdf7f2 0%, #f8efea 42%, #f2f1f6 100%);
+            background-repeat: no-repeat;
         }
 
         a {
@@ -404,12 +409,17 @@
                 --shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
             }
 
+            html {
+                background: #121317;
+            }
+
             body {
                 background:
                     radial-gradient(circle at top left, rgba(255,255,255,0.05), transparent 28%),
                     radial-gradient(circle at top right, rgba(214,97,71,0.14), transparent 24%),
                     radial-gradient(circle at bottom left, rgba(117,166,209,0.10), transparent 22%),
                     linear-gradient(135deg, #17110f 0%, #14100f 42%, #121317 100%);
+                background-repeat: no-repeat;
             }
 
             .topbar-inner {
