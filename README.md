@@ -1,2 +1,2 @@
 # apps-pato
-WebApp de présentation des applications de Pato.
+Page Web de présentation des applications de Pato.
