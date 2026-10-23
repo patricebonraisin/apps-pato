@@ -1,4 +1,4 @@
-const CACHE_NAME = "pato-apps-v15";
+const CACHE_NAME = "pato-apps-v16";
 
 const FILES_TO_CACHE = [
   "./",
