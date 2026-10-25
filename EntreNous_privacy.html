@@ -126,7 +126,7 @@
             <div class="hero">
                 <p class="eyebrow">EntreNous</p>
                 <h1>Politique de confidentialité</h1>
-                <p class="updated">Dernière mise à jour : 11 octobre 2026</p>
+                <p class="updated">Dernière mise à jour : 24 octobre 2026</p>
                 <p>EntreNous est édité par Pato Switch (Patrice Bonraisin), développeur indépendant. Cette page explique, en langage clair, quelles données EntreNous traite, où elles vont, et ce que nous ne faisons jamais avec elles.</p>
             </div>
         </div>
@@ -141,6 +141,7 @@
                 <a href="#icloud">Où vont vos données</a>
                 <a href="#cercles">Le partage dans un cercle</a>
                 <a href="#suggestions">Suggestions</a>
+                <a href="#micro">Micro et messages vocaux</a>
                 <a href="#reformulation">Reformulation</a>
                 <a href="#verrouillage">Face ID / Touch ID</a>
                 <a href="#notifications">Notifications</a>
@@ -157,20 +158,21 @@
             <article>
                 <section id="compte">
                     <h2>Aucun compte, aucun serveur qui collecte vos souvenirs</h2>
-                    <p>EntreNous ne vous demande jamais de créer de compte, d’indiquer votre email ou votre numéro de téléphone. L’application s’appuie entièrement sur votre identifiant Apple (iCloud) déjà présent sur votre iPhone.</p>
-                    <p>Pato Switch n’exploite aucun serveur qui reçoit, stocke ou analyse le contenu de vos souvenirs. Vos textes, photos, lieux et prénoms tagués ne transitent jamais par une infrastructure que nous possédons.</p>
+                    <p>EntreNous ne vous demande jamais de créer de compte, d’indiquer votre email ou votre numéro de téléphone. L’application s’appuie entièrement sur votre identifiant Apple (iCloud) déjà présent sur votre appareil.</p>
+                    <p>Pato Switch n’exploite aucun serveur qui reçoit, stocke ou analyse le contenu de vos souvenirs. Vos textes, photos, messages vocaux, lieux et prénoms tagués ne transitent jamais par une infrastructure que nous possédons.</p>
                 </section>
 
                 <section id="contenu">
                     <h2>Ce que vous enregistrez</h2>
-                    <p>Un souvenir peut contenir : un texte, jusqu’à six photos, une date, un lieu que vous choisissez d’associer, et les prénoms des personnes présentes que vous tapez vous-même. Rien de tout cela n’est obligatoire à l’exception du texte ou d’une photo.</p>
+                    <p>Un souvenir peut contenir : un texte, jusqu’à six photos, un message vocal, une date, un lieu que vous choisissez d’associer, et les prénoms des personnes présentes que vous tapez vous-même. Rien de tout cela n’est obligatoire à l’exception du texte.</p>
                     <p>Le nom affiché pour vous (« Mon identité ») est également stocké de la même façon, pour que vos proches sachent qui a écrit quoi dans un cercle partagé.</p>
+                    <p>Chaque publication, commentaire ou réaction porte aussi un identifiant technique fourni par iCloud, propre à EntreNous, qui permet de ne pas confondre deux personnes portant le même prénom. Il ne contient ni votre nom, ni votre adresse e-mail, ni votre numéro de téléphone.</p>
                 </section>
 
                 <section id="icloud">
                     <h2>Où vont vos données</h2>
                     <p>Vos souvenirs sont stockés dans votre base CloudKit privée, rattachée à votre identifiant Apple, hébergée et protégée par Apple selon ses propres standards de sécurité (chiffrement en transit et au repos).</p>
-                    <p>Nous n’avons pas accès au contenu de votre base privée : seul vous, via votre identifiant Apple, pouvez le consulter. Nous ne recevons aucune copie de vos textes ou de vos photos.</p>
+                    <p>Nous n’avons pas accès au contenu de votre base privée : seul vous, via votre identifiant Apple, pouvez le consulter. Nous ne recevons aucune copie de vos textes, de vos photos ou de vos messages vocaux.</p>
                 </section>
 
                 <section id="cercles">
@@ -186,16 +188,23 @@
                     <p>Lorsque vous touchez le lieu d’un souvenir, son nom est transmis à l’app Plans d’Apple pour l’afficher sur la carte. Cela ne se produit que si vous touchez ce lieu, et EntreNous n’envoie rien d’autre.</p>
                 </section>
 
+                <section id="micro">
+                    <h2>Micro et messages vocaux</h2>
+                    <p>EntreNous ne demande l’accès au micro que la première fois que vous touchez « Enregistrer un message vocal », et ne l’utilise que pendant l’enregistrement, jusqu’à ce que vous touchiez « Arrêter ». Le micro n’est jamais écouté en arrière-plan.</p>
+                    <p>Le message enregistré est conservé comme une photo : dans votre base iCloud privée, et visible uniquement par les membres du cercle dans lequel vous le publiez. Il n’est ni transcrit, ni analysé, ni envoyé à Pato Switch ou à un service tiers.</p>
+                    <p>Vous pouvez retirer l’accès au micro à tout moment dans Réglages ▸ Confidentialité et sécurité ▸ Micro.</p>
+                </section>
+
                 <section id="reformulation">
                     <h2>Reformulation assistée par Apple Intelligence</h2>
-                    <p>Sur les appareils compatibles, le bouton « Reformuler » utilise le modèle de langage embarqué d’Apple (Apple Intelligence), exécuté entièrement sur votre iPhone.</p>
+                    <p>Sur les appareils compatibles, le bouton « Reformuler » utilise le modèle de langage embarqué d’Apple (Apple Intelligence), exécuté entièrement sur votre appareil.</p>
                     <p>Le texte traité ne quitte jamais votre appareil : il n’est envoyé ni à Pato Switch, ni à Apple, ni à aucun service tiers.</p>
                 </section>
 
                 <section id="verrouillage">
                     <h2>Verrouillage Face ID / Touch ID</h2>
                     <p>Si vous activez le verrouillage dans Réglages, l’authentification est entièrement gérée par le framework LocalAuthentication d’iOS.</p>
-                    <p>Aucune donnée biométrique n’est jamais transmise à EntreNous, à Pato Switch ou à un serveur quelconque : votre iPhone nous indique seulement si l’authentification a réussi ou non.</p>
+                    <p>Aucune donnée biométrique n’est jamais transmise à EntreNous, à Pato Switch ou à un serveur quelconque : votre appareil nous indique seulement si l’authentification a réussi ou non.</p>
                 </section>
 
                 <section id="notifications">
@@ -228,7 +237,7 @@
                 <section id="conservation">
                     <h2>Conservation et suppression</h2>
                     <p>Vos souvenirs restent dans votre base iCloud aussi longtemps que vous les y laissez. Supprimer un souvenir l’efface de votre iCloud et de tous vos appareils. Supprimer un cercle ne supprime pas ses souvenirs : ils rejoignent Mon journal.</p>
-                    <p>Supprimer l’application efface uniquement la copie présente sur votre iPhone : vos souvenirs restent dans iCloud et réapparaissent si vous la réinstallez. Pour les effacer définitivement, supprimez-les depuis EntreNous avant de désinstaller l’application.</p>
+                    <p>Supprimer l’application efface uniquement la copie présente sur votre appareil : vos souvenirs restent dans iCloud et réapparaissent si vous la réinstallez. Pour les effacer définitivement, supprimez-les depuis EntreNous avant de désinstaller l’application.</p>
                     <p>Vous pouvez également masquer une publication localement (Réglages ▸ Publications masquées) sans jamais la supprimer pour les autres membres d’un cercle partagé.</p>
                 </section>
 
