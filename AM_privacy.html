@@ -151,7 +151,7 @@
         <div class="container">
             <div class="eyebrow">Confidentialité</div>
             <h1>Politique de confidentialité</h1>
-            <p class="updated">Dernière mise à jour : 21 octobre 2026</p>
+            <p class="updated">Dernière mise à jour : 4 novembre 2026</p>
             <p class="lede">Ma Maison ne collecte rien : l’application se connecte directement à votre propre installation Home Assistant, sans compte, sans publicité et sans serveur intermédiaire.</p>
         </div>
     </section>
@@ -170,14 +170,17 @@
 
             <section class="card">
                 <h2>2. Connexion à votre Home Assistant</h2>
-                <p>Les adresses de votre installation Home Assistant (adresse locale et, si vous en avez une, adresse distante) et le jeton d’accès longue durée que vous saisissez servent uniquement à connecter l’application directement à votre propre serveur Home Assistant.</p>
-                <p>Ma Maison n’a pas de serveur : les échanges se font uniquement entre votre appareil (iPhone ou iPad) et votre installation Home Assistant, jamais via un intermédiaire exploité par l’éditeur. Si vous utilisez un accès distant (Home Assistant Cloud – Nabu Casa ou une autre solution de votre choix), les échanges passent par ce service, que vous avez vous-même configuré.</p>
+                <p>Les adresses de votre installation Home Assistant (adresse locale et, si vous en avez une, adresse distante) et les jetons d’accès obtenus en vous connectant avec votre compte Home Assistant (ou le jeton d’accès longue durée que vous saisissez) servent uniquement à connecter l’application directement à votre propre serveur Home Assistant.</p>
+                <p>Votre mot de passe Home Assistant est saisi directement sur la page de connexion de votre serveur : Ma Maison n’y a jamais accès.</p>
+                <p>Pour trouver votre serveur, Ma Maison écoute, avec votre autorisation, les annonces que Home Assistant diffuse sur votre réseau local (Bonjour). Cette recherche reste à l’intérieur de votre domicile : rien n’est envoyé à l’extérieur.</p>
+                <p>Lors de la connexion avec votre compte, c’est votre serveur Home Assistant (et non l’application) qui consulte une page publique du site patoswitch.fr servant à identifier Ma Maison, comme le prévoit Home Assistant. Aucune donnée personnelle n’y est transmise et Pato Switch n’en collecte aucune.</p>
+                <p>Ma Maison n’a pas de serveur : les échanges se font uniquement entre votre appareil (iPhone ou iPad) et votre installation Home Assistant, jamais via un intermédiaire exploité par l’éditeur. Si vous utilisez un accès distant (Home Assistant Link, anciennement Home Assistant Cloud, de Nabu Casa, ou une autre solution de votre choix), les échanges passent par ce service, que vous avez vous-même configuré.</p>
                 <p>En mode démo, l’application fonctionne entièrement hors ligne avec des appareils fictifs : aucune connexion réseau n’est établie.</p>
             </section>
 
             <section class="card">
                 <h2>3. Données traitées et leur stockage</h2>
-                <p>Le jeton d’accès est enregistré dans le Trousseau iCloud de votre appareil (chiffré), et synchronisé uniquement entre vos propres appareils Apple si le Trousseau iCloud est activé.</p>
+                <p>Les jetons d’accès sont enregistrés dans le Trousseau iCloud de votre appareil (chiffré), et synchronisé uniquement entre vos propres appareils Apple si le Trousseau iCloud est activé.</p>
                 <p>Les adresses locale et distante de votre Home Assistant, vos favoris, les appareils masqués, les automatisations choisies pour vos aspirateurs et l’activation du verrouillage sont enregistrés sur votre appareil et synchronisés via iCloud (stockage clés-valeurs privé, propre à votre identifiant Apple) pour rester disponibles sur vos autres appareils connectés au même identifiant Apple. L’éditeur n’a aucun accès à ces données.</p>
                 <p>Les préférences d’affichage (ordre et repli des catégories, capteurs choisis pour les températures et la pluie de l’accueil) restent enregistrées uniquement sur votre appareil.</p>
             </section>
@@ -200,8 +203,8 @@
 
             <section class="card">
                 <h2>7. Conservation, suppression et droits</h2>
-                <p>Le bouton « Déconnecter Home Assistant » dans les réglages de l’application supprime immédiatement les adresses et le jeton, sur cet appareil comme sur vos autres appareils synchronisés via iCloud.</p>
-                <p>Désinstaller l’application supprime les données enregistrées localement. Les éléments synchronisés via iCloud (jeton, adresses, favoris, appareils masqués, automatisations des aspirateurs, verrouillage) peuvent en revanche être restaurés lors d’une réinstallation : pour les effacer définitivement, utilisez « Déconnecter Home Assistant » avant de désinstaller l’application.</p>
+                <p>Le bouton « Déconnecter Home Assistant » dans les réglages de l’application supprime immédiatement les adresses et les jetons, sur cet appareil comme sur vos autres appareils synchronisés via iCloud. Si vous vous étiez connecté avec votre compte, l’accès de Ma Maison est aussi retiré de votre profil Home Assistant.</p>
+                <p>Désinstaller l’application supprime les données enregistrées localement. Les éléments synchronisés via iCloud (jetons, adresses, favoris, appareils masqués, automatisations des aspirateurs, verrouillage) peuvent en revanche être restaurés lors d’une réinstallation : pour les effacer définitivement, utilisez « Déconnecter Home Assistant » avant de désinstaller l’application.</p>
                 <p>Comme Ma Maison ne conserve rien sur un serveur, il n’existe aucune donnée à supprimer du côté de l’éditeur au-delà de celle présente sur vos appareils. Si vous avez transmis volontairement des informations personnelles par email, vous disposez d’un droit d’accès, de rectification et d’effacement de ces informations, sur simple demande à l’adresse ci-dessous.</p>
             </section>
 

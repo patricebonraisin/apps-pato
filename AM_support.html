@@ -168,25 +168,27 @@
 
             <section class="card">
                 <h2>1. Connecter Ma Maison à Home Assistant</h2>
-                <p>Dans <strong>Réglages → Connexion Home Assistant</strong>, renseignez l’adresse locale de votre installation (par exemple <code>http://homeassistant.local:8123</code>), son adresse distante si vous en avez une, ainsi qu’un jeton d’accès longue durée, puis touchez <strong>Tester et enregistrer</strong>. Vos informations ne sont enregistrées qu’une fois la connexion vérifiée.</p>
-                <p>Copiez l’adresse complète, y compris <code>http://</code> ou <code>https://</code> : les navigateurs masquent souvent ce début d’adresse.</p>
+                <p>Ouvrez <strong>Réglages → Home Assistant</strong>. Sur le Wi-Fi de la maison, l’application trouve généralement votre serveur toute seule : touchez-le dans <strong>Trouvé sur votre réseau</strong> pour remplir son adresse (autorisez l’accès au réseau local lorsque l’application le demande). Sinon, saisissez l’adresse locale de votre installation, par exemple <code>http://homeassistant.local:8123</code>.</p>
+                <p>Touchez ensuite <strong>Se connecter à votre serveur</strong> : la page de connexion de votre Home Assistant s’ouvre. Saisissez l’identifiant et le mot de passe que vous utilisez habituellement. Votre mot de passe est saisi directement sur votre serveur : l’application ne le voit jamais. Vos informations ne sont enregistrées qu’une fois la connexion vérifiée.</p>
+                <p>Si vous saisissez l’adresse vous-même, copiez-la en entier, y compris <code>http://</code> ou <code>https://</code> : les navigateurs masquent souvent ce début d’adresse.</p>
             </section>
 
             <section class="card">
-                <h2>2. Où trouver ou créer un jeton d’accès longue durée ?</h2>
+                <h2>2. Solution de secours : le jeton d’accès longue durée</h2>
+                <p>Si la connexion avec votre compte n’aboutit pas, par exemple parce que votre serveur n’a pas accès à Internet, vous pouvez utiliser un jeton d’accès longue durée :</p>
                 <ol>
                     <li>Ouvrez Home Assistant et accédez à votre profil utilisateur.</li>
                     <li>Descendez jusqu’à la section « Jetons d’accès longue durée ».</li>
                     <li>Choisissez « Créer un jeton » et donnez-lui un nom, par exemple « Ma Maison ».</li>
                     <li>Copiez le jeton affiché : Home Assistant ne l’affiche qu’une seule fois.</li>
-                    <li>Collez-le dans le champ « Jeton d’accès » de l’application.</li>
+                    <li>Dans l’application, ouvrez « Jeton d’accès (avancé) », collez-le, puis touchez <strong>Tester et enregistrer</strong>.</li>
                 </ol>
             </section>
 
             <section class="card">
                 <h2>3. Accès depuis l’extérieur de votre domicile</h2>
-                <p>Une adresse locale (comme <code>homeassistant.local</code>) fonctionne uniquement lorsque votre iPhone ou iPad est connecté au même réseau que Home Assistant. Pour piloter votre maison depuis l’extérieur, votre Home Assistant doit proposer un accès distant sécurisé, par exemple via Home Assistant Cloud (Nabu Casa) ou votre propre nom de domaine.</p>
-                <p>Saisissez cette adresse dans le champ <strong>Adresse distante</strong> : l’application utilise automatiquement l’adresse locale à la maison et l’adresse distante à l’extérieur, sans aucune manipulation. Avec Home Assistant Cloud, vous trouverez l’adresse distante dans Home Assistant, sous <strong>Paramètres → Home Assistant Cloud</strong>.</p>
+                <p>Une adresse locale (comme <code>homeassistant.local</code>) fonctionne uniquement lorsque votre iPhone ou iPad est connecté au même réseau que Home Assistant. Pour piloter votre maison depuis l’extérieur, votre Home Assistant doit proposer un accès distant sécurisé, par exemple via Home Assistant Link (anciennement Home Assistant Cloud, de Nabu Casa) ou votre propre nom de domaine.</p>
+                <p>Saisissez cette adresse dans le champ <strong>Adresse distante</strong> : l’application utilise automatiquement l’adresse locale à la maison et l’adresse distante à l’extérieur, sans aucune manipulation. Avec Home Assistant Link, vous trouverez l’adresse distante dans Home Assistant, sous <strong>Paramètres → Home Assistant Link</strong> (ou Home Assistant Cloud selon votre version).</p>
                 <p>Ce n’est pas obligatoire : l’adresse locale suffit si vous n’utilisez l’application que chez vous.</p>
             </section>
 
@@ -204,7 +206,7 @@
 
             <section class="card">
                 <h2>6. Synchronisation entre vos appareils</h2>
-                <p>Si iCloud est activé, vos adresses, votre jeton d’accès, vos favoris, vos appareils masqués et l’activation du verrouillage sont synchronisés entre vos appareils Apple connectés au même identifiant Apple. Le bouton <strong>Déconnecter Home Assistant</strong> supprime les adresses et le jeton sur tous ces appareils.</p>
+                <p>Si iCloud est activé, vos adresses, votre connexion, vos favoris, vos appareils masqués et l’activation du verrouillage sont synchronisés entre vos appareils Apple connectés au même identifiant Apple. Le bouton <strong>Déconnecter Home Assistant</strong> supprime les adresses et la connexion sur tous ces appareils.</p>
             </section>
 
             <section class="card">
