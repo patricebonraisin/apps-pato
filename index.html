@@ -297,6 +297,68 @@ header p {
     color: rgba(255,255,255,0.66);
 }
 
+/* Pastille « iPhone Duo » : au chargement, l'écran de droite se déplie depuis la charnière,
+   puis un reflet traverse la pastille une seule fois. Rien ne bouge ensuite. */
+.duo-badge {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 7px 13px 7px 10px;
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.12);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+.duo-badge::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.42) 50%, transparent 70%);
+    transform: translateX(-120%);
+    animation: duo-shimmer 1.8s ease-in-out 2.2s both;
+}
+
+.duo-badge__icon {
+    width: 22px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.duo-badge__screen--left {
+    fill: rgba(255,255,255,0.6);
+}
+
+.duo-badge__screen--right {
+    fill: var(--pato-orange);
+    transform-box: fill-box;
+    transform-origin: left center;
+    animation: duo-unfold 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both;
+}
+
+@keyframes duo-unfold {
+    from {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    to {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+@keyframes duo-shimmer {
+    from { transform: translateX(-120%); }
+    to { transform: translateX(120%); }
+}
+
 .pato-guide {
     margin: 10px 0 26px;
     padding: 28px;
@@ -899,6 +961,14 @@ html[data-theme="dark"] .card a:hover {
         scroll-behavior: auto !important;
         transition: none !important;
     }
+
+    .duo-badge::after {
+        display: none;
+    }
+
+    .duo-badge__screen--right {
+        animation: none;
+    }
 }
 </style>
 </head>
@@ -933,6 +1003,13 @@ html[data-theme="dark"] .card a:hover {
                 <span>12</span>
                 <small>apps publiées dans la collection sur l'App Store</small>
                 <small class="compat-note">Compatible iPhone 11 ou plus récent • iOS 26 requis</small>
+                <div class="duo-badge">
+                    <svg class="duo-badge__icon" viewBox="0 0 22 16" aria-hidden="true" focusable="false">
+                        <rect class="duo-badge__screen--left" x="1" y="1" width="9.5" height="14" rx="2.5"/>
+                        <rect class="duo-badge__screen--right" x="11.5" y="1" width="9.5" height="14" rx="2.5"/>
+                    </svg>
+                    Toutes optimisées pour iPhone Duo
+                </div>
             </div>
         </div>
     </section>
@@ -967,12 +1044,29 @@ html[data-theme="dark"] .card a:hover {
 
     <section class="apps" id="apps">
 
+        <div class="card" data-app-id="finelio" data-app-name="Finelio" data-app-page="finelio-blog-page.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Finelio aux favoris">♡</button>
+            <div class="icon-wrap">
+                <img class="icon" src="finelio.png" alt="Icône Finelio">
+            </div>
+            <span class="update-sticker">Mis à jour le <time datetime="2026-11-06">6 novembre 2026</time></span>
+            <h2>Finelio</h2>
+            <p>
+                Comprendre plus simplement son épargne, ses rendements
+                et les frais qui grignotent parfois les performances.
+            </p>
+            <div class="card-actions">
+                <a href="https://apps.apple.com/fr/app/finelio/id6762891560" target="_blank" rel="noopener noreferrer">Télécharger</a>
+                <a class="details-link" href="finelio-blog-page.html">En savoir plus</a>
+            </div>
+        </div>
+
         <div class="card" data-app-id="pato-pong" data-app-name="Pato Rebond" data-app-page="pato-pong-marketing.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Pato Rebond aux favoris">♡</button>
             <div class="icon-wrap">
                 <img class="icon" src="pato-pong-icon.png" alt="Icône Pato Rebond">
             </div>
-            <span class="update-sticker">Nouveau · <time datetime="2026-10-23">23 octobre 2026</time></span>
+            <span class="update-sticker">Mis à jour le <time datetime="2026-11-05">5 novembre 2026</time></span>
             <h2>Pato Rebond</h2>
             <p>
                 Le classique revisité : renvoyez la balle, trouvez le bon rythme
@@ -989,7 +1083,7 @@ html[data-theme="dark"] .card a:hover {
             <div class="icon-wrap">
                 <img class="icon" src="assets/assistant-maison-logo.png" alt="Logo Ma Maison">
             </div>
-            <span class="update-sticker">Nouveau · <time datetime="2026-10-21">21 octobre 2026</time></span>
+            <span class="update-sticker">Mis à jour le <time datetime="2026-11-05">5 novembre 2026</time></span>
             <h2>Ma Maison</h2>
             <p>
                 Le pilotage quotidien de votre installation Home Assistant,
@@ -1006,7 +1100,7 @@ html[data-theme="dark"] .card a:hover {
             <div class="icon-wrap">
                 <img class="icon" src="EntreNous.png" alt="Icône EntreNous">
             </div>
-            <span class="update-sticker">Mis à jour le <time datetime="2026-10-18">01 novembre 2026</time></span>
+            <span class="update-sticker">Mis à jour le <time datetime="2026-11-05">5 novembre 2026</time></span>
             <h2>EntreNous</h2>
             <p>
                 Un journal privé pour garder, partager et retrouver
@@ -1015,40 +1109,6 @@ html[data-theme="dark"] .card a:hover {
             <div class="card-actions">
                 <a href="https://apps.apple.com/app/entrenous-nos-moments/id6813980927" target="_blank" rel="noopener noreferrer">Télécharger</a>
                 <a class="details-link" href="EntreNous_marketing.html">En savoir plus</a>
-            </div>
-        </div>
-
-        <div class="card" data-app-id="arbre-familial" data-app-name="Arbre familial" data-app-page="AF_marketing.html">
-            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Arbre familial aux favoris">♡</button>
-            <div class="icon-wrap">
-                <img class="icon" src="mon_arbre.png" alt="Logo Arbre familial">
-            </div>
-            <span class="update-sticker">Mis à jour le <time datetime="2026-10-16">16 octobre 2026</time></span>
-            <h2>Arbre familial</h2>
-            <p>
-                Explorez votre histoire familiale, reliez les générations
-                et transmettez les souvenirs qui comptent.
-            </p>
-            <div class="card-actions">
-                <a href="https://apps.apple.com/app/arbre-familial-g%C3%A9n%C3%A9alogie/id6821957187" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="AF_marketing.html">En savoir plus</a>
-            </div>
-        </div>
-
-        <div class="card" data-app-id="pulse" data-app-name="Pulse" data-app-page="pulse_marketing.html">
-            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Pulse aux favoris">♡</button>
-            <div class="icon-wrap">
-                <img class="icon" src="pulse_game.png" alt="Icône Pulse">
-            </div>
-            <span class="update-sticker">Mis à jour le <time datetime="2026-10-15">15 octobre 2026</time></span>
-            <h2>Pulse</h2>
-            <p>
-                Un jeu de timing aussi simple qu’addictif : observez le rythme,
-                touchez au moment parfait et poussez votre meilleur score.
-            </p>
-            <div class="card-actions">
-                <a href="https://apps.apple.com/app/pulse-jeu-de-rythme/id6804769433" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="pulse_marketing.html">En savoir plus</a>
             </div>
         </div>
 
@@ -1086,6 +1146,57 @@ html[data-theme="dark"] .card a:hover {
             </div>
         </div>
 
+        <div class="card" data-app-id="patolife" data-app-name="Pato Life" data-app-page="pato-life-blog-page.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Pato Life aux favoris">♡</button>
+            <div class="icon-wrap">
+                <img class="icon" src="patolife.png" alt="Icône Pato Life">
+            </div>
+            <span class="update-sticker">Mis à jour le <time datetime="2026-11-02">2 novembre 2026</time></span>
+            <h2>Pato Life</h2>
+            <p>
+                Une nouvelle façon de lire et vivre l’univers du blog Pato,
+                avec une expérience plus fluide, plus personnelle et plus moderne.
+            </p>
+            <div class="card-actions">
+                <a href="https://apps.apple.com/us/app/pato-life/id6760929480" target="_blank" rel="noopener noreferrer">Télécharger</a>
+                <a class="details-link" href="pato-life-blog-page.html">En savoir plus</a>
+            </div>
+        </div>
+
+        <div class="card" data-app-id="loopa" data-app-name="Loopa Move" data-app-page="loopa-move-blog-page.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Loopa Move aux favoris">♡</button>
+            <div class="icon-wrap">
+                <img class="icon" src="loopamove.png" alt="Icône Loopa Move">
+            </div>
+            <span class="update-sticker">Mis à jour le <time datetime="2026-10-26">26 octobre 2026</time></span>
+            <h2>Loopa Move</h2>
+            <p>
+                Générer des boucles de marche, course ou vélo autour de soi,
+                pour redécouvrir son environnement autrement.
+            </p>
+            <div class="card-actions">
+                <a href="https://apps.apple.com/app/loopa-move/id6769142014" target="_blank" rel="noopener noreferrer">Télécharger</a>
+                <a class="details-link" href="loopa-move-blog-page.html">En savoir plus</a>
+            </div>
+        </div>
+
+        <div class="card" data-app-id="melovia" data-app-name="Melovia" data-app-page="melovia-blog-page.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Melovia aux favoris">♡</button>
+            <div class="icon-wrap">
+                <img class="icon" src="melovia.png" alt="Icône Melovia">
+            </div>
+            <span class="update-sticker">Mis à jour le <time datetime="2026-10-26">26 octobre 2026</time></span>
+            <h2>Melovia</h2>
+            <p>
+                Une application pensée pour accompagner la vie de vos animaux :
+                santé, souvenirs, documents et moments précieux.
+            </p>
+            <div class="card-actions">
+                <a href="https://apps.apple.com/fr/app/melovia/id6761615290" target="_blank" rel="noopener noreferrer">Télécharger</a>
+                <a class="details-link" href="melovia-blog-page.html">En savoir plus</a>
+            </div>
+        </div>
+
         <div class="card" data-app-id="meteo" data-app-name="Pato Météo" data-app-page="Pato_meteo_MarketingPage.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Pato Météo aux favoris">♡</button>
             <div class="icon-wrap">
@@ -1103,71 +1214,37 @@ html[data-theme="dark"] .card a:hover {
             </div>
         </div>
 
-        <div class="card" data-app-id="loopa" data-app-name="Loopa Move" data-app-page="loopa-move-blog-page.html">
-            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Loopa Move aux favoris">♡</button>
+        <div class="card" data-app-id="arbre-familial" data-app-name="Arbre familial" data-app-page="AF_marketing.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Arbre familial aux favoris">♡</button>
             <div class="icon-wrap">
-                <img class="icon" src="loopamove.png" alt="Icône Loopa Move">
+                <img class="icon" src="mon_arbre.png" alt="Logo Arbre familial">
             </div>
-            <span class="update-sticker">Mis à jour le <time datetime="2026-10-19">26 octobre 2026</time></span>
-            <h2>Loopa Move</h2>
+            <span class="update-sticker">Mis à jour le <time datetime="2026-10-16">16 octobre 2026</time></span>
+            <h2>Arbre familial</h2>
             <p>
-                Générer des boucles de marche, course ou vélo autour de soi,
-                pour redécouvrir son environnement autrement.
+                Explorez votre histoire familiale, reliez les générations
+                et transmettez les souvenirs qui comptent.
             </p>
             <div class="card-actions">
-                <a href="https://apps.apple.com/app/loopa-move/id6769142014" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="loopa-move-blog-page.html">En savoir plus</a>
+                <a href="https://apps.apple.com/app/arbre-familial-g%C3%A9n%C3%A9alogie/id6821957187" target="_blank" rel="noopener noreferrer">Télécharger</a>
+                <a class="details-link" href="AF_marketing.html">En savoir plus</a>
             </div>
         </div>
 
-        <div class="card" data-app-id="finelio" data-app-name="Finelio" data-app-page="finelio-blog-page.html">
-            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Finelio aux favoris">♡</button>
+        <div class="card" data-app-id="pulse" data-app-name="Pulse" data-app-page="pulse_marketing.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Pulse aux favoris">♡</button>
             <div class="icon-wrap">
-                <img class="icon" src="finelio.png" alt="Icône Finelio">
+                <img class="icon" src="pulse_game.png" alt="Icône Pulse">
             </div>
-            <span class="update-sticker">Mis à jour le <time datetime="2026-10-18">26 octobre 2026</time></span>
-            <h2>Finelio</h2>
+            <span class="update-sticker">Mis à jour le <time datetime="2026-10-15">15 octobre 2026</time></span>
+            <h2>Pulse</h2>
             <p>
-                Comprendre plus simplement son épargne, ses rendements
-                et les frais qui grignotent parfois les performances.
+                Un jeu de timing aussi simple qu’addictif : observez le rythme,
+                touchez au moment parfait et poussez votre meilleur score.
             </p>
             <div class="card-actions">
-                <a href="https://apps.apple.com/fr/app/finelio/id6762891560" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="finelio-blog-page.html">En savoir plus</a>
-            </div>
-        </div>
-
-        <div class="card" data-app-id="melovia" data-app-name="Melovia" data-app-page="melovia-blog-page.html">
-            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Melovia aux favoris">♡</button>
-            <div class="icon-wrap">
-                <img class="icon" src="melovia.png" alt="Icône Melovia">
-            </div>
-            <span class="update-sticker">Mis à jour le <time datetime="2026-10-04">26 octobre 2026</time></span>
-            <h2>Melovia</h2>
-            <p>
-                Une application pensée pour accompagner la vie de vos animaux :
-                santé, souvenirs, documents et moments précieux.
-            </p>
-            <div class="card-actions">
-                <a href="https://apps.apple.com/fr/app/melovia/id6761615290" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="melovia-blog-page.html">En savoir plus</a>
-            </div>
-        </div>
-
-        <div class="card" data-app-id="patolife" data-app-name="Pato Life" data-app-page="pato-life-blog-page.html">
-            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Pato Life aux favoris">♡</button>
-            <div class="icon-wrap">
-                <img class="icon" src="patolife.png" alt="Icône Pato Life">
-            </div>
-            <span class="update-sticker">Mis à jour le <time datetime="2026-10-06">02 novembre 2026</time></span>
-            <h2>Pato Life</h2>
-            <p>
-                Une nouvelle façon de lire et vivre l’univers du blog Pato,
-                avec une expérience plus fluide, plus personnelle et plus moderne.
-            </p>
-            <div class="card-actions">
-                <a href="https://apps.apple.com/us/app/pato-life/id6760929480" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="pato-life-blog-page.html">En savoir plus</a>
+                <a href="https://apps.apple.com/app/pulse-jeu-de-rythme/id6804769433" target="_blank" rel="noopener noreferrer">Télécharger</a>
+                <a class="details-link" href="pulse_marketing.html">En savoir plus</a>
             </div>
         </div>
 
@@ -1310,6 +1387,16 @@ const guideRecommendations = {
         apps: ["am"]
     }
 };
+
+// Sort the app cards from the most recent update to the oldest, using the datetime of each update sticker.
+// Array.sort is stable, so cards sharing the same date keep their order from the HTML.
+const appsSection = document.getElementById("apps");
+const cardsByUpdateDate = [...appsSection.querySelectorAll(".card[data-app-id]")].sort((firstCard, secondCard) => {
+    const firstDate = firstCard.querySelector(".update-sticker time")?.getAttribute("datetime") ?? "";
+    const secondDate = secondCard.querySelector(".update-sticker time")?.getAttribute("datetime") ?? "";
+    return secondDate.localeCompare(firstDate);
+});
+appsSection.append(...cardsByUpdateDate);
 
 const favoritesStorageKey = "pato-apps-favorites";
 const intentStorageKey = "pato-apps-last-intent";
