@@ -117,7 +117,7 @@
                         <ul>
                             <li>un fichier <strong>GEDCOM</strong> (.ged), exporté depuis un autre logiciel de généalogie ;</li>
                             <li>la <strong>matrice Excel</strong> de collecte familiale (.xlsx), remplie par vous ou un proche ;</li>
-                            <li>une <strong>archive ZIP</strong> partagée depuis l’application, qui contient l’arbre et ses photos.</li>
+                            <li>une <strong>archive ZIP</strong> partagée depuis l’application, qui contient l’arbre, ses photos et ses documents.</li>
                         </ul>
                         <p>Chaque import crée un nouvel arbre ; vos arbres existants ne sont pas modifiés. Seule exception : si vous ouvrez une nouvelle version d’un arbre que vous avez déjà, l’application vous propose de la fusionner avec le vôtre (voir « Comment compléter un arbre à plusieurs ? »).</p>
                     </div>
@@ -128,6 +128,7 @@
                     <div class="answer">
                         <p>C’est un modèle vierge pour recueillir les informations de la famille, à remplir vous-même ou à transmettre à un proche. Téléchargez-le depuis les Réglages, rubrique « Collecte familiale ». « Comment remplir la matrice ? » explique chaque colonne pas à pas.</p>
                         <p>Une fois remplie, importez le fichier .xlsx (puis le dossier Medias si besoin), ou un ZIP qui contient les deux.</p>
+                        <p class="muted">La matrice V2.2 ajoute une colonne « Surnom », facultative. Les matrices remplies avec une version précédente restent acceptées telles quelles.</p>
                     </div>
                 </details>
 
@@ -147,6 +148,21 @@
                     <summary>Pourquoi l’application affiche-t-elle « grand-oncle ou grand-tante » ?</summary>
                     <div class="answer">
                         <p>Le sexe de la personne n’est pas indiqué dans votre fichier : l’application ne peut donc pas choisir entre le masculin et le féminin. Ouvrez sa fiche, touchez « Modifier », puis choisissez « Femme » ou « Homme » dans la rubrique « Sexe » : le lien de parenté s’accorde aussitôt.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment indiquer le surnom d’une personne ?</summary>
+                    <div class="answer">
+                        <p>Ouvrez sa fiche, touchez « Modifier », puis remplissez « Surnom », juste sous le prénom. Le surnom apparaît sur la fiche et, dans l’arbre, entre guillemets après le prénom : « Francis « Titi » Bonraisin ». Pratique pour distinguer un fils de son père qui porte le même prénom.</p>
+                        <p>Vous pouvez aussi chercher une personne par son surnom dans la liste des membres. Le surnom est conservé dans le fichier GEDCOM (balise standard NICK), lu par les autres logiciels de généalogie.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Où noter les souvenirs et les histoires de famille ?</summary>
+                    <div class="answer">
+                        <p>Chaque fiche comporte une rubrique « Notes, histoires et anecdotes ». Touchez « Modifier » pour y raconter un souvenir, une anecdote, l’origine d’un surnom ou noter vos sources. Ces notes voyagent avec l’arbre quand vous le partagez.</p>
                     </div>
                 </details>
 
@@ -179,6 +195,61 @@
             </section>
 
             <section>
+                <h2>Documents et actes</h2>
+
+                <details>
+                    <summary>Comment joindre un acte ou un document à une fiche ?</summary>
+                    <div class="answer">
+                        <p>Ouvrez la fiche de la personne, descendez jusqu’à la section « Documents » et touchez « Ajouter un document ». Trois possibilités :</p>
+                        <ul>
+                            <li><strong>Numériser un document</strong> avec l’appareil photo : les bords de la page sont détectés et la page est redressée ; plusieurs pages sont réunies dans un seul PDF ;</li>
+                            <li><strong>Choisir une photo</strong> dans votre photothèque ;</li>
+                            <li><strong>Choisir un fichier</strong> dans l’app Fichiers : PDF ou image (JPEG, PNG, HEIC), jusqu’à 50 Mo.</li>
+                        </ul>
+                        <p>Indiquez ensuite le type de document (acte de naissance, de baptême, de mariage ou de décès, certificat, attestation, recensement, registre militaire…), et si vous le souhaitez un titre, une date et des notes, puis touchez « Enregistrer ».</p>
+                        <p class="muted">Sur Mac, la numérisation n’est pas disponible : ajoutez vos documents depuis une photo ou un fichier.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment faire apparaître un acte de mariage sur les deux époux ?</summary>
+                    <div class="answer">
+                        <p>Lors de l’ajout du document, choisissez « L’union avec… » dans « Rattacher à ». Le document figure alors sur les fiches des deux conjoints. Si la personne n’a qu’un conjoint, choisir le type « Acte de mariage » rattache automatiquement le document à leur union.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Que signifie le sceau « Prouvé par » ?</summary>
+                    <div class="answer">
+                        <p>Il indique qu’un document confirme l’information : un acte de naissance ou de baptême pour la naissance, un acte de décès pour le décès, un document rattaché à l’union pour un mariage, un PACS ou une union libre. Touchez-le pour ouvrir le document en plein écran.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment fonctionne la lecture du texte des documents ?</summary>
+                    <div class="answer">
+                        <p>À l’ajout d’un document, l’application lit son texte et l’affiche dans « Texte reconnu », où vous pouvez le corriger. « Ajouter ce texte aux notes » le recopie dans les notes du document. Pour un document ajouté auparavant, touchez « … » › Modifier, puis « Lire le texte du document ».</p>
+                        <p>La lecture se fait entièrement sur votre appareil. Elle est fiable sur les documents imprimés ou tapés ; sur un acte manuscrit ancien, de nombreux mots peuvent être mal lus : transcrivez-le plutôt vous-même dans les notes.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment modifier ou supprimer un document ?</summary>
+                    <div class="answer">
+                        <p>Dans la section « Documents » de la fiche, touchez « … » à droite du document, puis « Modifier » ou « Supprimer ». Un document d’union supprimé disparaît des fiches des deux conjoints.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>La numérisation d’un document ne fonctionne pas</summary>
+                    <div class="answer">
+                        <p>Vous avez peut-être refusé l’accès à l’appareil photo la première fois. Ouvrez l’app Réglages, puis Arbre Familial, et activez « Appareil photo ».</p>
+                        <p>Sur Mac, l’option « Numériser un document » n’apparaît pas : passez par une photo ou un fichier.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section>
                 <h2>Partager et recevoir un arbre</h2>
 
                 <details>
@@ -189,7 +260,19 @@
                             <li>Touchez l’icône de partage à côté de l’arbre voulu.</li>
                             <li>Choisissez Messages, Mail, AirDrop ou Fichiers.</li>
                         </ol>
-                        <p>Votre proche reçoit une archive ZIP qui contient l’arbre complet et toutes ses photos.</p>
+                        <p>Votre proche reçoit une archive ZIP qui contient l’arbre complet, toutes ses photos et ses documents.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Pourquoi l’application m’avertit-elle de « documents récents » ?</summary>
+                    <div class="answer">
+                        <p>Avant de créer l’archive, l’application repère les documents de moins de 75 ans. En France, les actes de naissance et de mariage ne sont librement consultables qu’au bout de ce délai, car ils concernent souvent des personnes vivantes. Vous choisissez alors :</p>
+                        <ul>
+                            <li>« Partager avec ces documents », si vous envoyez l’arbre à des proches de confiance ;</li>
+                            <li>« Partager sans ces documents » : ils restent dans votre arbre, mais ne sont pas envoyés, et la fusion suivante ne les supprime pas chez vous.</li>
+                        </ul>
+                        <p class="muted">L’âge d’un document se calcule d’après sa date ou, à défaut, celle de la naissance ou de l’union qu’il prouve. Les actes de décès, librement consultables, ne sont pas signalés.</p>
                     </div>
                 </details>
 
@@ -200,7 +283,7 @@
                             <li>Dans Messages, Mail ou Fichiers, touchez l’archive ZIP reçue.</li>
                             <li>Touchez le bouton de partage, puis choisissez « Arbre Familial ».</li>
                         </ol>
-                        <p>L’arbre est ajouté à « Mes arbres » avec toutes ses photos, sans modifier vos autres arbres. Vous pouvez aussi enregistrer le fichier dans Fichiers, puis l’importer depuis l’application.</p>
+                        <p>L’arbre est ajouté à « Mes arbres » avec toutes ses photos et ses documents, sans modifier vos autres arbres. Vous pouvez aussi enregistrer le fichier dans Fichiers, puis l’importer depuis l’application.</p>
                         <p>S’il s’agit d’une nouvelle version d’un arbre que vous avez déjà, l’application vous propose plutôt de le fusionner avec le vôtre, ou de l’importer comme un nouvel arbre.</p>
                     </div>
                 </details>
@@ -214,8 +297,61 @@
                             <li>Chacun complète l’arbre de son côté, puis vous vous le renvoyez.</li>
                             <li>À l’ouverture de l’archive reçue, choisissez « Fusionner avec… ».</li>
                         </ol>
-                        <p>Ce qui n’a été modifié que d’un seul côté est repris automatiquement : nouvelles personnes, dates, lieux, sexe, profession, unions, parents et photos. Si une même information a été modifiée différemment des deux côtés, l’application vous montre les deux versions et vous laisse choisir ; votre version est présélectionnée. Un bilan indique ensuite ce qui a été ajouté.</p>
+                        <p>Ce qui n’a été modifié que d’un seul côté est repris automatiquement : nouvelles personnes, dates, lieux, sexe, surnom, profession, unions, parents, photos et documents. Si une même information a été modifiée différemment des deux côtés, l’application vous montre les deux versions et vous laisse choisir ; votre version est présélectionnée. Un bilan indique ensuite ce qui a été ajouté.</p>
                         <p class="muted">Deux arbres importés séparément depuis des fichiers différents ne peuvent pas être fusionnés. Évitez aussi d’ajouter la même personne chacun de votre côté : elle apparaîtrait deux fois.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section>
+                <h2>Carte de la famille</h2>
+
+                <details>
+                    <summary>Comment voir où sont nés mes ancêtres ?</summary>
+                    <div class="answer">
+                        <p>Touchez « Carte de la famille » sur l’accueil, ou le bouton en forme de carte en haut de l’arbre. Chaque lieu de naissance ou de décès de l’arbre y apparaît avec le nombre de personnes concernées : vert pour les naissances, bronze pour les décès, les deux couleurs quand un lieu compte les deux.</p>
+                        <p>Le filtre en haut de la carte affiche tout, les naissances seulement ou les décès seulement. Touchez un repère pour voir qui est né ou décédé à cet endroit, puis un nom pour ouvrir sa fiche.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>La première ouverture de la carte est longue</summary>
+                    <div class="answer">
+                        <p>La première fois, l’application cherche chaque lieu de l’arbre auprès du service de cartes d’Apple, qui limite le nombre de recherches par minute : pour un arbre qui compte beaucoup de lieux différents, cela peut prendre une à deux minutes. Une barre indique la progression, et les repères apparaissent au fur et à mesure.</p>
+                        <p>Les lieux trouvés sont ensuite mémorisés sur votre appareil : les fois suivantes, la carte s’ouvre aussitôt, même sans connexion. Sans Internet, les lieux déjà connus s’affichent et les autres seront cherchés à la prochaine ouverture.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Certains lieux ne sont pas trouvés</summary>
+                    <div class="answer">
+                        <p>Un ancien nom de commune, une paroisse disparue ou une faute de frappe peuvent empêcher de situer un lieu. Touchez « Lieux non trouvés » en haut de la carte : la liste indique les personnes concernées. Touchez un nom pour ouvrir sa fiche et corriger le lieu, de préférence sous la forme « Commune, département, pays », par exemple « Saint-Malo, Ille-et-Vilaine, France ». La carte se met à jour à votre retour.</p>
+                        <p class="muted">Pour situer les lieux, seuls leurs noms sont envoyés au service de cartes d’Apple, jamais ceux des personnes.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section>
+                <h2>Montrer l’arbre sur la télé</h2>
+
+                <details>
+                    <summary>Comment afficher l’arbre sur la télé pendant une réunion de famille ?</summary>
+                    <div class="answer">
+                        <p>Il vous faut une Apple TV ou une télé compatible AirPlay, connectée au même réseau Wi-Fi que votre iPhone ou votre iPad. Un adaptateur HDMI branché sur la télé fonctionne aussi, même sans Wi-Fi.</p>
+                        <ol>
+                            <li>Ouvrez le Centre de contrôle et touchez « Recopie de l’écran », puis choisissez la télé.</li>
+                            <li>Dans l’application, ouvrez l’arbre.</li>
+                        </ol>
+                        <p>L’arbre s’affiche seul sur la télé, en plein écran, sans boutons ni menus. Votre appareil devient la télécommande : touchez une personne pour recentrer l’arbre sur elle, sur votre écran comme sur la télé.</p>
+                        <p>Le bouton en forme de télé, en haut de l’arbre, permet de choisir un fond sombre, plus agréable le soir, ou un fond clair, et de revenir à la simple recopie de votre écran.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>La télé montre tout mon écran au lieu de l’arbre seul</summary>
+                    <div class="answer">
+                        <p>L’affichage de l’arbre seul sur la télé nécessite iOS 27 ou iPadOS 27. Avec une version plus ancienne, la recopie montre l’arbre tel qu’il apparaît sur votre appareil : tournez-le à l’horizontale pour qu’il occupe mieux la télé.</p>
+                        <p>Vérifiez aussi que l’arbre est bien ouvert : sur les autres écrans de l’application, la télé recopie simplement votre écran. Si vous avez choisi la recopie avec le bouton en forme de télé, touchez-le de nouveau et activez « Afficher l’arbre sur l’écran externe ».</p>
                     </div>
                 </details>
             </section>
@@ -245,7 +381,7 @@
                 <details>
                     <summary>Que se passe-t-il si je choisis « Remplacer cet arbre » ?</summary>
                     <div class="answer">
-                        <p>Après confirmation, l’arbre ouvert est remplacé par le nouveau fichier importé : ses données et ses photos sont perdues. Pour ajouter un arbre sans rien perdre, utilisez plutôt « Importer un nouvel arbre ». Pour intégrer la nouvelle version d’un arbre reçu sans perdre vos propres ajouts, préférez la fusion.</p>
+                        <p>Après confirmation, l’arbre ouvert est remplacé par le nouveau fichier importé : ses données, ses photos et ses documents sont perdus. Pour ajouter un arbre sans rien perdre, utilisez plutôt « Importer un nouvel arbre ». Pour intégrer la nouvelle version d’un arbre reçu sans perdre vos propres ajouts, préférez la fusion.</p>
                     </div>
                 </details>
             </section>
@@ -284,7 +420,7 @@
 
             <section>
                 <h2>Confidentialité</h2>
-                <p>Arbre familial fonctionne sans compte et ne collecte aucune donnée : vos arbres restent sur votre appareil. Tous les détails sont dans notre <a href="arbre-familial-confidentialite.html">politique de confidentialité</a>.</p>
+                <p>Arbre familial fonctionne sans compte et ne collecte aucune donnée : vos arbres, vos photos et vos documents restent sur votre appareil. Seule la carte de la famille envoie des noms de lieux au service de cartes d’Apple, pour les situer. Tous les détails sont dans notre <a href="arbre-familial-confidentialite.html">politique de confidentialité</a>.</p>
             </section>
         </main>
     </div>

@@ -96,22 +96,37 @@
             <ul>
                 <li>Aucune donnée personnelle n’est collectée ni transmise au développeur.</li>
                 <li>Aucun compte, aucune publicité, aucun pistage, aucun outil de mesure d’audience.</li>
-                <li>Vos arbres et vos photos sont enregistrés uniquement sur votre appareil.</li>
+                <li>Vos arbres, vos photos et vos documents sont enregistrés uniquement sur votre appareil.</li>
                 <li>Rien n’est partagé sans une action volontaire de votre part.</li>
+                <li>Pour la carte de la famille, seuls des noms de lieux sont envoyés au service de cartes d’Apple, jamais de noms de personnes.</li>
             </ul>
         </div>
 
         <main>
             <section>
                 <h2>Les données que vous saisissez</h2>
-                <p>Les arbres généalogiques, fiches de personnes, dates, lieux, notes et photos que vous importez ou ajoutez sont enregistrés dans l’espace privé de l’application, sur votre appareil (iPhone, iPad ou Mac). Ils ne sont envoyés vers aucun serveur : le développeur n’y a pas accès.</p>
+                <p>Les arbres généalogiques, fiches de personnes, dates, lieux, notes, photos et documents (actes, certificats, attestations…) que vous importez ou ajoutez sont enregistrés dans l’espace privé de l’application, sur votre appareil (iPhone, iPad ou Mac). Ils ne sont envoyés vers aucun serveur : le développeur n’y a pas accès.</p>
                 <p>Si vous avez activé la sauvegarde iCloud ou la sauvegarde sur ordinateur de votre iPhone ou de votre iPad, ou Time Machine sur votre Mac, ces données peuvent y être incluses, comme celles de vos autres applications. Cette sauvegarde est gérée par Apple et par vous, selon les réglages de votre appareil.</p>
             </section>
 
             <section>
-                <h2>Photos et fichiers</h2>
-                <p>Pour ajouter un portrait, l’application utilise le sélecteur de photos du système : seule la photo que vous choisissez lui est transmise. Elle n’a pas accès au reste de votre photothèque.</p>
-                <p>De même, lors d’un import (fichier GEDCOM, classeur Excel, archive ZIP ou dossier de médias), seuls les fichiers que vous sélectionnez sont lus et copiés dans l’application.</p>
+                <h2>Photos, fichiers et appareil photo</h2>
+                <p>Pour ajouter un portrait ou un document, l’application utilise le sélecteur de photos du système : seule la photo que vous choisissez lui est transmise. Elle n’a pas accès au reste de votre photothèque.</p>
+                <p>De même, lors d’un import (fichier GEDCOM, classeur Excel, archive ZIP ou dossier de médias) ou de l’ajout d’un document depuis l’app Fichiers, seuls les fichiers que vous sélectionnez sont lus et copiés dans l’application.</p>
+                <p>L’appareil photo sert uniquement à numériser un document, lorsque vous touchez « Numériser un document ». Le système vous demande d’abord votre autorisation, que vous pouvez retirer à tout moment dans les Réglages. Les pages numérisées sont enregistrées dans l’arbre, sur votre appareil, et nulle part ailleurs.</p>
+            </section>
+
+            <section>
+                <h2>Lecture du texte des documents</h2>
+                <p>L’application peut lire le texte d’un document joint pour vous éviter de le recopier. Cette lecture utilise la reconnaissance de texte intégrée au système d’Apple et se fait entièrement sur votre appareil : le document n’est envoyé à aucun serveur, ni au développeur, ni à un service d’analyse.</p>
+                <p>Le texte lu est enregistré avec le document, dans votre arbre. Vous pouvez le corriger ou l’effacer à tout moment.</p>
+            </section>
+
+            <section>
+                <h2>Carte de la famille</h2>
+                <p>La carte de la famille situe les lieux de naissance et de décès de votre arbre. Pour trouver un lieu sur la carte, l’application envoie son nom (par exemple « Saint-Malo, Ille-et-Vilaine, France ») au service de cartes d’Apple, qui en renvoie la position. Aucune autre information n’est transmise : ni le nom des personnes, ni leurs dates, ni leurs liens de parenté, ni l’arbre lui-même. Le développeur n’a accès ni aux lieux recherchés ni à leurs résultats.</p>
+                <p>Cette recherche n’a lieu que lorsque vous ouvrez la carte, et seulement pour les lieux qui n’ont pas encore été situés. Les positions trouvées sont ensuite mémorisées sur votre appareil : la carte s’ouvre alors sans connexion et sans nouvel envoi. Le service de cartes d’Apple applique sa propre politique de confidentialité, consultable sur <a href="https://www.apple.com/fr/legal/privacy/">apple.com</a>.</p>
+                <p>Si vous n’ouvrez jamais la carte, aucun lieu n’est envoyé.</p>
             </section>
 
             <section>
@@ -122,28 +137,30 @@
 
             <section>
                 <h2>Partage d’un arbre</h2>
-                <p>Vous pouvez partager un arbre sous forme d’archive grâce à la feuille de partage du système : Messages, Mail, AirDrop, Fichiers… L’archive contient le fichier GEDCOM, les photos, les modifications faites dans l’application et des identifiants techniques qui permettent de la fusionner plus tard avec l’arbre du destinataire. Ce partage n’a lieu que si vous le lancez vous-même, vers le destinataire que vous choisissez. La personne qui reçoit l’archive en possède alors une copie.</p>
+                <p>Vous pouvez partager un arbre sous forme d’archive grâce à la feuille de partage du système : Messages, Mail, AirDrop, Fichiers… L’archive contient le fichier GEDCOM, les photos, les documents joints et leur texte lu, les modifications faites dans l’application et des identifiants techniques qui permettent de la fusionner plus tard avec l’arbre du destinataire. Ce partage n’a lieu que si vous le lancez vous-même, vers le destinataire que vous choisissez. La personne qui reçoit l’archive en possède alors une copie.</p>
                 <p>Vous pouvez aussi exporter la vue de l’arbre en image ou en PDF : le fichier créé contient les noms, les dates et les portraits affichés, et n’est envoyé que là où vous le décidez.</p>
-                <p>Un arbre contient souvent des informations sur des personnes vivantes (noms, dates de naissance, photos). Nous vous invitons à ne le partager qu’avec des personnes de confiance et, si possible, avec l’accord des intéressés.</p>
+                <p>Un arbre contient souvent des informations sur des personnes vivantes (noms, dates de naissance, photos, actes d’état civil). Nous vous invitons à ne le partager qu’avec des personnes de confiance et, si possible, avec l’accord des intéressés.</p>
+                <p>Pour vous y aider, l’application vous signale avant chaque partage les documents de moins de 75 ans : en France, les actes de naissance et de mariage ne sont librement consultables qu’au bout de ce délai. Vous pouvez alors choisir de les retirer de l’archive ; ils restent dans votre arbre.</p>
             </section>
 
             <section>
                 <h2>Fusion d’un arbre reçu</h2>
-                <p>Lorsque vous fusionnez un arbre reçu avec l’un des vôtres, la comparaison se fait entièrement sur votre appareil : les personnes, informations et photos de votre proche sont ajoutées à votre arbre, sans passer par un serveur.</p>
+                <p>Lorsque vous fusionnez un arbre reçu avec l’un des vôtres, la comparaison se fait entièrement sur votre appareil : les personnes, informations, photos et documents de votre proche sont ajoutés à votre arbre, sans passer par un serveur.</p>
                 <p>Pour reconnaître ce qui a changé depuis le dernier échange, l’application conserve sur votre appareil quelques états précédents des modifications de chaque arbre. Ils sont supprimés avec l’arbre. Seuls des identifiants techniques, qui ne contiennent aucune information personnelle, accompagnent l’archive partagée.</p>
             </section>
 
             <section>
                 <h2>Liens externes</h2>
-                <p>Les Réglages de l’application contiennent un lien vers le site de Pato Switch. Il s’ouvre dans votre navigateur, qui applique ses propres règles de confidentialité. L’application elle-même ne contacte aucun service en ligne.</p>
+                <p>Les Réglages de l’application contiennent un lien vers le site de Pato Switch. Il s’ouvre dans votre navigateur, qui applique ses propres règles de confidentialité. En dehors de la recherche des lieux pour la carte de la famille, décrite plus haut, l’application ne contacte aucun service en ligne.</p>
             </section>
 
             <section>
                 <h2>Supprimer vos données</h2>
                 <p>Vous gardez la maîtrise complète de vos données :</p>
                 <ul>
-                    <li>pour supprimer un arbre et ses photos, ouvrez « Mes arbres » dans l’application et supprimez-le ;</li>
-                    <li>pour tout effacer, supprimez l’application de votre appareil.</li>
+                    <li>pour supprimer un document, touchez « … » à côté de lui sur la fiche, puis « Supprimer » : son fichier est effacé de l’appareil ;</li>
+                    <li>pour supprimer un arbre, ses photos et ses documents, ouvrez « Mes arbres » dans l’application et supprimez-le ;</li>
+                    <li>pour tout effacer, y compris les positions des lieux mémorisées pour la carte, supprimez l’application de votre appareil.</li>
                 </ul>
                 <p>Le développeur ne détenant aucune de vos données, il n’a rien à supprimer de son côté.</p>
             </section>
@@ -161,7 +178,7 @@
             <section>
                 <h2>Évolution de cette politique</h2>
                 <p>Si une future version de l’application modifie la façon dont vos données sont traitées, cette page sera mise à jour avant la publication de la version concernée.</p>
-                <p class="muted">Dernière mise à jour : 10 novembre 2026.</p>
+                <p class="muted">Dernière mise à jour : 11 novembre 2026.</p>
             </section>
 
             <section>
