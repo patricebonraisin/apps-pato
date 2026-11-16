@@ -124,6 +124,18 @@
                 </details>
 
                 <details>
+                    <summary>Puis-je essayer l’application sans mon propre arbre ?</summary>
+                    <div class="answer">
+                        <p>Oui : sur l’accueil, touchez « Découvrir avec un arbre de démonstration », puis choisissez l’un des deux arbres livrés avec l’application. Vous pouvez aussi les ajouter depuis les Réglages. Ils rejoignent « Mes arbres » sans toucher à vos propres arbres, et se suppriment comme les autres.</p>
+                        <ul>
+                            <li>La <strong>famille Lambert</strong>, entièrement fictive, se modifie librement : idéale pour vous entraîner avant de travailler sur votre arbre.</li>
+                            <li>La <strong>famille de Victor Hugo</strong> réunit ses ancêtres, ses frères, ses enfants et ses descendants, avec leurs portraits. Elle se consulte en lecture seule : vous pouvez la parcourir, l’afficher en éventail ou sur la carte et la partager, mais pas la modifier.</li>
+                        </ul>
+                        <p class="muted">Les données de la famille Hugo viennent de Wikidata et de Wikipédia, et ses portraits, tous du domaine public, de Wikimedia Commons. Aucune personne vivante n’y figure.</p>
+                    </div>
+                </details>
+
+                <details>
                     <summary>Qu’est-ce que la matrice Excel ?</summary>
                     <div class="answer">
                         <p>C’est un modèle vierge pour recueillir les informations de la famille, à remplir vous-même ou à transmettre à un proche. Téléchargez-le depuis les Réglages, rubrique « Collecte familiale ». « Comment remplir la matrice ? » explique chaque colonne pas à pas.</p>
@@ -162,8 +174,16 @@
                 <details>
                     <summary>Comment indiquer le surnom d’une personne ?</summary>
                     <div class="answer">
-                        <p>Ouvrez sa fiche, touchez « Modifier », puis remplissez « Surnom », juste sous le prénom. Le surnom apparaît sur la fiche et, dans l’arbre, entre guillemets après le prénom : « Francis « Titi » Bonraisin ». Pratique pour distinguer un fils de son père qui porte le même prénom.</p>
+                        <p>Ouvrez sa fiche, touchez « Modifier », puis remplissez « Surnom », juste sous les prénoms. Le surnom apparaît sur la fiche et, dans l’arbre, entre guillemets après le prénom : « Francis « Titi » Bonraisin ». Pratique pour distinguer un fils de son père qui porte le même prénom.</p>
                         <p>Vous pouvez aussi chercher une personne par son surnom dans la liste des membres. Le surnom est conservé dans le fichier GEDCOM (balise standard NICK), lu par les autres logiciels de généalogie.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment noter plusieurs prénoms ?</summary>
+                    <div class="answer">
+                        <p>Notez-les tous dans le champ « Prénoms », celui d’usage en premier, puis les autres séparés par des virgules : « Clémence, Marie, Louise ». L’arbre et l’éventail n’affichent que le prénom d’usage, en entier ; la fiche, la recherche et les listes les gardent tous.</p>
+                        <p class="muted">Pour un prénom composé, gardez le trait d’union : « Marie-Thérèse ». Sans virgule, l’application considère le premier mot comme le prénom d’usage.</p>
                     </div>
                 </details>
 
@@ -374,6 +394,7 @@
                         <ol>
                             <li>Depuis l’accueil, ouvrez « Mes arbres ».</li>
                             <li>Touchez l’icône de partage à côté de l’arbre voulu.</li>
+                            <li>Choisissez « Partager vers l’app Arbre Familial ».</li>
                             <li>Choisissez Messages, Mail, AirDrop ou Fichiers.</li>
                         </ol>
                         <p>Votre proche reçoit une archive ZIP qui contient l’arbre complet, toutes ses photos et ses documents.</p>
@@ -381,9 +402,23 @@
                 </details>
 
                 <details>
+                    <summary>Comment transférer mon arbre vers un autre logiciel de généalogie ?</summary>
+                    <div class="answer">
+                        <ol>
+                            <li>Depuis l’accueil, ouvrez « Mes arbres ».</li>
+                            <li>Touchez l’icône de partage à côté de l’arbre voulu.</li>
+                            <li>Choisissez « Exporter vers un autre logiciel », puis enregistrez l’archive dans Fichiers ou envoyez-la sur votre ordinateur.</li>
+                            <li>Décompressez l’archive, importez le fichier GEDCOM dans votre logiciel (MacFamilyTree, Heredis, Geneanet…), puis indiquez le dossier « Media » s’il vous est demandé.</li>
+                        </ol>
+                        <p>Le GEDCOM contient l’arbre complet, avec toutes vos corrections et les noms d’épouse ; le dossier « Media » réunit les photos et les documents. Si votre arbre venait d’un autre logiciel, ses sources, baptêmes, inhumations et autres informations que l’application n’affiche pas sont conservés.</p>
+                        <p class="muted">Cette archive est destinée aux logiciels de généalogie : pour envoyer l’arbre à un proche qui utilise l’application, ou pour le fusionner plus tard, choisissez plutôt « Partager vers l’app Arbre Familial ».</p>
+                    </div>
+                </details>
+
+                <details>
                     <summary>Pourquoi l’application m’avertit-elle de « documents récents » ?</summary>
                     <div class="answer">
-                        <p>Avant de créer l’archive, l’application repère les documents de moins de 75 ans. En France, les actes de naissance et de mariage ne sont librement consultables qu’au bout de ce délai, car ils concernent souvent des personnes vivantes. Vous choisissez alors :</p>
+                        <p>Avant de créer l’archive, pour un proche comme pour un autre logiciel, l’application repère les documents de moins de 75 ans. En France, les actes de naissance et de mariage ne sont librement consultables qu’au bout de ce délai, car ils concernent souvent des personnes vivantes. Vous choisissez alors :</p>
                         <ul>
                             <li>« Partager avec ces documents », si vous envoyez l’arbre à des proches de confiance ;</li>
                             <li>« Partager sans ces documents » : ils restent dans votre arbre, mais ne sont pas envoyés, et la fusion suivante ne les supprime pas chez vous.</li>
@@ -409,12 +444,12 @@
                     <div class="answer">
                         <p>Chacun peut compléter l’arbre de son côté : quand un proche vous le renvoie, l’application réunit ses ajouts et les vôtres dans un seul arbre, sans créer de doublons.</p>
                         <ol>
-                            <li>L’un de vous partage son arbre ; l’autre l’ouvre dans l’application. Vous partez ainsi du même arbre.</li>
+                            <li>L’un de vous partage son arbre avec « Partager vers l’app Arbre Familial » ; l’autre l’ouvre dans l’application. Vous partez ainsi du même arbre.</li>
                             <li>Chacun complète l’arbre de son côté, puis vous vous le renvoyez.</li>
                             <li>À l’ouverture de l’archive reçue, choisissez « Fusionner avec… ».</li>
                         </ol>
                         <p>Ce qui n’a été modifié que d’un seul côté est repris automatiquement : nouvelles personnes, dates, lieux, sexe, surnom, profession, unions, parents, photos et documents. Si une même information a été modifiée différemment des deux côtés, l’application vous montre les deux versions et vous laisse choisir ; votre version est présélectionnée. Un bilan indique ensuite ce qui a été ajouté.</p>
-                        <p class="muted">Deux arbres importés séparément depuis des fichiers différents ne peuvent pas être fusionnés. Évitez aussi d’ajouter la même personne chacun de votre côté : elle apparaîtrait deux fois.</p>
+                        <p class="muted">Deux arbres importés séparément depuis des fichiers différents ne peuvent pas être fusionnés, pas plus qu’une archive créée avec « Exporter vers un autre logiciel ». Évitez aussi d’ajouter la même personne chacun de votre côté : elle apparaîtrait deux fois.</p>
                     </div>
                 </details>
             </section>
@@ -478,19 +513,37 @@
                 <details>
                     <summary>Puis-je avoir plusieurs arbres ?</summary>
                     <div class="answer">
-                        <p>Oui, jusqu’à 50 arbres sur un même appareil. Retrouvez-les dans « Mes arbres » : touchez un arbre pour l’ouvrir, ou glissez sa ligne vers la gauche pour le renommer ou le supprimer.</p>
+                        <p>Oui, jusqu’à 50 arbres. Retrouvez-les dans « Mes arbres » : touchez un arbre pour l’ouvrir, ou glissez sa ligne vers la gauche pour le renommer ou le supprimer.</p>
                     </div>
                 </details>
 
                 <details>
-                    <summary>Comment sauvegarder mes arbres ou les transférer sur un autre appareil ?</summary>
+                    <summary>Mes arbres sont-ils sauvegardés et disponibles sur tous mes appareils ?</summary>
                     <div class="answer">
-                        <p>Vos arbres sont enregistrés uniquement sur l’appareil où vous les avez importés : ils ne se synchronisent pas d’eux-mêmes entre votre iPhone, votre iPad et votre Mac. Pour les mettre à l’abri ou les retrouver ailleurs :</p>
+                        <p>Oui, si vous êtes connecté à iCloud et qu’iCloud Drive est activé : vos arbres, leurs photos et leurs documents sont enregistrés dans votre compte iCloud. Vous les retrouvez sur votre iPhone, votre iPad et votre Mac connectés au même compte Apple, ainsi qu’après une réinstallation de l’application ou sur un nouvel appareil, sans rien faire.</p>
+                        <p>Une fiche complétée sur un appareil apparaît d’elle-même sur les autres, en général après quelques secondes. Un arbre créé, renommé ou supprimé l’est aussi partout.</p>
+                        <p>Sans iCloud, vos arbres restent uniquement sur l’appareil. Pour les mettre à l’abri ou les transférer, partagez chaque arbre depuis « Mes arbres » avec « Partager vers l’app Arbre Familial » et enregistrez l’archive dans Fichiers, ou envoyez-la par AirDrop, puis importez-la sur l’autre appareil.</p>
+                        <p class="muted">Attention : supprimer un arbre dans « Mes arbres » le supprime de tous vos appareils connectés à iCloud.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>J’ai modifié mon arbre sur deux appareils en même temps : que se passe-t-il ?</summary>
+                    <div class="answer">
+                        <p>L’application réunit les deux versions, par exemple quand l’un des appareils était hors connexion. Tout ce qui n’a été modifié que d’un seul côté est gardé : fiches différentes, champs différents d’une même fiche, personnes ajoutées.</p>
+                        <p>Si la même information a été modifiée différemment sur les deux appareils, la modification la plus récente est gardée, et un message « Synchronisation iCloud » vous indique les fiches concernées.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Mes arbres n’apparaissent pas sur mon autre appareil : que faire ?</summary>
+                    <div class="answer">
                         <ul>
-                            <li>partagez chaque arbre depuis « Mes arbres » et enregistrez l’archive dans Fichiers, par exemple dans iCloud Drive, ou envoyez-la par AirDrop. Sur l’autre appareil, nouvel iPhone, iPad ou Mac, il suffit de l’importer. AirDrop fonctionne même entre deux appareils qui n’utilisent pas le même compte iCloud : sur celui qui reçoit, réglez AirDrop sur « Tout le monde pendant 10 minutes » ;</li>
-                            <li>sur iPhone et iPad, la sauvegarde iCloud ou sur ordinateur inclut aussi les données de l’application ; sur Mac, c’est le cas de Time Machine.</li>
+                            <li>Vérifiez que les deux appareils utilisent le même compte Apple, et qu’iCloud Drive est activé dans les Réglages de chacun.</li>
+                            <li>Vérifiez qu’ils sont connectés à Internet et que votre stockage iCloud n’est pas plein.</li>
+                            <li>Patientez quelques instants : un arbre volumineux, avec beaucoup de photos, peut mettre plus de temps à arriver. Les photos et les documents arrivent après les fiches.</li>
+                            <li>Si votre arbre avait été importé séparément sur chaque appareil, avant la synchronisation, il apparaît deux fois : supprimez simplement la copie la moins complète, une seule fois, depuis « Mes arbres ».</li>
                         </ul>
-                        <p class="muted">Attention : supprimer l’application efface aussi ses arbres de l’appareil. Pensez à les sauvegarder avant.</p>
                     </div>
                 </details>
 
