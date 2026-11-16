@@ -1037,6 +1037,7 @@ html[data-theme="dark"] .card a:hover {
             <button class="intent-option" type="button" data-intent="sortie" aria-pressed="false">Préparer une sortie</button>
             <button class="intent-option" type="button" data-intent="animal" aria-pressed="false">Prendre soin d’un animal</button>
             <button class="intent-option" type="button" data-intent="epargne" aria-pressed="false">Comprendre mon épargne</button>
+            <button class="intent-option" type="button" data-intent="vente" aria-pressed="false">Tenir une petite vente</button>
             <button class="intent-option" type="button" data-intent="proche" aria-pressed="false">Rassurer un proche</button>
             <button class="intent-option" type="button" data-intent="famille" aria-pressed="false">Explorer mon histoire familiale</button>
             <button class="intent-option" type="button" data-intent="souvenirs" aria-pressed="false">Partager mes souvenirs</button>
@@ -1058,8 +1059,9 @@ html[data-theme="dark"] .card a:hover {
 
     <section class="apps" id="apps">
 
-        <!-- Pato Cash n'est pas encore sur l'App Store : pas de data-app-id, la carte reste donc hors du tri et des favoris. -->
-        <div class="card card--soon">
+        <!-- Pato Cash n'est pas encore sur l'App Store : pas de data-app-id, la carte reste donc hors du tri et des favoris.
+             data-guide-id lui permet quand même d'apparaître dans « Que voulez-vous faire aujourd'hui ? ». -->
+        <div class="card card--soon" data-guide-id="pato-cash" data-app-name="Pato Cash" data-app-page="pato-cash-marketing.html">
             <div class="icon-wrap">
                 <img class="icon" src="pato-cash.png" alt="Icône Pato Cash">
             </div>
@@ -1396,6 +1398,10 @@ const guideRecommendations = {
         message: "Pour comprendre ce que vos placements vous rapportent vraiment, commencez avec Finelio.",
         apps: ["finelio"]
     },
+    vente: {
+        message: "Pour une brocante, un marché ou une fête d’association, Pato Cash calcule vos ventes et prépare le bilan de la journée. Bientôt sur l’App Store.",
+        apps: ["pato-cash"]
+    },
     proche: {
         message: "Pour installer un repère simple et rassurant avec ceux qui comptent, découvrez Toujours Là.",
         apps: ["toujours"]
@@ -1496,7 +1502,8 @@ function showRecommendation(intent) {
     guideResultLinks.replaceChildren();
 
     recommendation.apps.forEach(appID => {
-        const card = getCard(appID);
+        // Cards not yet on the App Store have no data-app-id, only a data-guide-id.
+        const card = getCard(appID) ?? document.querySelector(`.card[data-guide-id="${appID}"]`);
         if (!card) {
             return;
         }
