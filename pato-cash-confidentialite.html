@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Politique de confidentialité de l’application Pato Cash, développée par Pato Switch.">
+    <title>Confidentialité — Pato Cash</title>
+    <style>
+        :root {
+            --canvas: #f3f6fd;
+            --card: #ffffff;
+            --navy: #14287a;
+            --navy-deep: #0c1a55;
+            --steel: #19b8f6;
+            --accent: #2e5bea;
+            --ink: #18213f;
+            --muted: #5a6482;
+            --line: rgba(46, 91, 234, .16);
+            --shadow: 0 22px 55px rgba(20, 40, 122, .14);
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--canvas);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.65;
+        }
+        a { color: var(--navy); }
+        .container { width: min(780px, calc(100% - 40px)); margin: 0 auto; }
+
+        header { background: radial-gradient(circle at 88% 10%, rgba(25, 184, 246, .2) 0, transparent 32%), linear-gradient(135deg, #f8faff, #e6edfc); border-bottom: 1px solid var(--line); }
+        nav { display: flex; align-items: center; padding: 26px 0; }
+        .brand { display: flex; align-items: center; gap: 11px; color: var(--navy); font-weight: 700; text-decoration: none; }
+        .brand-mark { width: 38px; height: 38px; border-radius: 10px; box-shadow: 0 6px 16px rgba(20, 40, 122, .22); }
+        .wordmark { font-size: 20px; letter-spacing: -.02em; }
+        .intro { padding: 40px 0 56px; }
+        .eyebrow { margin: 0 0 14px; color: var(--accent); font-size: 13px; font-weight: 700; letter-spacing: .15em; }
+        h1 { margin: 0 0 18px; color: var(--navy-deep); font-size: clamp(36px, 6vw, 54px); font-weight: 700; line-height: 1.05; letter-spacing: -.04em; }
+        .lead { margin: 0; color: var(--muted); font-size: 19px; }
+
+        .summary { margin: -28px 0 48px; padding: 28px 30px; border: 1px solid var(--line); border-radius: 20px; background: var(--card); box-shadow: var(--shadow); }
+        .summary ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+        .summary li { display: flex; gap: 12px; }
+        .summary li::before { content: "✓"; color: var(--steel); font-weight: 800; }
+
+        main section { padding-bottom: 34px; }
+        h2 { margin: 0 0 12px; color: var(--navy); font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
+        p, li { color: var(--ink); }
+        main ul { padding-left: 22px; }
+        .muted { color: var(--muted); font-size: 15px; }
+
+        footer { margin-top: 30px; padding: 30px 0 38px; color: #d6defa; background: #0c1a55; font-size: 13px; }
+        footer a { color: #8fdcff; }
+
+        /* Mode sombre : mêmes couleurs que la page de présentation. */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --canvas: #0d1124;
+                --card: #161c36;
+                --navy: #c9d6ff;
+                --navy-deep: #eef2ff;
+                --steel: #5fd0ff;
+                --accent: #7fa0ff;
+                --ink: #eceffa;
+                --muted: #aab3cf;
+                --line: rgba(160, 185, 255, .18);
+                --shadow: 0 22px 55px rgba(0, 0, 0, .3);
+            }
+            header { background: radial-gradient(circle at 88% 10%, rgba(25, 184, 246, .16) 0, transparent 32%), linear-gradient(135deg, #0f1430, #151b3c); }
+            footer { background: #080c1c; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a class="brand" href="pato-cash-marketing.html" aria-label="Pato Cash, présentation"><img class="brand-mark" src="pato-cash.png" alt=""><span class="wordmark">Pato Cash</span></a>
+            </nav>
+            <div class="intro">
+                <p class="eyebrow">POLITIQUE DE CONFIDENTIALITÉ</p>
+                <h1>Vos comptes restent chez vous.</h1>
+                <p class="lead">Pato Cash fonctionne sans compte à créer, sans connexion internet, sans serveur du développeur et sans publicité. Cette page explique simplement ce que l’application fait de vos données.</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="summary">
+            <ul>
+                <li>Aucune donnée personnelle n’est collectée ni transmise au développeur.</li>
+                <li>Aucun compte, aucune publicité, aucun pistage, aucun outil de mesure d’audience.</li>
+                <li>L’application ne se connecte à aucun service en ligne : vos calculs, vos ventes et votre catalogue restent sur votre appareil.</li>
+                <li>Rien n’est partagé sans une action volontaire de votre part.</li>
+            </ul>
+        </div>
+
+        <main>
+            <section>
+                <h2>Les données que vous saisissez</h2>
+                <p>Pato Cash enregistre, dans l’espace privé de l’application et sur votre appareil uniquement :</p>
+                <ul>
+                    <li>l’historique de vos calculs et le ruban, avec les notes que vous y ajoutez ;</li>
+                    <li>les ventes que vous enregistrez dans la caisse : articles, montants, remise, TVA et moyen de paiement indiqué ;</li>
+                    <li>votre catalogue d’articles et leurs prix ;</li>
+                    <li>le fond de caisse et le comptage du soir saisis dans le bilan du jour ;</li>
+                    <li>vos réglages, dont le nom affiché sur le ruban et les récapitulatifs.</li>
+                </ul>
+                <p>Ces données ne sont envoyées vers aucun serveur : le développeur n’y a pas accès. Elles ne sont pas non plus synchronisées avec iCloud ni avec vos autres appareils.</p>
+                <p>Si vous avez activé la sauvegarde iCloud ou la sauvegarde sur ordinateur de votre iPhone ou de votre iPad, ces données peuvent y être incluses, comme celles de vos autres applications. Cette sauvegarde est gérée par Apple et par vous, selon les réglages de votre appareil.</p>
+            </section>
+
+            <section>
+                <h2>Moyens de paiement</h2>
+                <p>Pato Cash n’encaisse aucun paiement. Lorsque vous indiquez qu’une vente a été réglée en espèces, par carte, par chèque ou autrement, l’application note simplement ce choix. Elle ne lit aucune carte bancaire, ne se connecte à aucun terminal de paiement et ne connaît aucune information sur vos clients.</p>
+            </section>
+
+            <section>
+                <h2>Copier, coller et importer un fichier</h2>
+                <p>L’application ne lit le presse-papiers que lorsque vous le demandez : en touchant le bouton Coller ou en tapant ⌘V sur un clavier. Le système peut alors vous demander votre autorisation.</p>
+                <p>Lors de l’import d’un catalogue au format CSV, seul le fichier que vous sélectionnez est lu. Un aperçu vous montre ce qui va être ajouté avant tout enregistrement.</p>
+            </section>
+
+            <section>
+                <h2>Exports et partage</h2>
+                <p>Vous pouvez exporter le ruban, un récapitulatif de vente ou le bilan du jour en PDF, et vos ventes ou votre catalogue en CSV. Ces fichiers sont créés sur votre appareil, puis envoyés grâce à la feuille de partage du système (Mail, Messages, AirDrop, Fichiers…) uniquement là où vous le décidez. La personne ou l’application qui les reçoit en possède alors une copie.</p>
+                <p>Les récapitulatifs contiennent le nom affiché que vous avez choisi dans les réglages, les articles et les montants. Ce sont des documents non fiscaux.</p>
+            </section>
+
+            <section>
+                <h2>Sons et retour haptique</h2>
+                <p>Les sons mécaniques et les vibrations sont produits directement par votre appareil. Ils n’utilisent ni le micro ni aucune autre donnée.</p>
+            </section>
+
+            <section>
+                <h2>Supprimer vos données</h2>
+                <p>Vous gardez la maîtrise complète de vos données :</p>
+                <ul>
+                    <li>l’historique des calculs s’efface depuis l’écran Historique, et le ruban depuis l’écran Ruban ;</li>
+                    <li>le réglage « Conserver l’historique », une fois désactivé, n’enregistre plus vos calculs ;</li>
+                    <li>une vente enregistrée se supprime depuis l’écran Tickets ;</li>
+                    <li>le catalogue se supprime en tout ou en partie depuis l’écran Catalogue ;</li>
+                    <li>pour tout effacer d’un coup, supprimez l’application de votre appareil.</li>
+                </ul>
+                <p>Le développeur ne détenant aucune de vos données, il n’a rien à supprimer de son côté.</p>
+            </section>
+
+            <section>
+                <h2>Enfants</h2>
+                <p>L’application ne collecte aucune donnée, quel que soit l’âge de la personne qui l’utilise.</p>
+            </section>
+
+            <section>
+                <h2>Vos droits</h2>
+                <p>Comme aucune donnée personnelle n’est collectée ni traitée par le développeur, il n’existe pas de traitement au sens du Règlement général sur la protection des données (RGPD) dont vous devriez demander l’accès, la rectification ou l’effacement. Pour toute question, vous pouvez néanmoins nous écrire.</p>
+            </section>
+
+            <section>
+                <h2>Évolution de cette politique</h2>
+                <p>Si une future version de l’application modifie la façon dont vos données sont traitées, cette page sera mise à jour avant la publication de la version concernée.</p>
+                <p class="muted">Dernière mise à jour : 16 novembre 2026.</p>
+            </section>
+
+            <section>
+                <h2>Contact</h2>
+                <p>Pato Cash est développée par Pato Switch.<br>
+                Site : <a href="https://www.patoswitch.fr">www.patoswitch.fr</a><br>
+                E-mail : <a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a></p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            © 2026 Pato Cash · Développée par <a href="https://www.patoswitch.fr">Pato Switch</a> · <a href="pato-cash-assistance.html">Assistance</a> · <a href="pato-cash-marketing.html">Présentation de l’application</a> · <a href="/">Pato Apps</a>
+        </div>
+    </footer>
+</body>
+</html>

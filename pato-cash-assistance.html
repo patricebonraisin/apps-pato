@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Assistance de l’application Pato Cash : mode d’emploi, questions fréquentes et contact.">
+    <title>Assistance — Pato Cash</title>
+    <style>
+        :root {
+            --canvas: #f3f6fd;
+            --card: #ffffff;
+            --navy: #14287a;
+            --navy-deep: #0c1a55;
+            --steel: #19b8f6;
+            --accent: #2e5bea;
+            --ink: #18213f;
+            --muted: #5a6482;
+            --line: rgba(46, 91, 234, .16);
+            --shadow: 0 22px 55px rgba(20, 40, 122, .14);
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--canvas);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.65;
+        }
+        a { color: var(--navy); }
+        .container { width: min(780px, calc(100% - 40px)); margin: 0 auto; }
+
+        header { background: radial-gradient(circle at 88% 10%, rgba(25, 184, 246, .2) 0, transparent 32%), linear-gradient(135deg, #f8faff, #e6edfc); border-bottom: 1px solid var(--line); }
+        nav { display: flex; align-items: center; padding: 26px 0; }
+        .brand { display: flex; align-items: center; gap: 11px; color: var(--navy); font-weight: 700; text-decoration: none; }
+        .brand-mark { width: 38px; height: 38px; border-radius: 10px; box-shadow: 0 6px 16px rgba(20, 40, 122, .22); }
+        .wordmark { font-size: 20px; letter-spacing: -.02em; }
+        .intro { padding: 40px 0 56px; }
+        .eyebrow { margin: 0 0 14px; color: var(--accent); font-size: 13px; font-weight: 700; letter-spacing: .15em; }
+        h1 { margin: 0 0 18px; color: var(--navy-deep); font-size: clamp(36px, 6vw, 54px); font-weight: 700; line-height: 1.05; letter-spacing: -.04em; }
+        .lead { margin: 0; color: var(--muted); font-size: 19px; }
+
+        .contact { margin: -28px 0 48px; padding: 28px 30px; border: 1px solid var(--line); border-radius: 20px; background: var(--card); box-shadow: var(--shadow); }
+        .contact h2 { margin-bottom: 8px; }
+        .contact p { margin: 0 0 10px; }
+        .button { display: inline-flex; align-items: center; min-height: 48px; margin-top: 6px; padding: 0 22px; border-radius: 10px; color: #fff; background: linear-gradient(135deg, #19b8f6, #2e6bf0 48%, #3b30e3); font-size: 15px; font-weight: 700; text-decoration: none; }
+
+        main section { padding-bottom: 30px; }
+        h2 { margin: 0 0 14px; color: var(--navy); font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
+        details { margin-bottom: 12px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); }
+        summary { padding: 16px 20px; color: var(--navy-deep); font-weight: 650; cursor: pointer; list-style: none; }
+        summary::-webkit-details-marker { display: none; }
+        summary::before { content: "+"; display: inline-block; width: 22px; color: var(--steel); font-weight: 800; }
+        details[open] summary::before { content: "–"; }
+        .answer { padding: 0 20px 16px 42px; }
+        .answer p { margin: 0 0 10px; }
+        .answer ol, .answer ul { margin: 0 0 10px; padding-left: 20px; }
+        .muted { color: var(--muted); font-size: 15px; }
+
+        .limits { padding: 24px 28px; border: 1px dashed var(--line); border-radius: 18px; background: var(--card); }
+        .limits ul { margin: 0; padding-left: 20px; }
+        .limits li { margin-bottom: 8px; }
+
+        footer { margin-top: 30px; padding: 30px 0 38px; color: #d6defa; background: #0c1a55; font-size: 13px; }
+        footer a { color: #8fdcff; }
+
+        /* Mode sombre : mêmes couleurs que la page de présentation. */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --canvas: #0d1124;
+                --card: #161c36;
+                --navy: #c9d6ff;
+                --navy-deep: #eef2ff;
+                --steel: #5fd0ff;
+                --accent: #7fa0ff;
+                --ink: #eceffa;
+                --muted: #aab3cf;
+                --line: rgba(160, 185, 255, .18);
+                --shadow: 0 22px 55px rgba(0, 0, 0, .3);
+            }
+            header { background: radial-gradient(circle at 88% 10%, rgba(25, 184, 246, .16) 0, transparent 32%), linear-gradient(135deg, #0f1430, #151b3c); }
+            /* Le bleu clair du mode sombre manquerait de contraste sous un texte blanc. */
+            .button { color: #fff; background: #2e5bea; }
+            footer { background: #080c1c; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a class="brand" href="pato-cash-marketing.html" aria-label="Pato Cash, présentation"><img class="brand-mark" src="pato-cash.png" alt=""><span class="wordmark">Pato Cash</span></a>
+            </nav>
+            <div class="intro">
+                <p class="eyebrow">ASSISTANCE</p>
+                <h1>Besoin d’un coup de main ?</h1>
+                <p class="lead">Pato Cash réunit une calculette à bande papier et une petite caisse pour les ventes occasionnelles. Retrouvez ici les réponses aux questions les plus fréquentes. Si vous ne trouvez pas votre réponse, écrivez-nous : nous lisons chaque message.</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="contact">
+            <h2>Nous contacter</h2>
+            <p>Par e-mail : <a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a></p>
+            <p class="muted">Astuce : indiquez le modèle de votre iPhone ou de votre iPad et la version d’iOS. Une capture d’écran nous aide aussi beaucoup à comprendre votre problème.</p>
+            <a class="button" href="mailto:info@patoswitch.fr?subject=Pato%20Cash%20%E2%80%93%20Assistance">Écrire à l’assistance</a>
+        </div>
+
+        <main>
+            <section>
+                <h2>Bien démarrer</h2>
+
+                <details>
+                    <summary>À quoi sert Pato Cash ?</summary>
+                    <div class="answer">
+                        <p>Pato Cash a deux usages, accessibles par le sélecteur Calculatrice / Caisse en haut de l’écran :</p>
+                        <ul>
+                            <li>la <strong>calculatrice</strong>, une calculette de comptoir avec bande papier, TVA rapide et calcul de marge ;</li>
+                            <li>la <strong>caisse</strong>, pour composer et enregistrer des ventes occasionnelles : marché, brocante, fête d’école, vente associative…</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Existe-t-il un mode d’emploi dans l’application ?</summary>
+                    <div class="answer">
+                        <p>Oui : touchez l’engrenage en haut de l’écran, puis « Mode d’emploi ». Vous y retrouvez, rubrique par rubrique, tout ce que l’application sait faire.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Quels appareils sont compatibles ?</summary>
+                    <div class="answer">
+                        <p>Pato Cash fonctionne sur iPhone et sur iPad, avec iOS ou iPadOS 27.2 ou une version ultérieure.</p>
+                        <p>L’interface s’adapte à la place disponible, en portrait comme en paysage. Sur les grands écrans, la calculette et la caisse profitent de tout l’espace.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section>
+                <h2>La calculette</h2>
+
+                <details>
+                    <summary>À quoi sert la bande papier ?</summary>
+                    <div class="answer">
+                        <p>Chaque calcul terminé s’inscrit sur le ruban, comme sur les machines à calculer d’autrefois. Vous gardez ainsi une trace de ce que vous avez tapé et repérez une erreur d’un coup d’œil.</p>
+                        <p>Le bouton Ruban permet de l’afficher, de l’exporter en PDF ou de l’effacer.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment ajouter une note sous un résultat ?</summary>
+                    <div class="answer">
+                        <p>Touchez un résultat sur le ruban, puis écrivez votre note, par exemple « loyer » ou « fournitures ». Touchez-le de nouveau pour la modifier ou la supprimer.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment réutiliser un ancien résultat ?</summary>
+                    <div class="answer">
+                        <p>Ouvrez l’Historique, puis touchez le calcul voulu : son résultat revient à l’affichage. Balayez une ligne vers la gauche pour la supprimer, ou touchez la corbeille pour tout effacer.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment copier ou coller un nombre ?</summary>
+                    <div class="answer">
+                        <p>Maintenez le doigt sur le résultat pour le copier. Pour reprendre un nombre copié ailleurs, touchez le bouton Coller de l’affichage.</p>
+                        <p>Avec un clavier physique, tapez directement les chiffres et les opérations ; ⌘C copie le résultat et ⌘V colle un nombre.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment afficher ou masquer le symbole € ?</summary>
+                    <div class="answer">
+                        <p>Touchez le petit € à côté du résultat : il s’affiche ou se masque. Votre choix est mémorisé.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section>
+                <h2>TVA et marge</h2>
+
+                <details>
+                    <summary>Comment ajouter ou retirer la TVA ?</summary>
+                    <div class="answer">
+                        <ol>
+                            <li>Tapez un montant.</li>
+                            <li>Ouvrez le menu TVA et choisissez le taux.</li>
+                            <li>Touchez « Ajouter la TVA (HT → TTC) » ou « Retirer la TVA (TTC → HT) ».</li>
+                        </ol>
+                        <p>Exemple à 20 % : 100 devient 120, et 120 redevient 100.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment trouver un prix de vente à partir d’un coût ?</summary>
+                    <div class="answer">
+                        <p>Tapez le coût, choisissez un taux dans le menu Marge, puis touchez « Prix de vente ». La marge est calculée sur le prix de vente (taux de marque).</p>
+                        <p>Exemple à 20 % : un coût de 80 donne un prix de vente de 100, dont 20 de marge.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment connaître le taux de marge d’un article ?</summary>
+                    <div class="answer">
+                        <p>Tapez le coût, choisissez « Taux de marge » dans le menu Marge, tapez le prix de vente puis touchez =.</p>
+                        <p>Exemple : un coût de 80 et un prix de 100 donnent une marge de 20 %.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section>
+                <h2>La caisse</h2>
+
+                <details>
+                    <summary>Comment enregistrer une vente ?</summary>
+                    <div class="answer">
+                        <ol>
+                            <li>Passez en mode Caisse.</li>
+                            <li>Saisissez un libellé et un montant, ou touchez un article de votre catalogue.</li>
+                            <li>Ajustez la quantité et le taux de TVA si besoin, puis ajoutez la ligne.</li>
+                            <li>Appliquez éventuellement une remise, en montant ou en pourcentage.</li>
+                            <li>Choisissez le moyen de paiement, puis touchez « Enregistrer le ticket ».</li>
+                        </ol>
+                        <p>Vos ventes enregistrées se retrouvent dans Tickets, d’où vous pouvez les consulter, les exporter en PDF ou les supprimer.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment calculer la monnaie à rendre ?</summary>
+                    <div class="answer">
+                        <p>Touchez Tiroir, puis saisissez le montant donné par le client : Pato Cash affiche la monnaie à rendre, ou vous prévient si le montant est insuffisant.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Pato Cash accepte-t-il les paiements par carte ?</summary>
+                    <div class="answer">
+                        <p>Non. Pato Cash n’encaisse aucun paiement et ne se connecte à aucun terminal de paiement. Il note simplement comment le client a payé (espèces, carte, chèque ou autre) pour que votre bilan du jour soit juste.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Mes récapitulatifs sont-ils des tickets de caisse officiels ?</summary>
+                    <div class="answer">
+                        <p>Non. Les récapitulatifs de vente et les bilans sont des documents non fiscaux : ils portent d’ailleurs la mention « Document non fiscal ».</p>
+                        <p>Pato Cash convient aux ventes occasionnelles : associations, fêtes d’école, vide-greniers, ou micro-entrepreneurs non assujettis à la TVA. Si vous êtes commerçant et assujetti à la TVA, la loi vous impose un logiciel de caisse certifié (NF525 en France).</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment faire apparaître mon nom sur les récapitulatifs ?</summary>
+                    <div class="answer">
+                        <p>Touchez l’engrenage, puis « Nom affiché », et saisissez le nom de votre stand, de votre association ou de votre activité. Il apparaît sur le ruban et sur les récapitulatifs.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section>
+                <h2>Le catalogue</h2>
+
+                <details>
+                    <summary>À quoi sert le catalogue ?</summary>
+                    <div class="answer">
+                        <p>Le catalogue garde vos articles et leurs prix, pour les ajouter à une vente d’un seul geste. Balayez un article vers la droite pour en faire un favori : il s’affiche alors en tuile, directement dans la caisse.</p>
+                        <p>Pendant la saisie d’un libellé, les articles qui correspondent vous sont aussi proposés.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment importer mon catalogue depuis un tableur ?</summary>
+                    <div class="answer">
+                        <p>Préparez un fichier dans Numbers, Excel ou un autre tableur, avec une ligne par article et ces colonnes :</p>
+                        <ul>
+                            <li><strong>Nom</strong> : le nom de l’article ;</li>
+                            <li><strong>Prix</strong> : son prix, par exemple 24,90 ;</li>
+                            <li><strong>Favori</strong> (facultatif) : « oui » ou « non ».</li>
+                        </ul>
+                        <p>Exportez-le au format CSV, puis dans Pato Cash ouvrez le catalogue, touchez « Importer ou exporter » et « Importer un fichier CSV… ». Un aperçu vous montre les nouveaux articles, les prix mis à jour et les lignes ignorées avant de confirmer.</p>
+                        <p class="muted">Pour essayer sans votre propre fichier, choisissez « Charger la démonstration » : un petit catalogue d’exemple est ajouté.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment retirer des articles importés par erreur ?</summary>
+                    <div class="answer">
+                        <p>Dans le catalogue, « Importer ou exporter » puis « Supprimer un import… » retire d’un coup tous les articles d’un même fichier. Vous pouvez aussi toucher « Sélectionner » pour choisir les articles à supprimer.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section>
+                <h2>Le bilan du jour</h2>
+
+                <details>
+                    <summary>Comment faire mes comptes en fin de journée ?</summary>
+                    <div class="answer">
+                        <p>Ouvrez Tickets, puis « Bilan de la journée ». Vous y trouvez le chiffre du jour, la répartition par moyen de paiement et les articles vendus.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment vérifier ma caisse ?</summary>
+                    <div class="answer">
+                        <p>Dans le bilan, saisissez le fond de caisse du matin puis les espèces comptées le soir. Pato Cash calcule ce qui devrait se trouver dans le tiroir et vous montre l’écart éventuel.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment récupérer mes ventes dans un tableur ?</summary>
+                    <div class="answer">
+                        <p>Dans le bilan, touchez Exporter puis « Ventes en CSV (Excel, Numbers) ». Le bilan lui-même peut aussi être exporté en PDF.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section>
+                <h2>Mes données</h2>
+
+                <details>
+                    <summary>Où sont enregistrées mes ventes ?</summary>
+                    <div class="answer">
+                        <p>Uniquement sur votre appareil. Pato Cash ne se connecte à aucun service en ligne et ne demande aucun compte. Consultez notre <a href="pato-cash-confidentialite.html">politique de confidentialité</a> pour plus de détails.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Puis-je retrouver mes données sur un autre appareil ?</summary>
+                    <div class="answer">
+                        <p>Pato Cash ne synchronise pas ses données entre plusieurs appareils. Vos données sont en revanche incluses dans la sauvegarde iCloud ou sur ordinateur de votre appareil, si vous l’avez activée, et sont restaurées avec elle.</p>
+                        <p>Pour conserver une trace de vos ventes ailleurs, exportez-les régulièrement en CSV ou en PDF.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment ne plus garder mes calculs ?</summary>
+                    <div class="answer">
+                        <p>Touchez l’engrenage et désactivez « Conserver l’historique » : vos calculs ne sont plus enregistrés, ni dans l’historique ni sur le ruban.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section>
+                <h2>Ce que Pato Cash ne fait pas</h2>
+                <div class="limits">
+                    <ul>
+                        <li>Ce n’est pas un logiciel de caisse certifié : les récapitulatifs sont des documents non fiscaux.</li>
+                        <li>Il n’encaisse pas d’argent et ne se connecte à aucun terminal de paiement.</li>
+                        <li>Il ne gère ni stock, ni comptabilité, ni fichier clients.</li>
+                        <li>Il n’imprime pas sur une imprimante à tickets et ne pilote pas de tiroir-caisse.</li>
+                        <li>Il ne synchronise pas vos données entre plusieurs appareils.</li>
+                        <li>Les montants sont calculés en euros.</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            © 2026 Pato Cash · Développée par <a href="https://www.patoswitch.fr">Pato Switch</a> · <a href="pato-cash-confidentialite.html">Confidentialité</a> · <a href="pato-cash-marketing.html">Présentation de l’application</a> · <a href="/">Pato Apps</a>
+        </div>
+    </footer>
+</body>
+</html>

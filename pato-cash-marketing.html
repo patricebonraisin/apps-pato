@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Pato Cash — la calculette à bande papier qui fait aussi vos comptes de marché, de brocante ou de fête d’école.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Pato Apps">
+    <meta property="og:title" content="Pato Cash — La calculette qui fait aussi vos comptes">
+    <meta property="og:description" content="Une calculette à bande papier plus futée, et une petite caisse pour vos ventes occasionnelles.">
+    <meta property="og:url" content="https://www.patoswitch.fr/pato-cash-marketing.html">
+    <meta property="og:image" content="https://www.patoswitch.fr/pato-cash.png">
+    <title>Pato Cash — La calculette qui fait aussi vos comptes</title>
+    <style>
+        /* Couleurs tirées de l’icône : dégradé cyan → bleu → indigo, texte bleu marine, ticket blanc. */
+        :root {
+            --canvas: #f3f6fd;
+            --card: #ffffff;
+            --blue: #2e5bea;
+            --navy: #14287a;
+            --navy-deep: #0c1a55;
+            --cyan: #19b8f6;
+            --indigo: #3b30e3;
+            --pale: #e3ebfd;
+            --paper-line: #a9bff2;
+            --ink: #18213f;
+            --muted: #5a6482;
+            --line: rgba(46, 91, 234, .16);
+            --shadow: 0 22px 55px rgba(20, 40, 122, .14);
+            --logo-gradient: linear-gradient(135deg, #19b8f6 0%, #2e6bf0 48%, #3b30e3 100%);
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--canvas);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.5;
+        }
+        h1, h2, h3, p { margin-top: 0; }
+        a { color: inherit; text-decoration: none; }
+        .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            min-height: 760px;
+            background:
+                radial-gradient(circle at 86% 14%, rgba(25, 184, 246, .22) 0, transparent 30%),
+                radial-gradient(circle at 70% 92%, rgba(59, 48, 227, .14) 0, transparent 32%),
+                linear-gradient(135deg, #f8faff, #e6edfc);
+        }
+        .hero::before, .hero::after {
+            position: absolute;
+            width: 460px;
+            height: 460px;
+            border: 1px solid rgba(46, 91, 234, .16);
+            border-radius: 50%;
+            content: "";
+            pointer-events: none;
+        }
+        .hero::before { top: -260px; right: -110px; box-shadow: 0 0 0 55px rgba(46, 91, 234, .05), 0 0 0 112px rgba(46, 91, 234, .03); }
+        .hero::after { bottom: -370px; left: -150px; }
+        nav { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; padding: 26px 0; }
+        .brand { display: flex; align-items: center; gap: 11px; color: var(--navy); font-weight: 800; }
+        .brand-mark { width: 38px; height: 38px; border-radius: 10px; box-shadow: 0 6px 16px rgba(20, 40, 122, .22); }
+        .wordmark { font-size: 20px; letter-spacing: -.02em; }
+        .nav-link { font-size: 14px; font-weight: 650; color: var(--navy); }
+        .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr .9fr; align-items: center; gap: 72px; padding: 80px 0 120px; }
+        .eyebrow { margin-bottom: 16px; color: var(--blue); font-size: 13px; font-weight: 800; letter-spacing: .15em; }
+        h1 { max-width: 670px; margin-bottom: 24px; color: var(--navy-deep); font-size: clamp(44px, 6vw, 74px); font-weight: 800; line-height: 1; letter-spacing: -.05em; }
+        h1 .highlight { background: var(--logo-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .lead { max-width: 555px; margin-bottom: 32px; color: var(--muted); font-size: 19px; line-height: 1.65; }
+        .actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+        .button { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 22px; border-radius: 12px; font-size: 15px; font-weight: 700; transition: transform .2s, box-shadow .2s; }
+        .button:hover { transform: translateY(-2px); }
+        .button-secondary { border: 1px solid var(--line); color: var(--navy); background: rgba(255, 255, 255, .7); }
+        .soon { display: inline-flex; align-items: center; gap: 9px; min-height: 50px; padding: 0 22px; border: 2px dashed rgba(46, 91, 234, .45); border-radius: 12px; color: var(--blue); background: rgba(46, 91, 234, .06); font-size: 15px; font-weight: 800; }
+        .promise { display: flex; gap: 10px; align-items: baseline; margin: 28px 0 0; color: var(--muted); font-size: 14px; }
+        .promise + .promise { margin-top: 10px; }
+        .promise span { color: var(--cyan); font-weight: 800; }
+
+        /* Maquette de l’iPhone : volontairement claire, comme le thème Aluminium. */
+        .phone { position: relative; width: min(100%, 355px); margin: 0 auto; padding: 10px; border: 7px solid #141a33; border-radius: 43px; background: #141a33; box-shadow: 0 32px 58px rgba(20, 40, 122, .28), inset 0 0 0 1px rgba(255,255,255,.08); transform: rotate(3deg); }
+        .phone::before { position: absolute; z-index: 3; top: 10px; left: 50%; width: 108px; height: 25px; border-radius: 0 0 15px 15px; background: #141a33; content: ""; transform: translateX(-50%); }
+        .screen { overflow: hidden; display: flex; flex-direction: column; gap: 9px; min-height: 590px; padding: 40px 12px 14px; border-radius: 29px; background: linear-gradient(180deg, #eef1f5, #dde2e9); }
+        .screen-status { display: flex; justify-content: space-between; padding: 0 8px; color: #2b3242; font-size: 8px; font-weight: 750; }
+        .mode { display: grid; grid-template-columns: 1fr 1fr; padding: 3px; border-radius: 9px; background: rgba(20, 30, 60, .08); font-size: 10px; font-weight: 700; text-align: center; color: #4b5468; }
+        .mode span { padding: 5px 0; border-radius: 7px; }
+        .mode span:first-child { color: #18213f; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+        .tape { position: relative; padding: 10px 14px 18px; background: #fff; box-shadow: 0 4px 10px rgba(20, 40, 122, .1); font: 10px/1.5 ui-monospace, "SF Mono", Menlo, monospace; color: #2b3242;
+            -webkit-mask: radial-gradient(circle 6px at 50% 100%, transparent 98%, #000) 0 0 / 14px 100% repeat-x;
+                    mask: radial-gradient(circle 6px at 50% 100%, transparent 98%, #000) 0 0 / 14px 100% repeat-x; }
+        .tape-row { display: flex; justify-content: space-between; }
+        .tape-result { margin-top: 2px; padding-top: 2px; border-top: 1px dashed var(--paper-line); font-weight: 800; color: var(--navy); }
+        .tape-note { margin: 1px 0 6px; color: var(--blue); font-family: -apple-system, sans-serif; font-size: 9px; font-style: italic; }
+        .display { padding: 10px 14px; border-radius: 14px; background: #fff; text-align: right; box-shadow: 0 2px 6px rgba(20, 40, 122, .08); }
+        .display-expr { color: #6b7387; font-size: 10px; }
+        .display-result { color: #18213f; font-size: 34px; font-weight: 300; letter-spacing: -.02em; line-height: 1.1; }
+        .display-result small { margin-left: 4px; padding: 0 5px; border: 1px solid #8a92a5; border-radius: 99px; color: #6b7387; font-size: 10px; font-weight: 700; vertical-align: middle; }
+        .tools { display: flex; gap: 6px; font-size: 9px; font-weight: 700; color: #4b5468; }
+        .tools span { padding: 5px 8px; border-radius: 99px; background: rgba(255,255,255,.75); }
+        .keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
+        .keys span { display: grid; place-items: center; height: 38px; border-radius: 999px; color: #18213f; background: linear-gradient(180deg, #fbfcfd, #e6e9ee); box-shadow: 0 2px 4px rgba(20, 30, 60, .14), inset 0 1px 0 #fff; font-size: 15px; font-weight: 500; }
+        .keys .op { color: #fff; background: var(--logo-gradient); }
+        .keys .fn { color: #4b5468; background: linear-gradient(180deg, #e7eaef, #cfd4dc); }
+
+        section { padding: 112px 0; }
+        .intro { text-align: center; }
+        .intro h2, .section-heading h2 { margin-bottom: 16px; color: var(--navy-deep); font-size: clamp(32px, 4vw, 50px); font-weight: 800; line-height: 1.1; letter-spacing: -.04em; }
+        .intro p { max-width: 640px; margin: 0 auto; color: var(--muted); font-size: 17px; line-height: 1.7; }
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 50px; }
+        .feature { min-height: 230px; padding: 30px; border: 1px solid var(--line); border-radius: 20px; background: var(--card); box-shadow: 0 8px 22px rgba(20, 40, 122, .04); }
+        .feature-icon { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 26px; border-radius: 14px; color: #fff; background: var(--logo-gradient); font-size: 22px; font-weight: 700; box-shadow: 0 8px 16px rgba(46, 91, 234, .22); }
+        .feature h3 { margin-bottom: 9px; color: var(--navy); font-size: 20px; font-weight: 750; }
+        .feature p { margin-bottom: 0; color: var(--muted); font-size: 15px; line-height: 1.65; }
+
+        .story { color: #fff; background: var(--logo-gradient); }
+        .story-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 80px; align-items: center; }
+        .story .eyebrow { color: #cdeeff; }
+        .story h2 { margin-bottom: 20px; font-size: clamp(34px, 4.2vw, 52px); font-weight: 800; line-height: 1.06; letter-spacing: -.04em; }
+        .story-copy { color: #e4ecff; font-size: 17px; line-height: 1.75; }
+        .steps { display: grid; gap: 3px; }
+        .step { display: grid; grid-template-columns: 54px 1fr; gap: 20px; padding: 23px 0; border-bottom: 1px solid rgba(255, 255, 255, .25); }
+        .step-number { color: #cdeeff; font-size: 27px; font-weight: 800; }
+        .step h3 { margin: 0 0 4px; font-size: 18px; }
+        .step p { margin: 0; color: #e4ecff; font-size: 15px; }
+
+        .audience-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 50px; }
+        .audience { padding: 26px; border: 1px solid var(--line); border-radius: 20px; background: var(--card); text-align: center; }
+        .audience-emoji { margin-bottom: 12px; font-size: 34px; }
+        .audience h3 { margin-bottom: 6px; color: var(--navy); font-size: 18px; }
+        .audience p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+
+        .honest { background: #e6edfc; }
+        .honest-card { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 980px; margin: 0 auto; padding: 42px; border: 2px dashed rgba(46, 91, 234, .35); border-radius: 24px; background: var(--card); box-shadow: var(--shadow); }
+        .honest h2 { margin-bottom: 12px; color: var(--navy); font-size: 30px; font-weight: 800; letter-spacing: -.03em; }
+        .honest p { color: var(--muted); line-height: 1.7; }
+        .honest ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+        .honest li { display: flex; gap: 12px; color: var(--ink); line-height: 1.55; }
+        .honest li::before { flex-shrink: 0; content: "✕"; color: var(--blue); font-weight: 800; }
+        .honest .privacy { margin-top: 22px; padding: 18px 20px; border-radius: 14px; background: var(--pale); color: var(--navy); font-size: 15px; }
+
+        footer { padding: 75px 0 38px; color: #d6defa; background: var(--navy-deep); }
+        .footer-top { display: flex; justify-content: space-between; gap: 24px; align-items: flex-end; padding-bottom: 58px; }
+        .footer-top h2 { max-width: 650px; margin-bottom: 0; color: #fff; font-size: clamp(31px, 4vw, 47px); font-weight: 800; line-height: 1.07; letter-spacing: -.04em; }
+        footer .soon { color: #fff; border-color: rgba(205, 238, 255, .6); background: rgba(255, 255, 255, .08); }
+        .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 25px; border-top: 1px solid rgba(214, 222, 250, .2); font-size: 13px; }
+        .footer-bottom a { color: #8fdcff; }
+
+        .home-button {
+            display: flex;
+            width: fit-content;
+            margin: 24px auto calc(24px + env(safe-area-inset-bottom));
+            align-items: center;
+            gap: 8px;
+            min-height: 44px;
+            padding: 0 14px;
+            border: 1px solid rgba(17, 19, 26, 0.12);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.92);
+            color: #11131A;
+            box-shadow: 0 8px 24px rgba(17, 19, 26, 0.16);
+            font: 700 15px -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .home-button:active { transform: scale(0.96); }
+
+        @media (max-width: 900px) {
+            .audience-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 780px) {
+            .hero { min-height: auto; }
+            .hero-grid, .story-grid, .honest-card { grid-template-columns: 1fr; gap: 52px; }
+            .hero-grid { padding: 55px 0 80px; }
+            .hero-copy { text-align: center; }
+            .lead { margin-right: auto; margin-left: auto; }
+            .actions { justify-content: center; }
+            .promise { justify-content: center; text-align: left; }
+            .phone { width: 320px; transform: rotate(0); }
+            .feature-grid { grid-template-columns: 1fr; }
+            .honest-card { gap: 28px; }
+            .footer-top, .footer-bottom { align-items: flex-start; flex-direction: column; }
+            section { padding: 82px 0; }
+        }
+        @media (max-width: 430px) {
+            .container { width: min(100% - 30px, 1120px); }
+            .nav-link { display: none; }
+            h1 { font-size: 44px; }
+            .phone { width: 295px; }
+            .keys span { height: 33px; }
+            .audience-grid { grid-template-columns: 1fr; }
+            .honest-card { padding: 28px; }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --canvas: #0d1124;
+                --card: #161c36;
+                --blue: #7fa0ff;
+                --navy: #c9d6ff;
+                --navy-deep: #eef2ff;
+                --pale: #1f2a52;
+                --ink: #eceffa;
+                --muted: #aab3cf;
+                --line: rgba(160, 185, 255, .18);
+                --shadow: 0 22px 55px rgba(0, 0, 0, .35);
+            }
+            .hero {
+                background:
+                    radial-gradient(circle at 86% 14%, rgba(25, 184, 246, .18) 0, transparent 30%),
+                    radial-gradient(circle at 70% 92%, rgba(59, 48, 227, .22) 0, transparent 32%),
+                    linear-gradient(135deg, #0f1430, #151b3c);
+            }
+            .hero::before, .hero::after { border-color: rgba(127, 160, 255, .2); }
+            .button-secondary { color: var(--navy); background: rgba(22, 28, 54, .82); }
+            .soon { border-color: rgba(127, 160, 255, .5); background: rgba(127, 160, 255, .1); }
+            .story { background: linear-gradient(135deg, #0e6fa0 0%, #2347b8 48%, #2c22a8 100%); }
+            .honest { background: #111733; }
+            footer { background: #080c1c; }
+            .home-button {
+                border-color: rgba(255, 255, 255, 0.14);
+                background: rgba(20, 20, 35, 0.92);
+                color: #eef0fa;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <nav aria-label="Navigation principale">
+                <a class="brand" href="#accueil" aria-label="Pato Cash, accueil"><img class="brand-mark" src="pato-cash.png" alt=""><span class="wordmark">Pato Cash</span></a>
+                <a class="nav-link" href="#fonctionnalites">Découvrir l’application ↓</a>
+            </nav>
+            <div class="hero-grid" id="accueil">
+                <div class="hero-copy">
+                    <p class="eyebrow">CALCULETTE &amp; PETITE CAISSE</p>
+                    <h1>La calculette qui fait aussi <span class="highlight">vos comptes.</span></h1>
+                    <p class="lead">Pato Cash, c’est la calculette de comptoir que vous connaissez, avec sa bande papier, en un peu plus intelligente. Et le jour du marché, elle devient une petite caisse pour tenir vos ventes sans vous compliquer la vie.</p>
+                    <div class="actions">
+                        <span class="soon">Bientôt disponible sur l’App Store</span>
+                        <a class="button button-secondary" href="#fonctionnalites">Voir les fonctionnalités</a>
+                    </div>
+                    <p class="promise"><span>●</span> TVA rapide, calcul de marge et notes sur la bande : les calculs du quotidien, en un geste.</p>
+                    <p class="promise"><span>●</span> Marchés, brocantes, fêtes d’école, associations : vos ventes et votre bilan du jour, sans prise de tête.</p>
+                    <p class="promise"><span>●</span> Sans compte, sans publicité, sans connexion : tout reste sur votre iPhone ou votre iPad.</p>
+                </div>
+                <div class="phone" aria-label="Aperçu illustré de la calculette Pato Cash">
+                    <div class="screen">
+                        <div class="screen-status"><span>9:41</span><span>●●●  ▰</span></div>
+                        <div class="mode"><span>Calculatrice</span><span>Caisse</span></div>
+                        <div class="tape" aria-hidden="true">
+                            <div class="tape-row"><span>24,90</span><span>+</span></div>
+                            <div class="tape-row"><span>27,90</span><span>+</span></div>
+                            <div class="tape-row tape-result"><span>Total</span><span>52,80</span></div>
+                            <div class="tape-note">✎ Colliers du samedi</div>
+                            <div class="tape-row"><span>44,00</span><span>TVA 20 %</span></div>
+                            <div class="tape-row tape-result"><span>TTC</span><span>52,80</span></div>
+                        </div>
+                        <div class="display">
+                            <div class="display-expr">44 + TVA 20 %</div>
+                            <div class="display-result">52,80<small>€</small></div>
+                        </div>
+                        <div class="tools"><span>% TVA 20 %</span><span>◈ Marge 30 %</span><span>M Mémoire</span></div>
+                        <div class="keys" aria-hidden="true">
+                            <span class="fn">C</span><span class="fn">±</span><span class="fn">%</span><span class="op">÷</span>
+                            <span>7</span><span>8</span><span>9</span><span class="op">×</span>
+                            <span>4</span><span>5</span><span>6</span><span class="op">−</span>
+                            <span>1</span><span>2</span><span>3</span><span class="op">+</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="fonctionnalites">
+            <div class="container">
+                <div class="intro"><p class="eyebrow">TOUT POUR COMPTER JUSTE</p><h2>Simple comme une calculette, malin comme une caisse.</h2><p>Les gestes d’une machine à calculer de bureau, et juste ce qu’il faut d’outils pour vendre, encaisser et faire le point en fin de journée.</p></div>
+                <div class="feature-grid">
+                    <article class="feature"><div class="feature-icon">≡</div><h3>La bande papier</h3><p>Chaque calcul s’imprime sur un ruban, comme sur les machines d’autrefois. Vous repérez une erreur d’un coup d’œil, et le ruban s’exporte en PDF.</p></article>
+                    <article class="feature"><div class="feature-icon">✎</div><h3>Des notes sur vos résultats</h3><p>Touchez un résultat pour écrire dessous à quoi il correspond : « loyer », « fournitures », « stand du samedi »…</p></article>
+                    <article class="feature"><div class="feature-icon">%</div><h3>TVA rapide</h3><p>Passez du HT au TTC, ou l’inverse, en un geste. Le taux choisi est mémorisé.</p></article>
+                    <article class="feature"><div class="feature-icon">◈</div><h3>Prix de vente et marge</h3><p>Trouvez le prix de vente à partir d’un coût, ou le taux de marge d’un article à partir de son coût et de son prix.</p></article>
+                    <article class="feature"><div class="feature-icon">€</div><h3>Une petite caisse</h3><p>Composez une vente ligne par ligne, avec quantités, TVA et remise, puis enregistrez-la. Le bouton Tiroir calcule la monnaie à rendre.</p></article>
+                    <article class="feature"><div class="feature-icon">☆</div><h3>Votre catalogue</h3><p>Enregistrez vos articles et leurs prix, mettez vos favoris en tuiles et laissez Pato Cash vous les suggérer pendant la saisie.</p></article>
+                    <article class="feature"><div class="feature-icon">⇅</div><h3>Import depuis un tableur</h3><p>Préparez votre catalogue dans Numbers ou Excel, importez-le en CSV et vérifiez l’aperçu avant de confirmer.</p></article>
+                    <article class="feature"><div class="feature-icon">▤</div><h3>Le bilan du jour</h3><p>Chiffre du jour, ventes par moyen de paiement, articles vendus, fond de caisse et comptage du soir : vous savez si la caisse tombe juste.</p></article>
+                    <article class="feature"><div class="feature-icon">↗</div><h3>Exports PDF et CSV</h3><p>Partagez un récapitulatif de vente ou le bilan du jour en PDF, et récupérez vos ventes en CSV pour les ouvrir dans un tableur.</p></article>
+                    <article class="feature"><div class="feature-icon">◐</div><h3>Deux styles au choix</h3><p>Aluminium, sobre et moderne, ou Vintage, pour l’esprit des machines à calculer d’antan. Avec sons mécaniques et retour haptique, si vous le souhaitez.</p></article>
+                    <article class="feature"><div class="feature-icon">▭</div><h3>Pensée pour tous les écrans</h3><p>iPhone ou iPad, portrait ou paysage : l’interface s’adapte et profite des grands écrans pour tout afficher côte à côte.</p></article>
+                    <article class="feature"><div class="feature-icon">?</div><h3>Un mode d’emploi intégré</h3><p>Un doute ? Le mode d’emploi, dans les réglages, explique chaque fonction pas à pas.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="story" id="journee">
+            <div class="container story-grid">
+                <div><p class="eyebrow">UNE JOURNÉE DE MARCHÉ</p><h2>Du fond de caisse au bilan, tout tient dans votre poche.</h2><p class="story-copy">Pas besoin de matériel ni de formation : votre iPhone suffit pour tenir un stand et repartir avec des comptes clairs.</p></div>
+                <div class="steps">
+                    <div class="step"><div class="step-number">01</div><div><h3>Le matin, préparez</h3><p>Importez votre catalogue ou ajoutez vos articles, puis notez votre fond de caisse.</p></div></div>
+                    <div class="step"><div class="step-number">02</div><div><h3>Dans la journée, vendez</h3><p>Touchez un favori, ajustez la quantité, indiquez le moyen de paiement et enregistrez. La monnaie à rendre se calcule toute seule.</p></div></div>
+                    <div class="step"><div class="step-number">03</div><div><h3>Le soir, faites le point</h3><p>Ouvrez le bilan du jour, comptez vos espèces et vérifiez l’écart. Exportez le tout en PDF ou en CSV pour vos archives.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pour-qui">
+            <div class="container">
+                <div class="intro"><p class="eyebrow">POUR QUI ?</p><h2>Pour ceux qui vendent de temps en temps.</h2><p>Pato Cash accompagne les ventes occasionnelles et les calculs de tous les jours, sans la lourdeur d’un logiciel de caisse.</p></div>
+                <div class="audience-grid">
+                    <article class="audience"><div class="audience-emoji">🧺</div><h3>Marchés et brocantes</h3><p>Un stand, quelques articles, des comptes clairs en fin de journée.</p></article>
+                    <article class="audience"><div class="audience-emoji">🎪</div><h3>Fêtes d’école et kermesses</h3><p>La buvette ou le stand de gâteaux, tenus par des bénévoles.</p></article>
+                    <article class="audience"><div class="audience-emoji">🤝</div><h3>Associations</h3><p>Ventes de soutien, adhésions, petites manifestations.</p></article>
+                    <article class="audience"><div class="audience-emoji">🧮</div><h3>Calculs du quotidien</h3><p>Devis, TVA, marges, budgets : la calculette de comptoir, toujours sous la main.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="honest" id="transparence">
+            <div class="container">
+                <div class="honest-card">
+                    <div>
+                        <p class="eyebrow">EN TOUTE TRANSPARENCE</p>
+                        <h2>Ce que Pato Cash ne fait pas.</h2>
+                        <p>Pour bien choisir, mieux vaut connaître ses limites. Pato Cash est un outil simple pour les ventes occasionnelles, pas un logiciel de caisse professionnel.</p>
+                        <p class="privacy"><strong>Vos données restent chez vous.</strong> Pas de compte, pas de publicité, aucune connexion internet : vos calculs et vos ventes sont enregistrés uniquement sur votre appareil. <a href="pato-cash-confidentialite.html"><u>Politique de confidentialité</u></a></p>
+                    </div>
+                    <ul>
+                        <li>Ce n’est pas un logiciel de caisse certifié : les récapitulatifs sont des documents non fiscaux. Les commerçants assujettis à la TVA doivent utiliser un logiciel certifié (NF525 en France).</li>
+                        <li>Il n’encaisse pas d’argent et ne se connecte à aucun terminal de paiement : il note simplement comment le client a payé.</li>
+                        <li>Il ne gère ni stock, ni comptabilité, ni fichier clients.</li>
+                        <li>Il n’imprime pas sur une imprimante à tickets et ne pilote pas de tiroir-caisse.</li>
+                        <li>Il ne synchronise pas vos données entre plusieurs appareils, et les montants sont en euros.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container"><div class="footer-top"><h2>Comptez juste, derrière un comptoir comme sur un stand du dimanche.</h2><span class="soon">Bientôt disponible sur l’App Store</span></div><div class="footer-bottom"><span>© 2026 Pato Cash · Développée par <a href="https://www.patoswitch.fr">Pato Switch</a></span><span><a href="#fonctionnalites">Fonctionnalités</a> · <a href="pato-cash-assistance.html">Assistance</a> · <a href="pato-cash-confidentialite.html">Confidentialité</a></span></div></div>
+    </footer>
+    <a class="home-button" href="/" aria-label="Retour à l'accueil Pato Apps">⌂ Accueil</a>
+</body>
+</html>

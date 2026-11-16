@@ -642,6 +642,16 @@ header p {
     box-shadow: none;
 }
 
+/* Carte d'une app pas encore publiée : bordure en pointillés à la place du liseré blanc. */
+.card--soon {
+    border: 2px dashed rgba(52,84,195,0.38);
+}
+
+.card--soon::after {
+    inset: 0;
+    border-radius: 34px;
+}
+
 .soon-badge {
     display: inline-flex;
     align-items: center;
@@ -884,6 +894,10 @@ html[data-theme="dark"] .install-prompt__dismiss {
     border-color: transparent;
 }
 
+html[data-theme="dark"] .card--soon {
+    border-color: rgba(141, 161, 255, 0.4);
+}
+
 html[data-theme="dark"] .soon-badge {
     color: #A9B7FF;
     background: rgba(141, 161, 255, 0.12);
@@ -1043,6 +1057,22 @@ html[data-theme="dark"] .card a:hover {
     </section>
 
     <section class="apps" id="apps">
+
+        <!-- Pato Cash n'est pas encore sur l'App Store : pas de data-app-id, la carte reste donc hors du tri et des favoris. -->
+        <div class="card card--soon">
+            <div class="icon-wrap">
+                <img class="icon" src="pato-cash.png" alt="Icône Pato Cash">
+            </div>
+            <h2>Pato Cash</h2>
+            <p>
+                Une calculette à bande papier plus futée, et une petite caisse
+                pour vos ventes occasionnelles : marchés, brocantes, associations.
+            </p>
+            <div class="card-actions">
+                <span class="soon-badge">Bientôt disponible</span>
+                <a class="details-link" href="pato-cash-marketing.html">En savoir plus</a>
+            </div>
+        </div>
 
         <div class="card" data-app-id="finelio" data-app-name="Finelio" data-app-page="finelio-blog-page.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Finelio aux favoris">♡</button>
