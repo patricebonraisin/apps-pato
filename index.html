@@ -1059,19 +1059,19 @@ html[data-theme="dark"] .card a:hover {
 
     <section class="apps" id="apps">
 
-        <!-- Pato Cash n'est pas encore sur l'App Store : pas de data-app-id, la carte reste donc hors du tri et des favoris.
-             data-guide-id lui permet quand même d'apparaître dans « Que voulez-vous faire aujourd'hui ? ». -->
-        <div class="card card--soon" data-guide-id="pato-cash" data-app-name="Pato Cash" data-app-page="pato-cash-marketing.html">
+        <div class="card" data-app-id="pato-cash" data-app-name="Pato Cash" data-app-page="pato-cash-marketing.html">
+            <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Pato Cash aux favoris">♡</button>
             <div class="icon-wrap">
                 <img class="icon" src="pato-cash.png" alt="Icône Pato Cash">
             </div>
+            <span class="update-sticker">Nouveau le <time datetime="2026-11-17">17 novembre 2026</time></span>
             <h2>Pato Cash</h2>
             <p>
                 Une calculette à bande papier plus futée, et une petite caisse
                 pour vos ventes occasionnelles : marchés, brocantes, associations.
             </p>
             <div class="card-actions">
-                <span class="soon-badge">Bientôt disponible</span>
+                <a href="https://apps.apple.com/app/pato-cash/id6835459276" target="_blank" rel="noopener noreferrer">Télécharger</a>
                 <a class="details-link" href="pato-cash-marketing.html">En savoir plus</a>
             </div>
         </div>
@@ -1132,7 +1132,7 @@ html[data-theme="dark"] .card a:hover {
             <div class="icon-wrap">
                 <img class="icon" src="EntreNous.png" alt="Icône EntreNous">
             </div>
-            <span class="update-sticker">Mis à jour le <time datetime="2026-11-09">9 novembre 2026</time></span>
+            <span class="update-sticker">Mis à jour le <time datetime="2026-11-15">15 novembre 2026</time></span>
             <h2>EntreNous</h2>
             <p>
                 Un journal privé pour garder, partager et retrouver
@@ -1251,7 +1251,7 @@ html[data-theme="dark"] .card a:hover {
             <div class="icon-wrap">
                 <img class="icon" src="mon_arbre.png" alt="Logo Arbre familial">
             </div>
-            <span class="update-sticker">Mis à jour le <time datetime="2026-11-10">10 novembre 2026</time></span>
+            <span class="update-sticker">Mis à jour le <time datetime="2026-11-16">16 novembre 2026</time></span>
             <h2>Arbre familial</h2>
             <p>
                 Explorez votre histoire familiale, reliez les générations
@@ -1399,7 +1399,7 @@ const guideRecommendations = {
         apps: ["finelio"]
     },
     vente: {
-        message: "Pour une brocante, un marché ou une fête d’association, Pato Cash calcule vos ventes et prépare le bilan de la journée. Bientôt sur l’App Store.",
+        message: "Pour une brocante, un marché ou une fête d’association, Pato Cash calcule vos ventes et prépare le bilan de la journée.",
         apps: ["pato-cash"]
     },
     proche: {

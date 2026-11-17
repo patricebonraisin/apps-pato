@@ -78,7 +78,7 @@
         .button { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 22px; border-radius: 12px; font-size: 15px; font-weight: 700; transition: transform .2s, box-shadow .2s; }
         .button:hover { transform: translateY(-2px); }
         .button-secondary { border: 1px solid var(--line); color: var(--navy); background: rgba(255, 255, 255, .7); }
-        .soon { display: inline-flex; align-items: center; gap: 9px; min-height: 50px; padding: 0 22px; border: 2px dashed rgba(46, 91, 234, .45); border-radius: 12px; color: var(--blue); background: rgba(46, 91, 234, .06); font-size: 15px; font-weight: 800; }
+        .button-primary { color: #fff; background: var(--blue); box-shadow: 0 12px 28px rgba(46, 91, 234, .3); }
         .promise { display: flex; gap: 10px; align-items: baseline; margin: 28px 0 0; color: var(--muted); font-size: 14px; }
         .promise + .promise { margin-top: 10px; }
         .promise span { color: var(--cyan); font-weight: 800; }
@@ -147,7 +147,7 @@
         footer { padding: 75px 0 38px; color: #d6defa; background: var(--navy-deep); }
         .footer-top { display: flex; justify-content: space-between; gap: 24px; align-items: flex-end; padding-bottom: 58px; }
         .footer-top h2 { max-width: 650px; margin-bottom: 0; color: #fff; font-size: clamp(31px, 4vw, 47px); font-weight: 800; line-height: 1.07; letter-spacing: -.04em; }
-        footer .soon { color: #fff; border-color: rgba(205, 238, 255, .6); background: rgba(255, 255, 255, .08); }
+        footer .button-primary { flex-shrink: 0; color: #161c36; background: #fff; box-shadow: none; }
         .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 25px; border-top: 1px solid rgba(214, 222, 250, .2); font-size: 13px; }
         .footer-bottom a { color: #8fdcff; }
 
@@ -217,7 +217,6 @@
             }
             .hero::before, .hero::after { border-color: rgba(127, 160, 255, .2); }
             .button-secondary { color: var(--navy); background: rgba(22, 28, 54, .82); }
-            .soon { border-color: rgba(127, 160, 255, .5); background: rgba(127, 160, 255, .1); }
             .story { background: linear-gradient(135deg, #0e6fa0 0%, #2347b8 48%, #2c22a8 100%); }
             .honest { background: #111733; }
             footer { background: #080c1c; }
@@ -243,7 +242,7 @@
                     <h1>La calculette qui fait aussi <span class="highlight">vos comptes.</span></h1>
                     <p class="lead">Pato Cash, c’est la calculette de comptoir que vous connaissez, avec sa bande papier, en un peu plus intelligente. Et le jour du marché, elle devient une petite caisse pour tenir vos ventes sans vous compliquer la vie.</p>
                     <div class="actions">
-                        <span class="soon">Bientôt disponible sur l’App Store</span>
+                        <a class="button button-primary" href="https://apps.apple.com/app/pato-cash/id6835459276" target="_blank" rel="noopener noreferrer">Télécharger sur l’App Store</a>
                         <a class="button button-secondary" href="#fonctionnalites">Voir les fonctionnalités</a>
                     </div>
                     <p class="promise"><span>●</span> TVA rapide, calcul de marge et notes sur la bande : les calculs du quotidien, en un geste.</p>
@@ -345,7 +344,7 @@
     </main>
 
     <footer>
-        <div class="container"><div class="footer-top"><h2>Comptez juste, derrière un comptoir comme sur un stand du dimanche.</h2><span class="soon">Bientôt disponible sur l’App Store</span></div><div class="footer-bottom"><span>© 2026 Pato Cash · Développée par <a href="https://www.patoswitch.fr">Pato Switch</a></span><span><a href="#fonctionnalites">Fonctionnalités</a> · <a href="pato-cash-assistance.html">Assistance</a> · <a href="pato-cash-confidentialite.html">Confidentialité</a></span></div></div>
+        <div class="container"><div class="footer-top"><h2>Comptez juste, derrière un comptoir comme sur un stand du dimanche.</h2><a class="button button-primary" href="https://apps.apple.com/app/pato-cash/id6835459276" target="_blank" rel="noopener noreferrer">Télécharger sur l’App Store</a></div><div class="footer-bottom"><span>© 2026 Pato Cash · Développée par <a href="https://www.patoswitch.fr">Pato Switch</a></span><span><a href="#fonctionnalites">Fonctionnalités</a> · <a href="pato-cash-assistance.html">Assistance</a> · <a href="pato-cash-confidentialite.html">Confidentialité</a></span></div></div>
     </footer>
     <a class="home-button" href="/" aria-label="Retour à l'accueil Pato Apps">⌂ Accueil</a>
 </body>
