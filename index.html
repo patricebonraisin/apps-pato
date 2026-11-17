@@ -1014,7 +1014,7 @@ html[data-theme="dark"] .card a:hover {
         </div>
         <div class="panel-card stat-card">
             <div>
-                <span>12</span>
+                <span id="apps-count">13</span>
                 <small>apps publiées dans la collection sur l'App Store</small>
                 <small class="compat-note">Compatible iPhone 11 ou plus récent • iOS 26 requis</small>
                 <div class="duo-badge">
@@ -1433,6 +1433,12 @@ const cardsByUpdateDate = [...appsSection.querySelectorAll(".card[data-app-id]")
     return secondDate.localeCompare(firstDate);
 });
 appsSection.append(...cardsByUpdateDate);
+
+// Keep the published apps counter in sync with the number of app cards in the page.
+const appsCount = document.getElementById("apps-count");
+if (appsCount) {
+    appsCount.textContent = cardsByUpdateDate.length;
+}
 
 const favoritesStorageKey = "pato-apps-favorites";
 const intentStorageKey = "pato-apps-last-intent";
