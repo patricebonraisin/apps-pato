@@ -1016,7 +1016,7 @@ html[data-theme="dark"] .card a:hover {
             <div>
                 <span id="apps-count">13</span>
                 <small>apps publiées dans la collection sur l'App Store</small>
-                <small class="compat-note">Compatible iPhone 11 ou plus récent • iOS 26 requis</small>
+                <small class="compat-note">Compatible iPhone 11 ou plus récent • iOS 26 requis (iOS 27 pour Face à Face)</small>
                 <div class="duo-badge">
                     <svg class="duo-badge__icon" viewBox="0 0 22 16" aria-hidden="true" focusable="false">
                         <rect class="duo-badge__screen--left" x="1" y="1" width="9.5" height="14" rx="2.5"/>
@@ -1042,6 +1042,7 @@ html[data-theme="dark"] .card a:hover {
             <button class="intent-option" type="button" data-intent="famille" aria-pressed="false">Explorer mon histoire familiale</button>
             <button class="intent-option" type="button" data-intent="souvenirs" aria-pressed="false">Partager mes souvenirs</button>
             <button class="intent-option" type="button" data-intent="detente" aria-pressed="false">Me détendre</button>
+            <button class="intent-option" type="button" data-intent="duo" aria-pressed="false">Jouer à deux</button>
             <button class="intent-option" type="button" data-intent="maison" aria-pressed="false">Piloter ma maison</button>
         </div>
         <div class="guide-result" id="guide-result" aria-live="polite" hidden>
@@ -1058,6 +1059,23 @@ html[data-theme="dark"] .card a:hover {
     </section>
 
     <section class="apps" id="apps">
+
+        <!-- Face à Face n'est pas encore sur l'App Store : pas de data-app-id, la carte reste donc hors du tri et des favoris.
+             data-guide-id lui permet quand même d'apparaître dans « Que voulez-vous faire aujourd'hui ? ». -->
+        <div class="card card--soon" data-guide-id="face-a-face" data-app-name="Face à Face" data-app-page="face-a-face-marketing.html">
+            <div class="icon-wrap">
+                <img class="icon" src="face-a-face.png" alt="Icône Face à Face">
+            </div>
+            <h2>Face à Face</h2>
+            <p>
+                Le jeu de questions qui se joue à deux : chacun répond en secret,
+                puis les réponses sont révélées ensemble. Pensez-vous pareil ?
+            </p>
+            <div class="card-actions">
+                <span class="soon-badge">Bientôt disponible</span>
+                <a class="details-link" href="face-a-face-marketing.html">En savoir plus</a>
+            </div>
+        </div>
 
         <div class="card" data-app-id="pato-cash" data-app-name="Pato Cash" data-app-page="pato-cash-marketing.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Pato Cash aux favoris">♡</button>
@@ -1417,6 +1435,10 @@ const guideRecommendations = {
     detente: {
         message: "Pour une pause plus calme ou un défi de quelques secondes, voici vos compagnons Pato.",
         apps: ["patolife", "pulse", "pato-pong"]
+    },
+    duo: {
+        message: "Pour une soirée entre amis, en couple ou en famille, Face à Face vous fait répondre en secret, puis révèle si vous pensez pareil.",
+        apps: ["face-a-face"]
     },
     maison: {
         message: "Pour garder vos appareils Home Assistant à portée de main, Ma Maison est faite pour ça.",

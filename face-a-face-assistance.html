@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Assistance de l’application Face à Face : règles des jeux, jeu sur deux iPhone avec SharePlay, questions fréquentes et contact.">
+    <title>Assistance — Face à Face</title>
+    <style>
+        :root {
+            --canvas: #f4f6fc;
+            --card: #ffffff;
+            --heading: #0e1d47;
+            --title: #0a1938;
+            --mark: #e8509a;
+            --accent: #2f6fe8;
+            --ink: #18213f;
+            --muted: #5a6482;
+            --line: rgba(47, 111, 232, .16);
+            --shadow: 0 22px 55px rgba(10, 25, 56, .14);
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--canvas);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.65;
+        }
+        a { color: var(--accent); }
+        .container { width: min(780px, calc(100% - 40px)); margin: 0 auto; }
+
+        header { background: radial-gradient(circle at 88% 10%, rgba(47, 182, 255, .18) 0, transparent 32%), radial-gradient(circle at 70% 100%, rgba(232, 80, 154, .12) 0, transparent 30%), linear-gradient(135deg, #f8faff, #e8edfb); border-bottom: 1px solid var(--line); }
+        nav { display: flex; align-items: center; padding: 26px 0; }
+        .brand { display: flex; align-items: center; gap: 11px; color: var(--heading); font-weight: 700; text-decoration: none; }
+        .brand-mark { width: 38px; height: 38px; border-radius: 10px; box-shadow: 0 6px 16px rgba(10, 25, 56, .25); }
+        .wordmark { font-size: 20px; letter-spacing: -.02em; }
+        .intro { padding: 40px 0 56px; }
+        .eyebrow { margin: 0 0 14px; color: var(--accent); font-size: 13px; font-weight: 700; letter-spacing: .15em; }
+        h1 { margin: 0 0 18px; color: var(--title); font-size: clamp(36px, 6vw, 54px); font-weight: 700; line-height: 1.05; letter-spacing: -.04em; }
+        .lead { margin: 0; color: var(--muted); font-size: 19px; }
+
+        .contact { margin: -28px 0 48px; padding: 28px 30px; border: 1px solid var(--line); border-radius: 20px; background: var(--card); box-shadow: var(--shadow); }
+        .contact h2 { margin-bottom: 8px; }
+        .contact p { margin: 0 0 10px; }
+        .button { display: inline-flex; align-items: center; min-height: 48px; margin-top: 6px; padding: 0 22px; border-radius: 10px; color: #fff; background: #2f6fe8; font-size: 15px; font-weight: 700; text-decoration: none; }
+
+        main section { padding-bottom: 30px; }
+        h2 { margin: 0 0 14px; color: var(--heading); font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
+        details { margin-bottom: 12px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); }
+        summary { padding: 16px 20px; color: var(--title); font-weight: 650; cursor: pointer; list-style: none; }
+        summary::-webkit-details-marker { display: none; }
+        summary::before { content: "+"; display: inline-block; width: 22px; color: var(--mark); font-weight: 800; }
+        details[open] summary::before { content: "–"; }
+        .answer { padding: 0 20px 16px 42px; }
+        .answer p { margin: 0 0 10px; }
+        .answer ol, .answer ul { margin: 0 0 10px; padding-left: 20px; }
+        .muted { color: var(--muted); font-size: 15px; }
+
+        footer { margin-top: 30px; padding: 30px 0 38px; color: #d6defa; background: #061026; font-size: 13px; }
+        footer a { color: #8fdcff; }
+
+        /* Mode sombre : mêmes couleurs que la page de présentation. */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --canvas: #071128;
+                --card: #10204a;
+                --heading: #dbe4ff;
+                --title: #eef2ff;
+                --mark: #ff8cc2;
+                --accent: #7fa6ff;
+                --ink: #eceffa;
+                --muted: #aab3cf;
+                --line: rgba(160, 185, 255, .18);
+                --shadow: 0 22px 55px rgba(0, 0, 0, .3);
+            }
+            header { background: radial-gradient(circle at 88% 10%, rgba(47, 182, 255, .16) 0, transparent 32%), radial-gradient(circle at 70% 100%, rgba(232, 80, 154, .14) 0, transparent 30%), linear-gradient(160deg, #0d2050, #0a1938); }
+            footer { background: #030914; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a class="brand" href="face-a-face-marketing.html" aria-label="Face à Face, présentation"><img class="brand-mark" src="face-a-face.png" alt=""><span class="wordmark">Face à Face</span></a>
+            </nav>
+            <div class="intro">
+                <p class="eyebrow">ASSISTANCE</p>
+                <h1>Besoin d’un coup de main ?</h1>
+                <p class="lead">Face à Face est un jeu de questions à deux : chacun répond en secret, puis les réponses sont révélées ensemble. Retrouvez ici les réponses aux questions les plus fréquentes. Si vous ne trouvez pas votre réponse, écrivez-nous : nous lisons chaque message.</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="contact">
+            <h2>Nous contacter</h2>
+            <p>Par e-mail : <a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a></p>
+            <p class="muted">Astuce : indiquez le modèle de votre iPhone et la version d’iOS. Pour un souci sur deux iPhone, précisez aussi si vous passiez par Messages ou par FaceTime. Une capture d’écran nous aide beaucoup à comprendre votre problème.</p>
+            <a class="button" href="mailto:info@patoswitch.fr?subject=Face%20%C3%A0%20Face%20%E2%80%93%20Assistance">Écrire à l’assistance</a>
+        </div>
+
+        <main>
+            <section>
+                <h2>Bien démarrer</h2>
+
+                <details>
+                    <summary>Comment lancer une partie ?</summary>
+                    <div class="answer">
+                        <ol>
+                            <li>À l’accueil, touchez « Nouvelle partie ».</li>
+                            <li>Choisissez un jeu, un univers et le nombre de manches.</li>
+                            <li>Entrez vos deux prénoms, puis lancez la partie.</li>
+                        </ol>
+                        <p>Vos prénoms sont gardés pour la partie suivante : vous n’aurez pas à les retaper.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Existe-t-il des règles dans l’application ?</summary>
+                    <div class="answer">
+                        <p>Oui : à l’accueil, touchez « Comment jouer ? ». Vous y retrouvez le déroulement d’une partie, les règles de chaque jeu et les différentes façons de jouer.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Combien de temps dure une partie ?</summary>
+                    <div class="answer">
+                        <p>C’est vous qui choisissez : 5, 10 ou 15 manches pour « Tu préfères ? » et « Qui de nous deux ? », 6, 10 ou 14 manches pour « On se connaît vraiment ? », pour que chacun devine autant de fois.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Quels appareils sont compatibles ?</summary>
+                    <div class="answer">
+                        <p>Face à Face est conçue pour l’iPhone, avec iOS 27 ou une version ultérieure. Pour jouer sur deux iPhone, il faut que l’application soit installée sur les deux.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Pourquoi ne puis-je pas lancer la partie ?</summary>
+                    <div class="answer">
+                        <p>Le message sous le bouton vous indique ce qui manque. Le plus souvent, un prénom est vide, ou les deux prénoms sont identiques : choisissez deux prénoms différents, pour que l’application sache qui est qui.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section>
+                <h2>Les jeux</h2>
+
+                <details>
+                    <summary>Comment se joue « Tu préfères ? » ?</summary>
+                    <div class="answer">
+                        <p>Une question, deux options. Chacun choisit en secret celle qu’il préfère, puis les deux choix s’affichent ensemble. À la fin, le pourcentage de concordance montre combien de fois vous avez fait le même choix.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment se joue « Qui de nous deux ? » ?</summary>
+                    <div class="answer">
+                        <p>Pour chaque question, par exemple « Qui s’endormirait le premier devant une série ? », chacun désigne en secret l’un de vous deux. Vous découvrez ensuite si vous êtes d’accord.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment se joue « On se connaît vraiment ? » ?</summary>
+                    <div class="answer">
+                        <p>À chaque manche, l’un répond pour lui-même parmi quatre propositions, puis l’autre essaie de deviner sa réponse. Chaque bonne réponse rapporte un point à celui qui a deviné. Les rôles alternent à chaque manche.</p>
+                        <p class="muted">Les points racontent seulement ce que vous avez deviné aujourd’hui, pas la qualité de votre relation !</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Que proposent les quatre univers ?</summary>
+                    <div class="answer">
+                        <ul>
+                            <li><strong>Entre amis</strong> : des questions pour les soirées et les fous rires ;</li>
+                            <li><strong>À deux</strong> : des questions pour les couples ;</li>
+                            <li><strong>En famille</strong> : des questions pour tous les âges ;</li>
+                            <li><strong>Surprise !</strong> : des questions imaginaires et décalées.</li>
+                        </ul>
+                        <p>Chaque univers compte 40 questions par jeu, soit 480 questions en tout. Toutes sont bienveillantes et conviennent à tous les âges.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Vais-je retomber sur les mêmes questions ?</summary>
+                    <div class="answer">
+                        <p>Pas avant longtemps : Face à Face retient les questions déjà jouées et vous propose d’abord celles que vous n’avez pas encore vues. Une fois toutes les questions d’un univers jouées, un nouveau cycle commence, et les questions de la dernière partie passent en dernier.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section>
+                <h2>Pendant et après la partie</h2>
+
+                <details>
+                    <summary>Comment éviter de voir la réponse de l’autre ?</summary>
+                    <div class="answer">
+                        <p>Après la réponse du premier joueur, un écran de transition demande de passer le téléphone. Sa réponse reste cachée jusqu’à ce que le second joueur ait répondu : les deux sont alors révélées en même temps.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment quitter une partie en cours ?</summary>
+                    <div class="answer">
+                        <p>Touchez la croix en haut à droite de l’écran, puis confirmez. La manche en cours n’est pas conservée.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment revoir les réponses de la partie ?</summary>
+                    <div class="answer">
+                        <p>Sur l’écran de fin, touchez « Revoir les manches ». Les manches où vous n’étiez pas d’accord s’affichent en premier : de quoi relancer la discussion. Touchez « Rejouer » pour enchaîner avec une nouvelle partie, avec les mêmes réglages.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section>
+                <h2>Mode table et télé</h2>
+
+                <details>
+                    <summary>Qu’est-ce que le mode table ?</summary>
+                    <div class="answer">
+                        <p>L’écran se partage en deux, une moitié pour chaque joueur, pour jouer avec le téléphone posé à plat entre vous.</p>
+                        <p>Il est pensé pour l’<strong>iPhone Duo</strong> : posé ouvert à plat, il s’active tout seul pendant la partie, et chacun a sa moitié d’écran, de part et d’autre de la charnière. Le bouton « Quitter le mode table », en bas de l’écran, revient à l’affichage habituel.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Puis-je utiliser le mode table sans iPhone Duo ?</summary>
+                    <div class="answer">
+                        <p>Oui, en l’activant à la main. Pendant la partie, touchez le bouton à côté de la croix, en haut à droite de l’écran. Un curseur « Séparation » permet de régler la taille des deux moitiés, et « Quitter le mode table » revient à l’affichage habituel.</p>
+                        <p class="muted">Sur un iPhone classique, l’écran est plus petit et sans charnière : le mode table reste pratique, mais c’est sur l’iPhone Duo qu’il est le plus confortable.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment jouer sur la télé ?</summary>
+                    <div class="answer">
+                        <ol>
+                            <li>Ouvrez le centre de contrôle de l’iPhone et touchez « Recopie de l’écran ».</li>
+                            <li>Choisissez votre Apple TV ou votre téléviseur compatible AirPlay. Vous pouvez aussi brancher l’iPhone avec un câble.</li>
+                            <li>Lancez une partie.</li>
+                        </ol>
+                        <p>Pendant la partie, la télé affiche la question pour tout le monde, sans jamais dévoiler un choix avant la révélation. Les joueurs, eux, répondent sur l’iPhone.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section>
+                <h2>Jouer sur deux iPhone</h2>
+
+                <details>
+                    <summary>Quels jeux se jouent sur deux iPhone ?</summary>
+                    <div class="answer">
+                        <p>Pour l’instant, seul « Tu préfères ? » se joue sur deux iPhone : chacun répond sur son propre téléphone, côte à côte ou à distance. Les autres jeux se jouent sur un seul iPhone.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Que faut-il avant de commencer ?</summary>
+                    <div class="answer">
+                        <ul>
+                            <li>Face à Face est installée, à jour, sur les deux iPhone.</li>
+                            <li>Chaque iPhone a son propre compte Apple : un iPhone par joueur.</li>
+                            <li>Le Wi-Fi et le Bluetooth sont activés, et iMessage est activé dans les réglages de Messages.</li>
+                            <li>Les deux iPhone sont déverrouillés.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment inviter l’autre joueur par Messages ?</summary>
+                    <div class="answer">
+                        <p>C’est la méthode la plus sûre, que vous soyez côte à côte ou loin l’un de l’autre.</p>
+                        <ol>
+                            <li>À l’accueil, touchez « Jouer sur deux iPhone », puis entrez votre prénom.</li>
+                            <li>Touchez « Inviter l’autre iPhone », choisissez l’autre joueur, puis « Messages ».</li>
+                            <li>L’autre joueur touche « Rejoindre » dans le message : Face à Face s’ouvre sur son iPhone.</li>
+                            <li>Restez dans Face à Face : votre iPhone rejoint la partie tout seul. Sinon, touchez « Lancer la partie SharePlay ».</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Comment jouer pendant un appel FaceTime ?</summary>
+                    <div class="answer">
+                        <ol>
+                            <li>Pendant l’appel, ouvrez Face à Face, touchez « Jouer sur deux iPhone » puis « Lancer la partie SharePlay ».</li>
+                            <li>L’autre joueur touche l’invitation SharePlay qui apparaît sur son écran.</li>
+                        </ol>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Peut-on simplement rapprocher les deux iPhone ?</summary>
+                    <div class="answer">
+                        <p>Parfois. Restez sur l’écran « Jouer sur deux iPhone », sans toucher « Inviter l’autre iPhone », et approchez le haut de votre iPhone du haut de l’autre, déverrouillé. Si votre iPhone propose « SharePlay », acceptez.</p>
+                        <p class="muted">Ce raccourci ne marche pas à chaque fois : c’est l’iPhone qui décide quoi proposer. S’il propose AirDrop au lieu de SharePlay, ou rien du tout, fermez et invitez par Messages.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Qui choisit l’univers et le nombre de manches ?</summary>
+                    <div class="answer">
+                        <p>Celui qui a invité choisit l’univers et le nombre de manches, puis lance la partie. L’autre joueur patiente : la partie démarre toute seule sur son iPhone.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Pourquoi une conversation Messages s’est-elle créée ?</summary>
+                    <div class="answer">
+                        <p>C’est normal : SharePlay a besoin d’une conversation Messages ou d’un appel FaceTime pour relier les deux iPhone.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>L’iPhone me demande de remplacer l’activité existante.</summary>
+                    <div class="answer">
+                        <p>Acceptez : il s’agit d’une ancienne partie restée ouverte dans la conversation.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Que se passe-t-il si l’autre joueur reçoit un appel ou verrouille son iPhone ?</summary>
+                    <div class="answer">
+                        <p>La partie se met en pause et affiche « En attente du retour » de l’autre joueur. Dès qu’il revient dans Face à Face, la partie reprend là où elle s’était arrêtée, avec les réponses déjà données.</p>
+                        <p>Sans retour d’ici 2 minutes, la partie s’arrête. Si l’appel FaceTime qui reliait vos iPhone est raccroché, la partie s’arrête aussi : relancez-en une nouvelle.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>La connexion ne marche pas, que faire ?</summary>
+                    <div class="answer">
+                        <ul>
+                            <li>Vérifiez qu’iMessage est activé sur les deux iPhone, dans les réglages de Messages.</li>
+                            <li>Vérifiez que les deux iPhone ont la même version de Face à Face, à jour.</li>
+                            <li>Revenez à l’accueil sur les deux iPhone, puis recommencez.</li>
+                        </ul>
+                        <p>Le bouton « Comment se connecter ? », dans l’application, reprend toutes ces étapes.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section>
+                <h2>Mes données</h2>
+
+                <details>
+                    <summary>Où sont enregistrés mes prénoms et mes réponses ?</summary>
+                    <div class="answer">
+                        <p>Vos prénoms et la liste des questions déjà jouées restent uniquement sur votre iPhone. Les réponses d’une partie ne sont pas conservées après votre retour à l’accueil. Face à Face ne demande aucun compte et n’envoie rien au développeur. Consultez notre <a href="face-a-face-confidentialite.html">politique de confidentialité</a> pour plus de détails.</p>
+                    </div>
+                </details>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            © 2026 Face à Face · Développée par <a href="https://www.patoswitch.fr">Pato Switch</a> · <a href="face-a-face-confidentialite.html">Confidentialité</a> · <a href="face-a-face-marketing.html">Présentation de l’application</a> · <a href="/">Pato Apps</a>
+        </div>
+    </footer>
+</body>
+</html>

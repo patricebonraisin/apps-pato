@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Face à Face — le jeu de questions qui se joue à deux sur un seul iPhone : Tu préfères ?, Qui de nous deux ? et On se connaît vraiment ?, avec 480 questions entre amis, à deux ou en famille.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Pato Apps">
+    <meta property="og:title" content="Face à Face — Le jeu qui rapproche">
+    <meta property="og:description" content="Chacun répond en secret, puis les réponses s’affichent en même temps. Pensez-vous pareil ? Vous connaissez-vous vraiment ?">
+    <meta property="og:url" content="https://www.patoswitch.fr/face-a-face-marketing.html">
+    <meta property="og:image" content="https://www.patoswitch.fr/face-a-face.png">
+    <title>Face à Face — Le jeu qui rapproche</title>
+    <style>
+        /* Couleurs tirées de l’icône : fond bleu nuit, bulle bleue, bulle rose, étincelles jaunes. */
+        :root {
+            --canvas: #f4f6fc;
+            --card: #ffffff;
+            --night: #0a1938;
+            --night-deep: #061026;
+            --night-raised: #12285a;
+            --blue: #2f6fe8;
+            --sky: #2fb6ff;
+            --pink: #e8509a;
+            --spark: #ffc94a;
+            --ink: #18213f;
+            --heading: #0e1d47;
+            --muted: #5a6482;
+            --line: rgba(47, 111, 232, .16);
+            --shadow: 0 22px 55px rgba(10, 25, 56, .14);
+            --logo-gradient: linear-gradient(135deg, #2fb6ff 0%, #3085ff 45%, #e8509a 100%);
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--canvas);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.5;
+        }
+        h1, h2, h3, p { margin-top: 0; }
+        a { color: inherit; text-decoration: none; }
+        .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+        /* L’en-tête reprend le bleu nuit de l’app, quel que soit le mode d’affichage. */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            min-height: 760px;
+            color: #fff;
+            background:
+                radial-gradient(circle at 82% 18%, rgba(47, 182, 255, .28) 0, transparent 30%),
+                radial-gradient(circle at 96% 78%, rgba(232, 80, 154, .24) 0, transparent 30%),
+                linear-gradient(160deg, #0d2050, #0a1938 55%, #061026);
+        }
+        .hero::before, .hero::after {
+            position: absolute;
+            width: 460px;
+            height: 460px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 50%;
+            content: "";
+            pointer-events: none;
+        }
+        .hero::before { top: -260px; right: -110px; box-shadow: 0 0 0 55px rgba(255, 255, 255, .03), 0 0 0 112px rgba(255, 255, 255, .02); }
+        .hero::after { bottom: -370px; left: -150px; }
+        nav { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; padding: 26px 0; }
+        .brand { display: flex; align-items: center; gap: 11px; font-weight: 800; }
+        .brand-mark { width: 38px; height: 38px; border-radius: 10px; box-shadow: 0 6px 16px rgba(0, 0, 0, .35); }
+        .wordmark { font-size: 20px; letter-spacing: -.02em; }
+        .nav-link { font-size: 14px; font-weight: 650; color: rgba(255, 255, 255, .85); }
+        .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr .9fr; align-items: center; gap: 72px; padding: 70px 0 120px; }
+        .eyebrow { margin-bottom: 16px; color: var(--blue); font-size: 13px; font-weight: 800; letter-spacing: .15em; }
+        .hero .eyebrow { color: var(--spark); }
+        h1 { max-width: 670px; margin-bottom: 24px; font-size: clamp(44px, 6vw, 74px); font-weight: 800; line-height: 1; letter-spacing: -.05em; }
+        h1 .highlight { background: linear-gradient(135deg, #5cc8ff, #6f9dff 45%, #ff7ab8); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .lead { max-width: 555px; margin-bottom: 32px; color: rgba(255, 255, 255, .78); font-size: 19px; line-height: 1.65; }
+        .actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+        .button { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 22px; border-radius: 12px; font-size: 15px; font-weight: 700; transition: transform .2s, box-shadow .2s; }
+        a.button:hover { transform: translateY(-2px); }
+        .button-primary { color: #fff; background: var(--blue); box-shadow: 0 12px 28px rgba(47, 111, 232, .35); }
+        .button-secondary { border: 1px solid rgba(255, 255, 255, .22); color: #fff; background: rgba(255, 255, 255, .08); }
+        /* En attendant la publication : remplacer par un lien vers la fiche App Store. */
+        .button-soon { border: 1px dashed rgba(255, 255, 255, .45); color: #fff; background: rgba(255, 255, 255, .04); cursor: default; }
+        .promise { display: flex; gap: 10px; align-items: baseline; margin: 28px 0 0; color: rgba(255, 255, 255, .78); font-size: 14px; }
+        .promise + .promise { margin-top: 10px; }
+        .promise span { color: var(--spark); font-weight: 800; }
+
+        /* Maquette de l’iPhone : l’écran de révélation d’une manche. */
+        .phone { position: relative; width: min(100%, 355px); margin: 0 auto; padding: 10px; border: 7px solid #02060f; border-radius: 43px; background: #02060f; box-shadow: 0 32px 70px rgba(0, 0, 0, .5), inset 0 0 0 1px rgba(255,255,255,.08); transform: rotate(3deg); }
+        .phone::before { position: absolute; z-index: 3; top: 10px; left: 50%; width: 108px; height: 25px; border-radius: 0 0 15px 15px; background: #02060f; content: ""; transform: translateX(-50%); }
+        .screen { overflow: hidden; display: flex; flex-direction: column; gap: 14px; min-height: 590px; padding: 40px 18px 18px; border-radius: 29px; background: #0a1938; color: #fff; }
+        .screen-status { display: flex; justify-content: space-between; padding: 0 4px; color: rgba(255,255,255,.85); font-size: 8px; font-weight: 750; }
+        .progress { display: flex; justify-content: space-between; color: rgba(255,255,255,.7); font-size: 10px; font-weight: 700; }
+        .bar { height: 5px; border-radius: 99px; background: rgba(255,255,255,.14); }
+        .bar span { display: block; width: 30%; height: 100%; border-radius: 99px; background: #3085ff; }
+        .verdict { margin-top: 18px; text-align: center; }
+        .verdict-icon { font-size: 34px; }
+        .verdict h3 { margin: 4px 0 2px; font-size: 22px; font-weight: 800; }
+        .verdict p { margin: 0; color: rgba(255,255,255,.7); font-size: 11px; }
+        .question { padding: 16px; border-radius: 18px; background: #f7f9ff; color: #0a1938; font-size: 15px; font-weight: 750; text-align: center; }
+        .answer { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-radius: 16px; background: #12285a; border: 1px solid rgba(255,255,255,.12); font-size: 12px; }
+        .answer strong { display: block; font-size: 13px; }
+        .answer small { color: rgba(255,255,255,.65); }
+        .answer .dot { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 12px; }
+        .answer.blue .dot { background: #3085ff; }
+        .answer.pink .dot { background: #e8509a; }
+        .comment { margin: 0; color: rgba(255,255,255,.75); font-size: 11px; text-align: center; }
+        .next { margin-top: auto; padding: 12px; border-radius: 99px; background: #3085ff; font-size: 13px; font-weight: 800; text-align: center; }
+
+        section { padding: 112px 0; }
+        .intro { text-align: center; }
+        .intro h2, .section-heading h2 { margin-bottom: 16px; color: var(--heading); font-size: clamp(32px, 4vw, 50px); font-weight: 800; line-height: 1.1; letter-spacing: -.04em; }
+        .intro p { max-width: 640px; margin: 0 auto; color: var(--muted); font-size: 17px; line-height: 1.7; }
+
+        .games { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 50px; }
+        .game { padding: 30px; border: 1px solid var(--line); border-radius: 22px; background: var(--card); box-shadow: 0 8px 22px rgba(10, 25, 56, .05); }
+        .game-icon { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 22px; border-radius: 15px; color: #fff; background: var(--logo-gradient); font-size: 24px; font-weight: 800; box-shadow: 0 8px 16px rgba(47, 111, 232, .22); }
+        .game h3 { margin-bottom: 4px; color: var(--heading); font-size: 22px; font-weight: 800; }
+        .game .tagline { margin-bottom: 12px; color: var(--pink); font-size: 14px; font-weight: 700; }
+        .game p { margin-bottom: 0; color: var(--muted); font-size: 15px; line-height: 1.65; }
+
+        .universes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 50px; }
+        .universe { padding: 26px; border: 1px solid var(--line); border-radius: 20px; background: var(--card); text-align: center; border-top: 4px solid var(--accent); }
+        .universe-emoji { margin-bottom: 12px; font-size: 34px; }
+        .universe h3 { margin-bottom: 6px; color: var(--heading); font-size: 18px; }
+        .universe p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+
+        .story { color: #fff; background: linear-gradient(160deg, #0d2050, #0a1938 60%, #061026); }
+        .story-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 80px; align-items: center; }
+        .story .eyebrow { color: var(--spark); }
+        .story h2 { margin-bottom: 20px; font-size: clamp(34px, 4.2vw, 52px); font-weight: 800; line-height: 1.06; letter-spacing: -.04em; }
+        .story-copy { color: rgba(255,255,255,.78); font-size: 17px; line-height: 1.75; }
+        .steps { display: grid; gap: 3px; }
+        .step { display: grid; grid-template-columns: 54px 1fr; gap: 20px; padding: 23px 0; border-bottom: 1px solid rgba(255, 255, 255, .16); }
+        .step-number { color: #6fb8ff; font-size: 27px; font-weight: 800; }
+        .step h3 { margin: 0 0 4px; font-size: 18px; }
+        .step p { margin: 0; color: rgba(255,255,255,.75); font-size: 15px; }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 50px; }
+        .feature { padding: 28px; border: 1px solid var(--line); border-radius: 20px; background: var(--card); box-shadow: 0 8px 22px rgba(10, 25, 56, .04); }
+        .feature-icon { display: grid; place-items: center; width: 46px; height: 46px; margin-bottom: 22px; border-radius: 14px; color: #fff; background: var(--logo-gradient); font-size: 21px; font-weight: 700; box-shadow: 0 8px 16px rgba(47, 111, 232, .22); }
+        .feature h3 { margin-bottom: 9px; color: var(--heading); font-size: 19px; font-weight: 750; }
+        .feature p { margin-bottom: 0; color: var(--muted); font-size: 15px; line-height: 1.65; }
+
+        .honest { background: #e8edfb; }
+        .honest-card { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 980px; margin: 0 auto; padding: 42px; border: 2px dashed rgba(47, 111, 232, .35); border-radius: 24px; background: var(--card); box-shadow: var(--shadow); }
+        .honest h2 { margin-bottom: 12px; color: var(--heading); font-size: 30px; font-weight: 800; letter-spacing: -.03em; }
+        .honest p { color: var(--muted); line-height: 1.7; }
+        .honest ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+        .honest li { display: flex; gap: 12px; color: var(--ink); line-height: 1.55; }
+        .honest li::before { flex-shrink: 0; content: "✓"; color: var(--blue); font-weight: 800; }
+        .honest .privacy { margin-top: 22px; padding: 18px 20px; border-radius: 14px; background: #e3ebfd; color: var(--heading); font-size: 15px; }
+
+        footer { padding: 75px 0 38px; color: #d6defa; background: var(--night-deep); }
+        .footer-top { display: flex; justify-content: space-between; gap: 24px; align-items: flex-end; padding-bottom: 58px; }
+        .footer-top h2 { max-width: 650px; margin-bottom: 0; color: #fff; font-size: clamp(31px, 4vw, 47px); font-weight: 800; line-height: 1.07; letter-spacing: -.04em; }
+        footer .button-soon { flex-shrink: 0; }
+        .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 25px; border-top: 1px solid rgba(214, 222, 250, .2); font-size: 13px; }
+        .footer-bottom a { color: #8fdcff; }
+
+        .home-button {
+            display: flex;
+            width: fit-content;
+            margin: 24px auto calc(24px + env(safe-area-inset-bottom));
+            align-items: center;
+            gap: 8px;
+            min-height: 44px;
+            padding: 0 14px;
+            border: 1px solid rgba(17, 19, 26, 0.12);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.92);
+            color: #11131A;
+            box-shadow: 0 8px 24px rgba(17, 19, 26, 0.16);
+            font: 700 15px -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .home-button:active { transform: scale(0.96); }
+
+        @media (max-width: 900px) {
+            .universes, .feature-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 780px) {
+            .hero { min-height: auto; }
+            .hero-grid, .story-grid, .honest-card { grid-template-columns: 1fr; gap: 52px; }
+            .hero-grid { padding: 55px 0 80px; }
+            .hero-copy { text-align: center; }
+            .lead { margin-right: auto; margin-left: auto; }
+            .actions { justify-content: center; }
+            .promise { justify-content: center; text-align: left; }
+            .phone { width: 320px; transform: rotate(0); }
+            .games { grid-template-columns: 1fr; }
+            .honest-card { gap: 28px; }
+            .footer-top, .footer-bottom { align-items: flex-start; flex-direction: column; }
+            section { padding: 82px 0; }
+        }
+        @media (max-width: 430px) {
+            .container { width: min(100% - 30px, 1120px); }
+            .nav-link { display: none; }
+            h1 { font-size: 44px; }
+            .phone { width: 295px; }
+            .universes, .feature-grid { grid-template-columns: 1fr; }
+            .honest-card { padding: 28px; }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --canvas: #071128;
+                --card: #10204a;
+                --blue: #7fa6ff;
+                --pink: #ff8cc2;
+                --ink: #eceffa;
+                --heading: #eef2ff;
+                --muted: #aab3cf;
+                --line: rgba(160, 185, 255, .18);
+                --shadow: 0 22px 55px rgba(0, 0, 0, .35);
+            }
+            .button-primary { background: #2f6fe8; }
+            .honest { background: #0b1735; }
+            .honest .privacy { background: #18306a; }
+            footer { background: #030914; }
+            .home-button {
+                border-color: rgba(255, 255, 255, 0.14);
+                background: rgba(20, 20, 35, 0.92);
+                color: #eef0fa;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <nav aria-label="Navigation principale">
+                <a class="brand" href="#accueil" aria-label="Face à Face, accueil"><img class="brand-mark" src="face-a-face.png" alt=""><span class="wordmark">Face à Face</span></a>
+                <a class="nav-link" href="#jeux">Découvrir les jeux ↓</a>
+            </nav>
+            <div class="hero-grid" id="accueil">
+                <div class="hero-copy">
+                    <p class="eyebrow">LE JEU QUI RAPPROCHE</p>
+                    <h1>Pensez-vous <span class="highlight">vraiment pareil&nbsp;?</span></h1>
+                    <p class="lead">Face à Face, c’est le jeu de questions qui se joue à deux, autour d’un seul iPhone. Chacun répond en secret, puis les réponses s’affichent en même temps. Même choix ou grosse surprise : le verdict tombe à chaque manche, et la discussion commence.</p>
+                    <div class="actions">
+                        <span class="button button-soon">Bientôt sur l’App Store</span>
+                        <a class="button button-secondary" href="#jeux">Voir les jeux</a>
+                    </div>
+                    <p class="promise"><span>●</span> Trois jeux et 480 questions, entre amis, à deux ou en famille.</p>
+                    <p class="promise"><span>●</span> Un seul iPhone suffit : vous vous le passez, sans voir la réponse de l’autre.</p>
+                    <p class="promise"><span>●</span> Sur la télé, sur deux iPhone avec SharePlay, ou en mode table, pensé pour l’iPhone Duo.</p>
+                    <p class="promise"><span>●</span> Sans compte, sans publicité, sans collecte de données.</p>
+                </div>
+                <div class="phone" aria-label="Aperçu illustré d’une manche de Face à Face">
+                    <div class="screen" aria-hidden="true">
+                        <div class="screen-status"><span>9:41</span><span>●●●  ▰</span></div>
+                        <div class="progress"><span>Manche 3 sur 10</span><span>Tu préfères ?</span></div>
+                        <div class="bar"><span></span></div>
+                        <div class="verdict">
+                            <div class="verdict-icon">✨</div>
+                            <h3>Même choix !</h3>
+                            <p>Vous avez eu la même intuition.</p>
+                        </div>
+                        <div class="question">Pour un week-end à deux ?</div>
+                        <div class="answer blue"><div><strong>Léa</strong><small>Coin tranquille</small></div><span class="dot">B</span></div>
+                        <div class="answer pink"><div><strong>Sam</strong><small>Coin tranquille</small></div><span class="dot">B</span></div>
+                        <p class="comment">Plutôt chaise longue que grande ville, visiblement.</p>
+                        <div class="next">Manche suivante</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="jeux">
+            <div class="container">
+                <div class="intro"><p class="eyebrow">TROIS JEUX</p><h2>Trois façons de se découvrir.</h2><p>Des questions légères pour rire, d’autres pour mieux se connaître. Choisissez votre jeu, votre univers et la durée de la partie, de 5 à 15 manches.</p></div>
+                <div class="games">
+                    <article class="game"><div class="game-icon">⇄</div><h3>Tu préfères ?</h3><p class="tagline">Deux choix, une même intuition… ou pas.</p><p>Chacun choisit en secret entre deux options. Vous découvrez ensuite si vous avez eu le même réflexe : musée ou concert, grasse matinée ou lever du soleil ?</p></article>
+                    <article class="game"><div class="game-icon">☝</div><h3>Qui de nous deux ?</h3><p class="tagline">Désignez la personne qui correspond le mieux.</p><p>Qui s’endormirait le premier devant une série ? Qui chanterait le plus fort en voiture ? Chacun désigne l’un de vous deux… et vous voyez si vous êtes d’accord.</p></article>
+                    <article class="game"><div class="game-icon">?</div><h3>On se connaît vraiment ?</h3><p class="tagline">Devinez la vraie préférence de l’autre.</p><p>L’un répond pour lui-même, l’autre devine sa réponse parmi quatre propositions. Les rôles alternent à chaque manche, et chaque bonne réponse rapporte un point.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section id="univers" style="padding-top: 0;">
+            <div class="container">
+                <div class="intro"><p class="eyebrow">QUATRE UNIVERS</p><h2>Une ambiance pour chaque duo.</h2><p>40 questions par univers et par jeu, soit 480 questions au total. Les questions déjà jouées passent en dernier, pour que chaque partie soit différente.</p></div>
+                <div class="universes">
+                    <article class="universe" style="--accent: #3085ff;"><div class="universe-emoji">👫</div><h3>Entre amis</h3><p>Pour les soirées, les trajets en voiture et les fous rires.</p></article>
+                    <article class="universe" style="--accent: #f578b3;"><div class="universe-emoji">💞</div><h3>À deux</h3><p>Pour les couples : rendez-vous idéal, petites habitudes et doux souvenirs.</p></article>
+                    <article class="universe" style="--accent: #4dc4a3;"><div class="universe-emoji">👨‍👩‍👧</div><h3>En famille</h3><p>Des questions pour tous les âges, à jouer entre parents, enfants ou grands-parents.</p></article>
+                    <article class="universe" style="--accent: #ffad4d;"><div class="universe-emoji">✨</div><h3>Surprise !</h3><p>Super-pouvoirs, dragons de poche et voyages sur la Lune : l’imagination aux commandes.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="story" id="partie">
+            <div class="container story-grid">
+                <div><p class="eyebrow">UNE PARTIE</p><h2>Un iPhone, deux joueurs, aucun tricheur.</h2><p class="story-copy">Pas de compte à créer ni de règles compliquées : entrez vos prénoms, et la partie commence en quelques secondes.</p></div>
+                <div class="steps">
+                    <div class="step"><div class="step-number">01</div><div><h3>Choisissez</h3><p>Vos prénoms, un jeu, un univers et le nombre de manches.</p></div></div>
+                    <div class="step"><div class="step-number">02</div><div><h3>Répondez en secret</h3><p>Le premier joueur répond, puis passe le téléphone. Sa réponse reste cachée jusqu’à la révélation.</p></div></div>
+                    <div class="step"><div class="step-number">03</div><div><h3>Découvrez ensemble</h3><p>Les deux réponses s’affichent en même temps. À la fin, votre score de concordance et toutes les manches à revoir, en commençant par celles où vous n’étiez pas d’accord.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="fonctionnalites">
+            <div class="container">
+                <div class="intro"><p class="eyebrow">PARTOUT OÙ VOUS ÊTES</p><h2>Sur le canapé, à table ou à distance.</h2><p>Face à Face s’adapte à votre façon de jouer.</p></div>
+                <div class="feature-grid">
+                    <article class="feature"><div class="feature-icon">▯</div><h3>Sur un seul iPhone</h3><p>Vous vous passez le téléphone à tour de rôle. Un écran de transition cache la réponse précédente.</p></article>
+                    <article class="feature"><div class="feature-icon">◫</div><h3>En mode table</h3><p>Pensé pour l’iPhone Duo : posé ouvert à plat entre vous, il s’active tout seul et chacun a sa moitié d’écran, de part et d’autre de la charnière. Sur les autres iPhone, il s’active à la main, d’un bouton.</p></article>
+                    <article class="feature"><div class="feature-icon">▭</div><h3>Sur la télé</h3><p>En AirPlay ou par câble, le téléviseur affiche la question pour tout le monde, sans jamais dévoiler un choix avant la révélation.</p></article>
+                    <article class="feature"><div class="feature-icon">⇆</div><h3>Sur deux iPhone</h3><p>Avec SharePlay, chacun répond sur son téléphone, côte à côte ou à distance, par FaceTime ou Messages. Pour l’instant avec « Tu préfères ? ».</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="honest" id="transparence">
+            <div class="container">
+                <div class="honest-card">
+                    <div>
+                        <p class="eyebrow">EN TOUTE SIMPLICITÉ</p>
+                        <h2>Juste un jeu, rien de plus.</h2>
+                        <p>Face à Face est fait pour passer un bon moment ensemble. Les scores racontent ce que vous avez deviné aujourd’hui, pas la qualité de votre relation.</p>
+                        <p class="privacy"><strong>Vos réponses restent entre vous.</strong> Pas de compte, pas de publicité, aucune donnée collectée : vos prénoms restent sur votre iPhone. <a href="face-a-face-confidentialite.html"><u>Politique de confidentialité</u></a></p>
+                    </div>
+                    <ul>
+                        <li>Des questions bienveillantes, adaptées à tous les âges.</li>
+                        <li>Aucune inscription : on ouvre l’app et on joue.</li>
+                        <li>Aucune publicité ni achat intégré pour interrompre la partie.</li>
+                        <li>Pensé pour l’accessibilité : VoiceOver, grandes tailles de texte et réduction des animations.</li>
+                        <li>Compatible avec tous les iPhone sous iOS 27 ou une version ultérieure.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container"><div class="footer-top"><h2>Posez la première question, et voyez où la discussion vous mène.</h2><span class="button button-soon">Bientôt sur l’App Store</span></div><div class="footer-bottom"><span>© 2026 Face à Face · Développée par <a href="https://www.patoswitch.fr">Pato Switch</a></span><span><a href="#jeux">Les jeux</a> · <a href="face-a-face-assistance.html">Assistance</a> · <a href="face-a-face-confidentialite.html">Confidentialité</a></span></div></div>
+    </footer>
+    <a class="home-button" href="/" aria-label="Retour à l'accueil Pato Apps">⌂ Accueil</a>
+</body>
+</html>

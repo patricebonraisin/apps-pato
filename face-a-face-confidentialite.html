@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Politique de confidentialité de l’application Face à Face, développée par Pato Switch.">
+    <title>Confidentialité — Face à Face</title>
+    <style>
+        :root {
+            --canvas: #f4f6fc;
+            --card: #ffffff;
+            --heading: #0e1d47;
+            --title: #0a1938;
+            --check: #e8509a;
+            --accent: #2f6fe8;
+            --ink: #18213f;
+            --muted: #5a6482;
+            --line: rgba(47, 111, 232, .16);
+            --shadow: 0 22px 55px rgba(10, 25, 56, .14);
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--canvas);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.65;
+        }
+        a { color: var(--accent); }
+        .container { width: min(780px, calc(100% - 40px)); margin: 0 auto; }
+
+        header { background: radial-gradient(circle at 88% 10%, rgba(47, 182, 255, .18) 0, transparent 32%), radial-gradient(circle at 70% 100%, rgba(232, 80, 154, .12) 0, transparent 30%), linear-gradient(135deg, #f8faff, #e8edfb); border-bottom: 1px solid var(--line); }
+        nav { display: flex; align-items: center; padding: 26px 0; }
+        .brand { display: flex; align-items: center; gap: 11px; color: var(--heading); font-weight: 700; text-decoration: none; }
+        .brand-mark { width: 38px; height: 38px; border-radius: 10px; box-shadow: 0 6px 16px rgba(10, 25, 56, .25); }
+        .wordmark { font-size: 20px; letter-spacing: -.02em; }
+        .intro { padding: 40px 0 56px; }
+        .eyebrow { margin: 0 0 14px; color: var(--accent); font-size: 13px; font-weight: 700; letter-spacing: .15em; }
+        h1 { margin: 0 0 18px; color: var(--title); font-size: clamp(36px, 6vw, 54px); font-weight: 700; line-height: 1.05; letter-spacing: -.04em; }
+        .lead { margin: 0; color: var(--muted); font-size: 19px; }
+
+        .summary { margin: -28px 0 48px; padding: 28px 30px; border: 1px solid var(--line); border-radius: 20px; background: var(--card); box-shadow: var(--shadow); }
+        .summary ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+        .summary li { display: flex; gap: 12px; }
+        .summary li::before { content: "✓"; color: var(--check); font-weight: 800; }
+
+        main section { padding-bottom: 34px; }
+        h2 { margin: 0 0 12px; color: var(--heading); font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
+        p, li { color: var(--ink); }
+        main ul { padding-left: 22px; }
+        .muted { color: var(--muted); font-size: 15px; }
+
+        footer { margin-top: 30px; padding: 30px 0 38px; color: #d6defa; background: #061026; font-size: 13px; }
+        footer a { color: #8fdcff; }
+
+        /* Mode sombre : mêmes couleurs que la page de présentation. */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --canvas: #071128;
+                --card: #10204a;
+                --heading: #dbe4ff;
+                --title: #eef2ff;
+                --check: #ff8cc2;
+                --accent: #7fa6ff;
+                --ink: #eceffa;
+                --muted: #aab3cf;
+                --line: rgba(160, 185, 255, .18);
+                --shadow: 0 22px 55px rgba(0, 0, 0, .3);
+            }
+            header { background: radial-gradient(circle at 88% 10%, rgba(47, 182, 255, .16) 0, transparent 32%), radial-gradient(circle at 70% 100%, rgba(232, 80, 154, .14) 0, transparent 30%), linear-gradient(160deg, #0d2050, #0a1938); }
+            footer { background: #030914; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a class="brand" href="face-a-face-marketing.html" aria-label="Face à Face, présentation"><img class="brand-mark" src="face-a-face.png" alt=""><span class="wordmark">Face à Face</span></a>
+            </nav>
+            <div class="intro">
+                <p class="eyebrow">POLITIQUE DE CONFIDENTIALITÉ</p>
+                <h1>Vos réponses restent entre vous.</h1>
+                <p class="lead">Face à Face fonctionne sans compte à créer, sans serveur du développeur et sans publicité. Cette page explique simplement ce que l’application fait de vos données.</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="summary">
+            <ul>
+                <li>Aucune donnée personnelle n’est collectée ni transmise au développeur.</li>
+                <li>Aucun compte, aucune publicité, aucun pistage, aucun outil de mesure d’audience.</li>
+                <li>Vos prénoms et vos réponses restent sur votre iPhone, sauf pendant une partie sur deux iPhone, où ils sont envoyés à l’autre joueur.</li>
+                <li>Rien n’est partagé sans une action volontaire de votre part.</li>
+            </ul>
+        </div>
+
+        <main>
+            <section>
+                <h2>Les données enregistrées sur votre iPhone</h2>
+                <p>Face à Face enregistre, dans l’espace privé de l’application et sur votre iPhone uniquement :</p>
+                <ul>
+                    <li>les prénoms des deux joueurs de la dernière partie, pour vous éviter de les retaper ;</li>
+                    <li>votre prénom pour les parties sur deux iPhone ;</li>
+                    <li>la liste des questions déjà jouées, pour vous proposer d’abord des questions nouvelles ;</li>
+                    <li>le nombre de parties terminées, qui sert uniquement à choisir quand vous proposer de noter l’application.</li>
+                </ul>
+                <p>Les réponses données pendant une partie ne sont pas conservées : elles disparaissent quand vous revenez à l’accueil.</p>
+                <p>Ces données ne sont envoyées vers aucun serveur : le développeur n’y a pas accès. Si vous avez activé la sauvegarde iCloud ou la sauvegarde sur ordinateur de votre iPhone, elles peuvent y être incluses, comme celles de vos autres applications. Cette sauvegarde est gérée par Apple et par vous, selon les réglages de votre appareil.</p>
+            </section>
+
+            <section>
+                <h2>Jouer sur deux iPhone (SharePlay)</h2>
+                <p>Quand vous jouez sur deux iPhone, Face à Face utilise SharePlay, le service d’Apple, au sein d’un appel FaceTime ou d’une conversation Messages que vous avez choisie. Pendant la partie, les deux iPhone échangent :</p>
+                <ul>
+                    <li>le prénom de chaque joueur ;</li>
+                    <li>l’univers, le nombre de manches et les questions de la partie ;</li>
+                    <li>la réponse de chacun à chaque question.</li>
+                </ul>
+                <p>Ces informations ne servent qu’au déroulement de la partie et ne sont envoyées qu’à l’autre joueur. Elles transitent par les services d’Apple, selon les conditions et la <a href="https://www.apple.com/fr/legal/privacy/">politique de confidentialité d’Apple</a>. Le développeur n’y a pas accès.</p>
+            </section>
+
+            <section>
+                <h2>Affichage sur la télé</h2>
+                <p>Si vous recopiez l’écran de votre iPhone sur un téléviseur, en AirPlay ou par câble, la question en cours s’affiche sur la télé. Aucun choix n’y est dévoilé avant la révélation. Rien n’est envoyé ailleurs que vers l’écran que vous avez choisi.</p>
+            </section>
+
+            <section>
+                <h2>Noter l’application</h2>
+                <p>Après quelques parties terminées, Face à Face peut vous proposer de noter l’application. Cette fenêtre est celle de l’App Store : c’est Apple qui décide de l’afficher et qui reçoit votre note. L’application ne sait pas si vous avez noté, ni quelle note vous avez donnée.</p>
+            </section>
+
+            <section>
+                <h2>Sons et retour haptique</h2>
+                <p>Les sons et les vibrations sont produits directement par votre iPhone. Ils n’utilisent ni le micro, ni l’appareil photo, ni aucune autre donnée.</p>
+            </section>
+
+            <section>
+                <h2>Supprimer vos données</h2>
+                <p>Vous gardez la maîtrise complète de vos données :</p>
+                <ul>
+                    <li>les prénoms se modifient ou s’effacent directement dans les champs de saisie, avant de lancer une partie ;</li>
+                    <li>pour tout effacer d’un coup, supprimez l’application de votre iPhone.</li>
+                </ul>
+                <p>Le développeur ne détenant aucune de vos données, il n’a rien à supprimer de son côté.</p>
+            </section>
+
+            <section>
+                <h2>Enfants</h2>
+                <p>L’application ne collecte aucune donnée, quel que soit l’âge de la personne qui l’utilise.</p>
+            </section>
+
+            <section>
+                <h2>Vos droits</h2>
+                <p>Comme aucune donnée personnelle n’est collectée ni traitée par le développeur, il n’existe pas de traitement au sens du Règlement général sur la protection des données (RGPD) dont vous devriez demander l’accès, la rectification ou l’effacement. Pour toute question, vous pouvez néanmoins nous écrire.</p>
+            </section>
+
+            <section>
+                <h2>Évolution de cette politique</h2>
+                <p>Si une future version de l’application modifie la façon dont vos données sont traitées, cette page sera mise à jour avant la publication de la version concernée.</p>
+                <p class="muted">Dernière mise à jour : 23 novembre 2026.</p>
+            </section>
+
+            <section>
+                <h2>Contact</h2>
+                <p>Face à Face est développée par Pato Switch.<br>
+                Site : <a href="https://www.patoswitch.fr">www.patoswitch.fr</a><br>
+                E-mail : <a href="mailto:info@patoswitch.fr">info@patoswitch.fr</a></p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            © 2026 Face à Face · Développée par <a href="https://www.patoswitch.fr">Pato Switch</a> · <a href="face-a-face-assistance.html">Assistance</a> · <a href="face-a-face-marketing.html">Présentation de l’application</a> · <a href="/">Pato Apps</a>
+        </div>
+    </footer>
+</body>
+</html>
