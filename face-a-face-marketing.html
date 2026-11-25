@@ -83,8 +83,6 @@
         a.button:hover { transform: translateY(-2px); }
         .button-primary { color: #fff; background: var(--blue); box-shadow: 0 12px 28px rgba(47, 111, 232, .35); }
         .button-secondary { border: 1px solid rgba(255, 255, 255, .22); color: #fff; background: rgba(255, 255, 255, .08); }
-        /* En attendant la publication : remplacer par un lien vers la fiche App Store. */
-        .button-soon { border: 1px dashed rgba(255, 255, 255, .45); color: #fff; background: rgba(255, 255, 255, .04); cursor: default; }
         .promise { display: flex; gap: 10px; align-items: baseline; margin: 28px 0 0; color: rgba(255, 255, 255, .78); font-size: 14px; }
         .promise + .promise { margin-top: 10px; }
         .promise span { color: var(--spark); font-weight: 800; }
@@ -158,7 +156,7 @@
         footer { padding: 75px 0 38px; color: #d6defa; background: var(--night-deep); }
         .footer-top { display: flex; justify-content: space-between; gap: 24px; align-items: flex-end; padding-bottom: 58px; }
         .footer-top h2 { max-width: 650px; margin-bottom: 0; color: #fff; font-size: clamp(31px, 4vw, 47px); font-weight: 800; line-height: 1.07; letter-spacing: -.04em; }
-        footer .button-soon { flex-shrink: 0; }
+        footer .button { flex-shrink: 0; }
         .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 25px; border-top: 1px solid rgba(214, 222, 250, .2); font-size: 13px; }
         .footer-bottom a { color: #8fdcff; }
 
@@ -244,7 +242,7 @@
                     <h1>Pensez-vous <span class="highlight">vraiment pareil&nbsp;?</span></h1>
                     <p class="lead">Face à Face, c’est le jeu de questions qui se joue à deux, autour d’un seul iPhone. Chacun répond en secret, puis les réponses s’affichent en même temps. Même choix ou grosse surprise : le verdict tombe à chaque manche, et la discussion commence.</p>
                     <div class="actions">
-                        <span class="button button-soon">Bientôt sur l’App Store</span>
+                        <a class="button button-primary" href="https://apps.apple.com/app/face-%C3%A0-face-jeu-%C3%A0-deux/id6838249154" target="_blank" rel="noopener noreferrer">Télécharger sur l’App Store</a>
                         <a class="button button-secondary" href="#jeux">Voir les jeux</a>
                     </div>
                     <p class="promise"><span>●</span> Trois jeux et 480 questions, entre amis, à deux ou en famille.</p>
@@ -342,7 +340,7 @@
     </main>
 
     <footer>
-        <div class="container"><div class="footer-top"><h2>Posez la première question, et voyez où la discussion vous mène.</h2><span class="button button-soon">Bientôt sur l’App Store</span></div><div class="footer-bottom"><span>© 2026 Face à Face · Développée par <a href="https://www.patoswitch.fr">Pato Switch</a></span><span><a href="#jeux">Les jeux</a> · <a href="face-a-face-assistance.html">Assistance</a> · <a href="face-a-face-confidentialite.html">Confidentialité</a></span></div></div>
+        <div class="container"><div class="footer-top"><h2>Posez la première question, et voyez où la discussion vous mène.</h2><a class="button button-primary" href="https://apps.apple.com/app/face-%C3%A0-face-jeu-%C3%A0-deux/id6838249154" target="_blank" rel="noopener noreferrer">Télécharger sur l’App Store</a></div><div class="footer-bottom"><span>© 2026 Face à Face · Développée par <a href="https://www.patoswitch.fr">Pato Switch</a></span><span><a href="#jeux">Les jeux</a> · <a href="face-a-face-assistance.html">Assistance</a> · <a href="face-a-face-confidentialite.html">Confidentialité</a></span></div></div>
     </footer>
     <a class="home-button" href="/" aria-label="Retour à l'accueil Pato Apps">⌂ Accueil</a>
 </body>
