@@ -1667,5 +1667,87 @@ updateButton.addEventListener("click", async () => {
 });
 </script>
 
+<!-- Prolongement expérimental du fond sous les commandes latérales de l’iPhone Duo. -->
+<style>
+html.duo-edge { overflow-x: hidden; touch-action: pan-y pinch-zoom; }
+html.duo-edge body { overflow-x: visible; touch-action: pan-y pinch-zoom; }
+.duo-edge-background {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: var(--duo-edge-width);
+    height: var(--duo-page-height);
+    background-image: var(--duo-background);
+    background-size: var(--duo-page-width) var(--duo-page-height);
+    background-position: calc(-1 * var(--duo-page-width)) 0;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 0;
+}
+.duo-edge-background::before {
+    content: "";
+    display: block;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.28) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.24) 1px, transparent 1px);
+    background-size: 52px 52px;
+    background-position: calc(-1 * var(--duo-page-width)) 0;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.55), transparent 72%);
+}
+html[data-theme="dark"] .duo-edge-background::before {
+    background-image:
+        linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+}
+</style>
+<script>
+(() => {
+    if (!/iPhone/.test(navigator.userAgent) || navigator.maxTouchPoints < 2) return;
+
+    const root = document.documentElement;
+    const edge = document.createElement("div");
+    edge.className = "duo-edge-background";
+    edge.setAttribute("aria-hidden", "true");
+
+    function updateDuoEdge() {
+        const zoomed = window.visualViewport && window.visualViewport.scale > 1.01;
+        const gap = Math.round(screen.width - window.innerWidth);
+        if (zoomed) {
+            // Allow horizontal panning while zoomed.
+            root.style.touchAction = "auto";
+            root.style.overflowX = "auto";
+            document.body.style.touchAction = "auto";
+            return;
+        }
+
+        root.style.removeProperty("touch-action");
+        root.style.removeProperty("overflow-x");
+        document.body.style.removeProperty("touch-action");
+        if (gap < 40 || gap > 200) {
+            root.classList.remove("duo-edge");
+            edge.remove();
+            return;
+        }
+
+        if (!edge.isConnected) document.body.appendChild(edge);
+        root.classList.add("duo-edge");
+        const width = document.body.clientWidth;
+        const height = document.body.scrollHeight;
+        edge.style.setProperty("--duo-edge-width", gap + "px");
+        edge.style.setProperty("--duo-page-width", width + "px");
+        edge.style.setProperty("--duo-page-height", height + "px");
+        edge.style.setProperty("--duo-background", getComputedStyle(document.body).backgroundImage);
+    }
+
+    window.addEventListener("resize", updateDuoEdge);
+    window.visualViewport?.addEventListener("resize", updateDuoEdge);
+    new MutationObserver(updateDuoEdge).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+    new ResizeObserver(updateDuoEdge).observe(document.body);
+    updateDuoEdge();
+})();
+</script>
 </body>
 </html>
