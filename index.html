@@ -6,12 +6,12 @@
     <meta name="description" content="Découvrez les applications iPhone Pato : sorties, météo, animaux, épargne, lecture, proches et jeux.">
     <meta name="google-site-verification" content="u8_ib3Zcb1BJwVmtaUmOVPLprA6HIoxDTho1dHZld1s">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Pato Apps</title>
+    <title>Pato Apps — Applications indépendantes pour iPhone</title>
     <link rel="canonical" href="https://www.patoswitch.fr/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="Pato Apps">
-    <meta property="og:title" content="Pato Apps - Des applications iPhone très utiles.">
+    <meta property="og:title" content="Pato Apps — Applications indépendantes pour iPhone">
     <meta property="og:description" content="Découvrez les applications iPhone Pato : sorties, météo, animaux, épargne, lecture, proches et jeux.">
     <meta property="og:url" content="https://www.patoswitch.fr/">
     <meta property="og:image" content="https://www.patoswitch.fr/accueil.png">
@@ -39,19 +39,6 @@
         })();
     </script>
     <link rel="manifest" href="manifest.json">
-<script>
-if ("scrollRestoration" in history) {
-    history.scrollRestoration = "manual";
-}
-
-if (window.location.hash === "#apps") {
-    history.replaceState(null, "", window.location.pathname + window.location.search);
-}
-
-window.addEventListener("pageshow", () => {
-    window.scrollTo(0, 0);
-});
-</script>
 <style>
 :root {
     --pato-blue: #3454C3;
@@ -69,6 +56,8 @@ window.addEventListener("pageshow", () => {
 
 * { box-sizing: border-box; }
 
+.skip-link { position: fixed; top: 8px; left: 8px; z-index: 100; padding: 12px; background: #fff; color: #172b8c; transform: translateY(-150%); }
+.skip-link:focus { transform: translateY(0); outline: 3px solid #172b8c; }
 html {
     scroll-behavior: smooth;
 }
@@ -697,7 +686,7 @@ footer {
     gap: 10px;
     text-align: center;
     padding: 34px 20px 46px;
-    color: var(--muted);
+    color: #4b5262;
     font-size: 14px;
 }
 
@@ -713,7 +702,7 @@ footer {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    color: var(--muted);
+    color: inherit;
     text-decoration: none;
     font-weight: 700;
 }
@@ -844,8 +833,7 @@ html[data-theme="dark"] body {
         radial-gradient(circle at 50% 92%, rgba(52, 84, 195, 0.20), transparent 34%),
         linear-gradient(180deg, #121521 0%, #171C2A 44%, #10131D 100%);
 
-[File truncated: 685 more lines available. Use 'offset' and 'limit' parameters to read more content.]
-[File truncated: 668 more lines available. Use 'offset' and 'limit' parameters to read more content.]}
+}
 
 html[data-theme="dark"] body::before {
     background-image:
@@ -864,6 +852,8 @@ html[data-theme="dark"] .install-prompt {
     background: rgba(31, 37, 55, 0.78);
     border-color: rgba(255,255,255,0.14);
 }
+
+html[data-theme="dark"] footer { color: #c0c7d6; }
 
 html[data-theme="dark"] .card {
     border-color: rgba(255,255,255,0.14);
@@ -988,6 +978,7 @@ html[data-theme="dark"] .card a:hover {
 </head>
 
 <body>
+<a class="skip-link" href="#main-content">Aller au contenu principal</a>
 <div class="page-shell">
 
     <header>
@@ -1005,6 +996,7 @@ html[data-theme="dark"] .card a:hover {
         </div>
     </header>
 
+    <main id="main-content" tabindex="-1">
     <section class="intro-panel" aria-label="Présentation de Pato Apps">
         <div class="panel-card">
             <strong>Une même idée</strong>
@@ -1063,7 +1055,7 @@ html[data-theme="dark"] .card a:hover {
         <div class="card" data-app-id="face-a-face" data-app-name="Face à Face" data-app-page="face-a-face-marketing.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Face à Face aux favoris">♡</button>
             <div class="icon-wrap">
-                <img class="icon" src="face-a-face.png" alt="Icône Face à Face">
+                <img class="icon" src="icons-pato/face-a-face.webp" width="76" height="76" loading="lazy" decoding="async" alt="Icône Face à Face">
             </div>
             <span class="update-sticker"><time datetime="2026-11-24">Nouveau</time></span>
             <h2>Face à Face</h2>
@@ -1072,15 +1064,15 @@ html[data-theme="dark"] .card a:hover {
                 puis les réponses sont révélées ensemble. Pensez-vous pareil ?
             </p>
             <div class="card-actions">
-                <a href="https://apps.apple.com/app/face-%C3%A0-face-jeu-%C3%A0-deux/id6838249154" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="face-a-face-marketing.html">En savoir plus</a>
+                <a href="https://apps.apple.com/fr/app/face-%C3%A0-face-jeu-%C3%A0-deux/id6838249154" target="_blank" rel="noopener noreferrer" aria-label="Télécharger Face à Face sur l’App Store">Télécharger</a>
+                <a class="details-link" href="face-a-face-marketing.html" aria-label="En savoir plus sur Face à Face">En savoir plus</a>
             </div>
         </div>
 
         <div class="card" data-app-id="pato-cash" data-app-name="Pato Cash" data-app-page="pato-cash-marketing.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Pato Cash aux favoris">♡</button>
             <div class="icon-wrap">
-                <img class="icon" src="pato-cash.png" alt="Icône Pato Cash">
+                <img class="icon" src="icons-pato/pato-cash.webp" width="76" height="76" loading="lazy" decoding="async" alt="Icône Pato Cash">
             </div>
             <span class="update-sticker">Mis à jour le <time datetime="2026-11-24">24 novembre 2026</time></span>
             <h2>Pato Cash</h2>
@@ -1090,15 +1082,15 @@ html[data-theme="dark"] .card a:hover {
                 le ticket de vos courses.
             </p>
             <div class="card-actions">
-                <a href="https://apps.apple.com/app/pato-cash/id6835459276" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="pato-cash-marketing.html">En savoir plus</a>
+                <a href="https://apps.apple.com/fr/app/pato-cash/id6835459276" target="_blank" rel="noopener noreferrer" aria-label="Télécharger Pato Cash sur l’App Store">Télécharger</a>
+                <a class="details-link" href="pato-cash-marketing.html" aria-label="En savoir plus sur Pato Cash">En savoir plus</a>
             </div>
         </div>
 
         <div class="card" data-app-id="finelio" data-app-name="Finelio" data-app-page="finelio-blog-page.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Finelio aux favoris">♡</button>
             <div class="icon-wrap">
-                <img class="icon" src="finelio.png" alt="Icône Finelio">
+                <img class="icon" src="icons-pato/finelio.webp" width="76" height="76" loading="lazy" decoding="async" alt="Icône Finelio">
             </div>
             <span class="update-sticker">Mis à jour le <time datetime="2026-11-08">8 novembre 2026</time></span>
             <h2>Finelio</h2>
@@ -1107,15 +1099,15 @@ html[data-theme="dark"] .card a:hover {
                 et les frais qui grignotent parfois les performances.
             </p>
             <div class="card-actions">
-                <a href="https://apps.apple.com/fr/app/finelio/id6762891560" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="finelio-blog-page.html">En savoir plus</a>
+                <a href="https://apps.apple.com/fr/app/finelio/id6762891560" target="_blank" rel="noopener noreferrer" aria-label="Télécharger Finelio sur l’App Store">Télécharger</a>
+                <a class="details-link" href="finelio-blog-page.html" aria-label="En savoir plus sur Finelio">En savoir plus</a>
             </div>
         </div>
 
         <div class="card" data-app-id="pato-pong" data-app-name="Pato Rebond" data-app-page="pato-pong-marketing.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Pato Rebond aux favoris">♡</button>
             <div class="icon-wrap">
-                <img class="icon" src="pato-pong-icon.png" alt="Icône Pato Rebond">
+                <img class="icon" src="icons-pato/pato-pong-icon.webp" width="76" height="76" loading="lazy" decoding="async" alt="Icône Pato Rebond">
             </div>
             <span class="update-sticker">Mis à jour le <time datetime="2026-11-05">5 novembre 2026</time></span>
             <h2>Pato Rebond</h2>
@@ -1124,15 +1116,15 @@ html[data-theme="dark"] .card a:hover {
                 et lancez une revanche dès le point décisif.
             </p>
             <div class="card-actions">
-                <a href="https://apps.apple.com/app/pato-rebond/id6824218311" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="pato-pong-marketing.html">En savoir plus</a>
+                <a href="https://apps.apple.com/fr/app/pato-rebond/id6824218311" target="_blank" rel="noopener noreferrer" aria-label="Télécharger Pato Rebond sur l’App Store">Télécharger</a>
+                <a class="details-link" href="pato-pong-marketing.html" aria-label="En savoir plus sur Pato Rebond">En savoir plus</a>
             </div>
         </div>
 
         <div class="card" data-app-id="am" data-app-name="Ma Maison" data-app-page="AM_marketing.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Ma Maison aux favoris">♡</button>
             <div class="icon-wrap">
-                <img class="icon" src="assets/assistant-maison-logo.png" alt="Logo Ma Maison">
+                <img class="icon" src="icons-pato/assistant-maison-logo.webp" width="76" height="76" loading="lazy" decoding="async" alt="Logo Ma Maison">
             </div>
             <span class="update-sticker">Mis à jour le <time datetime="2026-11-24">24 novembre 2026</time></span>
             <h2>Ma Maison</h2>
@@ -1141,15 +1133,15 @@ html[data-theme="dark"] .card a:hover {
                 réuni dans une interface claire et agréable à utiliser.
             </p>
             <div class="card-actions">
-                <a href="https://apps.apple.com/app/ma-maison-domotique/id6812423817" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="AM_marketing.html">En savoir plus</a>
+                <a href="https://apps.apple.com/fr/app/ma-maison-domotique/id6812423817" target="_blank" rel="noopener noreferrer" aria-label="Télécharger Ma Maison sur l’App Store">Télécharger</a>
+                <a class="details-link" href="AM_marketing.html" aria-label="En savoir plus sur Ma Maison">En savoir plus</a>
             </div>
         </div>
 
         <div class="card" data-app-id="entrenous" data-app-name="EntreNous" data-app-page="EntreNous_marketing.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter EntreNous aux favoris">♡</button>
             <div class="icon-wrap">
-                <img class="icon" src="EntreNous.png" alt="Icône EntreNous">
+                <img class="icon" src="icons-pato/entrenous.webp" width="76" height="76" loading="lazy" decoding="async" alt="Icône EntreNous">
             </div>
             <span class="update-sticker">Mis à jour le <time datetime="2026-11-24">24 novembre 2026</time></span>
             <h2>EntreNous</h2>
@@ -1158,15 +1150,15 @@ html[data-theme="dark"] .card a:hover {
                 les souvenirs qui comptent avec vos proches.
             </p>
             <div class="card-actions">
-                <a href="https://apps.apple.com/app/entrenous-nos-moments/id6813980927" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="EntreNous_marketing.html">En savoir plus</a>
+                <a href="https://apps.apple.com/fr/app/entrenous-nos-moments/id6813980927" target="_blank" rel="noopener noreferrer" aria-label="Télécharger EntreNous sur l’App Store">Télécharger</a>
+                <a class="details-link" href="EntreNous_marketing.html" aria-label="En savoir plus sur EntreNous">En savoir plus</a>
             </div>
         </div>
 
         <div class="card" data-app-id="ascens" data-app-name="Ascens" data-app-page="ascens_marketing.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Ascens aux favoris">♡</button>
             <div class="icon-wrap">
-                <img class="icon" src="ascens-logo.png" alt="Logo Ascens">
+                <img class="icon" src="icons-pato/ascens-logo.webp" width="76" height="76" loading="lazy" decoding="async" alt="Logo Ascens">
             </div>
             <span class="update-sticker">Mis à jour le <time datetime="2026-11-03">3 novembre 2026</time></span>
             <h2>Ascens</h2>
@@ -1175,15 +1167,15 @@ html[data-theme="dark"] .card a:hover {
                 préparer sa sortie et partager les meilleurs terrains de jeu.
             </p>
             <div class="card-actions">
-                <a href="https://apps.apple.com/app/ascens-escalade/id6801274513" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="ascens_marketing.html">En savoir plus</a>
+                <a href="https://apps.apple.com/fr/app/ascens-escalade/id6801274513" target="_blank" rel="noopener noreferrer" aria-label="Télécharger Ascens sur l’App Store">Télécharger</a>
+                <a class="details-link" href="ascens_marketing.html" aria-label="En savoir plus sur Ascens">En savoir plus</a>
             </div>
         </div>
 
         <div class="card" data-app-id="toujours" data-app-name="Toujours Là" data-app-page="page-marketing-encore-la.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Toujours Là aux favoris">♡</button>
             <div class="icon-wrap">
-                <img class="icon" src="encore_la.png" alt="Icône Toujours Là">
+                <img class="icon" src="icons-pato/encore_la.webp" width="76" height="76" loading="lazy" decoding="async" alt="Icône Toujours Là">
             </div>
             <span class="update-sticker">Mis à jour le <time datetime="2026-11-03">3 novembre 2026</time></span>
             <h2>Toujours Là</h2>
@@ -1192,15 +1184,15 @@ html[data-theme="dark"] .card a:hover {
                 confirmer que tout va bien et alerter en cas de silence inhabituel.
             </p>
             <div class="card-actions">
-                <a href="https://apps.apple.com/app/toujours-l%C3%A0-pour-vos-proches/id6786242885" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="page-marketing-encore-la.html">En savoir plus</a>
+                <a href="https://apps.apple.com/fr/app/toujours-l%C3%A0-pour-vos-proches/id6786242885" target="_blank" rel="noopener noreferrer" aria-label="Télécharger Toujours Là sur l’App Store">Télécharger</a>
+                <a class="details-link" href="page-marketing-encore-la.html" aria-label="En savoir plus sur Toujours Là">En savoir plus</a>
             </div>
         </div>
 
         <div class="card" data-app-id="patolife" data-app-name="Pato Life" data-app-page="pato-life-blog-page.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Pato Life aux favoris">♡</button>
             <div class="icon-wrap">
-                <img class="icon" src="patolife.png" alt="Icône Pato Life">
+                <img class="icon" src="icons-pato/patolife.webp" width="76" height="76" loading="lazy" decoding="async" alt="Icône Pato Life">
             </div>
             <span class="update-sticker">Mis à jour le <time datetime="2026-11-08">8 novembre 2026</time></span>
             <h2>Pato Life</h2>
@@ -1209,15 +1201,15 @@ html[data-theme="dark"] .card a:hover {
                 avec une expérience plus fluide, plus personnelle et plus moderne.
             </p>
             <div class="card-actions">
-                <a href="https://apps.apple.com/us/app/pato-life/id6760929480" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="pato-life-blog-page.html">En savoir plus</a>
+                <a href="https://apps.apple.com/fr/app/pato-life/id6760929480" target="_blank" rel="noopener noreferrer" aria-label="Télécharger Pato Life sur l’App Store">Télécharger</a>
+                <a class="details-link" href="pato-life-blog-page.html" aria-label="En savoir plus sur Pato Life">En savoir plus</a>
             </div>
         </div>
 
         <div class="card" data-app-id="loopa" data-app-name="Loopa Move" data-app-page="loopa-move-blog-page.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Loopa Move aux favoris">♡</button>
             <div class="icon-wrap">
-                <img class="icon" src="loopamove.png" alt="Icône Loopa Move">
+                <img class="icon" src="icons-pato/loopamove.webp" width="76" height="76" loading="lazy" decoding="async" alt="Icône Loopa Move">
             </div>
             <span class="update-sticker">Mis à jour le <time datetime="2026-10-26">26 octobre 2026</time></span>
             <h2>Loopa Move</h2>
@@ -1226,15 +1218,15 @@ html[data-theme="dark"] .card a:hover {
                 pour redécouvrir son environnement autrement.
             </p>
             <div class="card-actions">
-                <a href="https://apps.apple.com/app/loopa-move/id6769142014" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="loopa-move-blog-page.html">En savoir plus</a>
+                <a href="https://apps.apple.com/fr/app/loopa-move/id6769142014" target="_blank" rel="noopener noreferrer" aria-label="Télécharger Loopa Move sur l’App Store">Télécharger</a>
+                <a class="details-link" href="loopa-move-blog-page.html" aria-label="En savoir plus sur Loopa Move">En savoir plus</a>
             </div>
         </div>
 
         <div class="card" data-app-id="melovia" data-app-name="Melovia" data-app-page="melovia-blog-page.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Melovia aux favoris">♡</button>
             <div class="icon-wrap">
-                <img class="icon" src="melovia.png" alt="Icône Melovia">
+                <img class="icon" src="icons-pato/melovia.webp" width="76" height="76" loading="lazy" decoding="async" alt="Icône Melovia">
             </div>
             <span class="update-sticker">Mis à jour le <time datetime="2026-10-26">26 octobre 2026</time></span>
             <h2>Melovia</h2>
@@ -1243,15 +1235,15 @@ html[data-theme="dark"] .card a:hover {
                 santé, souvenirs, documents et moments précieux.
             </p>
             <div class="card-actions">
-                <a href="https://apps.apple.com/fr/app/melovia/id6761615290" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="melovia-blog-page.html">En savoir plus</a>
+                <a href="https://apps.apple.com/fr/app/melovia/id6761615290" target="_blank" rel="noopener noreferrer" aria-label="Télécharger Melovia sur l’App Store">Télécharger</a>
+                <a class="details-link" href="melovia-blog-page.html" aria-label="En savoir plus sur Melovia">En savoir plus</a>
             </div>
         </div>
 
         <div class="card" data-app-id="meteo" data-app-name="Pato Météo" data-app-page="Pato_meteo_MarketingPage.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Pato Météo aux favoris">♡</button>
             <div class="icon-wrap">
-                <img class="icon" src="pato-meteo.png" alt="Icône Pato Météo">
+                <img class="icon" src="icons-pato/pato-meteo.webp" width="76" height="76" loading="lazy" decoding="async" alt="Icône Pato Météo">
             </div>
             <span class="update-sticker">Mis à jour le <time datetime="2026-11-09">9 novembre 2026</time></span>
             <h2>Pato Météo</h2>
@@ -1260,15 +1252,15 @@ html[data-theme="dark"] .card a:hover {
                 marcher, courir, randonner ou rouler au meilleur moment.
             </p>
             <div class="card-actions">
-                <a href="https://apps.apple.com/fr/app/pato-m%C3%A9t%C3%A9o/id6795985697?uo=4" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="Pato_meteo_MarketingPage.html">En savoir plus</a>
+                <a href="https://apps.apple.com/fr/app/pato-m%C3%A9t%C3%A9o/id6795985697?uo=4" target="_blank" rel="noopener noreferrer" aria-label="Télécharger Pato Météo sur l’App Store">Télécharger</a>
+                <a class="details-link" href="Pato_meteo_MarketingPage.html" aria-label="En savoir plus sur Pato Météo">En savoir plus</a>
             </div>
         </div>
 
         <div class="card" data-app-id="arbre-familial" data-app-name="Arbre familial" data-app-page="AF_marketing.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Arbre familial aux favoris">♡</button>
             <div class="icon-wrap">
-                <img class="icon" src="mon_arbre.png" alt="Logo Arbre familial">
+                <img class="icon" src="icons-pato/mon_arbre.webp" width="76" height="76" loading="lazy" decoding="async" alt="Logo Arbre familial">
             </div>
             <span class="update-sticker">Mis à jour le <time datetime="2026-11-16">16 novembre 2026</time></span>
             <h2>Arbre familial</h2>
@@ -1277,15 +1269,15 @@ html[data-theme="dark"] .card a:hover {
                 et transmettez les souvenirs qui comptent.
             </p>
             <div class="card-actions">
-                <a href="https://apps.apple.com/app/arbre-familial-g%C3%A9n%C3%A9alogie/id6821957187" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="AF_marketing.html">En savoir plus</a>
+                <a href="https://apps.apple.com/fr/app/arbre-familial-g%C3%A9n%C3%A9alogie/id6821957187" target="_blank" rel="noopener noreferrer" aria-label="Télécharger Arbre familial sur l’App Store">Télécharger</a>
+                <a class="details-link" href="AF_marketing.html" aria-label="En savoir plus sur Arbre familial">En savoir plus</a>
             </div>
         </div>
 
         <div class="card" data-app-id="pulse" data-app-name="Pulse" data-app-page="pulse_marketing.html">
             <button class="favorite-button" type="button" aria-pressed="false" aria-label="Ajouter Pulse aux favoris">♡</button>
             <div class="icon-wrap">
-                <img class="icon" src="pulse_game.png" alt="Icône Pulse">
+                <img class="icon" src="icons-pato/pulse_game.webp" width="76" height="76" loading="lazy" decoding="async" alt="Icône Pulse">
             </div>
             <span class="update-sticker">Mis à jour le <time datetime="2026-10-15">15 octobre 2026</time></span>
             <h2>Pulse</h2>
@@ -1294,12 +1286,13 @@ html[data-theme="dark"] .card a:hover {
                 touchez au moment parfait et poussez votre meilleur score.
             </p>
             <div class="card-actions">
-                <a href="https://apps.apple.com/app/pulse-jeu-de-rythme/id6804769433" target="_blank" rel="noopener noreferrer">Télécharger</a>
-                <a class="details-link" href="pulse_marketing.html">En savoir plus</a>
+                <a href="https://apps.apple.com/fr/app/pulse-jeu-de-rythme/id6804769433" target="_blank" rel="noopener noreferrer" aria-label="Télécharger Pulse sur l’App Store">Télécharger</a>
+                <a class="details-link" href="pulse_marketing.html" aria-label="En savoir plus sur Pulse">En savoir plus</a>
             </div>
         </div>
 
     </section>
+    </main>
 
 </div>
 
@@ -1319,9 +1312,9 @@ html[data-theme="dark"] .card a:hover {
     <span class="update-status" id="update-status" role="status" aria-live="polite"></span>
 </footer>
 
-<aside class="install-prompt" id="install-prompt" role="dialog" aria-labelledby="install-prompt-title" aria-describedby="install-prompt-text">
+<aside class="install-prompt" id="install-prompt" aria-labelledby="install-prompt-title">
     <div class="install-prompt__top">
-        <img class="install-prompt__icon" src="accueil.png" alt="">
+        <img class="install-prompt__icon" src="icons-pato/app-192.png" width="48" height="48" alt="">
         <div>
             <h2 id="install-prompt-title">Installer Pato Apps</h2>
             <p id="install-prompt-text"></p>
@@ -1354,7 +1347,9 @@ const shouldForceInstallPrompt = new URLSearchParams(window.location.search).has
 let deferredInstallPrompt;
 
 function canShowInstallPrompt() {
-    return (isIOS || isAndroid || isTouchDevice) && !isStandalone && (shouldForceInstallPrompt || localStorage.getItem(installPromptStorageKey) !== "true");
+    let dismissed = false;
+    try { dismissed = localStorage.getItem(installPromptStorageKey) === "true"; } catch {}
+    return (isIOS || isAndroid || isTouchDevice) && !isStandalone && (shouldForceInstallPrompt || !dismissed);
 }
 
 function showInstallPrompt() {
@@ -1392,8 +1387,12 @@ installPromptAction.addEventListener("click", async () => {
 });
 
 installPromptDismiss.addEventListener("click", () => {
-    localStorage.setItem(installPromptStorageKey, "true");
+    try { localStorage.setItem(installPromptStorageKey, "true"); } catch {}
     installPrompt.classList.remove("is-visible");
+});
+
+installPrompt.addEventListener("keydown", event => {
+    if (event.key === "Escape") installPromptDismiss.click();
 });
 
 window.addEventListener("load", () => {
@@ -1627,16 +1626,44 @@ const updateStatus = document.getElementById("update-status");
 updateButton.addEventListener("click", async () => {
     updateButton.disabled = true;
     updateStatus.textContent = "Recherche d’une nouvelle version…";
-
     try {
         const registration = await navigator.serviceWorker?.getRegistration();
-        await registration?.update();
-        updateStatus.textContent = "Page actualisée.";
+        if (!registration) {
+            updateStatus.textContent = "La vérification des nouveautés n’est pas disponible.";
+        } else if (!navigator.onLine) {
+            updateStatus.textContent = "Impossible de vérifier les nouveautés hors ligne.";
+        } else {
+            const previousController = navigator.serviceWorker.controller;
+            await registration.update();
+            if (previousController && navigator.serviceWorker.controller !== previousController) {
+                updateStatus.textContent = "Nouvelle version activée. Actualisation…";
+                window.location.reload();
+                return;
+            }
+            const worker = registration.installing || registration.waiting;
+            if (worker && worker.state !== "activated") {
+                updateStatus.textContent = "Nouvelle version détectée, activation en cours…";
+                await new Promise((resolve, reject) => {
+                    const timer = setTimeout(() => reject(new Error("Activation en attente")), 15000);
+                    const check = () => {
+                        if (worker.state === "activated") { clearTimeout(timer); resolve(); }
+                        if (worker.state === "redundant") { clearTimeout(timer); reject(new Error("Installation interrompue")); }
+                    };
+                    worker.addEventListener("statechange", check);
+                    if (worker.state === "installed") worker.postMessage({ type: "SKIP_WAITING" });
+                    worker.addEventListener("statechange", () => { if (worker.state === "installed") worker.postMessage({ type: "SKIP_WAITING" }); });
+                    check();
+                });
+                updateStatus.textContent = "Nouvelle version activée. Actualisation…";
+                window.location.reload();
+                return;
+            }
+            updateStatus.textContent = "Aucune nouvelle version détectée.";
+        }
     } catch {
-        updateStatus.textContent = "Impossible de vérifier les nouveautés hors ligne.";
+        updateStatus.textContent = "La vérification ou l’activation a échoué. Réessayez plus tard.";
     }
-
-    window.setTimeout(() => window.location.reload(), 400);
+    updateButton.disabled = false;
 });
 </script>
 
